@@ -535,7 +535,6 @@ function renderHome(){
   h+='<div class="route">'+BASES.map(function(b){ const on=st==='during'&&t>=b[1]&&t<=b[2]; return '<span class="stop'+(on?' now':'')+'">'+b[0]+'</span>'; }).join('')+'</div>';
   h+='<div class="views">OR SEE THE WHOLE TRIP AS A <a href="#map">🗺️ MAP</a><a href="#planner">☰ LIST</a></div>';
   h+='<div class="ctas"><a class="c-ph" href="#phrases">Handy Japanese phrases!<small>Tap a phrase to show it big</small></a><a class="c-et" href="#etiquette">Learn the etiquette<small>Ten things before you land</small></a></div>';
-  h+='<div class="info-box" data-label="Put it on your phone" style="margin-top:22px">Safari → Share → <b>Add to Home Screen</b>. Open every page once while online and it all works without signal in Japan.</div>';
   h+='</div></div>';
   h+='<div class="sec"><h3>The tour at a glance</h3><div class="sub">16 nights · 6 bases · every flight, stay, train and transfer — tap a row for the day</div></div>';
   h+='<div id="glance">'+renderGlance()+'</div>';
