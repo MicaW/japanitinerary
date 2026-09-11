@@ -545,10 +545,10 @@ const JLINES=[['kyo','ara','loop'],['ara','ine','loop'],['ine','kyo','loop'],['k
 function renderJourneyMap(mode){
   const t=jstDateStr(), during=tripState()==='during';
   const W=840,H=420; const P={};
-  if(mode==='scale'){ const lng0=135.1,lng1=139.9,lat0=34.5,lat1=35.85; JSTOPS.forEach(x=>{ P[x.id]=[((x.lng-lng0)/(lng1-lng0))*(W-120)+60, H-50-((x.lat-lat0)/(lat1-lat0))*(H-110)]; }); }
+  if(mode==='scale'){ const lng0=135.1,lng1=139.9,lat0=34.5,lat1=35.85; JSTOPS.forEach(x=>{ P[x.id]=[((x.lng-lng0)/(lng1-lng0))*(W-120)+60, H-50-((x.lat-lat0)/(lat1-lat0))*(H-110)]; }); P.ara[0]-=22; P.ara[1]-=6; /* 8 km apart in reality — nudged so the dots do not touch */ }
   else JSTOPS.forEach(x=>{ P[x.id]=x.S.slice(); });
   // label offsets for the to-scale view (the Kyoto cluster needs care)
-  const LS={kyo:{dx:22,dy:-14,a:'start'},osa:{dx:-16,dy:24,a:'end'},ara:{dx:-18,dy:-14,a:'end'},ine:{dx:0,dy:-22,a:'middle'},nar:{dx:18,dy:26,a:'start'},kis:{dx:0,dy:-22,a:'middle'},tok:{dx:0,dy:-24,a:'middle'}};
+  const LS={kyo:{dx:24,dy:6,a:'start'},osa:{dx:-18,dy:6,a:'end'},ara:{dx:-16,dy:6,a:'end'},ine:{dx:0,dy:-20,a:'middle'},nar:{dx:18,dy:6,a:'start'},kis:{dx:0,dy:-20,a:'middle'},tok:{dx:0,dy:-20,a:'middle'}};
   let g='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="The journey">';
   g+='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
   g+='<text x="20" y="26" class="jm-sea">'+(mode==='scale'?'SEA OF JAPAN ↑ · to scale':'SEA OF JAPAN ↑')+'</text><text x="'+(W-20)+'" y="'+(H-14)+'" class="jm-sea" text-anchor="end">↓ PACIFIC</text>';
@@ -556,8 +556,9 @@ function renderJourneyMap(mode){
   JLINES.forEach(function(l){ const a=P[l[0]],b=P[l[1]]; g+='<line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'" stroke="'+JCOL[l[2]]+'" stroke-width="9" stroke-linecap="round"'+(l[3]?' stroke-dasharray="3 13"':'')+'/>'; });
   JSTOPS.forEach(function(x){ const p=P[x.id]; const on=during&&t>=x.r[0]&&t<=x.r[1]; const rr=x.city?17:11; const L=mode==='scale'?LS[x.id]:x.L;
     g+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+rr+'" fill="'+(on?'#000':'#fff')+'" stroke="#000" stroke-width="4"/>'+(on?'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="5" fill="'+JCOL[x.kind]+'"/>':'');
-    g+='<text class="jm-n" x="'+(p[0]+L.dx)+'" y="'+(p[1]+L.dy)+'" text-anchor="'+L.a+'" font-size="'+(x.city?16:12.5)+'">'+x.n+'</text>';
-    g+='<text class="jm-s" x="'+(p[0]+L.dx)+'" y="'+(p[1]+L.dy+13)+'" text-anchor="'+L.a+'">'+x.sub+'</text>'; });
+    const above=L.dy<0; const ny=above?p[1]+L.dy-13-(x.city?6:0):p[1]+L.dy+(L.a==='middle'?12:0); const sy=above?p[1]+L.dy-(x.city?6:0):ny+13;
+    g+='<text class="jm-n" x="'+(p[0]+L.dx)+'" y="'+ny+'" text-anchor="'+L.a+'" font-size="'+(x.city?16:12.5)+'">'+x.n+'</text>';
+    g+='<text class="jm-s" x="'+(p[0]+L.dx)+'" y="'+sy+'" text-anchor="'+L.a+'">'+x.sub+'</text>'; });
   g+='</svg>';
   return g+'<div class="jm-foot"><span>'+(mode==='scale'?'Where things really are':'The shape of the trip')+'</span><button class="btn mini" onclick="MAPMODE=\''+(mode==='scale'?'simple':'scale')+'\';document.getElementById(\'homemap\').innerHTML=renderJourneyMap(MAPMODE)">'+(mode==='scale'?'↩ SIMPLE VIEW':'📐 TO SCALE')+'</button></div>';
 }
