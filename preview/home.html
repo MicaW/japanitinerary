@@ -526,7 +526,7 @@ header .menubtn{font-family:'JetBrains Mono',monospace;font-size:11px;font-weigh
 <script>
 const DAYS=[].concat(window.DAYS1,window.DAYS2,window.DAYS3).sort((a,b)=>a.iso<b.iso?-1:1);
 let SIM='2026-09-11';
-const BASES=[['KYOTO','2026-09-19','2026-09-22'],['OSAKA','2026-09-22','2026-09-22'],['ARASHIYAMA','2026-09-23','2026-09-24'],['INE','2026-09-25','2026-09-26'],['KISO','2026-09-28','2026-09-30'],['TOKYO','2026-10-01','2026-10-05']];
+const BASES=[['KYOTO','2026-09-19','2026-09-21'],['OSAKA','2026-09-22','2026-09-22'],['ARASHIYAMA','2026-09-23','2026-09-24'],['INE','2026-09-25','2026-09-26'],['KISO','2026-09-28','2026-09-30'],['TOKYO','2026-10-01','2026-10-05']];
 function state(){ const t=SIM; if(t<DAYS[0].iso) return 'before'; if(t>DAYS[DAYS.length-1].iso) return 'after'; return 'during'; }
 function dayIdx(){ return DAYS.findIndex(d=>d.iso===SIM); }
 function daysBetween(a,b){ return Math.round((new Date(b+'T00:00:00Z')-new Date(a+'T00:00:00Z'))/86400000); }
