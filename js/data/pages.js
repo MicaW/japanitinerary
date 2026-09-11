@@ -409,7 +409,7 @@ P.renderMap=function(DAYS){
  });
 
  const ICON={hotel:'🛏',explore:'📍',activities:'🎯',shopping:'🛍',food:'🍽'};
- const MYMAP=P.MYMAP||'';
+ const MYMAP=P.MYMAP||'1nR0g5KwrRZ8UfJk805QzIeMhszx46Ng';
  let h='<div class="sec blue"><h3>🗺️ Map</h3><div class="sub">'+pins.length+' places, all findable in Google Maps by name. The route runs Kyoto → Osaka → Arashiyama → Ine → Kiso → Tokyo</div></div>';
 
  /* ---- the route strip ---- */
