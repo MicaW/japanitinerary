@@ -232,7 +232,7 @@ body.offline #offline-pill{display:block;}
 .phrase .use{font-size:11.5px;color:#6b7280;margin-top:4px;}
 #bigphrase{position:fixed;inset:0;background:#fff;z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;}
 #bigphrase .jp{font-size:clamp(34px,9vw,64px);font-weight:900;line-height:1.3;}
-#bigphrase .en{font-size:16px;font-weight:700;margin-top:18px;color:#374151;}
+#bigphrase .en{font-size:16px;font-weight:700;margin-top:18px;color:#374151;white-space:pre-line;}
 #bigphrase button{margin-top:30px;}
 
 /* MAP */
@@ -466,6 +466,44 @@ table.trains td{vertical-align:top;font-size:12px;}
 #sheet .sheettop b{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.06em;}
 #sheet .xr.sheetcard{margin:0;} #sheet .xr.sheetcard>summary{pointer-events:none;} #sheet .xr.sheetcard>summary .exp{display:none;}
 @media (min-width:700px){ #sheet{align-items:center;justify-content:center;} #sheet .sheetin{max-width:640px;border:4px solid #000;box-shadow:8px 8px 0 #000;} }
+
+/* ===== v53: menu, hero B, round go button, ctas, glance ===== */
+header{overflow:visible}
+header .menubtn{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:800;border:2.5px solid #000;background:#fff;padding:7px 11px;box-shadow:3px 3px 0 #000;cursor:pointer;text-transform:uppercase}
+header .menubtn:active{transform:translate(2px,2px);box-shadow:none}
+.menu{display:none;position:absolute;right:12px;top:calc(100% + 8px);background:#fff;border:4px solid #000;box-shadow:8px 8px 0 #000;min-width:250px;z-index:70;padding:8px 0}
+.menu.open{display:block}
+.menu a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 16px;text-decoration:none;color:#000;font-family:'Archivo Black',sans-serif;font-size:14px;text-transform:uppercase;border-bottom:2px solid #eee}
+.menu a small{font-family:'JetBrains Mono',monospace;font-size:9px;color:#6b7280;font-weight:700}
+.menu .grp{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.1em;color:#fff;background:#000;padding:5px 16px;margin-top:6px}
+.menu a.guide{background:var(--yellow)}
+#subnav{display:none!important}
+.route .stop.mid{background:#fff} .route .stop.end{background:#fff;color:#000;box-shadow:none}
+.route .stop.now{background:#000;color:#fff;box-shadow:4px 4px 0 var(--red)}
+.hero .himg.b{height:400px} .hero .himg.b .ht{bottom:120px;right:16px}
+.sticker{position:absolute;right:14px;top:14px;background:var(--yellow);border:3.5px solid #000;box-shadow:5px 5px 0 #000;padding:10px 12px;transform:rotate(4deg);text-align:center;font-family:'Archivo Black',sans-serif;text-transform:uppercase;max-width:46%}
+.sticker .n{font-size:44px;line-height:.9}.sticker .t{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:800;margin-top:4px;letter-spacing:.05em;line-height:1.35}
+.goround{width:190px;height:190px;border-radius:50%;background:var(--red);color:#fff;border:5px solid #000;box-shadow:8px 8px 0 #000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;margin:-100px auto 6px;position:relative;z-index:3;font-family:'Archivo Black',sans-serif;text-transform:uppercase;padding:12px}
+.goround:active{transform:translate(4px,4px);box-shadow:2px 2px 0 #000}
+.goround .k{font-size:13px;letter-spacing:.06em}.goround .d{font-size:34px;line-height:1;margin:2px 0}.goround .ar{font-size:26px;line-height:1}.goround .s{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;margin-top:6px;text-transform:none;opacity:.95}
+.gosub{text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;margin:6px 0 14px}
+.views{display:flex;gap:8px;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;margin:14px 0 6px;flex-wrap:wrap}
+.views a{border:2.5px solid #000;background:#fff;padding:7px 10px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;text-transform:uppercase}
+.views a.on{background:#000;color:var(--yellow)}
+.ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.ctas a{border:3.5px solid #000;box-shadow:5px 5px 0 #000;padding:14px 12px;text-decoration:none;color:#000;font-family:'Archivo Black',sans-serif;font-size:15px;line-height:1.1;text-transform:uppercase;display:block}
+.ctas a small{display:block;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;margin-top:6px;text-transform:none}
+.ctas .c-ph{background:var(--yellow)} .ctas .c-et{background:#FF5FA2}
+.gf{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.gf button{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;border:2px solid #000;background:#fff;padding:5px 9px;cursor:pointer;box-shadow:2px 2px 0 #000;text-transform:uppercase}
+.gf button.on{background:#000;color:var(--yellow)}
+.gl .k{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;border:1.5px solid #000;vertical-align:middle}
+.k.flight{background:var(--blue)}.k.hotel{background:var(--green)}.k.train{background:var(--red)}.k.transfer{background:var(--yellow)}
+.tag.fx-must{background:var(--red);color:#fff}.tag.fx-res{background:var(--yellow);color:#000}.tag.fx-fixed{background:var(--orange);color:#fff}.tag.fx-go{background:var(--green);color:#fff}.tag.fx-arr{background:var(--blue);color:#fff}
+.legend{font-family:'JetBrains Mono',monospace;font-size:10px;line-height:1.9;margin:6px 0 10px}
+.dayviews{display:flex;gap:8px;margin:12px 0 0;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700}
+.dayviews a{border:2.5px solid #000;background:#fff;padding:6px 10px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;text-transform:uppercase}
+.dayviews a.on{background:#000;color:var(--yellow)}
 </style>
 </head>
 <body>
@@ -475,13 +513,15 @@ table.trains td{vertical-align:top;font-size:12px;}
     <div class="dot"><img src="images/hero.jpg" alt=""></div>
     <h1>LAMPTEYS <span>ON TOUR</span></h1>
   </a>
-  <div class="hbtns">
-    <a class="hbtn" href="#packing">🎒 PACKING</a>
-    <a class="hbtn" href="#budget">💰 BUDGET</a>
-    <a class="hbtn" href="#map">🗺️ MAP</a>
-  </div>
+  <button class="menubtn" id="menubtn" onclick="toggleMenu()">☰ MENU</button>
+  <nav class="menu" id="menu">
+    <a class="guide" href="#guide">TRIP GUIDE <small id="m-guide-s">DAY 1</small></a>
+    <a href="#map">MAP VIEW <small>whole trip</small></a>
+    <a href="#planner">LIST VIEW <small>whole trip</small></a>
+    <div class="grp">PREP &amp; REFERENCE</div>
+    <a href="#packing">🎒 PACKING</a><a href="#budget">💰 BUDGET</a><a href="#etiquette">🙇 ETIQUETTE 101</a><a href="#phrases">🗣️ PHRASES</a>
+  </nav>
 </header>
-<div id="subnav" class="nosb"></div>
 <div id="daynav" class="nosb" style="display:none"></div>
 <main id="app" class="wrap" style="padding-bottom:90px;"></main>
 <div id="mapmodal" onclick="if(event.target===this)hideMap()">

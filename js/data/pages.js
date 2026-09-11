@@ -409,7 +409,8 @@ P.renderMap=function(DAYS){
  });
 
  const ICON={hotel:'🛏',explore:'📍',activities:'🎯',shopping:'🛍',food:'🍽'};
- let h='<div class="sec blue"><h3>🗺️ Map</h3><div class="sub">'+pins.length+' places pinned with real coordinates. The route runs Kyoto → Osaka → Arashiyama → Ine → Kiso → Tokyo</div></div>';
+ const MYMAP=P.MYMAP||'';
+ let h='<div class="sec blue"><h3>🗺️ Map</h3><div class="sub">'+pins.length+' places, all findable in Google Maps by name. The route runs Kyoto → Osaka → Arashiyama → Ine → Kiso → Tokyo</div></div>';
 
  /* ---- the route strip ---- */
  h+='<div class="routestrip">'+
@@ -420,51 +421,32 @@ P.renderMap=function(DAYS){
      '<div><div class="rst">'+x[1]+'</div><div class="rsd">'+x[2]+'</div></div></div>';}).join('<div class="rsar">→</div>')+
    '</div>';
 
- /* ---- live map (needs signal) ---- */
- h+='<div id="bigmap" class="bigmap"><div class="mapload">🗺️ Loading the map…<br><span>Needs signal the first time. Once loaded on wifi it stays cached for Japan.</span></div></div>';
- h+='<div class="btnrow" style="margin:8px 0 18px"><button class="btn mini" onclick="mapFilter(\'all\')">ALL</button>'+
-    CITY.map(function(c){return '<button class="btn mini" onclick="mapFilter(\''+c.k+'\')">'+c.n+'</button>';}).join('')+'</div>';
+ /* ---- the whole trip on one Google map (My Maps) ---- */
+ if(MYMAP){
+  h+='<div class="mapframe" style="height:460px;margin-bottom:12px">'+(navigator.onLine?'<iframe loading="lazy" src="https://www.google.com/maps/d/embed?mid='+MYMAP+'&ehbc=2E312F"></iframe>':'<div class="map-off">📡 The trip map needs signal — the place lists below work offline, and so do the pins inside the Google Maps app once the areas are downloaded.</div>')+'</div>';
+  h+='<div class="btnrow" style="margin-bottom:18px"><a class="btn yellow big" style="flex:1" target="_blank" rel="noopener" href="https://www.google.com/maps/d/viewer?mid='+MYMAP+'">↗ OPEN THE TRIP MAP IN GOOGLE MAPS</a></div>';
+ }
+ h+='<div class="info-box" data-label="Before you fly — make it work offline">'+
+   '<b>1. Download the areas in the Google Maps app.</b> Profile picture → <b>Offline maps</b> → <b>Select your own map</b>, then save one each for Kyoto &amp; Osaka, Amanohashidate &amp; Ine, the Kiso Valley, and Tokyo. Your blue dot, the pins you have saved and driving directions all work with no signal.<br><br>'+
+   '<b>2. Put every place on your own Google map.</b> Download the file below, then on a computer open <a target="_blank" rel="noopener" href="https://www.google.com/maps/d/">Google My Maps</a> → Create a new map → Import → choose the file. Every place lands as a named pin, in a layer per area. Share the map with Dad and it appears in both your Google Maps apps under Saved → Maps (needs signal).<br><br>'+
+   '<b>3. In the trip guide</b>, every place has <b>MAP</b>, <b>FROM HERE</b> (directions from where you are standing) and <b>SHOW NAME</b> (the Japanese name, big, for a taxi driver or a passer-by).</div>';
+ h+='<div class="btnrow" style="margin:0 0 18px"><a class="btn mini" href="downloads/lampteys-japan-places.kml" download>⬇ PLACES FILE FOR GOOGLE MY MAPS (KML)</a></div>';
 
- /* ---- offline fallback: real relative positions, no tiles needed ---- */
- h+='<div class="sec"><h3>Offline plans</h3><div class="sub">Drawn from the same coordinates — works with no signal at all. Distances are to scale within each area</div></div>';
+ /* ---- every place, by area ---- */
  CITY.forEach(function(c){
   const ps=pins.filter(function(p){return p.city.k===c.k;});
   if(!ps.length) return;
-  const las=ps.map(function(p){return p.la;}), lns=ps.map(function(p){return p.ln;});
-  let laMin=Math.min.apply(null,las), laMax=Math.max.apply(null,las);
-  let lnMin=Math.min.apply(null,lns), lnMax=Math.max.apply(null,lns);
-  const padLa=Math.max((laMax-laMin)*0.12,0.004), padLn=Math.max((lnMax-lnMin)*0.12,0.004);
-  laMin-=padLa; laMax+=padLa; lnMin-=padLn; lnMax+=padLn;
-  const W=880, H=430;
-  const x=function(ln){return ((ln-lnMin)/(lnMax-lnMin))*W;};
-  const y=function(la){return H-((la-laMin)/(laMax-laMin))*H;};
-  const kmW=(lnMax-lnMin)*111*Math.cos(laMin*Math.PI/180);
-  let svg='<svg viewBox="0 0 '+W+' '+H+'" class="svgmap" preserveAspectRatio="xMidYMid meet">';
-  svg+='<rect width="'+W+'" height="'+H+'" fill="#fbfbf8"/>';
-  for(let g=1;g<6;g++){ svg+='<line x1="'+(W/6*g)+'" y1="0" x2="'+(W/6*g)+'" y2="'+H+'" stroke="#e8e8e0" stroke-width="1"/>'; }
-  for(let g=1;g<4;g++){ svg+='<line x1="0" y1="'+(H/4*g)+'" x2="'+W+'" y2="'+(H/4*g)+'" stroke="#e8e8e0" stroke-width="1"/>'; }
-  ps.forEach(function(p,ix){
-   const px=x(p.ln), py=y(p.la);
-   svg+='<circle cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="7" fill="'+c.c+'" stroke="#000" stroke-width="2"/>';
-   svg+='<text x="'+px.toFixed(1)+'" y="'+(py+3.5).toFixed(1)+'" font-size="8" fill="#fff" text-anchor="middle" font-family="monospace">'+(ix+1)+'</text>';
-  });
-  svg+='<g><rect x="14" y="'+(H-34)+'" width="150" height="22" fill="#fff" stroke="#000" stroke-width="1.5"/>'+
-       '<text x="20" y="'+(H-19)+'" font-size="11" font-family="monospace">≈ '+kmW.toFixed(1)+' km across</text></g>';
-  svg+='</svg>';
   h+='<details class="tdcard b4" style="border-left-color:'+c.c+'"><summary><div class="tdi">🗺</div>'+
-      '<div class="tdt"><div class="tdh">'+c.n+'</div><div class="tds">'+ps.length+' places, to scale</div></div>'+
-      '<span class="exp">▾</span></summary><div class="tdbody">'+svg+
+      '<div class="tdt"><div class="tdh">'+c.n+'</div><div class="tds">'+ps.length+' places</div></div>'+
+      '<span class="exp">▾</span></summary><div class="tdbody">'+
       '<ol class="pinlist">'+ps.map(function(p){
-        return '<li><b>'+esc(p.n)+'</b> <span class="pl-d">'+esc(p.date)+'</span>'+
-        (p.geo==='low'?' <span class="tag warn">approx</span>':'')+
-        ' <button class="copybtn" onclick="showMap(\''+encodeURIComponent(p.q)+'\')">MAP</button></li>';}).join('')+'</ol>'+
+        const enc=encodeURIComponent(JSON.stringify({jp:p.jp,en:p.n,addr:''}));
+        return '<li>'+ICON[p.kind]+' <b>'+esc(p.n)+'</b>'+(p.jp?' <span class="mono" style="font-size:11px">'+esc(p.jp)+'</span>':'')+' <a class="pl-d" href="#day/'+p.day+'">'+esc(p.date)+'</a><br>'+
+        '<button class="copybtn" onclick="showMap(\''+encodeURIComponent(p.q)+'\')">MAP</button> '+
+        '<a class="copybtn" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(p.q)+'&travelmode=walking">FROM HERE</a> '+
+        '<button class="copybtn" onclick="showPlace(\''+enc+'\')">SHOW NAME</button></li>';}).join('')+'</ol>'+
       '</div></details>';
  });
-
- h+='<div class="info-box" data-label="About the pins">Every pin is a real coordinate, checked to be within 60 km of the day it belongs to. Anything marked <b>approx</b> is a street or district-level fix rather than a doorway — mostly small bars and guesthouses that no mapping service publishes precisely. Ten places have no pin at all because they are not fixed locations (a rail day, a curry hit-list, an unnamed gig).</div>';
-
- /* ---- boot the live map after render ---- */
- setTimeout(function(){ window.bootMap(pins, CITY); }, 60);
  return h;
 };
 

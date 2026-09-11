@@ -1,7 +1,7 @@
 /* LAMPTEYS ON TOUR — app.js v2 (compact rendering). Content lives in js/data/. */
 (function(){
 const $=s=>document.querySelector(s);
-const app=$('#app'), daynav=$('#daynav'), subnav=$('#subnav');
+const app=$('#app'), daynav=$('#daynav');
 const DAYS=window.DAYS1.concat(window.DAYS2, window.DAYS3);
 const P=window.PAGES;
 
@@ -12,10 +12,31 @@ function jstDateStr(){ const d=jstNow(); return d.getFullYear()+'-'+String(d.get
 function currentDayIndex(){ const t=jstDateStr(); return DAYS.findIndex(d=>d.iso===t); }
 function tripState(){ const t=jstDateStr(); if(t<DAYS[0].iso) return 'before'; if(t>DAYS[DAYS.length-1].iso) return 'after'; return 'during'; }
 function mapsUrl(q){ return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q); }
+/* ---- v53: plain-English transport labels ---- */
+const FLEX={must:['fx-must','MUST NOT MISS'],res:['fx-res','RESERVED SEAT'],fixed:['fx-fixed','FIXED TIME'],go:['fx-go','TURN UP & GO'],arr:['fx-arr','ARRANGE']};
+function legFlex(d,t){
+  const s=((t.service||'')+' | '+(t.status||'')).toLowerCase();
+  if(/air china|british airways|ba6/.test(s)) return 'res';
+  if(/hashidate|shinano/.test(s)) return 'must';
+  if(d.iso==='2026-09-27'&&/tankai/.test(s)) return 'must';          // the 08:11 is the only bus that makes the train
+  if(/nozomi|aoniyoshi/.test(s)) return 'res';
+  if(/tankai|chuo line locals|kiso rail/.test(s)) return 'fixed';
+  if(/host|hotel transfer|hotel boat|sea taxi|arranged|ask the desk|book at reception|taxi to shinagawa|reception|with hotel|slot to reserve|book the taxi/.test(s)) return 'arr';
+  if(/taxi/.test(s)&&/book|arrange|ask/.test(s)) return 'arr';
+  return 'go';
+}
+function flexTag(k){ return '<span class="tag '+FLEX[k][0]+'">'+FLEX[k][1]+'</span>'; }
+window.legFlex=legFlex; window.FLEX=FLEX;
 function dirUrl(f,t){ return 'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(f)+'&destination='+encodeURIComponent(t)+'&travelmode=transit'; }
 function photosUrl(q){ return 'https://www.google.com/search?tbm=isch&q='+encodeURIComponent(q); }
 window.copyTxt=function(t,btn){ navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>{ if(btn){btn.textContent='COPIED ✓'; setTimeout(()=>btn.textContent='COPY',1400);} }); };
 window.showBig=function(jp,en){ $('#bp-jp').textContent=jp; $('#bp-en').textContent=en; $('#bigphrase').style.display='flex'; };
+window.showPlace=function(enc){ const o=JSON.parse(decodeURIComponent(enc)); const jp=o.jp||o.en; const lines=[]; if(o.jp) lines.push(o.en); if(o.addr) lines.push(o.addr); lines.push('ここに行きたいです — I\u2019d like to go here');
+  $('#bp-jp').textContent=jp; $('#bp-en').textContent=lines.join('\n'); $('#bigphrase').style.display='flex'; };
+function placeBtns(e,fallbackArea){ const q=e.mapsQ||(e.name+' '+(e.addr||fallbackArea||'Japan'));
+  return '<button class="btn mini" onclick="showMap(\''+encodeURIComponent(q)+'\')">🗺️ MAP</button>'+
+    '<a class="btn mini" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'&travelmode=walking">📍 FROM HERE</a>'+
+    '<button class="btn mini yellow" onclick="showPlace(\''+encodeURIComponent(JSON.stringify({jp:e.jp||'',en:e.name,addr:e.addr||''}))+'\')">🈁 SHOW NAME</button>'; }
 window.showMap=function(qe){ const q=decodeURIComponent(qe); const m=$('#mapmodal'), f=$('#mm-frame'), off=$('#mm-off');
   $('#mm-open').href=mapsUrl(q);
   if(navigator.onLine){ f.style.display='block'; off.style.display='none'; f.src='https://maps.google.com/maps?q='+encodeURIComponent(q)+'&z=16&output=embed'; }
@@ -126,7 +147,7 @@ function recCard(c,i){
   if(c.guide) inner+='<div class="guide-box" data-label="🎧 Worth a guide">'+c.guide+'</div>';
   if(c.tips) inner+='<div class="info-box" data-label="On the ground" style="margin:12px 0 4px">'+c.tips+'</div>';
   if(c.nearby) inner+='<p style="font-size:11.5px;margin:8px 0 0;font-family:JetBrains Mono,monospace;color:#6b7280">NEARBY: '+esc(c.nearby)+'</p>';
-  inner+='<div class="btnrow"><button class="btn mini" onclick="showMap(\''+encodeURIComponent(c.mapsQ||(c.name+' '+(c.addr||'Japan')))+'\')">🗺️ VIEW ON MAP</button>'+
+  inner+='<div class="btnrow">'+placeBtns(c)+
     (c.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+c.url+'">↗ OFFICIAL</a>':'')+
     (!c.img?'<a class="btn mini" target="_blank" rel="noopener" href="'+photosUrl(c.name+' '+(c.photoQ||'Japan'))+'">📷 PHOTOS</a>':'')+'</div>';
   if(c.checked) inner+='<div class="lastchecked">Last checked '+esc(c.checked)+(c.confidence?' • '+esc(c.confidence):'')+'</div>';
@@ -166,7 +187,7 @@ function foodCard(f,i){
   if(f.floor) facts.push(['WHERE',esc(f.floor)]);
   if(facts.length) inner+=kv(facts);
   if(f.tips) inner+='<p style="font-size:12px;margin:7px 0 0;color:#374151">💡 '+f.tips+'</p>';
-  inner+='<div class="btnrow"><button class="btn mini" onclick="showMap(\''+encodeURIComponent(f.mapsQ||(f.name+' '+(f.area||'Japan')))+'\')">🗺️ VIEW ON MAP</button>'+
+  inner+='<div class="btnrow">'+placeBtns(f,f.area)+
     (f.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+f.url+'">↗ MENU / SITE</a>':'')+
     '<a class="btn mini" target="_blank" rel="noopener" href="'+photosUrl(f.name+' '+(f.photoQ||f.area||'Japan')+' food')+'">📷 PHOTOS</a></div>';
   if(f.checked) inner+='<div class="lastchecked">Last checked '+esc(f.checked)+'</div>';
@@ -198,19 +219,19 @@ function clusterStops(cl){
 function gmapsEmbed(stops){
   var pts=stops.filter(function(s){return !s.far;}).slice(0,9);
   if(!pts.length) return '';
-  if(pts.length===1) return 'https://maps.google.com/maps?q='+encodeURIComponent(pts[0].lat+','+pts[0].lng+' ('+pts[0].name+')')+'&z=16&output=embed';
+  if(pts.length===1) return 'https://maps.google.com/maps?q='+encodeURIComponent(pts[0].q)+'&z=16&output=embed';
   var s0=pts[0], last=pts[pts.length-1], mids=pts.slice(1,-1);
   var daddr=encodeURIComponent(last.lat+','+last.lng)+(mids.length?'+to:'+mids.map(function(p){return encodeURIComponent(p.lat+','+p.lng);}).join('+to:'):'');
   // waypoints in order: saddr = first, then "to:" hops — Google draws the whole walk with lettered pins
-  var d=pts.slice(1).map(function(p){return encodeURIComponent(p.lat+','+p.lng);});
-  return 'https://maps.google.com/maps?saddr='+encodeURIComponent(s0.lat+','+s0.lng)+'&daddr='+d.join('+to:')+'&dirflg=w&output=embed';
+  var d=pts.slice(1).map(function(p){return encodeURIComponent(p.q);});
+  return 'https://maps.google.com/maps?saddr='+encodeURIComponent(s0.q)+'&daddr='+d.join('+to:')+'&dirflg=w&output=embed';
 }
 function gmapsOpen(stops){
   var pts=stops.filter(function(s){return !s.far;}).slice(0,10);
   if(!pts.length) return '#';
   if(pts.length===1) return mapsUrl(pts[0].q);
   var o=pts[0], dst=pts[pts.length-1], wp=pts.slice(1,-1);
-  return 'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(o.lat+','+o.lng)+'&destination='+encodeURIComponent(dst.lat+','+dst.lng)+(wp.length?'&waypoints='+encodeURIComponent(wp.map(function(p){return p.lat+','+p.lng;}).join('|')):'')+'&travelmode=walking';
+  return 'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(o.q)+'&destination='+encodeURIComponent(dst.q)+(wp.length?'&waypoints='+encodeURIComponent(wp.map(function(p){return p.q;}).join('|')):'')+'&travelmode=walking';
 }
 function walkStrip(stops){
   var pts=stops.filter(function(s){return !s.far;});
@@ -270,7 +291,7 @@ function areaCard(d,cl,ci,prevSpot){
   if(emb){
     h+='<div class="amap">'+(navigator.onLine?'<iframe loading="lazy" src="'+emb+'" title="'+esc(nm)+' map"></iframe>':'<div class="map-off">📡 The live map needs signal. The walking list below works offline.</div>')+'</div>';
     h+='<div class="btnrow amapbtns"><a class="btn mini yellow" target="_blank" rel="noopener" href="'+gmapsOpen(stops)+'">🗺️ OPEN IN GOOGLE MAPS</a>'+
-       '<a class="btn mini" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent((stops.filter(function(s){return !s.far})[0]||stops[0]).lat+','+(stops.filter(function(s){return !s.far})[0]||stops[0]).lng)+'&travelmode=transit">📍 DIRECTIONS FROM WHERE I AM</a></div>';
+       '<a class="btn mini" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent((stops.filter(function(s){return !s.far})[0]||stops[0]).q)+'&travelmode=transit">📍 DIRECTIONS FROM WHERE I AM</a></div>';
     h+=walkStrip(stops);
   } else if(prevSpot){
     h+='<div class="btnrow"><button class="btn mini" onclick="showRoute(\''+encodeURIComponent(prevSpot)+'\',\''+encodeURIComponent(dest)+'\')">🗺️ ROUTE MAP</button></div>';
@@ -286,7 +307,7 @@ function areaCard(d,cl,ci,prevSpot){
 
 /* ---------- day page ---------- */
 function renderDay(idx){
-  const d=DAYS[idx]; let h='';
+  const d=DAYS[idx]; let h='<div class="dayviews"><a class="on" href="#day/'+d.id+'">📅 DAY VIEW</a><a href="#map">🗺️ MAP</a><a href="#planner">☰ LIST</a></div>';
   var gal=[]; if(d.img) gal.push({u:d.img,t:d.title||d.base,c:d.imgCredit||''});
   (d.clusters||[]).forEach(function(cl){ ['explore','activities','shopping','food'].forEach(function(k){
     (cl[k]||[]).forEach(function(e){ if(e.img) gal.push({u:e.img,t:e.name,c:e.imgCredit||''}); }); }); });
@@ -326,7 +347,7 @@ function renderDay(idx){
   if(d.travel&&d.travel.length){
     let tinner='';
     d.travel.forEach(t=>{
-      tinner+='<div class="legblk"><div class="lt">'+esc(t.route)+' '+(t.badge?'<span class="tag book">'+esc(t.badge)+'</span>':'')+'</div>';
+      tinner+='<div class="legblk"><div class="lt">'+esc(t.route)+' '+flexTag(legFlex(d,t))+'</div>';
       if(t.what) tinner+='<p style="margin:6px 0 8px;font-size:13px"><b>'+esc(t.service)+'</b> — '+t.what+'</p>';
       tinner+=kv([['LEAVE',t.leave&&esc(t.leave)],['DURATION',t.duration&&esc(t.duration)],['CHANGES',t.changes!=null?esc(t.changes):null],
         ['FREQUENCY',t.freq&&esc(t.freq)],['PRICE',t.price&&esc(t.price)],['STATUS',t.status&&esc(t.status)],
@@ -477,44 +498,55 @@ window.planFilter=function(k){
   window.scrollTo({top:0,behavior:'smooth'});
 };
 
-/* ---------- home ---------- */
+/* ---------- home (v53, design B) ---------- */
+const BASES=[['KYOTO','2026-09-19','2026-09-21'],['OSAKA','2026-09-22','2026-09-22'],['ARASHIYAMA','2026-09-23','2026-09-24'],['INE','2026-09-25','2026-09-26'],['KISO','2026-09-28','2026-09-30'],['TOKYO','2026-10-01','2026-10-05']];
+function goInfo(){ const st=tripState(); const ci=currentDayIndex(); const i=st==='during'&&ci>=0?ci:(st==='after'?DAYS.length-1:0); const d=DAYS[i];
+  return {i:i, label:(st==='after'?'BACK TO':'GO TO'), day:'DAY '+(i+1), sub:d.dow.slice(0,3)+' '+d.date+' · '+d.base, href:'#day/'+d.id}; }
+function countdown(){ const st=tripState(); const t=jstDateStr();
+  const between=(a,b)=>Math.round((new Date(b+'T00:00:00Z')-new Date(a+'T00:00:00Z'))/86400000);
+  if(st==='before') return {n:between(t,DAYS[0].iso), t:'DAYS UNTIL JAPAN'};
+  if(st==='during'){ const i=currentDayIndex(); const left=DAYS.length-1-i; return {n:i+1, t:'OF 18 · '+(left===0?'LAST DAY':left+' DAYS LEFT')}; }
+  return {n:'✓', t:'TOUR COMPLETE · おかえりなさい'}; }
+function glanceKind(t){ const s=((t.service||'')+' '+(t.route||'')).toLowerCase();
+  if(/air china|british airways|ba6/.test(s)) return 'flight';
+  if(/haruka|hashidate|nozomi|shinano|aoniyoshi|shinkansen|rapid|jr |line|kintetsu|keikyu|metro|locals/.test(s)) return 'train';
+  return 'transfer'; }
+function glanceRows(){ const rows=[]; let lastHotel=null;
+  DAYS.forEach(function(d,i){ (d.travel||[]).forEach(function(t){ const k=glanceKind(t); const fx=legFlex(d,t);
+      rows.push({k:k,d:d.date,day:i+1,id:d.id,what:(t.service||'').split(' — ')[0].split(' (')[0],route:t.route,tag:(k==='flight'?'<span class="tag ok">BOOKED</span>':flexTag(fx))}); });
+    if(d.hotel&&d.hotel.name!==lastHotel){ lastHotel=d.hotel.name; let j=i; while(j+1<DAYS.length&&DAYS[j+1].hotel&&DAYS[j+1].hotel.name===lastHotel) j++;
+      rows.push({k:'hotel',d:d.date+(j>i?' – '+DAYS[j].date:''),day:i+1,id:d.id,what:d.hotel.name,route:(j-i+1)+' night'+(j>i?'s':''),tag:'<span class="tag ok">BOOKED</span>'}); }
+  }); return rows; }
+window.GLANCE_FILTER='all';
+window.renderGlance=function(){ const F=window.GLANCE_FILTER; const rows=glanceRows().filter(function(r){return F==='all'||r.k===F;});
+  return '<div class="gf">'+['all','flight','hotel','train','transfer'].map(function(k){return '<button class="'+(F===k?'on':'')+'" onclick="GLANCE_FILTER=\''+k+'\';document.getElementById(\'glance\').innerHTML=renderGlance()">'+(k==='all'?'ALL':k+'s')+'</button>';}).join('')+'</div>'+
+  '<div style="overflow-x:auto"><table class="simple mini gl"><tr><th>DATE</th><th>WHAT</th><th>DETAIL</th><th></th></tr>'+
+  rows.map(function(r){return '<tr onclick="location.hash=\'day/'+r.id+'\'" style="cursor:pointer"><td style="white-space:nowrap"><span class="k '+r.k+'"></span>'+esc(r.d)+'</td><td><b>'+esc(r.what)+'</b></td><td>'+esc(r.route)+'</td><td>'+r.tag+'</td></tr>';}).join('')+'</table></div>'+
+  '<div class="legend">'+flexTag('must')+' only train that works, or your seat is on it &nbsp; '+flexTag('res')+' booked seat, swappable &nbsp; '+flexTag('fixed')+' no booking, but gaps — aim for the one named &nbsp; '+flexTag('go')+' take the next one &nbsp; '+flexTag('arr')+' sorted with a person, not a timetable</div>'; };
 function renderHome(){
-  const st=tripState(); const ci=currentDayIndex();
-  let cta,ctaHref;
-  if(st==='during'&&ci>=0){ cta='OPEN TODAY\u2019S GUIDE 🎌'; ctaHref='#day/'+DAYS[ci].id; }
-  else { cta='ENTER TRIP GUIDE 🎌'; ctaHref='#day/'+DAYS[0].id; }
-  let count='';
-  if(st==='before'){ const ms=new Date(DAYS[0].iso+'T00:00:00+09:00')-new Date(); count='<b>'+Math.ceil(ms/86400000)+'</b> DAYS UNTIL JAPAN'; }
-  else if(st==='during'){ count='<b>DAY '+(ci+1)+'</b> OF 18 — YOU ARE IN JAPAN'; }
-  else { count='TOUR COMPLETE — おかえりなさい (WELCOME HOME)'; }
-  let h='<div class="hero fade"><div class="himg"><img src="images/hero.jpg" alt="Mica and Dad in Japan" onerror="this.style.display=\'none\'">'+
-    '<div class="grad"></div><div class="ht"><h1>LAMPTEYS<br><span class="y">ON TOUR</span></h1></div></div>';
+  const st=tripState(), g=goInfo(), c=countdown(), t=jstDateStr();
+  let h='<div class="hero fade"><div class="himg b"><img src="images/hero.jpg" alt="Mica and Dad in Japan" onerror="this.style.display=\'none\'">'+
+    '<div class="grad"></div><div class="sticker"><div class="n">'+c.n+'</div><div class="t">'+c.t+'</div></div><div class="ht"><h1>LAMPTEYS<br><span class="y">ON TOUR</span></h1></div></div>';
   h+='<div class="hbody">';
+  h+='<a class="goround" href="'+g.href+'"><div class="k">'+g.label+'</div><div class="d">'+g.day+'</div><div class="ar">→</div></a>';
+  h+='<div class="gosub">'+esc(g.sub)+'</div>';
   h+='<div class="datebar">JAPAN 2026 • MICA &amp; DAD</div>';
-  h+='<div class="mono" style="font-weight:700;font-size:13px;margin:4px 0 10px">18 SEPTEMBER – 5 OCTOBER 2026 • LONDON → OSAKA (KIX) ⇢ TOKYO (HND) → LONDON</div>';
-  h+='<div class="route"><span class="stop">KYOTO</span><span class="stop">OSAKA</span><span class="stop mid">ARASHIYAMA</span><span class="stop">INE</span><span class="stop">KISO</span><span class="stop end">TOKYO</span></div>';
-  h+='<div id="countdown">'+count+'</div>';
-  h+='<a class="btn red big" href="'+ctaHref+'">'+cta+'</a>';
-  h+='<div class="homegrid">'+
-    '<a class="btn yellow" href="#packing">🎒 PACKING &amp; PREP LISTS</a>'+
-    '<a class="btn" href="#budget">💰 BUDGET &amp; SPEND</a>'+
-    '<a class="btn" href="#map">🗺️ MAP</a>'+
-    '<a class="btn pinkb" href="#planner">🧭 TRIP PLANNER</a>'+
-    '<a class="btn black" href="#etiquette">🙇 ETIQUETTE 101</a>'+
-    '<a class="btn red" href="#phrases">🗣️ JAPANESE PHRASES</a></div>';
+  h+='<div class="mono" style="font-weight:700;font-size:12px;margin:6px 0 4px">18 SEP – 5 OCT • LONDON → OSAKA (KIX) ⇢ TOKYO (HND) → LONDON</div>';
+  h+='<div class="route">'+BASES.map(function(b){ const on=st==='during'&&t>=b[1]&&t<=b[2]; return '<span class="stop'+(on?' now':'')+'">'+b[0]+'</span>'; }).join('')+'</div>';
+  h+='<div class="views">OR SEE THE WHOLE TRIP AS A <a href="#map">🗺️ MAP</a><a href="#planner">☰ LIST</a></div>';
+  h+='<div class="ctas"><a class="c-ph" href="#phrases">Handy Japanese phrases!<small>Tap a phrase to show it big</small></a><a class="c-et" href="#etiquette">Learn the etiquette<small>Ten things before you land</small></a></div>';
   h+='<div class="info-box" data-label="Put it on your phone" style="margin-top:22px">Safari → Share → <b>Add to Home Screen</b>. Open every page once while online and it all works without signal in Japan.</div>';
   h+='</div></div>';
-  h+='<div class="sec"><h3>The tour at a glance</h3><div class="sub">16 nights • 6 bases</div></div>';
-  h+='<div style="overflow-x:auto"><table class="simple"><tr><th>DATES</th><th>BASE</th><th>STATUS</th><th>THE POINT</th></tr>'+
-    P.glance.map(g=>'<tr><td style="white-space:nowrap">'+g[0]+'</td><td><b>'+g[1]+'</b></td><td>'+g[2]+'</td><td>'+g[3]+'</td></tr>').join('')+'</table></div>';
+  h+='<div class="sec"><h3>The tour at a glance</h3><div class="sub">16 nights · 6 bases · every flight, stay, train and transfer — tap a row for the day</div></div>';
+  h+='<div id="glance">'+renderGlance()+'</div>';
   h+='<div class="hist-box" data-label="Silver Week — why our first five days are special">'+P.silverWeek+'</div>';
   h+='<div class="narr" data-label="How we eat" style="box-shadow:6px 6px 0 var(--orange)">'+P.howWeEat+'</div>';
   app.innerHTML=h;
 }
 
 /* ---------- nav & routing ---------- */
-const SUB=[['#home','HOME'],['#guide','TRIP GUIDE'],['#planner','PLANNER'],['#packing','PACKING'],['#map','MAP'],['#budget','BUDGET'],['#etiquette','ETIQUETTE 101'],['#phrases','PHRASES']];
-function renderSubnav(active){ subnav.innerHTML=SUB.map(s=>'<a class="snav'+(active===s[0]?' active':'')+'" href="'+s[0]+'">'+s[1]+'</a>').join(''); }
+window.toggleMenu=function(){ document.getElementById('menu').classList.toggle('open'); };
+function renderSubnav(){ const g=goInfo(); const el=document.getElementById('m-guide-s'); if(el) el.textContent=g.day; document.getElementById('menu').classList.remove('open'); }
 function renderDaynav(activeIdx){
   daynav.style.display='flex';
   daynav.innerHTML=DAYS.map((d,i)=>'<div class="dtab'+(i===activeIdx?' active':'')+'" onclick="location.hash=\'day/'+d.id+'\'">'+
