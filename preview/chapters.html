@@ -595,18 +595,18 @@ function node(x,y,st,opts){ const on=cur().includes(st.id); const o=opts||{}; co
   return '<g><circle cx="'+x+'" cy="'+y+'" r="'+rr+'" fill="'+(on?'#000':'#fff')+'" stroke="#000" stroke-width="4"/>'+(on?'<circle cx="'+x+'" cy="'+y+'" r="5" fill="'+COL[st.kind]+'"/>':'')+
    '<text class="nm" x="'+(x+(o.dx||0))+'" y="'+(y+(o.dy||-22))+'" font-size="'+(st.hub?15:12)+'" text-anchor="'+(o.anchor||'middle')+'">'+st.n+'</text>'+
    '<text x="'+(x+(o.dx||0))+'" y="'+(y+(o.dy||-22)+13)+'" font-size="8.5" fill="#374151" text-anchor="'+(o.anchor||'middle')+'">'+st.sub+'</text></g>'; }
-function tube(){ const P={lgw:[50,170],kix:[150,170],kyo:[290,170],osa:[290,270],ara:[380,80],ine:[520,50],nar:[600,120],kyo2:[290,170],kis:[560,170],tok:[720,170],hnd:[790,170]};
+function tube(){ const P={lgw:[50,180],kix:[150,180],kyo:[290,180],osa:[290,275],ara:[370,80],ine:[480,40],nar:[560,110],kyo2:[290,180],kis:[640,180],tok:[740,180],hnd:[800,180]};
   const S=Object.fromEntries(STOPS.map(x=>[x.id,x]));
   let g='<svg viewBox="0 0 840 320">';
   g+='<defs><pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#d1d5db"/></pattern></defs><rect width="840" height="320" fill="url(#dots)"/>';
   const L=(a,b,c,dash)=>'<line x1="'+P[a][0]+'" y1="'+P[a][1]+'" x2="'+P[b][0]+'" y2="'+P[b][1]+'" stroke="'+c+'" stroke-width="9" stroke-linecap="round"'+(dash?' stroke-dasharray="4 12"':'')+'/>';
   g+=L('lgw','kix',COL.fly,true)+L('kix','kyo',COL.k)+L('kyo','kis',COL.k)+L('kis','tok',COL.m)+L('tok','hnd',COL.t);
-  g+='<path d="M290 170 C 300 100, 340 80, 380 80 S 480 40, 520 50 S 590 80, 600 120 S 560 200, 290 170" fill="none" stroke="'+COL.loop+'" stroke-width="9" stroke-linecap="round"/>';
-  g+='<path d="M290 170 L290 270" stroke="'+COL.k+'" stroke-width="6" stroke-dasharray="2 10" stroke-linecap="round"/>';
-  g+='<text x="640" y="95" font-size="9" fill="#374151" transform="rotate(20 640 95)">home via Nara →</text>';
-  g+='<text x="455" y="255" font-size="9" fill="#374151">→ Kyoto Prefecture: retreat, then seaside, then home for a night</text>';
-  g+='<text x="305" y="230" font-size="9" fill="#374151">↕ day trip &amp; back</text>';
-  g+=node(...P.lgw,S.lgw)+node(...P.kix,S.kix,{dy:34})+node(...P.kyo,S.kyo,{dy:36})+node(...P.osa,S.osa,{dy:30})+node(...P.ara,S.ara)+node(...P.ine,S.ine)+node(...P.nar,S.nar,{dx:22,anchor:'start',dy:4})+node(...P.kis,S.kis,{dy:36})+node(...P.tok,S.tok,{dy:36})+node(...P.hnd,S.hnd);
+  g+='<path d="M290 180 C 295 110, 330 80, 370 80 S 450 40, 480 40 S 560 60, 560 110 S 480 178, 290 180" fill="none" stroke="'+COL.loop+'" stroke-width="9" stroke-linecap="round"/>';
+  g+='<path d="M290 180 L290 275" stroke="'+COL.k+'" stroke-width="6" stroke-dasharray="2 10" stroke-linecap="round"/>';
+  g+='<text x="590" y="110" font-size="9" fill="#374151">home via Nara ↙</text>';
+  g+='<text x="380" y="262" font-size="9" fill="#374151">→ Kyoto Prefecture: retreat, then seaside, then home for a night</text>';
+  g+='<text x="305" y="235" font-size="9" fill="#374151">↕ day trip &amp; back</text>';
+  g+=node(...P.lgw,S.lgw)+node(...P.kix,S.kix,{dy:34})+node(...P.kyo,S.kyo,{dy:36})+node(...P.osa,S.osa,{dy:30})+node(...P.ara,S.ara)+node(...P.ine,S.ine,{dy:-20})+node(...P.nar,S.nar,{dx:20,anchor:'start',dy:-6})+node(...P.kis,S.kis,{dy:36})+node(...P.tok,S.tok,{dy:36})+node(...P.hnd,S.hnd);
   return g+'</svg>'; }
 function geo(){ const W=840,H=360; const lng0=134.9,lng1=140.2,lat0=34.2,lat1=36.05; const X=l=>((l-lng0)/(lng1-lng0))*(W-60)+30, Y=l=>H-30-((l-lat0)/(lat1-lat0))*(H-90);
   const S=Object.fromEntries(STOPS.map(x=>[x.id,x])); const P={}; STOPS.forEach(x=>{ if(x.id==='lgw') return; P[x.id]=[X(x.lng),Y(x.lat)]; }); P.ara=[P.ara[0]-42,P.ara[1]-26]; P.kyo2=P.kyo;
@@ -615,7 +615,7 @@ function geo(){ const W=840,H=360; const lng0=134.9,lng1=140.2,lat0=34.2,lat1=36
   const seg=(a,b,c,dash)=>'<line x1="'+P[a][0]+'" y1="'+P[a][1]+'" x2="'+P[b][0]+'" y2="'+P[b][1]+'" stroke="'+c+'" stroke-width="8" stroke-linecap="round"'+(dash?' stroke-dasharray="2 10"':'')+'/>';
   g+=seg('kix','kyo',COL.k)+seg('kyo','osa',COL.k,true)+seg('kyo','ara',COL.loop)+seg('ara','ine',COL.loop)+seg('ine','nar',COL.loop)+seg('nar','kyo',COL.loop)+seg('kyo','kis',COL.m)+seg('kis','tok',COL.t)+seg('tok','hnd',COL.fly,true);
   g+='<text x="'+(P.kix[0]-60)+'" y="'+(P.kix[1]+40)+'" font-size="9" fill="#374151">✈ from London</text>';
-  g+=node(...P.kix,S.kix,{dy:30})+node(...P.kyo,S.kyo,{dx:24,anchor:'start',dy:4})+node(...P.osa,S.osa,{dy:30})+node(...P.ara,S.ara,{dx:-20,anchor:'end',dy:4})+node(...P.ine,S.ine)+node(...P.nar,S.nar,{dy:32})+node(...P.kis,S.kis)+node(...P.tok,S.tok)+node(...P.hnd,S.hnd,{dy:32});
+  g+=node(...P.kix,S.kix,{dy:30})+node(...P.kyo,S.kyo,{dx:24,anchor:'start',dy:4})+node(...P.osa,S.osa,{dy:30})+node(...P.ara,S.ara,{dx:-20,anchor:'end',dy:4})+node(...P.ine,S.ine,{dy:-20})+node(...P.nar,S.nar,{dy:32})+node(...P.kis,S.kis)+node(...P.tok,S.tok)+node(...P.hnd,S.hnd,{dy:32});
   return g+'</svg>'; }
 
 function draw(){ document.getElementById('tube').innerHTML=tube(); document.getElementById('geo').innerHTML=geo(); document.getElementById('dn').innerHTML=dn(); document.getElementById('glance').innerHTML=glance(); }
