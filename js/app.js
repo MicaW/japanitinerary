@@ -393,6 +393,9 @@ function renderDay(idx){
   let prevSpot=(H&&(H.mapsQ||H.name))||d.wake||'';
   h+='<div class="sec"><h3>Areas today</h3><div class="sub">Each one is a walkable patch. Open it for the map, the walking order and what is there — see, do, eat, learn. Pick on the day.</div></div>';
   clusters.forEach((cl,ci)=>{ h+=areaCard(d,cl,ci,prevSpot); });
+  { const hu=(window.HEADSUP||{})[d.id]; if(hu&&hu.length){ const K={closed:['⛔','CLOSED / TIMING'],avoid:['🚫','AVOID'],look:['👀','LOOK OUT FOR'],nook:['🔎','NOOKS & CRANNIES']};
+    h+='<div class="sec orange" style="margin-top:26px"><h3>Heads up</h3><div class="sub">Closed today, worth avoiding, worth knowing, worth finding</div></div><ul class="hu">'+
+      hu.map(function(x){ return '<li class="hu-'+x.k+'"><span class="huk">'+K[x.k][0]+' '+K[x.k][1]+'</span>'+x.t+'</li>'; }).join('')+'</ul>'; } }
   h+='<div class="btnrow" style="margin-top:26px">'+
      (idx>0?'<a class="btn" style="flex:1" href="#day/'+DAYS[idx-1].id+'">← '+esc(DAYS[idx-1].date)+'</a>':'')+
      (idx<DAYS.length-1?'<a class="btn red" style="flex:1" href="#day/'+DAYS[idx+1].id+'">'+esc(DAYS[idx+1].date)+' →</a>':'')+'</div>';

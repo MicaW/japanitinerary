@@ -720,7 +720,7 @@ window.DAYS3=[
     why:"Haneda T3 rewards the early arrival the plan requires anyway.",
     labels:["CORE PLAN"],
     explore:[
-      { name:"Edo Koji street (airside, T3 4F)", hours:"Most shops and restaurants 05:30–23:00 (varies by shop)", lat:35.54596, lng:139.7673, geo:"high", jp:"江戸小路", img:W.haneda.u, imgCredit:W.haneda.c, type:"AIRPORT ODDITY",
+      { name:"Edo Koji street (T3 4F, before security)", hours:"Most shops and restaurants 05:30–23:00 (varies by shop)", lat:35.54596, lng:139.7673, geo:"high", jp:"江戸小路", img:W.haneda.u, imgCredit:W.haneda.c, type:"AIRPORT ODDITY",
         labels:["FREE","GLORIOUSLY WEIRD"],
         why:"A recreated Edo-period street of wooden shopfronts and lanterns inside the departures floor — Japan's farewell gift of one more beautiful, slightly absurd space after security.",
         time:"30 min", price:"Free", tips:"The planetarium café (Starry Café) hides at the far end if the gate wait runs long.",
