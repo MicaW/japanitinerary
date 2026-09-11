@@ -505,6 +505,28 @@ header .menubtn:active{transform:translate(2px,2px);box-shadow:none}
 .dayviews{display:flex;gap:8px;margin:12px 0 0;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700}
 .dayviews a{border:2.5px solid #000;background:#fff;padding:6px 10px;text-decoration:none;color:#000;box-shadow:3px 3px 0 #000;text-transform:uppercase}
 .dayviews a.on{background:#000;color:var(--yellow)}
+
+/* ===== v58: chapters, journey map ===== */
+#daynav{gap:0;padding:8px 10px 10px}
+#daynav .band{display:flex;flex-direction:column;flex-shrink:0;margin-right:10px}
+#daynav .bh{font-family:'Archivo Black',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;background:#000;color:#fff;margin-bottom:6px;white-space:nowrap}
+#daynav .band.k .bh{background:#e11d48}#daynav .band.m .bh{background:#15803d}#daynav .band.t .bh{background:#2563eb}#daynav .band.f .bh{background:#6b7280}
+#daynav .tabs{display:flex;gap:6px}
+#daynav .dtab.away{border-color:var(--yellow);background:#fffbe6}#daynav .dtab.trip{border-style:dashed;border-color:#9ca3af}
+#daynav .dtab.active{background:var(--yellow);border-color:#000;border-style:solid}
+#daynav .dtab .tag2{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:7.5px;background:var(--yellow);border:1.5px solid #000;padding:1px 4px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-weight:800}
+.chline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;margin-bottom:6px}
+.chline .cp{color:#fff;padding:3px 8px;border:2px solid #000;background:#000}.chline .cp.k{background:#e11d48}.chline .cp.m{background:#15803d}.chline .cp.t{background:#2563eb}.chline .cp.f{background:#6b7280}.chline .cp.away{background:var(--yellow);color:#000}
+.awaysticker{display:inline-block;background:var(--yellow);border:3px solid #000;box-shadow:4px 4px 0 #000;padding:8px 12px;transform:rotate(-2deg);font-family:'Archivo Black',sans-serif;text-transform:uppercase;font-size:14px;line-height:1.1;margin:6px 0 10px}
+.awaysticker small{display:block;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;margin-top:4px;text-transform:none}
+.mapbox{border:4px solid #000;background:#fff;box-shadow:8px 8px 0 #000;margin:16px 0 18px;padding:6px 6px 8px}
+.mapbox svg{width:100%;height:auto;display:block}
+.mapbox .jm-n{font-family:'Archivo Black',sans-serif;text-transform:uppercase}
+.mapbox .jm-s{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:8.5px;fill:#374151}
+.mapbox .jm-sea{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:9.5px;fill:#6b7280}
+.jm-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 6px 0;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700}
+.jm-foot .btn.mini{flex:0 0 auto}
+table.simple th.gl-grp{background:#000;color:#fff;padding:6px 8px;font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:.06em;border:0}
 </style>
 </head>
 <body>

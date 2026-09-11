@@ -315,7 +315,9 @@ function renderDay(idx){
     (d.img?'<img src="'+d.img+'" alt="'+esc(d.base)+'" onerror="imgFail(this)">':phBlock(d.base,idx))+
     (d.img?'<div class="zoomhint">⤢ TAP TO EXPAND'+(gal.length>1?' · '+gal.length+' PHOTOS':'')+'</div>':'')+
     (d.imgCredit?'<div class="credit">'+esc(d.imgCredit)+'</div>':'')+'</div><div class="dh-body">';
-  h+='<div class="mono" style="font-size:11px;color:#6b7280">DAY '+(idx+1)+' OF 18 // '+esc(d.date)+' ('+esc(d.dow)+') // '+esc(d.base.toUpperCase())+'</div>';
+  { const ch=chapterOf(idx), sub=subOf(idx);
+    h+='<div class="chline"><span class="cp '+ch.k+'">'+ch.n+(ch.k==='f'?'':' CHAPTER')+'</span>'+(sub?'<span class="cp away">'+sub.t+'</span>':'')+'<span>DAY '+(idx+1)+' OF 18 · '+esc(d.dow.slice(0,3).toUpperCase())+' '+esc(d.date)+'</span></div>';
+    if(idx>=5&&idx<=8) h+='<div class="awaysticker">🎒 Small bag only<small>Big cases stay at Henn na Kyoto until Sunday · 4 nights away</small></div>'; }
   h+='<h2>'+esc(d.title)+'</h2>';
   h+='<div class="mono" style="font-size:12px;font-weight:700;color:#374151">'+esc(d.strapline||'')+'</div>';
   const paceTag=(d.pace||'').split(/\s+—|,/)[0].trim(), walkTag=(d.walking||'').split(/\s+—|,/)[0].trim();
@@ -498,6 +500,10 @@ window.planFilter=function(k){
   window.scrollTo({top:0,behavior:'smooth'});
 };
 
+/* ---- v58: chapters ---- */
+function chapterOf(i){ if(i===0) return {k:'f',n:'FLY OUT'}; if(i===17) return {k:'f',n:'FLY HOME'}; if(i<=9) return {k:'k',n:'KYOTO'}; if(i<=13) return {k:'m',n:'MOUNTAINS'}; return {k:'t',n:'TOKYO'}; }
+function subOf(i){ if(i===4) return {t:'DAY TRIP · OSAKA',cls:'trip'}; if(i===5||i===6) return {t:'THE RETREAT · NIGHT '+(i-4)+' OF 2',cls:'away'}; if(i===7||i===8) return {t:'THE SEASIDE · NIGHT '+(i-6)+' OF 2',cls:'away'}; if(i===9) return {t:'HOME TONIGHT · VIA NARA',cls:'away'}; return null; }
+window.chapterOf=chapterOf;
 /* ---------- home (v53, design B) ---------- */
 const BASES=[['KYOTO','2026-09-19','2026-09-21'],['OSAKA','2026-09-22','2026-09-22'],['ARASHIYAMA','2026-09-23','2026-09-24'],['INE','2026-09-25','2026-09-26'],['KISO','2026-09-28','2026-09-30'],['TOKYO','2026-10-01','2026-10-05']];
 function goInfo(){ const st=tripState(); const ci=currentDayIndex(); const i=st==='during'&&ci>=0?ci:(st==='after'?DAYS.length-1:0); const d=DAYS[i];
@@ -521,8 +527,42 @@ window.GLANCE_FILTER='all';
 window.renderGlance=function(){ const F=window.GLANCE_FILTER; const rows=glanceRows().filter(function(r){return F==='all'||r.k===F;});
   return '<div class="gf">'+['all','flight','hotel','train','transfer'].map(function(k){return '<button class="'+(F===k?'on':'')+'" onclick="GLANCE_FILTER=\''+k+'\';document.getElementById(\'glance\').innerHTML=renderGlance()">'+(k==='all'?'ALL':k+'s')+'</button>';}).join('')+'</div>'+
   '<div style="overflow-x:auto"><table class="simple mini gl"><tr><th>DATE</th><th>WHAT</th><th>DETAIL</th><th></th></tr>'+
-  rows.map(function(r){return '<tr onclick="location.hash=\'day/'+r.id+'\'" style="cursor:pointer"><td style="white-space:nowrap"><span class="k '+r.k+'"></span>'+esc(r.d)+'</td><td><b>'+esc(r.what)+'</b></td><td>'+esc(r.route)+'</td><td>'+r.tag+'</td></tr>';}).join('')+'</table></div>'+
+  (function(){ let last=''; return rows.map(function(r){ const ch=chapterOf(r.day-1); const sub=subOf(r.day-1); const grp=ch.k==='k'&&sub&&sub.cls==='away'?'KYOTO · THE RETREAT + THE SEASIDE':(ch.k==='f'?'✈ '+ch.n:ch.n); const head=grp!==last?'<tr><th colspan="4" class="gl-grp">'+grp+'</th></tr>':''; last=grp; return head+'<tr onclick="location.hash=\'day/'+r.id+'\'" style="cursor:pointer"><td style="white-space:nowrap"><span class="k '+r.k+'"></span>'+esc(r.d)+'</td><td><b>'+esc(r.what)+'</b></td><td>'+esc(r.route)+'</td><td>'+r.tag+'</td></tr>';}).join(''); })()+'</table></div>'+
   '<div class="legend">'+flexTag('must')+' only train that works, or your seat is on it &nbsp; '+flexTag('res')+' booked seat, swappable &nbsp; '+flexTag('fixed')+' no booking, but gaps — aim for the one named &nbsp; '+flexTag('go')+' take the next one &nbsp; '+flexTag('arr')+' sorted with a person, not a timetable</div>'; };
+
+/* ---- v58: the journey map (simplified / to scale) ---- */
+const JSTOPS=[
+ {id:'kyo',n:'KYOTO',sub:'19–23 · home',kind:'k',lat:35.01,lng:135.76,r:['2026-09-19','2026-09-22'],city:true,S:[300,230],L:{dx:26,dy:6,a:'start'}},
+ {id:'osa',n:'OSAKA',sub:'day trip · Tue 22',kind:'k',lat:34.69,lng:135.50,r:['2026-09-22','2026-09-22'],city:true,S:[185,335],L:{dx:0,dy:34,a:'middle'}},
+ {id:'ara',n:'ARASHIYAMA',sub:'the retreat · 23–25',kind:'loop',lat:35.02,lng:135.67,r:['2026-09-23','2026-09-24'],S:[180,180],L:{dx:-20,dy:6,a:'end'}},
+ {id:'ine',n:'INE',sub:'the seaside · 25–27',kind:'loop',lat:35.67,lng:135.29,r:['2026-09-25','2026-09-26'],S:[245,62],L:{dx:0,dy:-22,a:'middle'}},
+ {id:'nar',n:'NARA',sub:'Sun 27 · on the way home',kind:'loop',lat:34.68,lng:135.83,r:['2026-09-27','2026-09-27'],S:[380,335],L:{dx:0,dy:34,a:'middle'}},
+ {id:'kis',n:'KISO VALLEY',sub:'28 Sep – 1 Oct',kind:'m',lat:35.60,lng:137.61,r:['2026-09-28','2026-09-30'],S:[540,150],L:{dx:0,dy:-22,a:'middle'}},
+ {id:'tok',n:'TOKYO',sub:'1–5 Oct',kind:'t',lat:35.68,lng:139.70,r:['2026-10-01','2026-10-05'],city:true,S:[760,200],L:{dx:0,dy:-24,a:'middle'}}
+];
+const JCOL={k:'#e11d48',loop:'#ffcc00',m:'#15803d',t:'#2563eb'};
+const JLINES=[['kyo','ara','loop'],['ara','ine','loop'],['ine','kyo','loop'],['kyo','nar','loop',true],['kyo','osa','k',true],['kyo','kis','m'],['kis','tok','t']];
+function renderJourneyMap(mode){
+  const t=jstDateStr(), during=tripState()==='during';
+  const W=840,H=420; const P={};
+  if(mode==='scale'){ const lng0=135.1,lng1=139.9,lat0=34.5,lat1=35.85; JSTOPS.forEach(x=>{ P[x.id]=[((x.lng-lng0)/(lng1-lng0))*(W-120)+60, H-50-((x.lat-lat0)/(lat1-lat0))*(H-110)]; }); }
+  else JSTOPS.forEach(x=>{ P[x.id]=x.S.slice(); });
+  // label offsets for the to-scale view (the Kyoto cluster needs care)
+  const LS={kyo:{dx:22,dy:-14,a:'start'},osa:{dx:-16,dy:24,a:'end'},ara:{dx:-18,dy:-14,a:'end'},ine:{dx:0,dy:-22,a:'middle'},nar:{dx:18,dy:26,a:'start'},kis:{dx:0,dy:-22,a:'middle'},tok:{dx:0,dy:-24,a:'middle'}};
+  let g='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="The journey">';
+  g+='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
+  g+='<text x="20" y="26" class="jm-sea">'+(mode==='scale'?'SEA OF JAPAN ↑ · to scale':'SEA OF JAPAN ↑')+'</text><text x="'+(W-20)+'" y="'+(H-14)+'" class="jm-sea" text-anchor="end">↓ PACIFIC</text>';
+  g+='<text x="20" y="'+(H-14)+'" class="jm-sea">✈ in Sat 19 Sep · ✈ home Mon 5 Oct</text>';
+  JLINES.forEach(function(l){ const a=P[l[0]],b=P[l[1]]; g+='<line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'" stroke="'+JCOL[l[2]]+'" stroke-width="9" stroke-linecap="round"'+(l[3]?' stroke-dasharray="3 13"':'')+'/>'; });
+  JSTOPS.forEach(function(x){ const p=P[x.id]; const on=during&&t>=x.r[0]&&t<=x.r[1]; const rr=x.city?17:11; const L=mode==='scale'?LS[x.id]:x.L;
+    g+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+rr+'" fill="'+(on?'#000':'#fff')+'" stroke="#000" stroke-width="4"/>'+(on?'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="5" fill="'+JCOL[x.kind]+'"/>':'');
+    g+='<text class="jm-n" x="'+(p[0]+L.dx)+'" y="'+(p[1]+L.dy)+'" text-anchor="'+L.a+'" font-size="'+(x.city?16:12.5)+'">'+x.n+'</text>';
+    g+='<text class="jm-s" x="'+(p[0]+L.dx)+'" y="'+(p[1]+L.dy+13)+'" text-anchor="'+L.a+'">'+x.sub+'</text>'; });
+  g+='</svg>';
+  return g+'<div class="jm-foot"><span>'+(mode==='scale'?'Where things really are':'The shape of the trip')+'</span><button class="btn mini" onclick="MAPMODE=\''+(mode==='scale'?'simple':'scale')+'\';document.getElementById(\'homemap\').innerHTML=renderJourneyMap(MAPMODE)">'+(mode==='scale'?'↩ SIMPLE VIEW':'📐 TO SCALE')+'</button></div>';
+}
+window.renderJourneyMap=renderJourneyMap;
+
 function renderHome(){
   const st=tripState(), g=goInfo(), c=countdown(), t=jstDateStr();
   let h='<div class="hero fade"><div class="himg b"><img src="images/hero.jpg" alt="Mica and Dad in Japan" onerror="this.style.display=\'none\'">'+
@@ -532,7 +572,7 @@ function renderHome(){
   h+='<div class="gosub">'+esc(g.sub)+'</div>';
   h+='<div class="datebar">JAPAN 2026 • MICA &amp; DAD</div>';
   h+='<div class="mono" style="font-weight:700;font-size:12px;margin:6px 0 4px">18 SEP – 5 OCT • LONDON → OSAKA (KIX) ⇢ TOKYO (HND) → LONDON</div>';
-  h+='<div class="route">'+BASES.map(function(b){ const on=st==='during'&&t>=b[1]&&t<=b[2]; return '<span class="stop'+(on?' now':'')+'">'+b[0]+'</span>'; }).join('')+'</div>';
+  h+='<div class="mapbox" id="homemap">'+renderJourneyMap(window.MAPMODE||'simple')+'</div>';
   h+='<div class="views">OR SEE THE WHOLE TRIP AS A <a href="#map">🗺️ MAP</a><a href="#planner">☰ LIST</a></div>';
   h+='<div class="ctas"><a class="c-ph" href="#phrases">Handy Japanese phrases!<small>Tap a phrase to show it big</small></a><a class="c-et" href="#etiquette">Learn the etiquette<small>Ten things before you land</small></a></div>';
   h+='</div></div>';
@@ -548,10 +588,12 @@ window.toggleMenu=function(){ document.getElementById('menu').classList.toggle('
 function renderSubnav(){ const g=goInfo(); const el=document.getElementById('m-guide-s'); if(el) el.textContent=g.day; document.getElementById('menu').classList.remove('open'); }
 function renderDaynav(activeIdx){
   daynav.style.display='flex';
-  daynav.innerHTML=DAYS.map((d,i)=>'<div class="dtab'+(i===activeIdx?' active':'')+'" onclick="location.hash=\'day/'+d.id+'\'">'+
-    
-    '<div>'+d.date+'</div><div class="c">'+d.chip+'</div></div>').join('');
-  const el=daynav.children[activeIdx]; if(el) el.scrollIntoView({inline:'center',block:'nearest'});
+  const bands=[{k:'f',h:'✈',d:[0]},{k:'k',h:'KYOTO',d:[1,2,3,4,5,6,7,8,9]},{k:'m',h:'MOUNTAINS',d:[10,11,12,13]},{k:'t',h:'TOKYO',d:[14,15,16,17]}];
+  daynav.innerHTML=bands.map(b=>'<div class="band '+b.k+'"><div class="bh">'+b.h+'</div><div class="tabs">'+b.d.map(i=>{ const d=DAYS[i]; const sub=subOf(i);
+    return '<div class="dtab'+(i===activeIdx?' active':'')+(sub?' '+sub.cls:'')+'" data-i="'+i+'" onclick="location.hash=\'day/'+d.id+'\'">'+
+      (i===5?'<span class="tag2">AWAY →</span>':'')+(i===9?'<span class="tag2">← HOME</span>':'')+(i===4?'<span class="tag2">DAY TRIP</span>':'')+
+      '<div>'+d.date+'</div><div class="c">'+(i===9?'KYO':d.chip)+'</div></div>'; }).join('')+'</div></div>').join('');
+  const el=daynav.querySelector('.dtab[data-i="'+activeIdx+'"]'); if(el) el.scrollIntoView({inline:'center',block:'nearest'});
 }
 function route(){
   const hash=location.hash||'#home';
