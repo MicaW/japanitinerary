@@ -1,10 +1,10 @@
 /* LAMPTEYS ON TOUR — service worker: precache app shell + runtime-cache everything (incl. remote images & fonts). */
-const VERSION = 'lampteys-v49';
+const VERSION = 'lampteys-v50';
 const SHELL = [
   './','index.html','manifest.webmanifest',
   'js/app.js','js/data/days.js','js/data/days2.js','js/data/days3.js','js/data/pages.js','js/data/lists.js',
   'images/hero.jpg','images/icon-192.png','images/icon-512.png',
-  'downloads/mark-departure-list.pdf','downloads/mica-departure-lists.pdf',
+  'downloads/dad-departure-list.pdf','downloads/mica-departure-lists.pdf',
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&family=Zen+Kaku+Gothic+New:wght@900&display=swap'
 ];
 self.addEventListener('install', e => {

@@ -31,7 +31,7 @@ const TRAINS=[
 ];
 P.TRAINS=TRAINS;
 
-/* Bookings / To Do / Packing lists moved to js/data/lists.js (Mark + Mica departure lists, 7 Sep 2026) */
+/* Bookings / To Do / Packing lists moved to js/data/lists.js (Dad + Mica departure lists, 7 Sep 2026) */
 P.renderBudget=function(){
  const SHEET='https://docs.google.com/spreadsheets/d/1bad1u4OgQd_rjvglhP8X8n3OR7R6hVGBMK79HcNTPjk';
 
