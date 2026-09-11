@@ -485,7 +485,7 @@ header .menubtn{font-family:'JetBrains Mono',monospace;font-size:11px;font-weigh
 .ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
 .ctas a{border:3.5px solid #000;box-shadow:5px 5px 0 #000;padding:14px 12px;text-decoration:none;color:#000;font-family:'Archivo Black',sans-serif;font-size:15px;line-height:1.1;text-transform:uppercase}
 .ctas a small{display:block;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;margin-top:6px;text-transform:none}
-.ctas .ph{background:var(--yellow)} .ctas .et{background:#FF5FA2}
+.ctas .c-ph{background:var(--yellow)} .ctas .c-et{background:#FF5FA2}
 /* variant B */
 .sticker{position:absolute;right:14px;top:14px;background:var(--yellow);border:3.5px solid #000;box-shadow:5px 5px 0 #000;padding:10px 12px;transform:rotate(4deg);text-align:center;font-family:'Archivo Black',sans-serif;text-transform:uppercase}
 .sticker .n{font-size:44px;line-height:.9}.sticker .t{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:800;margin-top:4px;letter-spacing:.05em}
@@ -539,7 +539,7 @@ function countdown(){ const st=state();
   return {n:'✓', t:'TOUR COMPLETE<br><b>おかえりなさい · WELCOME HOME</b>'}; }
 function route(){ const st=state(); const i=dayIdx();
   return '<div class="route">'+BASES.map(b=>{ const on=st==='during'&&SIM>=b[1]&&SIM<=b[2]; return '<span class="stop'+(on?' now':'')+'">'+b[0]+'</span>'; }).join('')+'</div>'; }
-function ctas(){ return '<div class="ctas"><a class="ph" href="#">Handy Japanese phrases!<small>Tap a phrase to show it big</small></a><a class="et" href="#">Learn the etiquette<small>Ten things before you land</small></a></div>'; }
+function ctas(){ return '<div class="ctas"><a class="c-ph" href="#">Handy Japanese phrases!<small>Tap a phrase to show it big</small></a><a class="c-et" href="#">Learn the etiquette<small>Ten things before you land</small></a></div>'; }
 function views(){ return '<div class="views">OR SEE THE WHOLE TRIP AS A <a href="#">🗺️ MAP</a><a href="#">☰ LIST</a></div>'; }
 function renderA(){ const c=countdown(), g=goInfo();
   return '<div class="hero"><div class="himg" style="height:360px"><img src="../images/hero.jpg" alt=""><div class="grad"></div><div class="ht"><h1>LAMPTEYS<br><span class="y">ON TOUR</span></h1></div></div>'+
