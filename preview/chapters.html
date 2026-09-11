@@ -511,6 +511,10 @@ header .menubtn:active{transform:translate(2px,2px);box-shadow:none}
 .chap .ch.now{background:#000;color:#fff;box-shadow:5px 5px 0 var(--red)} .chap .ch.now .d{color:#ddd} .chap .ch.now .sub span{background:#000;color:#fff;border-color:#fff} .chap .ch.now .sub span.on{background:var(--yellow);color:#000;border-color:#000}
 .chap .arrow{display:flex;align-items:center;font-size:18px;flex-shrink:0}
 .chap .ch::after{content:attr(data-num);position:absolute;top:-12px;left:-10px;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;border:2.5px solid #000;font-family:'Archivo Black',sans-serif;font-size:12px;display:flex;align-items:center;justify-content:center}
+.mapbox{border:4px solid #000;background:#fff;box-shadow:8px 8px 0 #000;margin:8px 0 26px;padding:6px}
+.mapbox svg{width:100%;height:auto;display:block}
+.mapbox text{font-family:'JetBrains Mono',monospace;font-weight:700}
+.mapbox .nm{font-family:'Archivo Black',sans-serif;text-transform:uppercase}
 /* ---- banded day strip ---- */
 .dn2{display:flex;overflow-x:auto;background:#fff;border-bottom:3px solid #000;padding:8px 10px 10px;gap:0}
 .dn2 .band{display:flex;flex-direction:column;flex-shrink:0;margin-right:10px}
@@ -527,22 +531,25 @@ header .menubtn:active{transform:translate(2px,2px);box-shadow:none}
 </style></head><body>
 <div class="pvbar">PREVIEW · pretend it is: <button data-sim="2026-09-11" class="on">TODAY</button><button data-sim="2026-09-20">DAY 3 (KYOTO)</button><button data-sim="2026-09-22">DAY 5 (OSAKA)</button><button data-sim="2026-09-26">DAY 9 (INE)</button><button data-sim="2026-09-29">DAY 12 (KISO)</button><button data-sim="2026-10-03">DAY 16 (TOKYO)</button></div>
 <main class="wrap" style="padding-bottom:60px">
-<div class="pvlabel">1 · The route as three chapters (home page)</div>
-<p class="pvnote">Replaces the six pills. Osaka is a day-trip tag inside Kyoto; the weekend away is the yellow loop. Flight bookends say where you actually land.</p>
-<div id="chap"></div>
+<div class="pvlabel">1A · The journey as a tube map (home page)</div>
+<p class="pvnote">Every place, in order, with the Osaka day trip as a side-arm and the retreat + seaside as a loop that rejoins Kyoto. During the trip the stop you are at fills in.</p>
+<div id="tube" class="mapbox"></div>
+<div class="pvlabel">1B · The journey plotted where it really is</div>
+<p class="pvnote">Same stops placed by their real positions (west to east). Honest about distances — Ine is a long way north, Arashiyama is basically Kyoto.</p>
+<div id="geo" class="mapbox"></div>
 <div class="pvlabel">2 · The day strip with chapter bands (trip guide)</div>
 <p class="pvnote">Same tabs as now, grouped. Away days are yellow with a small tag; the Osaka day-trip tab is dashed. Scrolls sideways as before.</p>
 <div id="dn"></div>
 <div class="pvlabel">3 · A day header inside the weekend away</div>
 <p class="pvnote">Chapter line replaces "DAY 6 OF 18 // KYOTO → ARASHIYAMA". The four away days share the sticker.</p>
 <div class="dayhero" style="margin-top:8px"><div class="dh-body" style="padding:14px 16px">
- <div class="chline"><span class="cp">KYOTO CHAPTER</span><span class="cp away">WEEKEND AWAY · DAY 1 OF 4</span><span>DAY 6 OF 18 · WED 23 SEP</span></div>
- <div class="awaysticker">🎒 Weekend bag only<small>Big cases stay at Henn na Kyoto until Sunday</small></div>
- <h2 style="margin-top:8px">Weekend away — up the gorge</h2>
+ <div class="chline"><span class="cp">KYOTO CHAPTER</span><span class="cp away">RETREAT · NIGHT 1 OF 2</span><span>DAY 6 OF 18 · WED 23 SEP</span></div>
+ <div class="awaysticker">🎒 Small bag only<small>Big cases stay at Henn na Kyoto until Sunday · 4 nights away</small></div>
+ <h2 style="margin-top:8px">To the retreat — up the gorge</h2>
  <div class="mono" style="font-size:12px;font-weight:700;color:#374151">A quiet equinox morning in Kyoto, then the boat to the retreat</div>
 </div></div>
 <div class="dayhero"><div class="dh-body" style="padding:14px 16px">
- <div class="chline"><span class="cp">KYOTO CHAPTER</span><span class="cp away">WEEKEND AWAY · HOME TONIGHT</span><span>DAY 10 OF 18 · SUN 27 SEP</span></div>
+ <div class="chline"><span class="cp">KYOTO CHAPTER</span><span class="cp away">SEASIDE → HOME TONIGHT</span><span>DAY 10 OF 18 · SUN 27 SEP</span></div>
  <h2 style="margin-top:8px">Home to Kyoto — via Nara</h2>
  <div class="mono" style="font-size:12px;font-weight:700;color:#374151">Bus, express, Nara's deer and Great Buddha, Fushimi Inari at dusk, laundry on. One night at home, then the mountains</div>
 </div></div>
@@ -555,7 +562,7 @@ const DAYS=[].concat(window.DAYS1,window.DAYS2,window.DAYS3).sort((a,b)=>a.iso<b
 let SIM='2026-09-11';
 const CH=[
  {k:'f',n:'FLY OUT',d:'FRI 18 SEP',from:'2026-09-18',to:'2026-09-18',bk:'✈'},
- {k:'k',n:'KYOTO',d:'19–28 SEP · 9 NIGHTS',from:'2026-09-19',to:'2026-09-27',sub:[{t:'📍 Land at Kansai → straight to Kyoto',r:['2026-09-19','2026-09-19']},{t:'🚆 Day trip: Osaka · Tue 22',r:['2026-09-22','2026-09-22']},{t:'🎒 Weekend away: Arashiyama → Ine · Wed 23 – Sun 27',r:['2026-09-23','2026-09-27'],loop:true},{t:'🏠 Home for a night · Sun 27',r:['2026-09-27','2026-09-27']}]},
+ {k:'k',n:'KYOTO',d:'19–28 SEP · 9 NIGHTS',from:'2026-09-19',to:'2026-09-27',sub:[{t:'📍 Land at Kansai → straight to Kyoto',r:['2026-09-19','2026-09-19']},{t:'🚆 Day trip: Osaka · Tue 22',r:['2026-09-22','2026-09-22']},{t:'🌿 Retreat + seaside: Arashiyama → Ine · Wed 23 – Sun 27',r:['2026-09-23','2026-09-27'],loop:true},{t:'🏠 Home for a night · Sun 27',r:['2026-09-27','2026-09-27']}]},
  {k:'m',n:'MOUNTAINS',d:'28 SEP – 1 OCT · 3 NIGHTS',from:'2026-09-28',to:'2026-09-30',sub:[{t:'Kiso Valley: Yui-an, then MOUNTAinn',r:['2026-09-28','2026-09-30']}]},
  {k:'t',n:'TOKYO',d:'1–5 OCT · 4 NIGHTS',from:'2026-10-01',to:'2026-10-04',sub:[{t:'Shimokitazawa base',r:['2026-10-01','2026-10-04']}]},
  {k:'f',n:'FLY HOME',d:'MON 5 OCT',from:'2026-10-05',to:'2026-10-05',bk:'✈'}
@@ -565,10 +572,53 @@ function chap(){ const t=SIM; return '<div class="chap">'+CH.map((c,i)=>{ if(c.b
   const now=inR(t,[c.from,c.to]); return '<div class="ch'+(now?' now':'')+'" data-num="'+i+'"><div class="n">'+c.n+'</div><div class="d">'+c.d+'</div><div class="sub">'+c.sub.map(s=>'<span class="'+(s.loop?'loop ':'')+(inR(t,s.r)?'on':'')+'">'+s.t+'</span>').join('')+'</div></div>'; }).join('<div class="arrow">→</div>')+'</div>'; }
 function dn(){ const t=SIM; const bands=[{k:'f',h:'✈',days:[0]},{k:'k',h:'KYOTO',days:[1,2,3,4,5,6,7,8,9]},{k:'m',h:'MOUNTAINS',days:[10,11,12,13]},{k:'t',h:'TOKYO',days:[14,15,16,17]}];
   return '<div class="dn2">'+bands.map(b=>'<div class="band '+b.k+'"><div class="bh">'+b.h+'</div><div class="tabs">'+b.days.map(i=>{const d=DAYS[i]; const away=i>=5&&i<=9, trip=i===4; const act=d.iso===t;
-   return '<div class="dtab'+(act?' active':'')+(away?' away':'')+(trip?' trip':'')+'">'+(i===5?'<span class="tag2">AWAY →</span>':'')+(i===9?'<span class="tag2">← HOME</span>':'')+(trip?'<span class="tag2">DAY TRIP</span>':'')+'<div>'+d.date+'</div><div class="c">'+d.chip+'</div></div>';}).join('')+'</div></div>').join('')+'</div>'; }
-function glance(){ const groups=[['✈ FLY OUT',[0]],['KYOTO',[1,2,3,4]],['KYOTO · WEEKEND AWAY',[5,6,7,8,9]],['MOUNTAINS',[10,11,12,13]],['TOKYO',[14,15,16,17]]];
+   return '<div class="dtab'+(act?' active':'')+(away?' away':'')+(trip?' trip':'')+'">'+(i===5?'<span class="tag2">AWAY →</span>':'')+(i===9?'<span class="tag2">← HOME</span>':'')+(trip?'<span class="tag2">DAY TRIP</span>':'')+'<div>'+d.date+'</div><div class="c">'+(i===9?'KYO':d.chip)+'</div>'+(i===9?'<div style="font-size:8px">via Nara</div>':'')+'</div>';}).join('')+'</div></div>').join('')+'</div>'; }
+function glance(){ const groups=[['✈ FLY OUT',[0]],['KYOTO',[1,2,3,4]],['KYOTO · RETREAT + SEASIDE',[5,6,7,8,9]],['MOUNTAINS',[10,11,12,13]],['TOKYO',[14,15,16,17]]];
   let h='<div style="overflow-x:auto"><table class="simple mini">'; groups.forEach(g=>{ h+='<tr><th colspan="3" style="background:#000;color:#fff;padding:6px">'+g[0]+'</th></tr>'; g[1].forEach(i=>{const d=DAYS[i]; h+='<tr><td style="white-space:nowrap">'+d.date+'</td><td><b>'+d.base+'</b></td><td>'+(d.hotel?d.hotel.name:'—')+'</td></tr>';}); }); return h+'</table></div>'; }
-function draw(){ document.getElementById('chap').innerHTML=chap(); document.getElementById('dn').innerHTML=dn(); document.getElementById('glance').innerHTML=glance(); }
+
+const STOPS=[
+ {id:'lgw',n:'LONDON',sub:'✈ FRI 18',kind:'fly',lat:51.15,lng:-0.18},
+ {id:'kix',n:'KANSAI',sub:'land SAT 19',kind:'fly',lat:34.43,lng:135.24,r:['2026-09-19','2026-09-19']},
+ {id:'kyo',n:'KYOTO',sub:'19–23 · home',kind:'k',lat:35.01,lng:135.76,r:['2026-09-19','2026-09-22'],hub:true},
+ {id:'osa',n:'OSAKA',sub:'day trip TUE 22',kind:'k',lat:34.69,lng:135.50,r:['2026-09-22','2026-09-22'],branch:true},
+ {id:'ara',n:'ARASHIYAMA',sub:'retreat 23–25',kind:'loop',lat:35.02,lng:135.67,r:['2026-09-23','2026-09-24']},
+ {id:'ine',n:'INE',sub:'seaside 25–27',kind:'loop',lat:35.67,lng:135.29,r:['2026-09-25','2026-09-26']},
+ {id:'nar',n:'NARA',sub:'SUN 27 pm',kind:'loop',lat:34.68,lng:135.83,r:['2026-09-27','2026-09-27']},
+ {id:'kyo2',n:'KYOTO',sub:'home SUN 27',kind:'k',lat:35.01,lng:135.76,r:['2026-09-27','2026-09-27']},
+ {id:'kis',n:'KISO VALLEY',sub:'28 SEP – 1 OCT',kind:'m',lat:35.60,lng:137.61,r:['2026-09-28','2026-09-30']},
+ {id:'tok',n:'TOKYO',sub:'1–5 OCT',kind:'t',lat:35.68,lng:139.70,r:['2026-10-01','2026-10-04']},
+ {id:'hnd',n:'HANEDA',sub:'✈ MON 5',kind:'fly',lat:35.55,lng:139.78,r:['2026-10-05','2026-10-05']}
+];
+const COL={k:'#e11d48',loop:'#ffcc00',m:'#15803d',t:'#2563eb',fly:'#6b7280'};
+const cur=()=>STOPS.filter(x=>x.r&&inR(SIM,x.r)).map(x=>x.id);
+function node(x,y,st,opts){ const on=cur().includes(st.id); const o=opts||{}; const rr=st.hub?16:12;
+  return '<g><circle cx="'+x+'" cy="'+y+'" r="'+rr+'" fill="'+(on?'#000':'#fff')+'" stroke="#000" stroke-width="4"/>'+(on?'<circle cx="'+x+'" cy="'+y+'" r="5" fill="'+COL[st.kind]+'"/>':'')+
+   '<text class="nm" x="'+(x+(o.dx||0))+'" y="'+(y+(o.dy||-22))+'" font-size="'+(st.hub?15:12)+'" text-anchor="'+(o.anchor||'middle')+'">'+st.n+'</text>'+
+   '<text x="'+(x+(o.dx||0))+'" y="'+(y+(o.dy||-22)+13)+'" font-size="8.5" fill="#374151" text-anchor="'+(o.anchor||'middle')+'">'+st.sub+'</text></g>'; }
+function tube(){ const P={lgw:[50,170],kix:[150,170],kyo:[290,170],osa:[290,270],ara:[380,80],ine:[520,50],nar:[600,120],kyo2:[290,170],kis:[560,170],tok:[720,170],hnd:[790,170]};
+  const S=Object.fromEntries(STOPS.map(x=>[x.id,x]));
+  let g='<svg viewBox="0 0 840 320">';
+  g+='<defs><pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#d1d5db"/></pattern></defs><rect width="840" height="320" fill="url(#dots)"/>';
+  const L=(a,b,c,dash)=>'<line x1="'+P[a][0]+'" y1="'+P[a][1]+'" x2="'+P[b][0]+'" y2="'+P[b][1]+'" stroke="'+c+'" stroke-width="9" stroke-linecap="round"'+(dash?' stroke-dasharray="4 12"':'')+'/>';
+  g+=L('lgw','kix',COL.fly,true)+L('kix','kyo',COL.k)+L('kyo','kis',COL.k)+L('kis','tok',COL.m)+L('tok','hnd',COL.t);
+  g+='<path d="M290 170 C 300 100, 340 80, 380 80 S 480 40, 520 50 S 590 80, 600 120 S 560 200, 290 170" fill="none" stroke="'+COL.loop+'" stroke-width="9" stroke-linecap="round"/>';
+  g+='<path d="M290 170 L290 270" stroke="'+COL.k+'" stroke-width="6" stroke-dasharray="2 10" stroke-linecap="round"/>';
+  g+='<text x="640" y="95" font-size="9" fill="#374151" transform="rotate(20 640 95)">home via Nara →</text>';
+  g+='<text x="455" y="255" font-size="9" fill="#374151">→ Kyoto Prefecture: retreat, then seaside, then home for a night</text>';
+  g+='<text x="305" y="230" font-size="9" fill="#374151">↕ day trip &amp; back</text>';
+  g+=node(...P.lgw,S.lgw)+node(...P.kix,S.kix,{dy:34})+node(...P.kyo,S.kyo,{dy:36})+node(...P.osa,S.osa,{dy:30})+node(...P.ara,S.ara)+node(...P.ine,S.ine)+node(...P.nar,S.nar,{dx:22,anchor:'start',dy:4})+node(...P.kis,S.kis,{dy:36})+node(...P.tok,S.tok,{dy:36})+node(...P.hnd,S.hnd);
+  return g+'</svg>'; }
+function geo(){ const W=840,H=360; const lng0=134.9,lng1=140.2,lat0=34.2,lat1=36.05; const X=l=>((l-lng0)/(lng1-lng0))*(W-60)+30, Y=l=>H-30-((l-lat0)/(lat1-lat0))*(H-90);
+  const S=Object.fromEntries(STOPS.map(x=>[x.id,x])); const P={}; STOPS.forEach(x=>{ if(x.id==='lgw') return; P[x.id]=[X(x.lng),Y(x.lat)]; }); P.ara=[P.ara[0]-42,P.ara[1]-26]; P.kyo2=P.kyo;
+  let g='<svg viewBox="0 0 '+W+' '+H+'"><defs><pattern id="dots2" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#d1d5db"/></pattern></defs><rect width="'+W+'" height="'+H+'" fill="url(#dots2)"/>';
+  g+='<text x="30" y="28" font-size="10" fill="#6b7280">SEA OF JAPAN ↑</text><text x="'+(W-140)+'" y="'+(H-12)+'" font-size="10" fill="#6b7280">↓ PACIFIC</text>';
+  const seg=(a,b,c,dash)=>'<line x1="'+P[a][0]+'" y1="'+P[a][1]+'" x2="'+P[b][0]+'" y2="'+P[b][1]+'" stroke="'+c+'" stroke-width="8" stroke-linecap="round"'+(dash?' stroke-dasharray="2 10"':'')+'/>';
+  g+=seg('kix','kyo',COL.k)+seg('kyo','osa',COL.k,true)+seg('kyo','ara',COL.loop)+seg('ara','ine',COL.loop)+seg('ine','nar',COL.loop)+seg('nar','kyo',COL.loop)+seg('kyo','kis',COL.m)+seg('kis','tok',COL.t)+seg('tok','hnd',COL.fly,true);
+  g+='<text x="'+(P.kix[0]-60)+'" y="'+(P.kix[1]+40)+'" font-size="9" fill="#374151">✈ from London</text>';
+  g+=node(...P.kix,S.kix,{dy:30})+node(...P.kyo,S.kyo,{dx:24,anchor:'start',dy:4})+node(...P.osa,S.osa,{dy:30})+node(...P.ara,S.ara,{dx:-20,anchor:'end',dy:4})+node(...P.ine,S.ine)+node(...P.nar,S.nar,{dy:32})+node(...P.kis,S.kis)+node(...P.tok,S.tok)+node(...P.hnd,S.hnd,{dy:32});
+  return g+'</svg>'; }
+
+function draw(){ document.getElementById('tube').innerHTML=tube(); document.getElementById('geo').innerHTML=geo(); document.getElementById('dn').innerHTML=dn(); document.getElementById('glance').innerHTML=glance(); }
 document.querySelectorAll('.pvbar button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.pvbar button').forEach(x=>x.classList.remove('on'));b.classList.add('on');SIM=b.dataset.sim;draw();});
 draw();
 </script></body></html>
