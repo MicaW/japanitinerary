@@ -450,31 +450,38 @@ function planTags(e,kind){
   if(/LOWER ENERGY/.test(L)) t.push('easy');
   return t;
 }
+const PLAN_LOCS=[['kyoto','Kyoto'],['osaka','Osaka'],['arashiyama','Arashiyama'],['ine','Ine'],['nara','Nara'],['kiso','Kiso Valley'],['tokyo','Tokyo']];
+function planLoc(d,e,idx){
+  const la=e.lat,ln=e.lng;
+  if(la&&ln){ if(la>=34.98&&la<=35.05&&ln>=135.62&&ln<=135.71) return 'arashiyama'; if(la>=35.40&&la<=35.80&&ln>=134.80&&ln<=135.40) return 'ine'; if(la>=34.55&&la<=34.85&&ln>=135.35&&ln<=135.62) return 'osaka'; if(la>=34.60&&la<=34.72&&ln>=135.78&&ln<=135.90) return 'nara'; if(la>=35.35&&la<=36.10&&ln>=137.40&&ln<=137.95) return 'kiso'; if(la>=35.45&&la<=35.90&&ln>=139.40&&ln<=139.95) return 'tokyo'; if(la>=34.90&&la<=35.12&&ln>=135.60&&ln<=135.90) return 'kyoto'; }
+  if(idx===4) return 'osaka'; if(idx===5||idx===6) return 'arashiyama'; if(idx===7||idx===8) return 'ine'; if(idx>=10&&idx<=13) return 'kiso'; if(idx>=14) return 'tokyo'; return 'kyoto';
+}
 function renderPlanner(){
   const rows=[];
-  DAYS.forEach(function(d){
+  DAYS.forEach(function(d,di){
     (d.clusters||[]).forEach(function(c){
       ['explore','activities','shopping','food'].forEach(function(k){
         (c[k]||[]).forEach(function(e){
-          rows.push({d:d, c:c, e:e, kind:k, tags:planTags(e,k)});
+          rows.push({d:d, c:c, e:e, kind:k, tags:planTags(e,k), loc:planLoc(d,e,di)});
         });
       });
     });
   });
-  let h='<div class="sec pink"><h3>🧭 Trip Planner</h3><div class="sub">Everything on the trip in one place — '+rows.length+' things to do, filterable. Tap a tag to narrow it down</div></div>';
-  h+='<div class="pfilters" id="pfilters">';
-  h+='<button class="pf on" data-k="all" onclick="planFilter(\'all\')">ALL <span class="pn">'+rows.length+'</span></button>';
+  let h='<div class="sec pink"><h3>🧭 Trip Planner</h3><div class="sub">Everything on the trip in one place — '+rows.length+' things to do. Pick places and kinds together: Tokyo + History shows the history stops in Tokyo</div></div>';
+  h+='<div class="pfilters" id="plocs"><span class="pfl">WHERE</span>'+PLAN_LOCS.map(function(l){ const n=rows.filter(function(r){return r.loc===l[0];}).length; return n?'<button class="pf" data-k="'+l[0]+'" onclick="planToggle(this)">'+l[1].toUpperCase()+' <span class="pn">'+n+'</span></button>':''; }).join('')+'</div>';
+  h+='<div class="pfilters" id="pfilters"><span class="pfl">WHAT</span>';
+  h+='<button class="pf on" data-k="all" onclick="planClear()">ALL <span class="pn">'+rows.length+'</span></button>';
   PLAN_CATS.forEach(function(cat){
     const n=rows.filter(function(r){return r.tags.indexOf(cat.k)>=0;}).length;
     if(!n) return;
-    h+='<button class="pf" data-k="'+cat.k+'" onclick="planFilter(\''+cat.k+'\')">'+cat.i+' '+cat.n.toUpperCase()+' <span class="pn">'+n+'</span></button>';
+    h+='<button class="pf" data-k="'+cat.k+'" onclick="planToggle(this)">'+cat.i+' '+cat.n.toUpperCase()+' <span class="pn">'+n+'</span></button>';
   });
-  h+='</div>';
+  h+='</div><div class="pcount" id="pcount"></div>';
   h+='<div id="planrows">';
   rows.forEach(function(r,ix){
     const e=r.e;
     const opt=/^OPTIONAL|^ALTERNATIVE|^BONUS|^EVENING OPTION|^Plan B/i.test(r.c.name);
-    h+='<div class="prow" data-tags="'+r.tags.join(' ')+'">'+
+    h+='<div class="prow" data-tags="'+r.tags.join(' ')+'" data-loc="'+r.loc+'">'+
       '<div class="pday"><a href="#day/'+r.d.id+'">'+esc(r.d.date)+'</a><span>'+esc(r.d.dow)+'</span></div>'+
       '<div class="pmain"><div class="pnm">'+esc(e.name)+(e.jp?' <span class="jpn">'+esc(e.jp)+'</span>':'')+
         (opt?' <span class="tag opt">OPTION</span>':'')+'</div>'+
@@ -490,15 +497,21 @@ function renderPlanner(){
   h+='<div class="info-box" data-label="What the tags mean">Tags are worked out from what each place actually is, so something can carry several — the Sagano Romantic Train is both <b>travel experience</b> and <b>nature</b>. <b>OPTION</b> means it sits in an optional cluster: a choice for the day, not a commitment.</div>';
   return h;
 }
-window.planFilter=function(k){
-  document.querySelectorAll('#pfilters .pf').forEach(function(b){ b.classList.toggle('on', b.dataset.k===k); });
+window.planToggle=function(btn){ btn.classList.toggle('on'); const all=document.querySelector('#pfilters .pf[data-k="all"]'); if(all) all.classList.toggle('on', !document.querySelector('#pfilters .pf.on:not([data-k="all"])')); planApply(); };
+window.planClear=function(){ document.querySelectorAll('#pfilters .pf, #plocs .pf').forEach(function(b){ b.classList.toggle('on', b.dataset.k==='all'); }); planApply(); };
+function planApply(){
+  const locs=[].map.call(document.querySelectorAll('#plocs .pf.on'),function(b){return b.dataset.k;});
+  const cats=[].map.call(document.querySelectorAll('#pfilters .pf.on:not([data-k="all"])'),function(b){return b.dataset.k;});
   let shown=0;
   document.querySelectorAll('#planrows .prow').forEach(function(r){
-    const ok = k==='all' || (' '+r.dataset.tags+' ').indexOf(' '+k+' ')>=0;
-    r.style.display = ok?'':'none'; if(ok) shown++;
+    const okLoc=!locs.length||locs.indexOf(r.dataset.loc)>=0;
+    const tags=' '+r.dataset.tags+' ';
+    const okCat=!cats.length||cats.some(function(k){return tags.indexOf(' '+k+' ')>=0;});
+    const ok=okLoc&&okCat; r.style.display=ok?'':'none'; if(ok) shown++;
   });
-  window.scrollTo({top:0,behavior:'smooth'});
-};
+  const pc=document.getElementById('pcount'); if(pc) pc.textContent=(locs.length||cats.length)?shown+' things match':'';
+}
+window.planFilter=function(k){ planClear(); if(k!=='all'){ const b=document.querySelector('#pfilters .pf[data-k="'+k+'"]'); if(b) planToggle(b); } };
 
 /* ---- v58: chapters ---- */
 function chapterOf(i){ if(i===0) return {k:'f',n:'FLY OUT'}; if(i===17) return {k:'f',n:'FLY HOME'}; if(i<=9) return {k:'k',n:'KYOTO'}; if(i<=13) return {k:'m',n:'MOUNTAINS'}; return {k:'t',n:'TOKYO'}; }
