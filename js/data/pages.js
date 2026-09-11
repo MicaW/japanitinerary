@@ -423,7 +423,7 @@ P.renderMap=function(DAYS){
 
  /* ---- the whole trip on one Google map (My Maps) ---- */
  if(MYMAP){
-  h+='<div class="mapframe" style="height:460px;margin-bottom:12px">'+(navigator.onLine?'<iframe loading="lazy" src="https://www.google.com/maps/d/embed?mid='+MYMAP+'&ehbc=2E312F"></iframe>':'<div class="map-off">📡 The trip map needs signal — the place lists below work offline, and so do the pins inside the Google Maps app once the areas are downloaded.</div>')+'</div>';
+  h+='<div class="mapframe" style="height:460px;margin-bottom:12px">'+(navigator.onLine?'<iframe loading="lazy" src="https://www.google.com/maps/d/embed?mid='+MYMAP+'&ehbc=2E312F&noprof=1"></iframe>':'<div class="map-off">📡 The trip map needs signal — the place lists below work offline, and so do the pins inside the Google Maps app once the areas are downloaded.</div>')+'</div>';
   h+='<div class="btnrow" style="margin-bottom:18px"><a class="btn yellow big" style="flex:1" target="_blank" rel="noopener" href="https://www.google.com/maps/d/viewer?mid='+MYMAP+'">↗ OPEN THE TRIP MAP IN GOOGLE MAPS</a></div>';
  }
  h+='<div class="info-box" data-label="Before you fly — make it work offline">'+
