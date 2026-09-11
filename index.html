@@ -508,7 +508,7 @@ table.trains td{vertical-align:top;font-size:12px;}
 <script src="js/data/lists.js"></script>
 <script src="js/app.js"></script>
 <script>
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));}
+if('serviceWorker' in navigator){const hadSW=!!navigator.serviceWorker.controller;window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));navigator.serviceWorker.addEventListener('controllerchange',()=>{if(hadSW&&!window.__swReloaded){window.__swReloaded=true;location.reload();}});}
 </script>
 <div id="sheet" onclick="if(event.target===this)closeSheet()"><div class="sheetin"><div class="sheettop"><b>TAP OUTSIDE TO CLOSE</b><button class="btn mini" onclick="closeSheet()">✕ CLOSE</button></div><div class="sheetbody"></div></div></div>
 <div id="lightbox" onclick="if(event.target.id==='lightbox')closeLB()">

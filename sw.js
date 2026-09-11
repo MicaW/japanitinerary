@@ -1,5 +1,5 @@
 /* LAMPTEYS ON TOUR — service worker: precache app shell + runtime-cache everything (incl. remote images & fonts). */
-const VERSION = 'lampteys-v50';
+const VERSION = 'lampteys-v51';
 const SHELL = [
   './','index.html','manifest.webmanifest',
   'js/app.js','js/data/days.js','js/data/days2.js','js/data/days3.js','js/data/pages.js','js/data/lists.js',
@@ -11,7 +11,7 @@ self.addEventListener('install', e => {
   e.waitUntil((async () => {
     const c = await caches.open(VERSION);
     // Shell: fail install only if local shell fails; remote extras are best-effort.
-    await c.addAll(SHELL.filter(u => !u.startsWith('http')));
+    await c.addAll(SHELL.filter(u => !u.startsWith('http')).map(u => new Request(u, { cache: 'reload' })));
     await Promise.allSettled(SHELL.filter(u => u.startsWith('http')).map(u => c.add(u)));
     // Best-effort precache of the day-page images declared in data files.
     try {
@@ -43,7 +43,7 @@ self.addEventListener('fetch', e => {
     const cached = await c.match(req, { ignoreSearch: false });
     if (cached) {
       // Stale-while-revalidate for local files.
-      if (url.origin === location.origin) fetch(req).then(r => { if (r && r.ok) c.put(req, r.clone()); }).catch(() => {});
+      if (url.origin === location.origin) fetch(new Request(req, { cache: 'no-cache' })).then(r => { if (r && r.ok) c.put(req, r.clone()); }).catch(() => {});
       return cached;
     }
     try {
