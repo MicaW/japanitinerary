@@ -67,7 +67,7 @@ P.renderBudget=function(){
  const tripTot=bookTot+SPEND_TWO, share=tripTot/2, dadOwes=bookTot/2, dadTopUp=dadOwes-SPEND_EACH;
  const next=leftList.slice().sort((a,b)=>a.date<b.date?-1:1)[0];
 
- let h='<div class="sec blue"><h3>💰 Budget</h3><div class="sub">Shared costs, split down the middle. Reconciled against the Spend Master, ¥190/£ · paid/unpaid worked out from today, '+now.getDate()+' '+MON[now.getMonth()]+'</div></div>';
+ let h='<div class="sec blue"><h3>💰 Budget</h3><div class="sub">Shared costs, split down the middle · ¥190/£ · paid/unpaid as of today, '+now.getDate()+' '+MON[now.getMonth()]+'</div></div>';
 
  /* ---------- HEADLINE ---------- */
  h+='<div class="bigfig">'+
@@ -81,7 +81,7 @@ P.renderBudget=function(){
      '<div class="bfbody"><table class="simple mini"><tr><th>WHAT</th><th>TAKEN</th><th>PAID</th></tr>'+
      paidList.map(b=>'<tr><td>'+b.n+'</td><td>'+(b.date?dshort(b.date):'—')+'</td><td>'+money(b.amt)+(b.est?' <span style="opacity:.6">est.</span>':'')+'</td></tr>').join('')+
      '<tr class="tr-tot"><td>TOTAL</td><td></td><td>'+money(paidTot)+'</td></tr></table>'+
-     (paidList.some(b=>b.est)?'<p class="bfnote">"est." = a train fare counted as paid because its booking date has passed. If you have not actually booked it, move its date in the site file and it will jump back to LEFT TO PAY.</p>':'')+
+     (paidList.some(b=>b.est)?'<p class="bfnote">est. = fare still to be confirmed against the receipt.</p>':'')+
      '</div></details>'+
 
    '<details class="bf exp"><summary><div class="bfk">BOOKINGS LEFT TO PAY</div><div class="bfv">'+money(leftTot)+'</div>'+
@@ -89,35 +89,27 @@ P.renderBudget=function(){
      '<div class="bfbody">'+(leftList.length?'<table class="simple mini"><tr><th>WHAT</th><th>WHEN</th><th>AMOUNT</th></tr>'+
      leftList.map(b=>'<tr><td>'+b.n+'</td><td><b>'+dshort(b.date)+'</b></td><td>'+money(b.amt)+(b.est?' <span style="opacity:.6">est.</span>':'')+'</td></tr>').join('')+
      '<tr class="tr-tot"><td>TOTAL</td><td></td><td>'+money(leftTot)+'</td></tr></table>'+
-     '<p class="bfnote">Hotels are charged on the date shown and are cancellable until then. Each one moves to PAID automatically once its date passes.</p>':'<p class="bfnote">Every advance booking has been taken.</p>')+
+     '<p class="bfnote">Hotels are charged on the date shown and are cancellable until then.</p>':'<p class="bfnote">Every advance booking has been taken.</p>')+
      '</div></details>'+
    '</div>';
 
  /* ---------- WHO PAYS WHAT ---------- */
- h+='<div class="sec"><h3>You and Dad</h3><div class="sub">Mica pays every advance booking; Dad owes half of those. Spending money is separate — you each pay your own as you go</div></div>';
+ h+='<div class="sec"><h3>You and Dad</h3><div class="sub">Mica pays every advance booking and Dad transfers half. Spending money is separate — each pays their own on the ground</div></div>';
  h+='<div style="overflow-x:auto"><table class="simple"><tr><th></th><th>MICA</th><th>DAD</th></tr>'+
   '<tr><td>Bookings paid so far</td><td>'+money(paidTot)+'</td><td>£0</td></tr>'+
   '<tr><td>Bookings still to pay</td><td>'+money(leftTot)+'</td><td>£0</td></tr>'+
   '<tr><td><b>All advance bookings</b></td><td><b>'+money(bookTot)+'</b></td><td><b>£0</b></td></tr>'+
-  '<tr><td>Half of the bookings each</td><td>'+money(dadOwes)+'</td><td>'+money(dadOwes)+'</td></tr>'+
-  '<tr class="tr-tot"><td>DAD OWES MICA (for bookings)</td><td></td><td>'+money(dadOwes)+'</td></tr>'+
-  '<tr><td>Spending money on the ground, each</td><td>'+money(SPEND_EACH,true)+'</td><td>'+money(SPEND_EACH,true)+'</td></tr>'+
-  '<tr><td>Fair share of the whole trip</td><td>'+money(share,true)+'</td><td>'+money(share,true)+'</td></tr></table></div>';
- h+='<div class="info-box" data-label="Why it is not '+money(share,true)+'">'+money(share,true)+' is Dad\'s half of <b>everything</b> — bookings <i>and</i> his own '+money(SPEND_EACH,true)+' of spending money, which he pays himself in Japan. The only money that changes hands is his half of the bookings you paid: <b>'+money(dadOwes)+'</b>.</div>';
-
- h+='<div class="info-box" data-label="Two ways to settle it — pick whichever suits">'+
-   '<b>A. Dad transfers his booking share, then you split as you go.</b><br>'+
-   'Dad sends <b>'+money(dadOwes)+'</b> before you fly. In Japan you split everything 50/50 — about <b>'+money(SPEND_EACH,true)+' each</b>.<br><br>'+
-   '<b>B. Dad covers the trip on the ground, and tops up the difference.</b><br>'+
-   'Dad pays for <b>everything</b> in Japan — trains on the day, entry fees, all the food and drink, roughly <b>'+money(SPEND_TWO,true)+'</b> — and sends <b>'+money(dadTopUp,true)+'</b> to cover the rest. You then carry no cash at all out there.<br><br>'+
-   'Both land in the same place. B means Dad picks up every bill in Japan, which is the tidier version if he would rather pay as you go than transfer a lump.</div>';
+  '<tr class="tr-tot"><td>DAD TRANSFERS TO MICA</td><td></td><td>'+money(dadOwes)+'</td></tr>'+
+  '<tr><td>Spending money, each</td><td>'+money(SPEND_EACH,true)+'</td><td>'+money(SPEND_EACH,true)+'</td></tr>'+
+  '<tr><td>Total each</td><td>'+money(share,true)+'</td><td>'+money(share,true)+'</td></tr></table></div>';
+ h+='<div class="info-box" data-label="How it settles">Dad sends <b>'+money(dadOwes)+'</b> — half of the flights, hotels and reserved trains — before you fly. In Japan everything is split as you go, about <b>'+money(SPEND_EACH,true)+' each</b>.</div>';
 
  /* ---------- SPENDING MONEY ---------- */
  h+='<div class="sec"><h3>Spending money — £1,038 each</h3><div class="sub">Everything you pay for once you are there. Nothing here needs booking</div></div>';
  h+='<div style="overflow-x:auto"><table class="simple"><tr><th>CATEGORY</th><th>FOR TWO</th><th>EACH</th><th>WHAT IT COVERS</th></tr>'+
   '<tr><td>Transport paid on the day</td><td>~£274</td><td>~£137</td><td>HARUKA from the airport, all local trains and metro, taxis, the Ine buses, the Kiso rail day, the airport run home</td></tr>'+
   '<tr><td>Activities — core plan</td><td>~£475</td><td>~£238</td><td>Sumo show, cooking class, zazen, Golden Gai night</td></tr>'+
-  '<tr><td>Activities — optional</td><td>~£318</td><td>~£159</td><td>Bikes, Kagaya, gigs, and the options added 17 Aug</td></tr>'+
+  '<tr><td>Activities — optional</td><td>~£318</td><td>~£159</td><td>Bikes, Kagaya, gigs and the other optional extras</td></tr>'+
   '<tr><td>Food &amp; drink</td><td>~£1,010</td><td>~£505</td><td>Deliberately generous. Konbini lunches pull this down hard</td></tr>'+
   '<tr class="tr-tot"><td>TOTAL</td><td>~£2,077</td><td>~£1,038</td><td></td></tr></table></div>';
  h+='<div class="info-box" data-label="In yen">£1,038 each is roughly <b>¥197,000</b> at ¥190/£ — call it ¥200,000 a head for the fortnight, or about ¥11,000 a day. Draw cash on 18 Sep before the banks shut for Silver Week.</div>';
@@ -131,7 +123,7 @@ P.renderBudget=function(){
   '<tr><td>Nagoya → Nagiso — 28 Sep</td><td>OPEN NOW</td><td>~£35.79</td><td>SHINANO 17, 15:00 → 16:00 — the only afternoon one that stops</td></tr>'+
   '<tr><td>Nagiso → Nagoya — 1 Oct</td><td>OPEN NOW</td><td>~£35.79</td><td>SHINANO 2, 08:09 → 09:18 — the only morning one that stops</td></tr>'+
   '<tr><td>Nagoya → Shinagawa — 1 Oct</td><td>OPEN NOW</td><td>£116.84</td><td>Nozomi ~11:30 via SmartEX. Seat E for Fuji</td></tr>'+
-  '<tr class="tr-tot"><td>RESERVED SEATS — in the bookings total</td><td></td><td>~£352 (budgeted £366.42)</td><td></td></tr>'+
+  '<tr class="tr-tot"><td>RESERVED SEATS — in the bookings total</td><td></td><td>~£352</td><td></td></tr>'+
   '<tr><td colspan="4" style="padding-top:10px"><b>Paid on the day, in spending money:</b> HARUKA airport express (¥2,200pp, bought online before flying), Kyoto↔Osaka (¥580 each way), Kyoto→Nara and back via Fushimi Inari (~¥2,300pp incl. the AONIYOSHI), all local trains and metro, taxis to Kiyomizu and Daitoku-ji, the Amanohashidate–Ine bus (¥400pp), the Ine sea taxi, the Kiso rail day (~¥5,500–7,000 for two), Tokyo metro hops, and the Haneda run on 5 Oct. <b>~£274 for two.</b></td></tr>'+
   '</table></div>';
 
@@ -143,7 +135,6 @@ P.renderBudget=function(){
  h+='<div class="btnrow" style="margin-bottom:12px"><a class="btn yellow big" style="flex:1" target="_blank" rel="noopener" href="'+SHEET+'/edit">📊 OPEN IN GOOGLE SHEETS</a></div>';
  h+='<div class="btnrow" style="margin-bottom:14px"><a class="btn mini" target="_blank" rel="noopener" href="'+SHEET+'/export?format=xlsx">⬇ XLSX</a><a class="btn mini" target="_blank" rel="noopener" href="'+SHEET+'/export?format=pdf">⬇ PDF</a></div>';
  h+='<div class="mapframe" style="height:420px">'+(navigator.onLine?'<iframe loading="lazy" src="'+SHEET+'/preview"></iframe>':'<div class="map-off">📡 The live sheet needs signal — the summary above is saved offline.</div>')+'</div>';
- h+='<div class="info-box" data-label="One thing to update in the sheet">The Spend Master still shows the Kiso second base as <b>to book, ~£300</b>. It is booked — MOUNTAinn Nagiso, <b>£422</b>.</div>';
  return h;
 };
 

@@ -502,7 +502,7 @@ function renderHome(){
     '<a class="btn pinkb" href="#planner">🧭 TRIP PLANNER</a>'+
     '<a class="btn black" href="#etiquette">🙇 ETIQUETTE 101</a>'+
     '<a class="btn red" href="#phrases">🗣️ JAPANESE PHRASES</a></div>';
-  h+='<div class="info-box" data-label="How to use this site" style="margin-top:22px">Install on your phone: Safari → Share → <b>Add to Home Screen</b>. Open every page once while online and the guide saves for offline use in Japan. The Packing page has the printable prep + packing lists — one each.</div>';
+  h+='<div class="info-box" data-label="Put it on your phone" style="margin-top:22px">Safari → Share → <b>Add to Home Screen</b>. Open every page once while online and it all works without signal in Japan.</div>';
   h+='</div></div>';
   h+='<div class="sec"><h3>The tour at a glance</h3><div class="sub">16 nights • 6 bases</div></div>';
   h+='<div style="overflow-x:auto"><table class="simple"><tr><th>DATES</th><th>BASE</th><th>STATUS</th><th>THE POINT</th></tr>'+

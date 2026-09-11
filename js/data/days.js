@@ -698,7 +698,7 @@ window.DAYS1=[
         why:"A pink-chandelier grand hotel lounge with floor-to-ceiling windows onto a garden waterfall, serving proper matcha and wagashi. It is the calm, sit-down, air-conditioned counterweight to a day of walking, and it is easy to reach from Osaka Station.",
         dishes:"Matcha and traditional sweets; tea sets", price:"Drinks from ¥1,518; sweets sets from ¥2,024",
         hours:"09:00–18:30, last order 18:00. Extended to 20:00 on Fridays and Saturdays",
-        booking:"The lounge is WALK-IN and does not take reservations — corrected on 17 Aug, the earlier card said otherwise. The one exception is afternoon tea, which is online-only and must be booked at least 3 days ahead",
+        booking:"The lounge is WALK-IN and does not take reservations. The one exception is afternoon tea, which is online-only and must be booked at least 3 days ahead",
         area:"Nakanoshima, near JR Osaka Station",
         mapsQ:"Rihga Royal Hotel Osaka Main Lounge",
         tips:"There is a <b>free shuttle bus between JR Osaka Station and the hotel every 15 minutes</b> — use it rather than walking.",
