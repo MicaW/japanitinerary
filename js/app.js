@@ -275,9 +275,9 @@ function areaCard(d,cl,ci,prevSpot){
   var stops=clusterStops(cl);
   var dest=(stops[0]&&stops[0].q)||cl.station||cl.name;
   var nm=cl.name; var opt=/^OPTIONAL|^ALTERNATIVE|^BONUS|^EVENING OPTION|^Plan B|^Rain switch/i.test(nm);
-  var h='<details class="area'+(opt?' opt':'')+(ci===0?' first':'')+'"'+(ci===0?' open':'')+'><summary>'+
+  var h='<details class="area'+(opt?' opt':'')+(ci===0?' first':'')+'"><summary>'+
     '<div class="an"><span class="ai">'+(opt?'◇':String(ci+1))+'</span><div><div class="at">'+esc(nm.replace(/^Cluster\s+[A-Z]\s*—\s*/i,''))+'</div>'+
-    '<div class="as">'+(cl.time?'⏱ '+esc(cl.time)+' · ':'')+(stops.length?stops.filter(function(s){return !s.far}).length+' places · ':'')+(cl.walk?esc(cl.walk):'')+'</div></div><span class="exp">▾</span></div>'+
+    '<div class="as">'+(cl.time?'⏱ '+esc(cl.time)+' · ':'')+(stops.length?stops.filter(function(s){return !s.far}).length+' places · ':'')+(cl.walk?esc(cl.walk):'')+'</div></div><span class="exp"><span class="exp-o">TAP TO OPEN ▾</span><span class="exp-c">CLOSE ▴</span></span></div>'+
     (cl.why?'<div class="aw">'+cl.why+'</div>':'')+'</summary><div class="abody">';
   var meta=[];
   if(cl.station) meta.push(['GET HERE',esc(cl.station)]);

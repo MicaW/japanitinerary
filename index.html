@@ -420,7 +420,13 @@ table.trains td{vertical-align:top;font-size:12px;}
 .shapex{border:2px dashed #000;background:#fff;margin:12px 0 4px;padding:0 10px;}
 .shapex>summary{list-style:none;cursor:pointer;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11.5px;padding:9px 0;display:flex;align-items:center;gap:8px;}
 .shapex>summary::-webkit-details-marker{display:none;} .shapex>summary .exp{margin-left:auto;} .shapex[open]>summary .exp{transform:rotate(180deg);}
-.area{border:3px solid #000;background:#fff;margin:14px 0;box-shadow:6px 6px 0 #000;}
+.area{border:3px solid #000;background:#fff;margin:18px 0;box-shadow:6px 6px 0 #000;position:relative;}
+.area::before{content:'AREA';position:absolute;top:-12px;left:12px;background:#000;color:var(--yellow);font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:.12em;padding:3px 9px;border:2px solid #000;}
+.area.opt::before{content:'OPTION';background:#fff;color:#000;}
+.area>summary{background:#fffbe6;border-bottom:0;}
+.area[open]>summary{border-bottom:3px solid #000;}
+.area .exp{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:800;border:2px solid #000;background:#fff;padding:5px 8px;white-space:nowrap;box-shadow:2px 2px 0 #000;}
+.area .exp-c{display:none;} .area[open] .exp-o{display:none;} .area[open] .exp-c{display:inline;}
 .area.opt{border-style:dashed;box-shadow:none;}
 .area>summary{list-style:none;cursor:pointer;padding:12px 12px 10px;}
 .area>summary::-webkit-details-marker{display:none;}
@@ -429,8 +435,7 @@ table.trains td{vertical-align:top;font-size:12px;}
 .area.opt .ai{background:#fff;}
 .area .at{font-family:'Archivo Black',sans-serif;font-size:16px;line-height:1.1;}
 .area .as{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#4b5563;margin-top:3px;}
-.area .an .exp{margin-left:auto;font-size:18px;transition:transform .15s;}
-.area[open]>summary .an .exp{transform:rotate(180deg);}
+
 .area .aw{font-size:13px;margin:8px 0 0;color:#1f2937;}
 .area[open]>summary{border-bottom:3px solid #000;}
 .area .abody{padding:12px;}
