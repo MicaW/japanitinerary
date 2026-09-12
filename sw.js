@@ -1,5 +1,5 @@
 /* LAMPTEYS ON TOUR — service worker: precache app shell + runtime-cache everything (incl. remote images & fonts). */
-const VERSION = 'lampteys-v85';
+const VERSION = 'lampteys-v86';
 const SHELL = [
   './','index.html','manifest.webmanifest',
   'js/app.js','js/data/days.js','js/data/days2.js','js/data/days3.js','js/data/pages.js','js/data/lists.js','js/data/headsup.js','js/data/gphotos.js',
