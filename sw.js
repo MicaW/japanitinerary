@@ -38,7 +38,7 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
   if (url.pathname.indexOf('/preview/') >= 0) return; // previews always come straight from the network
   // Never intercept Google Maps / Sheets embeds — live-only content.
-  if (/google\.(com|co)|gstatic|googleapis\.com\/maps/.test(url.host) && !/fonts\./.test(url.host)) return;
+  if (/google\.(com|co)|gstatic|googleapis\.com\/maps|places\.googleapis|googleusercontent/.test(url.host) && !/fonts\./.test(url.host)) return;
   e.respondWith((async () => {
     const c = await caches.open(VERSION);
     const cached = await c.match(req, { ignoreSearch: false });
