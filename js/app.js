@@ -150,7 +150,7 @@ function recCard(c,i){
   inner+='<div class="btnrow">'+placeBtns(c)+
     (c.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+c.url+'">↗ OFFICIAL</a>':'')+
     (!c.img?'<a class="btn mini" target="_blank" rel="noopener" href="'+photosUrl(c.name+' '+(c.photoQ||'Japan'))+'">📷 PHOTOS</a>':'')+'</div>';
-  if(c.checked) inner+='<div class="lastchecked">Last checked '+esc(c.checked)+(c.confidence?' • '+esc(c.confidence):'')+'</div>';
+  /* 'Last checked' audit lines hidden (12 Sep) */
   return '<details class="xr fade"><summary>'+thumb(c,i)+
     '<div style="flex:1;min-width:0"><div class="nm">'+esc(c.name)+(c.jp?' <span class="jpn">'+esc(c.jp)+'</span>':'')+'</div>'+
     '<div class="ol">'+esc(firstBit(c.why||c.expect||''))+'</div><div style="margin-top:3px">'+tagRow((c.labels&&c.labels.indexOf('🚇 SHORT RIDE')>=0)?['🚇 SHORT RIDE'].concat(c.labels.filter(function(l){return l!=='🚇 SHORT RIDE';})):c.labels,3)+'</div></div>'+
@@ -190,7 +190,7 @@ function foodCard(f,i){
   inner+='<div class="btnrow">'+placeBtns(f,f.area)+
     (f.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+f.url+'">↗ MENU / SITE</a>':'')+
     '<a class="btn mini" target="_blank" rel="noopener" href="'+photosUrl(f.name+' '+(f.photoQ||f.area||'Japan')+' food')+'">📷 PHOTOS</a></div>';
-  if(f.checked) inner+='<div class="lastchecked">Last checked '+esc(f.checked)+'</div>';
+
   return '<details class="xr fade"><summary><div class="th thc" style="background:'+phColor(f.name,i)+'">🍽</div>'+
     '<div style="flex:1;min-width:0"><div class="nm">'+esc(f.name)+(f.jp?' <span class="jpn">'+esc(f.jp)+'</span>':'')+'</div>'+
     '<div style="margin:2px 0"><span class="tag '+(MEAL_CLS[mealType(f)]||'opt')+'">'+mealType(f)+'</span>'+(f.band?' <span class="tag est">'+esc(f.band)+'</span>':'')+'</div>'+
