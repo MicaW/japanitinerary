@@ -115,15 +115,19 @@ header{min-height:72px}
 .wsline{font-size:13px!important;color:#333!important;margin:14px 0 0!important}
 .chline{font-size:12px!important}.chline .cp{padding:6px 10px!important;font-weight:900}.chline .cp.away{background:var(--yellow)!important;color:#111!important}
 .awaysticker{background:var(--soft)!important;padding:10px 12px!important;margin:8px 0 10px!important}
-/* travel + base tiles (open the sheet) */
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 0}
-.tile{position:relative;overflow:hidden;min-height:132px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;text-align:left;font-family:'Inter',Arial,sans-serif;cursor:pointer;border:0;color:#fff}
+/* travel / base / history tiles — same three, same place, every day */
+.tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0 0}
+.tile{position:relative;overflow:hidden;min-height:124px;padding:12px 10px 10px;display:flex;flex-direction:column;justify-content:flex-end;gap:3px;text-align:left;font-family:'Inter',Arial,sans-serif;cursor:pointer;border:0;color:#fff}
 .tile>span{position:relative;z-index:1;display:block}
-.tile .tk{font-size:12px;font-weight:900;letter-spacing:.04em}.tile .tv{font-size:15px;font-weight:700;line-height:1.25}.tile .ta{font-size:12px;font-weight:900;color:var(--yellow);margin-top:4px}
+.tile .tk{font-size:12px;font-weight:900;letter-spacing:.04em;align-self:flex-start;padding:4px 7px;background:#111;color:#fff;margin-bottom:auto}
+.tile .tv{font-size:13px;font-weight:700;line-height:1.25;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tile .ta{font-size:11px;font-weight:900;color:var(--yellow);margin-top:2px}
 .tile.t-travel{background:var(--blue)}
 .tile.t-base{background:#111;background-size:cover;background-position:center}
-.tile.t-base.haspic::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.05) 30%,rgba(0,0,0,.8))}
-.tiles2{display:flex!important;gap:10px;margin:12px 0 0}.tiles2 .btn{flex:1;background:#e2e2df!important;color:#111!important}
+.tile.t-base.haspic::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.15) 20%,rgba(0,0,0,.82))}
+.tile.t-about{background:var(--yellow);color:#111}.tile.t-about .ta{color:#111}
+.tiles2{display:flex!important;margin:10px 0 0}.tiles2 .btn{flex:1;background:#e2e2df!important;color:#111!important;font-size:12px!important}
+.wsline{font-family:'Inter',Arial,sans-serif!important}
 /* sheet content */
 #sheet .sheetin{max-height:88vh!important;max-width:640px}
 .sheetplain{padding:6px 2px 10px}.sheetplain .sht{font-size:22px!important;margin:0 0 6px!important}

@@ -333,6 +333,7 @@ function renderDay(idx){
     (d.travelDay?'<span class="tag book">TRAVEL DAY</span>':'')+'</div>';
   h+='<p style="font-size:14.5px;font-weight:600;margin:12px 0 0;line-height:1.5">'+d.summary+'</p>';
   if(d.short&&d.short.length){ h+='<ol class="short">'+d.short.map((x,i)=>'<li><span class="sn">'+(i+1)+'</span><span>'+esc(x)+'</span></li>').join('')+'</ol>'+(d.swap?'<p class="swap"><b>If you\'d rather:</b> '+esc(d.swap)+'</p>':''); }
+  h+='__TILES__';
   if(d.anchor&&!/^none/i.test(d.anchor)) h+='<div class="anchorline">📌 TIMED TODAY: '+esc(d.anchor)+'</div>';
   const S2=!!window.SITE2; const SH={};
   if(d.shape){
@@ -398,13 +399,13 @@ function renderDay(idx){
     window.__SHEETS={travel:SH.travel&&SH.travel.html, base:SH.base&&SH.base.html, order:SH.order, about:SH.about};
     let tiles='';
     if(SH.travel) tiles+='<button class="tile t-travel" onclick="openHtmlSheet(\'travel\')"><span class="tk">🚄 TRAVEL</span><span class="tv">'+SH.travel.sub+'</span><span class="ta">OPEN →</span></button>';
-    if(SH.base) tiles+='<button class="tile t-base'+(SH.base.pic?' haspic':'')+'" onclick="openHtmlSheet(\'base\')"'+(SH.base.pic?' style="background-image:url(\''+SH.base.pic.u+'\')"':'')+'><span class="tk">🏨 TONIGHT\'S BASE</span><span class="tv">'+esc(SH.base.name)+'</span><span class="ta">OPEN →</span></button>';
-    if(tiles) h+='<div class="tiles">'+tiles+'</div>';
-    let small='';
-    if(SH.order) small+='<button class="btn mini" onclick="openHtmlSheet(\'order\')">🧭 ORDER OF PLAY</button>';
-    if(SH.about) small+='<button class="btn mini" onclick="openHtmlSheet(\'about\')">'+esc((d.aboutLabel||'About this place').toUpperCase())+'</button>';
-    if(small) h+='<div class="btnrow tiles2">'+small+'</div>';
+    if(SH.base) tiles+='<button class="tile t-base'+(SH.base.pic?' haspic':'')+'" onclick="openHtmlSheet(\'base\')"'+(SH.base.pic?' style="background-image:url(\''+SH.base.pic.u+'\')"':'')+'><span class="tk">🏨 BASE</span><span class="tv">'+esc(SH.base.name)+'</span><span class="ta">OPEN →</span></button>';
+    if(SH.about) tiles+='<button class="tile t-about" onclick="openHtmlSheet(\'about\')"><span class="tk">📖 HISTORY</span><span class="tv">'+esc(d.aboutLabel||'About this place')+'</span><span class="ta">OPEN →</span></button>';
+    let block=tiles?'<div class="tiles n'+(tiles.split('<button').length-1)+'">'+tiles+'</div>':'';
+    if(SH.order) block+='<div class="btnrow tiles2"><button class="btn mini" onclick="openHtmlSheet(\'order\')">🧭 ORDER OF PLAY — MORNING · AFTERNOON · EVENING</button></div>';
+    h=h.replace('__TILES__',block);
   }
+  h=h.replace('__TILES__','');
   const clusters=(d.clusters||[]).map(c=>Object.assign({},c));
   if(d.cake){
     let target=null;
