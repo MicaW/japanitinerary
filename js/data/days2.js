@@ -13,7 +13,7 @@ const HENNNA2={ name:"Henn na Hotel Premier Kyoto Station Hachijo Exit Front", l
 window.DAYS2=[
 /* ---------------- DAY 7 : 24 SEP ---------------- */
 { id:"24-sep", iso:"2026-09-24", short:["Morning Stretch on the deck 08:30, then the in-room asa-nabe breakfast", "Do less: bath, Salon, riverbank chairs, a nap", "Insect-listening hour 18:00, dinner in the hall (or eel at Hirokawa if reserved)"], swap:"One excursion at most — the bamboo grove early via the first boat/car down, or Tenryu-ji. Plan B and B+ are below if the retreat wears off; the Moss Temple only with a pre-booked slot.", date:"SEP 24", dow:"THU", chip:"ARA", base:"Arashiyama", travelDay:false, bookingFlag:false,
-  img:W.bamboo.u, imgCredit:W.bamboo.c,
+  img:W.h_24.u, imgCredit:W.h_24.c,
   title:"Arashiyama — bamboo at dawn, retreat all day", strapline:"Retreat as an experience, not an expensive bed",
   wake:"HOSHINOYA, river gorge", sleep:"HOSHINOYA, river gorge", pace:"Very low by design", walking:"Optional only", anchor:"Morning Stretch 08:30 (booked yesterday) + in-room breakfast after — otherwise nothing, which is the achievement",
   summary:"One full day at the retreat, and the discipline is doing less with it. The composed morning: the free riverside Morning Stretch at 08:30, then the in-room asa-nabe breakfast — the one paid treat of the day. The bamboo grove at dawn is the single excursion worth considering (ask the desk about the first boat or car down; about 1.5–2 hours door to door if you go straight there and back), and it is a choice, not a default. After that, choose: (A) stay put — garden, tea, reading, bath, nap; or (B) extend the morning loop to Tenryu-ji and Okochi Sanso instead and take the stretch off the schedule. At least half the day stays at the hotel either way. Mist or rain doesn't spoil today — it upgrades it.",
@@ -27,7 +27,7 @@ window.DAYS2=[
     steps:["First transfer down to the lounge (~07:00).","Walk north through the Tenryu-ji south gate — garden first (it opens 08:30; the approach and outer paths earlier).","Exit Tenryu-ji's north gate directly into the bamboo grove — this back door skips the main-street crowds.","Continue uphill to Okochi Sanso villa garden.","Loop back via Togetsukyo bridge for the river view; lounge transfer home for lunch."],
     alt:"Plan C: stay river-level — a 40-minute out-and-back along the gorge path from the property side, then done.",
     missed:"If you wake at 08:30, Plan B is already gone — become Plan A.", mapFrom:"Togetsukyo Bridge", mapTo:"Okochi Sanso" }],
-  hotel:{ name:"HOSHINOYA Kyoto", lat:35.016365, lng:135.666638, geo:"high", status:"BOOKED ✓", statusColor:"#9333ea",
+  hotel:{ name:"HOSHINOYA Kyoto", img:W.n_hoshinoya.u, imgCredit:W.n_hoshinoya.c, lat:35.016365, lng:135.666638, geo:"high", status:"BOOKED ✓", statusColor:"#9333ea",
     desc:"Day two at the retreat. The property's own menu of small rituals — morning stretches by the river, incense appreciation, tea in the Salon — is the actual itinerary today. Book nothing that can't be cancelled by weather or a good nap.",
     addr:"11-2 Arashiyama Genrokuzan-cho, Nishikyo-ku, Kyoto 616-0007", jpAddr:"〒616-0007 京都市西京区嵐山元録山町11-2",
     phone:"Via hoshinoresorts.com contact", url:"https://hoshinoresorts.com/en/hotels/hoshinoyakyoto/", mapsQ:"HOSHINOYA Kyoto",
@@ -90,7 +90,7 @@ window.DAYS2=[
         tips:"The ticket's matcha voucher is redeemed at the tea house near the exit — don't leave without using it.",
         checked:"30 Jul 2026 (price estimated)", url:"https://kyoto.travel/en/", mapsQ:"Okochi Sanso Villa Kyoto", addr:"8 Tabuchiyama-cho, Saga-Ogurayama, Ukyo-ku" }],
     food:[
-      { name:"Shigetsu (inside Tenryu-ji)", lat:35.0156, lng:135.6744, geo:"medium", jp:"篩月", band:"MID-RANGE", cuisine:"Zen temple vegetarian (shojin ryori)",
+      { name:"Shigetsu (inside Tenryu-ji)", img:W.n_shigetsu.u, imgCredit:W.n_shigetsu.c, lat:35.0156, lng:135.6744, geo:"medium", jp:"篩月", band:"MID-RANGE", cuisine:"Zen temple vegetarian (shojin ryori)",
         why:"Lunch inside the temple grounds, cooked to the same monastic principles the garden was built on — if Plan B runs long, this is the coherent way to extend it.",
         dishes:"Yuki set (7 dishes) upward", price:"¥3,800–8,000 pp + garden fee", booking:"Reservation recommended; the hotel desk can call",
         mica:"Fully meat-free by definition", dad:"Fully cooked by definition",
@@ -172,7 +172,7 @@ window.DAYS2=[
         closed:"WEDNESDAYS — except when the Wednesday is a national holiday, when it runs. 24 Sep is a Thursday so you are fine. For reference, Wed 30 Sep it does NOT run",
         booking:"Book online at the Sagano Kanko site, or same-day from about 08:35 at Torokko Saga. Car 5, the open-air 'Rich' car, is SAME-DAY SALE ONLY — you cannot reserve it in advance" }],
     food:[
-      { name:"Nakagawa Hatsumeido", lat:35.016, lng:135.6788, geo:"high", jp:"中川発明堂", band:"BUDGET", cuisine:"Rice burgers, sweets, coffee",
+      { name:"Nakagawa Hatsumeido", img:W.n_yatsuhashi.u, imgCredit:W.n_yatsuhashi.c, lat:35.016, lng:135.6788, geo:"high", jp:"中川発明堂", band:"BUDGET", cuisine:"Rice burgers, sweets, coffee",
         why:"A small shop in the Arashiyama walking area building burgers on rice buns instead of bread. The name translates as \'Invention Hall\', which tells you the spirit. Cheap, quick, takeaway-friendly, and a genuinely Kyoto thing in a form you can eat walking.",
         dishes:"Dashimaki rice burger (rolled omelette); atsuage rice burger (thick fried tofu) — with takuan, seasonal pickles, nori and shiso",
         price:"Snack money", hours:"08:00–17:00 daily; breakfast menu 08:00–11:00",
@@ -189,7 +189,7 @@ window.DAYS2=[
 
 /* ---------------- DAY 8 : 25 SEP ---------------- */
 { id:"25-sep", iso:"2026-09-25", short:["Saga-Arashiyama 10:14 → Kameoka → HASHIDATE 5 at 10:43 → Amanohashidate 12:36", "Lunch and provisions at Amanohashidate, the 13:57 bus around the bay to Ine", "Check in over the water, sake at Mukai before 17:00, dinner at the inn"], swap:"The Amanohashidate view from the hill only if the bus buffer allows — the 13:57 is the one that matters.", date:"SEP 25", dow:"FRI", chip:"INE", base:"Arashiyama → Ine", travelDay:true, bookingFlag:true,
-  img:W.ine.u, imgCredit:W.ine.c,
+  img:W.h_25.u, imgCredit:W.h_25.c,
   title:"To Ine, the boathouse village", strapline:"From a private gorge to a working fishing bay",
   wake:"HOSHINOYA", sleep:"Ine Funaya Miyabi — a boathouse over the water", pace:"Travel day with one good lunch stop", walking:"Low, but with connections to protect", anchor:"HASHIDATE 5 at Kameoka 10:43 (Kyoto 10:25) → Amanohashidate 12:36 → the 13:57 bus → Ine 14:56 → sake at Mukai before 17:00",
   summary:"Two water landscapes in one day: leave the cultivated gorge by hotel transfer, cross Kyoto prefecture by limited express to Amanohashidate, eat lunch and buy provisions there, then ride a little rural bus around the bay to Ine — a village of 230 funaya boathouses built directly over the sea. The whole day hangs on one train: HASHIDATE 5, which you join at Kameoka at 10:43 and which drops you at Amanohashidate at 12:36 — an hour and twenty minutes for lunch and provisions before the 13:57 bus. That bus lands you in Ine at 14:56, in time for the Mukai brewery counter (open to 17:00, ten minutes from the room) — the sake tasting done and dusted with two clear days before the early bus out. Every backup is written into the travel cards below. The sandbar viewpoint is optional; arriving calm is not.",
@@ -228,7 +228,7 @@ window.DAYS2=[
     alt:"Pre-arranged taxi from Amanohashidate (~¥10,000–14,000, must be booked ahead — there is no rank for rural runs) if luggage or timing breaks the bus plan.",
     missed:"Missed the 16:18? Call Miyabi AND the Ine tourist office (+81-772-32-0277) — a taxi can be summoned, expensively. This is why we never aim for the last bus.",
     bookUrl:"https://www.tankai.jp/en/bus/tankai-bus/", live:"https://www.tankai.jp/en/bus/tankai-bus/", mapFrom:"Amanohashidate Station", mapTo:"Ine Kyoto" }],
-  hotel:{ name:"Ine Funaya Miyabi / Miyabi Bettei", lat:35.692, lng:135.288, geo:"low", status:"BOOKED ✓ — MEALS TO ARRANGE", statusColor:"#15803d",
+  hotel:{ name:"Ine Funaya Miyabi / Miyabi Bettei", img:W.n_funaya5.u, imgCredit:W.n_funaya5.c, lat:35.692, lng:135.288, geo:"low", status:"BOOKED ✓ — MEALS TO ARRANGE", statusColor:"#15803d",
     desc:"A stay inside the working boathouse district itself: sea-view room above the water, the bay as your window, and (depending on the booked room type) a private bath looking across it. Room-only — which makes tonight's reserved dinner and the provisions bag genuinely important, and staying here a night inside the village's rhythm rather than a hotel simulation of it.",
     addr:"464 Hide, Ine-cho, Yosa-gun, Kyoto 626-0425", jpAddr:"〒626-0425 京都府与謝郡伊根町字日出464",
     phone:"Via Ine tourism office +81-772-32-0277 if direct line unknown", url:"https://www.ine-kankou.jp/e_inn/miyabibettei",
@@ -255,7 +255,7 @@ window.DAYS2=[
         tips:"View Land's ticket also discounts the Ine sightseeing boat — keep it. If time is tight, the photo from the station side of the bay is honestly fine.",
         checked:"30 Jul 2026", url:"https://www.viewland.jp/en/", mapsQ:"Amanohashidate View Land", addr:"Monju, Miyazu, Kyoto" }],
     food:[
-      { name:"Station-area teishoku + provisions run", hours:"Lunch spots 11:00–14:00; the konbini by the station is open all day", lat:35.5672, lng:135.1875, geo:"medium", band:"BUDGET–MID", cuisine:"Set meals near the station",
+      { name:"Station-area teishoku + provisions run", img:W.n_amastation.u, imgCredit:W.n_amastation.c, hours:"Lunch spots 11:00–14:00; the konbini by the station is open all day", lat:35.5672, lng:135.1875, geo:"medium", band:"BUDGET–MID", cuisine:"Set meals near the station",
         why:"Lunch here is strategy: cooked-fish or noodle sets by the station, then the small supermarket/shops for tomorrow's breakfast, water, snacks and emergency food — the last easy shopping before the village.",
         dishes:"Grilled fish teishoku, tempura soba; then a basket of breakfast things",
         price:"¥1,200–2,000 pp + provisions", mica:"Fish sets everywhere here", dad:"Cooked fish country — his rules built this coastline",
@@ -294,7 +294,7 @@ window.DAYS2=[
     labels:["OPTIONAL","CONTEXT","FREE"],
     rain:"Irrelevant — you are on a train", lower:"Read it or do not", skip:"Nothing to skip; nothing is booked",
     explore:[
-      { name:"Miyama", hours:"Village always open; thatched-house museum 09:00–17:00 (closed Mondays)", lat:35.319, lng:135.6215, geo:"medium", jp:"美山", type:"CONTEXT",
+      { name:"Miyama", img:W.n_miyama.u, imgCredit:W.n_miyama.c, hours:"Village always open; thatched-house museum 09:00–17:00 (closed Mondays)", lat:35.319, lng:135.6215, geo:"medium", jp:"美山", type:"CONTEXT",
         labels:["CONTEXT","FREE"],
         why:"A village of thatched farmhouses in the northern Kyoto mountains, roughly between the city and the coast. It comes up repeatedly as the example of \'this is still Kyoto\' — the prefecture is mostly mountains and sea, and the temple city is a small corner of it.",
         expect:"Not a stop today. A name to have, and a candidate if a future trip wants the rural version of Kyoto.",
@@ -318,7 +318,7 @@ window.DAYS2=[
 
 /* ---------------- DAY 9 : 26 SEP ---------------- */
 { id:"26-sep", iso:"2026-09-26", short:["The waterfront at 07:00, breakfast at the window, the sea taxi while the water's calm", "Lunch on the morning's catch, INE CAFE over the water", "Bath, reserved dinner, the quietest night of the trip"], swap:"The Funaya-no-Sato viewpoint climb or the big sightseeing boat, if the small one didn't happen.", date:"SEP 26", dow:"SAT", chip:"INE", base:"Ine", travelDay:false, bookingFlag:true,
-  img:W.ine.u, imgCredit:W.ine.c,
+  img:W.n_funaya4.u, imgCredit:W.n_funaya4.c,
   title:"Ine — the bay by boat", strapline:"A living village, not a decorative backdrop",
   wake:"Miyabi, over the bay", sleep:"Miyabi, over the bay", pace:"Low — village speed", walking:"Low; the boat does the sightseeing", anchor:"Sea taxi in the morning (RESERVED — reconfirm); the afternoon owes nothing to anyone",
   summary:"One full village day, built from water first: an early waterfront walk before the day-trippers, then a small-boat sea taxi with a local fisherman — the funaya only fully make sense from the bay, where their boat mouths face you. Lunch at Funaya Shokudo, a slow dessert at INE CAFE over the water, a glass of yesterday's rosé-pink Ine Mankai poured with the bay in view, bath, reserved dinner. If wind rules out the small boat, the bigger sightseeing boat runs the same water with seagulls as escorts.",
@@ -330,7 +330,7 @@ window.DAYS2=[
     duration:"As long as it takes", price:"Sea taxi ~¥1,000 pp (some operators set a small per-boat minimum)",
     status:"Sea taxi reserved via tourism office — reconfirm", steps:["Walk everything on the west side in the morning.","Boat mid-morning when the bay is calmest.","Everything else is within 15 minutes' walk."],
     alt:"Ine-wan Meguri sightseeing boat (¥1,200, every 30 min from Hide dock, 25 min loop) if the small boat can't run.", mapFrom:"Ine Funaya Miyabi", mapTo:"Ine Tourist Information Center" }],
-  hotel:{ name:"Ine Funaya Miyabi / Miyabi Bettei", status:"BOOKED ✓", statusColor:"#15803d",
+  hotel:{ name:"Ine Funaya Miyabi / Miyabi Bettei", img:W.n_funaya5.u, imgCredit:W.n_funaya5.c, status:"BOOKED ✓", statusColor:"#15803d",
     desc:"Second night over the water. Tonight's job: the bath with the bay going dark, and dinner already reserved.",
     addr:"464 Hide, Ine-cho, Yosa-gun, Kyoto 626-0425", jpAddr:"〒626-0425 京都府与謝郡伊根町字日出464",
     phone:"Via Ine tourism office +81-772-32-0277", url:"https://www.ine-kankou.jp/e_inn/miyabibettei", mapsQ:"Ine Funaya Miyabi",
@@ -345,7 +345,7 @@ window.DAYS2=[
     labels:["CORE PLAN","BOOK AHEAD","SCENIC","NATURE"],
     rain:"Open boats cancel in rain/wind — the covered sightseeing boat or the brewery+café day replaces it",
     activities:[
-      { name:"Sea taxi with a local fisherman", hours:"Boats run roughly 09:00–16:00 by arrangement, weather permitting — reserved for you", lat:35.6785, lng:135.292, geo:"medium", jp:"海上タクシー", type:"BOAT",
+      { name:"Sea taxi with a local fisherman", img:W.n_funaya6.u, imgCredit:W.n_funaya6.c, hours:"Boats run roughly 09:00–16:00 by arrangement, weather permitting — reserved for you", lat:35.6785, lng:135.292, geo:"medium", jp:"海上タクシー", type:"BOAT",
         labels:["CORE PLAN","BOOK AHEAD","VERY LOCAL"],
         why:"A small boat, a local skipper, and the close pass between the funaya that the big boat can't make — plus whatever stories the fisherman feels like telling. This is the trip's 'local people' brief, delivered.",
         expect:"~30 min; boarding from a low dock — ask for a steady hand if the step is awkward. Skippers are fishermen first, tour guides by accident.",
@@ -396,7 +396,7 @@ window.DAYS2=[
 
 /* ---------------- DAY 10 : 27 SEP ---------------- */
 { id:"27-sep", iso:"2026-09-27", short:["The 08:11 bus, HASHIDATE 2 at 09:50, Kyoto 12:07, AONIYOSHI 12:55 to Nara", "Nara Park: Kofuku-ji, the deer, Todai-ji's Great Buddha, the Nigatsu-do steps", "JR from Nara 17:07 to Inari, Fushimi Inari's gates at dusk, laundry running while you eat"], swap:"Stay in Kyoto instead of Nara (Mo-an, the shops you skipped on the 21st), or Kibune if you want mountains — both below.", date:"SEP 27", dow:"SUN", chip:"NARA", base:"Ine → Kyoto → Nara", travelDay:true, bookingFlag:false,
-  img:W.n_NaraParkTheDeer.u, imgCredit:W.n_NaraParkTheDeer.c,
+  img:W.h_27.u, imgCredit:W.h_27.c,
   title:"Back to Kyoto, then Nara: deer, the Great Buddha & Fushimi Inari at dusk", strapline:"The morning is a transfer; the afternoon is Nara",
   wake:"Miyabi, Ine", sleep:"Henn na, Kyoto Station", pace:"Early bus, easy train, then a big flat park with deer in it", walking:"Moderate — Nara Park is flat; Fushimi Inari is optional and uphill", anchor:"The 08:11 bus out of Ine → HASHIDATE 2 at 09:50 → Kyoto 12:07 → AONIYOSHI to Nara 12:55",
   summary:"Backtracking to Kyoto looks inefficient and is the smartest move of the itinerary: it turns a brutal rural-to-rural transfer into two easy legs — and, it turns out, buys an afternoon in Nara. The 08:11 bus and the 09:50 express put you in Kyoto at 12:07; the plum-coloured AONIYOSHI leaves for Nara at 12:55. Nara is Japan's first permanent capital and its centre is a single flat park: the Great Buddha in the biggest wooden hall you will ever stand in, twelve hundred sacred deer that bow for crackers, a lantern-lined shrine in the forest, and a terrace at Nigatsu-do that looks over the whole city. Come back on the JR rapid that stops at Fushimi Inari at dusk, walk into the gates as the lanterns come on, and you are five minutes from the hotel. Laundry and the mountain repack happen tonight and tomorrow morning — the Kiso train does not leave until after lunch.",
@@ -493,13 +493,13 @@ window.DAYS2=[
         tips:"Do it first, on the way in, while you still have the energy for a museum — or skip it entirely and let the Buddha be the temple today.",
         checked:"2 Sep 2026", url:"https://www.kohfukuji.com/en/", mapsQ:"Kofukuji Nara", addr:"48 Noboriojicho, Nara" }],
     food:[
-      { name:"Nakatanidou — the mochi-pounding shop", lat:34.6826, lng:135.8280, geo:"high", band:"BUDGET", cuisine:"Yomogi mochi (mugwort rice cake with red bean)",
+      { name:"Nakatanidou — the mochi-pounding shop", img:W.n_nakatani.u, imgCredit:W.n_nakatani.c, lat:34.6826, lng:135.8280, geo:"high", band:"BUDGET", cuisine:"Yomogi mochi (mugwort rice cake with red bean)",
         why:"The shop on Sanjo-dori famous for the fastest mochi-pounding in Japan — two men hammering rice dough in a wooden mortar, one turning it between blows, at a speed that has been on every travel show since the 1990s. The mochi is warm, green, soft and ¥200. Perfectly on the way from the park to JR Nara.",
         dishes:"Yomogi mochi, eaten warm on the spot", price:"¥200 each", hours:"10:00–19:00; pounding demonstrations several times a day, not to a fixed clock",
         mica:"Fine — rice, mugwort, red bean", dad:"Fine", best:"On the walk to JR Nara, ~16:45",
         area:"Sanjo-dori, Nara", mapsQ:"Nakatanidou Nara", tips:"If the mortar is going, stop and watch — it lasts a minute. Eat standing by the shop; carrying mochi past deer is asking for it.",
         checked:"2 Sep 2026" },
-      { name:"Lunch happens at Kyoto Station, not Nara", band:"BUDGET", cuisine:"Ekiben / bento for the 12:55 train",
+      { name:"Lunch happens at Kyoto Station, not Nara", img:W.n_hachijo.u, imgCredit:W.n_hachijo.c, band:"BUDGET", cuisine:"Ekiben / bento for the 12:55 train",
         why:"The timings mean lunch is a bento bought at Kyoto Station between 12:07 and 12:50 and eaten on the train — or a fast bowl at the Kintetsu side. Nara itself is snacks, mochi and the deer\'s crackers; dinner is back at Kyoto Station tonight.",
         dishes:"Kyoto ekiben from the Hachijo-side shops; onigiri and tea from the konbini", price:"¥800–1,500", mica:"Vegetable or fish ekiben — the labels are pictured", dad:"Cooked meat/fish ekiben — avoid anything with sashimi pictured",
         area:"Kyoto Station, Hachijo side", mapsQ:"Kyoto Station Hachijo Exit", checked:"2 Sep 2026" }] },
@@ -673,7 +673,7 @@ window.DAYS2=[
 
 /* ---------------- DAY 12 : 29 SEP ---------------- */
 { id:"29-sep", iso:"2026-09-29", short:["Drop at Magome ~08:30, up the old street before the coaches", "The trail over the pass: waterfalls, the free tea house, Otsumago, into Tsumago for soba", "Pickup at Tsumago, check in at MOUNTAinn, bath, legs up"], swap:"The Waki-Honjin merchant house in Tsumago if there's energy left after lunch.", date:"SEP 29", dow:"TUE", chip:"KISO", base:"Kiso — Magome → Tsumago", travelDay:false, bookingFlag:false,
-  img:W.magome.u, imgCredit:W.magome.c,
+  img:W.h_29.u, imgCredit:W.h_29.c,
   title:"The Magome → Tsumago walk", strapline:"Two post towns and the old forest road between them",
   wake:"Yui-an, the farmhouse", sleep:"MOUNTAinn Nagiso — by the station, same family as Yui-an", pace:"The big walking day — with a shorter version built in", walking:"Up to 8 km forest trail — or exactly as much as feels good", anchor:"Morning drop-off at Magome (host/driver — TO ARRANGE)",
   summary:"The headline walk: Magome to Tsumago along the old Nakasendo — about 8 km of stone paving, forest, waterfalls, a free tea house and two preserved post towns. Walk what's good, ride what isn't, and spend the saved energy on Tsumago's lanes and museums at the far end.",
@@ -731,7 +731,7 @@ window.DAYS2=[
         tips:"Time the Okuya visit for mid-late afternoon if you can: the famous light-shafts-through-hearth-smoke photograph happens when low sun meets the irori fire.",
         checked:"30 Jul 2026", url:"https://www.town.nagiso.nagano.jp/s/kankou/en/midokoro/tsumago/midokoro_14.html", mapsQ:"Tsumago-juku", addr:"Azuma, Nagiso, Kiso District" }],
     food:[
-      { name:"Trail & Tsumago lunch strategy", lat:35.5766, lng:137.5953, geo:"medium", band:"BUDGET — VERY LOCAL", cuisine:"Soba, gohei-mochi, chestnut sweets",
+      { name:"Trail & Tsumago lunch strategy", img:W.n_tsumagosoba.u, imgCredit:W.n_tsumagosoba.c, lat:35.5766, lng:137.5953, geo:"medium", band:"BUDGET — VERY LOCAL", cuisine:"Soba, gohei-mochi, chestnut sweets",
         why:"Rural kitchens close early and sell out — so lunch is layered: trail snacks from Magome, then soba or gohei-mochi in Tsumago before 14:00. The valley's buckwheat and chestnut traditions ARE the regional cuisine.",
         dishes:"Zaru soba (cold, with dipping sauce), gohei-mochi, kuri-kinton chestnut sweets in season",
         price:"~¥800–1,500 pp", mica:"Soba dipping sauce (tsuyu) is fish-dashi based — fine for her rules; no meat anywhere near it", dad:"Soba, mochi, all cooked and comprehensible",
