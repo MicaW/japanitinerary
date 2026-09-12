@@ -1,5 +1,5 @@
 /* LAMPTEYS ON TOUR — service worker: precache app shell + runtime-cache everything (incl. remote images & fonts). */
-const VERSION = 'lampteys-v68';
+const VERSION = 'lampteys-v69';
 const SHELL = [
   './','index.html','manifest.webmanifest',
   'js/app.js','js/data/days.js','js/data/days2.js','js/data/days3.js','js/data/pages.js','js/data/lists.js','js/data/headsup.js',
@@ -36,6 +36,7 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+  if (url.pathname.indexOf('/preview/') >= 0) return; // previews always come straight from the network
   // Never intercept Google Maps / Sheets embeds — live-only content.
   if (/google\.(com|co)|gstatic|googleapis\.com\/maps/.test(url.host) && !/fonts\./.test(url.host)) return;
   e.respondWith((async () => {
