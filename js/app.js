@@ -145,7 +145,7 @@ function recCard(c,i){
   if(facts.length) inner+=kv(facts);
   if(c.directions&&c.directions.length) inner+='<details class="more"><summary>📍 Step-by-step: finding it</summary><div class="inner"><ol class="steps">'+c.directions.map(s=>'<li>'+s+'</li>').join('')+'</ol></div></details>';
   if(c.guide) inner+='<div class="guide-box" data-label="🎧 Worth a guide">'+c.guide+'</div>';
-  if(c.tips) inner+='<div class="info-box" data-label="On the ground" style="margin:12px 0 4px">'+c.tips+'</div>';
+  /* 'On the ground' tips now live in the day's Heads up list (12 Sep) */
   if(c.nearby) inner+='<p style="font-size:11.5px;margin:8px 0 0;font-family:JetBrains Mono,monospace;color:#6b7280">NEARBY: '+esc(c.nearby)+'</p>';
   inner+='<div class="btnrow">'+placeBtns(c)+
     (c.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+c.url+'">↗ OFFICIAL</a>':'')+
@@ -393,9 +393,12 @@ function renderDay(idx){
   let prevSpot=(H&&(H.mapsQ||H.name))||d.wake||'';
   h+='<div class="sec"><h3>Areas today</h3><div class="sub">Each one is a walkable patch. Open it for the map, the walking order and what is there — see, do, eat, learn. Pick on the day.</div></div>';
   clusters.forEach((cl,ci)=>{ h+=areaCard(d,cl,ci,prevSpot); });
-  { const hu=(window.HEADSUP||{})[d.id]; if(hu&&hu.length){ const K={closed:['⛔','CLOSED / TIMING'],avoid:['🚫','AVOID'],look:['👀','LOOK OUT FOR'],nook:['🔎','NOOKS & CRANNIES'],shop:['🛍','BRING HOME']};
-    h+='<div class="sec orange" style="margin-top:26px"><h3>Heads up</h3><div class="sub">Closed today, worth avoiding, worth knowing, worth finding, worth bringing home</div></div><ul class="hu">'+
-      hu.map(function(x){ return '<li class="hu-'+x.k+'"><span class="huk">'+K[x.k][0]+' '+K[x.k][1]+'</span>'+x.t+'</li>'; }).join('')+'</ul>'; } }
+  { const hu=((window.HEADSUP||{})[d.id]||[]).slice(); const K={closed:['⛔','CLOSED / TIMING'],avoid:['🚫','AVOID'],look:['👀','LOOK OUT FOR'],nook:['🔎','NOOKS & CRANNIES'],shop:['🛍','BRING HOME'],ground:['👣','ON THE GROUND']};
+    const ground=[]; clusters.forEach(function(cl){ if(/^(OPTIONAL|ALTERNATIVE|BONUS|Plan B|Rain switch|Evening option)/i.test(cl.name||'')) return; ['explore','activities','shopping','food'].forEach(function(k){ (cl[k]||[]).forEach(function(e){ if(e.tips) ground.push('<b>'+esc(e.name)+'</b> — '+e.tips); }); }); });
+    if(hu.length||ground.length){
+    h+='<div class="sec orange" style="margin-top:26px"><h3>Heads up</h3><div class="sub">Closed today, worth avoiding, worth knowing, worth finding, worth bringing home — and the on-the-ground notes for each place</div></div><ul class="hu">'+
+      hu.map(function(x){ return '<li class="hu-'+x.k+'"><span class="huk">'+K[x.k][0]+' '+K[x.k][1]+'</span>'+x.t+'</li>'; }).join('')+
+      (ground.length?'<li class="hu-ground"><span class="huk">👣 ON THE GROUND</span><ul class="hug">'+ground.map(function(g){return '<li>'+g+'</li>';}).join('')+'</ul></li>':'')+'</ul>'; } }
   h+='<div class="btnrow" style="margin-top:26px">'+
      (idx>0?'<a class="btn" style="flex:1" href="#day/'+DAYS[idx-1].id+'">← '+esc(DAYS[idx-1].date)+'</a>':'')+
      (idx<DAYS.length-1?'<a class="btn red" style="flex:1" href="#day/'+DAYS[idx+1].id+'">'+esc(DAYS[idx+1].date)+' →</a>':'')+'</div>';
