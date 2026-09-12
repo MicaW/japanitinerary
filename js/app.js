@@ -319,6 +319,7 @@ function renderDay(idx){
   var gal=[]; if(d.img) gal.push({u:d.img,t:d.title||d.base,c:d.imgCredit||''});
   (d.clusters||[]).forEach(function(cl){ ['explore','activities','shopping','food'].forEach(function(k){
     (cl[k]||[]).forEach(function(e){ if(e.img) gal.push({u:e.img,t:e.name,c:e.imgCredit||''}); }); }); });
+  if(d.hotel){ if(d.hotel.img) gal.push({u:d.hotel.img,t:d.hotel.name,c:d.hotel.imgCredit||''}); (d.hotel.gallery||[]).forEach(function(g){ gal.push({u:g.u,t:g.t||d.hotel.name,c:d.hotel.imgCredit||''}); }); }
   h+='<div class="dayhero fade"><div class="dh-img"'+(d.img?' onclick="openLB(\''+lbPack(gal)+'\',0)"':'')+'>'+
     (d.img?'<img src="'+d.img+'" alt="'+esc(d.base)+'" onerror="imgFail(this)">':phBlock(d.base,idx))+
     (d.img?'<div class="zoomhint">⤢ TAP TO EXPAND'+(gal.length>1?' · '+gal.length+' PHOTOS':'')+'</div>':'')+

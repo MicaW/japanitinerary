@@ -1,7 +1,7 @@
 /* DAYS 13–18 : 30 Sept – 5 Oct. */
 (function(){
 const W=window.WIMG;
-const UPLACE={ name:"U Place Shimokitazawa by Tranova", lat:35.662922, lng:139.665922, geo:"medium", status:"BOOKED ✓ — DETAILS TO CONFIRM", statusColor:"#15803d",
+const UPLACE={ name:"U Place Shimokitazawa by Tranova", img:"images/uplace-room.jpg", imgCredit:"U Place / booking listing", gallery:[{u:"images/uplace-living.jpg",t:"U Place — living room and kitchen"},{u:"images/uplace-outside.jpg",t:"U Place — the building"}], lat:35.662922, lng:139.665922, geo:"medium", status:"BOOKED ✓ — DETAILS TO CONFIRM", statusColor:"#15803d",
   desc:"A whole apartment in Shimokitazawa — Tokyo's vintage-shopping, live-music, small-café neighbourhood (the closest thing the city has to Hackney). Two bedrooms, kitchen, washing machine, and streets outside that reward aimless walking. Living IN a neighbourhood, rather than above a lobby, is the point of the last four nights.",
   addr:"Shimokitazawa, Setagaya-ku, Tokyo 155-0031 — exact street address arrives with the Booking.com check-in details", jpAddr:"東京都世田谷区北沢（詳細は予約確認メール）",
   phone:"Host via booking platform", url:"https://www.booking.com/hotel/jp/u-place-shimokitazawa.html", mapsQ:"U Place Shimokitazawa by Tranova",
