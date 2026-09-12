@@ -566,7 +566,7 @@ const JSTOPS=[
  {id:'osa',n:'OSAKA',sub:'day trip · Tue 22',kind:'k',lat:34.69,lng:135.50,r:['2026-09-22','2026-09-22'],city:true,S:[185,335],L:{dx:0,dy:34,a:'middle'}},
  {id:'ara',n:'ARASHIYAMA',sub:'the retreat · 23–25',kind:'loop',lat:35.02,lng:135.67,r:['2026-09-23','2026-09-24'],S:[180,180],L:{dx:-20,dy:6,a:'end'}},
  {id:'ine',n:'INE',sub:'the seaside · 25–27',kind:'loop',lat:35.67,lng:135.29,r:['2026-09-25','2026-09-26'],S:[245,62],L:{dx:0,dy:-22,a:'middle'}},
- {id:'nar',n:'NARA',sub:'Sun 27 · on the way home',kind:'loop',lat:34.68,lng:135.83,r:['2026-09-27','2026-09-27'],S:[380,335],L:{dx:0,dy:34,a:'middle'}},
+ {id:'nar',n:'NARA',sub:'day trip · Sun 27',kind:'loop',lat:34.68,lng:135.83,r:['2026-09-27','2026-09-27'],S:[380,335],L:{dx:0,dy:34,a:'middle'}},
  {id:'kis',n:'KISO VALLEY',sub:'28 Sep – 1 Oct',kind:'m',lat:35.60,lng:137.61,r:['2026-09-28','2026-09-30'],S:[540,150],L:{dx:0,dy:-22,a:'middle'}},
  {id:'tok',n:'TOKYO',sub:'1–5 Oct',kind:'t',lat:35.68,lng:139.70,r:['2026-10-01','2026-10-05'],city:true,S:[760,200],L:{dx:0,dy:-24,a:'middle'}}
 ];
@@ -581,8 +581,6 @@ function renderJourneyMap(mode){
   const LS={kyo:{dx:24,dy:6,a:'start'},osa:{dx:-18,dy:6,a:'end'},ara:{dx:-16,dy:6,a:'end'},ine:{dx:0,dy:-20,a:'middle'},nar:{dx:18,dy:6,a:'start'},kis:{dx:0,dy:-20,a:'middle'},tok:{dx:0,dy:-20,a:'middle'}};
   let g='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="The journey">';
   g+='<rect width="'+W+'" height="'+H+'" fill="#fff"/>';
-  g+='<text x="20" y="26" class="jm-sea">'+(mode==='scale'?'SEA OF JAPAN ↑ · to scale':'SEA OF JAPAN ↑')+'</text><text x="'+(W-20)+'" y="'+(H-14)+'" class="jm-sea" text-anchor="end">↓ PACIFIC</text>';
-  g+='<text x="20" y="'+(H-14)+'" class="jm-sea">✈ in Sat 19 Sep · ✈ home Mon 5 Oct</text>';
   JLINES.forEach(function(l){ const a=P[l[0]],b=P[l[1]]; g+='<line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'" stroke="'+JCOL[l[2]]+'" stroke-width="9" stroke-linecap="round"'+(l[3]?' stroke-dasharray="3 13"':'')+'/>'; });
   JSTOPS.forEach(function(x){ const p=P[x.id]; const on=during&&t>=x.r[0]&&t<=x.r[1]; const rr=x.city?17:11; const L=mode==='scale'?LS[x.id]:x.L;
     g+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+rr+'" fill="'+(on?'#000':'#fff')+'" stroke="#000" stroke-width="4"/>'+(on?'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="5" fill="'+JCOL[x.kind]+'"/>':'');
