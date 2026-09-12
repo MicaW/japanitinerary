@@ -585,7 +585,7 @@ function renderJourneyMap(mode){
     g+='<text class="jm-n" x="'+(p[0]+L.dx)+'" y="'+ny+'" text-anchor="'+L.a+'" font-size="'+(x.city?16:12.5)+'">'+x.n+'</text>';
     g+='<text class="jm-s" x="'+(p[0]+L.dx)+'" y="'+sy+'" text-anchor="'+L.a+'">'+x.sub+'</text>'; });
   g+='</svg>';
-  return g+'<div class="jm-foot"><span>'+(mode==='scale'?'Where things really are':'The shape of the trip')+'</span><button class="btn mini" onclick="MAPMODE=\''+(mode==='scale'?'simple':'scale')+'\';document.getElementById(\'homemap\').innerHTML=renderJourneyMap(MAPMODE)">'+(mode==='scale'?'↩ SIMPLE VIEW':'📐 TO SCALE')+'</button></div>';
+  return g+'<div class="jm-foot"><span></span><button class="btn mini" onclick="MAPMODE=\''+(mode==='scale'?'simple':'scale')+'\';document.getElementById(\'homemap\').innerHTML=renderJourneyMap(MAPMODE)">'+(mode==='scale'?'↩ SIMPLE VIEW':'📐 TO SCALE')+'</button></div>';
 }
 window.renderJourneyMap=renderJourneyMap;
 
@@ -595,8 +595,6 @@ function renderHome(){
     '<div class="grad"></div><div class="sticker"><div class="n">'+c.n+'</div><div class="t">'+c.t+'</div></div><div class="ht"><h1>LAMPTEYS<br><span class="y">ON TOUR</span></h1></div></div>';
   h+='<div class="hbody">';
   h+='<a class="goround" href="'+g.href+'"><div class="k">'+g.label+'</div><div class="d">'+g.day+'</div><div class="ar">→</div></a>';
-  h+='<div class="gosub">'+esc(g.sub)+'</div>';
-  h+='<div class="datebar">JAPAN 2026 • MICA &amp; DAD</div>';
   h+='<div class="mono" style="font-weight:700;font-size:12px;margin:6px 0 4px">18 SEP – 5 OCT • LONDON → OSAKA (KIX) ⇢ TOKYO (HND) → LONDON</div>';
   h+='<div class="mapbox" id="homemap">'+renderJourneyMap(window.MAPMODE||'simple')+'</div>';
   h+='<div class="views">OR SEE THE WHOLE TRIP AS A <a href="#map">🗺️ MAP</a><a href="#planner">☰ LIST</a></div>';
