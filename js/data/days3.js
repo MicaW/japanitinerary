@@ -9,7 +9,7 @@ const UPLACE={ name:"U Place Shimokitazawa by Tranova", img:"images/uplace-room.
   rooms:"Two real bedrooms (confirmed requirement — verify the second isn't a sofa bed on arrival day)", meals:"Self-catering — the neighbourhood is the restaurant",
   nearby:"Shimokitazawa station 3 min (Odakyu + Keio Inokashira), supermarkets (Ozeki/Peacock area), bakeries, a hundred vintage shops",
   back:"From anywhere: Odakyu line to Shimokitazawa (from Shinjuku, 8 min) or Inokashira line (from Shibuya, 4 min)",
-  late:"Smart-lock — no curfew, but keep voices down in residential lanes", img:null,
+  late:"Smart-lock — no curfew, but keep voices down in residential lanes",
   note:"<b>To confirm with host:</b> exact address, check-in code procedure, luggage-delivery acceptance (for cases forwarded from Kyoto/Kiso), washing machine, and the best Haneda route from the door. This unlocks the final bookings: airport taxi + luggage forwarding." };
 
 window.DAYS3=[
