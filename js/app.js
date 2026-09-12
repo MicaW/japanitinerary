@@ -650,6 +650,7 @@ function route(){
   else if(/^#(lists|mica|mark|todo|bookings|packing)$/.test(hash)){ renderSubnav('#packing'); app.innerHTML=P.renderLists(); }
   else if(hash==='#budget'){ renderSubnav(hash); app.innerHTML=P.renderBudget(); }
   else if(hash==='#etiquette'){ renderSubnav(hash); app.innerHTML=P.renderEtiquette(); }
+  else if(hash==='#tips'){ renderSubnav(hash); app.innerHTML=P.renderTips(); }
   else if(hash==='#phrases'){ renderSubnav(hash); app.innerHTML=P.renderPhrases(); }
   else if(hash==='#map'){ renderSubnav(hash); renderDaynav(window.LASTDAY>=0?window.LASTDAY:-1); app.innerHTML=viewsBar('map')+P.renderMap(DAYS); }
   else { renderSubnav('#home'); renderHome(); }

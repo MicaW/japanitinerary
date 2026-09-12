@@ -548,6 +548,22 @@ table.simple th.gl-grp{background:#000;color:#fff;padding:6px 8px;font-family:'A
 .hug ul{margin:0;padding-left:20px}
 .hug li{margin:0 0 8px;font-size:14px;line-height:1.5}
 .hug.avoid h4{color:#e11d48}.hug.tips h4{color:#b45309}.hug.look h4{color:#2563eb}
+
+/* etiquette do / don't */
+.etone{background:#000;color:#fff;padding:14px 16px;font-size:16px;font-weight:700;margin:12px 0 0}.etone span{color:var(--yellow)}
+.eg{background:#fff;border:3px solid #000;margin:14px 0 0;padding:0 0 6px}
+.egh{padding:12px 14px 6px;font-family:'Archivo Black',sans-serif;font-size:18px;text-transform:uppercase;border-bottom:4px solid #000;margin:0 14px}
+.egh small{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#555;margin-top:2px}
+.egc{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;padding:10px 14px 0}
+@media(max-width:480px){.egc{grid-template-columns:1fr}}
+.egcol h4{margin:4px 0 8px;font-size:12px;font-family:'Archivo Black',sans-serif;letter-spacing:.06em;padding:6px 10px;display:inline-block}
+.egcol.do h4{background:#dff5e7;color:#0b6b3a}.egcol.dont h4{background:#fde2e2;color:#a01212}
+.egcol ul{margin:0;padding:0;list-style:none}
+.egcol li{position:relative;padding:0 0 0 22px;margin:0 0 9px;font-size:15px;line-height:1.45}
+.egcol li b{font-weight:800}
+.egcol li::before{content:"";position:absolute;left:0;top:8px;width:12px;height:12px;border-radius:50%;background:#111}
+.egcol li.do::before{background:#12a15a}.egcol li.dont::before{background:#e11d1d}
+.etnote{background:var(--yellow);padding:12px 14px;font-size:14px;margin:14px 0 0;border:3px solid #000}
 </style>
 </head>
 <body>
@@ -563,7 +579,7 @@ table.simple th.gl-grp{background:#000;color:#fff;padding:6px 8px;font-family:'A
     <a href="#map">MAP VIEW <small>whole trip</small></a>
     <a href="#planner">LIST VIEW <small>whole trip</small></a>
     <div class="grp">PREP &amp; REFERENCE</div>
-    <a href="#packing">🎒 PACKING</a><a href="#budget">💰 BUDGET</a><a href="#etiquette">🙇 ETIQUETTE 101</a><a href="#phrases">🗣️ PHRASES</a>
+    <a href="#packing">🎒 PACKING</a><a href="#budget">💰 BUDGET</a><a href="#etiquette">🙇 ETIQUETTE 101</a><a href="#tips">💡 GOOD TO KNOW</a><a href="#phrases">🗣️ PHRASES</a>
   </nav>
 </header>
 <div id="daynav" class="nosb" style="display:none"></div>

@@ -167,3 +167,10 @@ header{min-height:72px}
 .swap{font-size:13px!important;line-height:1.4!important;color:#555!important;margin:4px 0 0!important}
 #daynav .dtab.mountains{background:#e3f3e7!important}
 @media(min-width:700px){.goround{width:220px!important;height:220px!important;margin-top:-110px!important}.goround .d{font-size:44px!important}.goround .k{font-size:16px!important}.hero .himg.b .ht{max-width:calc(100% - 250px)!important}}
+
+.eg{border:0!important;outline:2px solid #e2e2df;outline-offset:-2px}
+.egh{font-family:'Inter',Arial,sans-serif!important;font-weight:900;font-size:20px!important;border-bottom:4px solid #111!important}
+.egh small{font-family:'Inter',Arial,sans-serif!important;font-size:12px!important;font-weight:700}
+.egcol h4{font-family:'Inter',Arial,sans-serif!important;font-weight:900;font-size:13px!important}
+.egcol li{font-size:16px!important}.egcol li b{font-weight:900!important}
+.etnote{border:0!important;font-size:15px!important}

@@ -157,31 +157,64 @@ const TIPS=[
  ["Some places hide their address on purpose","Several of the venues in this guide came from posts where the account only releases the address if you comment a keyword. Where that is the case the card says so — pin the place before you go rather than hunting on the night."]
 ];
 const ET=[
- ["Queuing & public space","Queues are sacred and self-organising: platform markings show where doors open — stand on the marks. Escalators: stand LEFT in Tokyo, RIGHT in Osaka (yes, really — follow the locals). Blowing your nose loudly in public is worse than sniffing; step aside."],
- ["Trains & buses","Phones on silent ('manner mode'), calls are never taken aboard. Talk quietly. Priority seats go to whoever needs them; bags on laps or racks, not seats. Eating on local trains: no. On Shinkansen/limited expresses with tray tables: yes — the ekiben is a tradition."],
- ["Luggage","Big cases are the enemy of narrow trains and rural buses — which is why the plan forwards or stores them. On the Shinkansen, oversized cases (>160cm total) need the reserved baggage seats we book. Takkyubin (luggage delivery) is normal and beloved: hotels arrange it at the desk."],
- ["Shoes & indoors","The genkan (entrance step) is the border: shoes off whenever there's a step up, a shoe rack, or slippers waiting. Slippers off on tatami (socks only). Separate TOILET slippers live in the loo — wearing them back out to dinner is the classic visitor error; the recovery is a laugh and a swap."],
- ["Ryokan, minshuku & the farmhouse","Staff may enter to lay futons — that's the service, not an intrusion. Yukata: LEFT side over right (right-over-left dresses the dead). Dinner times are fixed and early; being late strands the kitchen. In old timber houses sound carries — corridor voices at library volume after 21:00."],
- ["Temples","Hats off in halls, shoes off where indicated, photography rules posted at each hall (no-photo means it). Speak softly; worshippers outrank sightseers everywhere. At Zen sessions, sit as instructed and let silence be comfortable — nobody is grading you."],
- ["Shrines","Small bow at the torii. Purify at the water basin: right hand washes left, left washes right, pour into cupped hand to rinse mouth (never drink from the ladle). Prayer: coin in, two bows, two claps, wish, one bow. Walk the path's edges — the centre line belongs to the deity."],
- ["Tea, zen & calligraphy sessions","Arrive 10 minutes early, phones off entirely. Handle bowls and brushes as shown, both hands. Questions are welcome after the quiet parts, not during. It's fine to be a beginner — that's the entire premise."],
- ["Onsen & baths","The full procedure: everything off (no swimwear), sit at a stool and wash + rinse THOROUGHLY before the tub, small towel stays OUT of the water (on your head is traditional), hair up, no splashing or swimming. Tattoos: small ones increasingly fine, but private baths (like Miyabi's) skip the question. Hydrate after."],
- ["Restaurants","Say 'sumimasen' to summon staff — it's expected, not rude. Oshibori (hot towel) is for hands, not face (Dad: faces happen, nobody dies). Slurping noodles is correct and improves them. Don't pour your own drink when sharing a bottle — pour each other's. Tipping is not done and will be politely chased down the street."],
- ["Chopsticks","Never stand them upright in rice (funeral rite) and never pass food chopstick-to-chopstick (also funeral). Resting: on the holder or across the bowl. Spearing food: forgiven for visitors. Ask for a fork without shame at okonomiyaki — the spatula is the real tool anyway."],
- ["Bars & karaoke","Small bars (Golden Gai, Shimokita counters) seat 5–8: enter with a greeting, accept the cover charge as rent for the seat, talk to the master and neighbours — that's what the room is FOR. Karaoke rooms are private; enthusiasm outranks talent by law."],
- ["Shopping & payment trays","Money goes in the little tray by the till, not hand-to-hand; change comes back the same way. Items are wrapped with care — receiving nicely is part of the exchange. Eating while walking is frowned on in most places: stand and finish by the stall (Yanaka and festival streets relax this)."],
- ["Photography","People need permission — especially anyone working, anyone in Gion, and absolutely anyone mourning (23 Sep). No-photo signs mean it. Private lanes in Gion carry fines. The rule of thumb: photograph places freely, people politely, rituals rarely."],
- ["Private homes & funaya","Ine's boathouses are homes: the sea-facing openings are their garages and living rooms. Photograph from the road and the water, never through doorways; keep voices down on the lanes; buy something local — that's what keeps the village consenting to visitors."],
- ["Historic streets & rural paths","Magome/Tsumago/Narai are lived-in, not sets: keep to edges when residents pass, don't block shopfronts for photos, ring the bear bells on the trail (they're functional), and greet fellow walkers — 'konnichiwa' on a mountain path is near-mandatory and delightful."],
- ["Rubbish","There are no public bins — carry a bag for your rubbish (packing list has one) and empty it at konbini bins or home base. Separating burnable/plastic/cans at the apartment: the host's chart explains; when in doubt, rinse and separate."],
- ["Smoking","Illegal on most streets outside marked smoking corners; fine inside designated rooms/areas. The marked pavement boxes are the only outdoor option."],
- ["When you get it wrong","You will, several times, and it will not matter: a small bow, a smile, 'sumimasen', and moving on repairs almost everything. Nobody expects perfection from visitors — they notice effort. The whole game is: observe what others do, follow signs, avoid inconveniencing people, ask politely when unsure."]];
+ {n:"Getting around",sub:"queues · trains · buses · luggage",items:[
+  {k:"do",b:"Stand on the platform marks",t:"— queues are sacred and self-organising; the marks show where doors open."},
+  {k:"do",b:"Escalators: stand LEFT in Tokyo, RIGHT in Osaka",t:"— follow the locals."},
+  {k:"do",b:"Phones on silent, talk quietly",t:"— calls are never taken aboard."},
+  {k:"dont",b:"No eating on local trains",t:"— on Shinkansen and limited expresses with tray tables it's fine; the ekiben is a tradition."},
+  {k:"do",b:"Bags on laps or racks, priority seats to whoever needs them",t:""},
+  {k:"dont",b:"Don't blow your nose loudly in public",t:"— sniffing is the lesser sin; step aside if you must."},
+  {k:"note",b:"Big cases are the enemy of narrow trains and rural buses",t:"— that's why the plan forwards or stores them. Takkyubin (luggage delivery) is normal: hotels arrange it at the desk. On the Shinkansen, oversized cases (over 160cm total) need the reserved baggage seats we book."}]},
+ {n:"Indoors & baths",sub:"shoes · ryokan · farmhouse · onsen · Ine's homes",items:[
+  {k:"do",b:"Shoes off at the genkan",t:"— whenever there's a step up, a shoe rack or slippers waiting. Slippers off on tatami (socks only)."},
+  {k:"dont",b:"Don't wear the toilet slippers back out",t:"— the classic visitor error; recovery is a laugh and a swap."},
+  {k:"do",b:"Yukata: LEFT side over right",t:"— right-over-left dresses the dead."},
+  {k:"note",b:"Staff may come in to lay futons",t:"— that's the service, not an intrusion. Dinner times are fixed and early; being late strands the kitchen."},
+  {k:"do",b:"Library volume after 21:00",t:"— sound carries in old timber houses."},
+  {k:"do",b:"Onsen: everything off, wash and rinse thoroughly at the stool first",t:"— small towel stays out of the water (on your head is traditional), hair up, no splashing. Hydrate after."},
+  {k:"note",b:"Tattoos: small ones increasingly fine",t:"— private baths like Miyabi's skip the question anyway."},
+  {k:"dont",b:"Ine's boathouses are homes",t:"— the sea-facing openings are their garages and living rooms. Photograph from the road and the water, never through doorways; keep voices down on the lanes."}]},
+ {n:"Temples, shrines & sessions",sub:"halls · torii · tea · zen · calligraphy",items:[
+  {k:"do",b:"Hats off in halls, shoes off where indicated",t:"— photography rules are posted at each hall; no-photo means it."},
+  {k:"do",b:"Speak softly",t:"— worshippers outrank sightseers everywhere."},
+  {k:"do",b:"Shrine: small bow at the torii, then purify",t:"— right hand washes left, left washes right, pour into a cupped hand to rinse your mouth. Never drink from the ladle."},
+  {k:"do",b:"Prayer: coin in, two bows, two claps, wish, one bow",t:""},
+  {k:"dont",b:"Don't walk the centre line of the path",t:"— it belongs to the deity; keep to the edges."},
+  {k:"do",b:"Sessions: arrive 10 minutes early, phones off entirely",t:"— handle bowls and brushes as shown, both hands. Questions after the quiet parts, not during."},
+  {k:"note",b:"It's fine to be a beginner",t:"— that's the entire premise. Nobody is grading you."}]},
+ {n:"Eating, drinking & paying",sub:"restaurants · chopsticks · bars · shops",items:[
+  {k:"do",b:"Say \"sumimasen\" to summon staff",t:"— expected, not rude."},
+  {k:"do",b:"Slurp your noodles",t:"— it's correct, and improves them."},
+  {k:"do",b:"Pour each other's drinks, not your own",t:"— when sharing a bottle."},
+  {k:"dont",b:"No tipping",t:"— it will be politely chased down the street."},
+  {k:"note",b:"Oshibori (hot towel) is for hands, not face",t:"— Dad: faces happen, nobody dies."},
+  {k:"dont",b:"Never stand chopsticks upright in rice, never pass food chopstick-to-chopstick",t:"— both are funeral rites. Rest them on the holder or across the bowl."},
+  {k:"note",b:"Ask for a fork without shame",t:"— spearing food is forgiven for visitors; at okonomiyaki the spatula is the real tool anyway."},
+  {k:"do",b:"Small bars (Golden Gai, Shimokita counters) seat 5–8: greet on entry, accept the cover charge as rent for the seat, talk to the master and neighbours",t:"— that's what the room is for. Karaoke rooms are private; enthusiasm outranks talent by law."},
+  {k:"do",b:"Money goes in the little tray by the till",t:"— change comes back the same way. Receiving your wrapped item nicely is part of the exchange."},
+  {k:"dont",b:"Don't eat while walking",t:"— stand and finish by the stall (Yanaka and festival streets relax this)."}]},
+ {n:"Out and about",sub:"photos · old streets · rubbish · smoking",items:[
+  {k:"do",b:"People need permission for photos",t:"— especially anyone working, anyone in Gion, and absolutely anyone mourning (23 Sep). Places freely, people politely, rituals rarely."},
+  {k:"dont",b:"Private lanes in Gion carry fines",t:"— no-photo signs mean it."},
+  {k:"do",b:"Magome, Tsumago, Narai are lived-in, not sets",t:"— keep to the edges when residents pass, don't block shopfronts for photos."},
+  {k:"do",b:"Ring the bear bells on the trail, greet fellow walkers",t:"— \"konnichiwa\" on a mountain path is near-mandatory and delightful."},
+  {k:"note",b:"There are no public bins",t:"— carry a bag (it's on the packing list) and empty it at konbini bins or home base. At the apartment, rinse and separate per the host's chart."},
+  {k:"dont",b:"No smoking on the street",t:"— illegal outside the marked corners; fine in designated rooms."},
+  {k:"do",b:"Buy something local in small villages",t:"— that's what keeps them consenting to visitors."}]}
+];
 P.renderEtiquette=function(){
- let h='<div class="sec"><h3>🙇 Japan Etiquette 101</h3><div class="sub">Practical, reassuring, and scannable — the one-line version: watch, follow, don\'t block, ask</div></div>';
- h+='<div class="narr" data-label="The whole guide in one sentence">Observe what others are doing, follow the signs, avoid inconveniencing people, and ask politely when unsure — that\'s 95% of Japanese etiquette. The rest below is detail.</div>';
- ET.forEach(e=>{h+='<details class="more" style="margin-bottom:10px;background:#fff"><summary>'+e[0]+'</summary><div class="inner">'+e[1]+'</div></details>';});
- 
- h+='<div class="sec yellow" style="margin-top:26px"><h3>💡 Practical tips</h3><div class="sub">Collected from the research and the saved posts — the things that are not etiquette but will save you money, time or a wasted trip</div></div>';
+ let h='<div class="sec"><h3>🙇 Etiquette 101</h3><div class="sub">Five groups. Green is do, red is don\'t, black is just worth knowing.</div></div>';
+ h+='<div class="etone">Watch what others do, follow the signs, don\'t get in anyone\'s way, and ask politely when unsure. <span>That is 95% of it.</span></div>';
+ const li=it=>'<li class="'+it.k+'"><b>'+it.b+'</b> '+it.t+'</li>';
+ ET.forEach(g=>{ const dos=g.items.filter(i=>i.k!=='dont'), donts=g.items.filter(i=>i.k==='dont');
+  h+='<div class="eg"><div class="egh">'+esc(g.n)+'<small>'+esc(g.sub)+'</small></div><div class="egc">'+
+     '<div class="egcol do"><h4>✅ DO</h4><ul>'+dos.map(li).join('')+'</ul></div>'+
+     (donts.length?'<div class="egcol dont"><h4>⛔ DON\'T</h4><ul>'+donts.map(li).join('')+'</ul></div>':'')+'</div></div>'; });
+ h+='<div class="etnote"><b>When you get it wrong</b> (and you will, several times): a small bow, a smile, "sumimasen", move on. Nobody expects perfection from visitors — they notice effort.</div>';
+ return h;
+};
+P.renderTips=function(){
+ let h='<div class="sec yellow"><h3>💡 Good to know</h3><div class="sub">Not etiquette — the things that save money, time or a wasted trip. Tap one to read it.</div></div>';
  TIPS.forEach((t,ix)=>{
   h+='<details class="tdcard b4" style="box-shadow:3px 3px 0 #000;margin-bottom:9px"><summary>'+
      '<div class="tdi">💡</div><div class="tdt"><div class="tdh" style="font-size:14.5px">'+esc(t[0])+'</div></div>'+
