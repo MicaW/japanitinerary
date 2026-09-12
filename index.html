@@ -752,8 +752,8 @@ header{min-height:72px}
 .sticker{position:absolute!important;left:12px!important;top:12px!important;right:auto!important;bottom:auto!important;background:var(--yellow)!important;color:#111!important;padding:8px 12px!important;display:flex!important;align-items:baseline;gap:8px;max-width:none!important;transform:none!important;box-shadow:none!important;border:0!important}
 .sticker .n{font-size:26px!important;color:#111!important;line-height:1!important}.sticker .t{font-size:12px!important;color:#111!important;letter-spacing:.04em;margin:0!important}
 /* hbody as a grid: phrases + etiquette on the left, GO TO on the right, map full width under */
-.hero .hbody{display:grid!important;grid-template-columns:1fr auto;grid-template-areas:"ctas go" "map map";column-gap:12px;row-gap:0;padding:0 12px 6px!important;align-items:end}
-.hero .hbody .ctas{grid-area:ctas;display:grid!important;grid-template-columns:1fr;gap:8px!important;margin:10px 0 0!important;align-self:end}
+.hero .hbody{display:grid!important;grid-template-columns:1fr auto;grid-template-areas:". go" "map map" "ctas ctas";column-gap:12px;row-gap:0;padding:0 12px 6px!important;align-items:end}
+.hero .hbody .ctas{grid-area:ctas;display:grid!important;grid-template-columns:1fr 1fr;gap:10px!important;margin:6px 0 4px!important}
 .hero .hbody .ctas a{min-height:54px!important;padding:12px 12px!important;font-size:15px!important;border:0!important;box-shadow:none!important;display:flex!important;align-items:center}
 .hero .hbody .ctas .c-ph{background:var(--yellow)!important;color:#111!important}.hero .hbody .ctas .c-et{background:var(--blue)!important;color:#fff!important}
 .hero .hbody .goround{grid-area:go;margin:-70px 0 0 0!important;width:140px!important;height:140px!important}
