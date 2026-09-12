@@ -99,3 +99,5 @@ footer{background:#111!important;color:#fff!important}
 .hero .himg h1{text-shadow:none!important}
 .hero .hbody>.mono{display:none!important}
 .gosub{display:none!important}
+header{min-height:72px}
+#daynav{top:72px!important}
