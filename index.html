@@ -742,6 +742,30 @@ header{min-height:72px}
 .etnote{border:0!important;font-size:15px!important}
 .dayhero .dh-body>p.swap{font-size:12.5px!important;line-height:1.4!important;font-weight:400!important;font-style:italic;color:#555!important;margin:6px 0 0!important}
 
+
+/* ===== home: first screen = hero + GO TO + phrases/etiquette + map (12 Sep, Mica) ===== */
+.hero .himg.b{height:250px!important}
+@media(min-width:700px){.hero .himg.b{height:360px!important}}
+.hero .himg.b .ht{bottom:14px!important}
+.hero .himg h1{font-size:clamp(28px,7.5vw,48px)!important}
+/* countdown back as a yellow box, top-left of the photo */
+.sticker{position:absolute!important;left:12px!important;top:12px!important;right:auto!important;bottom:auto!important;background:var(--yellow)!important;color:#111!important;padding:8px 12px!important;display:flex!important;align-items:baseline;gap:8px;max-width:none!important;transform:none!important;box-shadow:none!important;border:0!important}
+.sticker .n{font-size:26px!important;color:#111!important;line-height:1!important}.sticker .t{font-size:12px!important;color:#111!important;letter-spacing:.04em;margin:0!important}
+/* hbody as a grid: phrases + etiquette on the left, GO TO on the right, map full width under */
+.hero .hbody{display:grid!important;grid-template-columns:1fr auto;grid-template-areas:"ctas go" "map map";column-gap:12px;row-gap:0;padding:0 12px 6px!important;align-items:end}
+.hero .hbody .ctas{grid-area:ctas;display:grid!important;grid-template-columns:1fr;gap:8px!important;margin:10px 0 0!important;align-self:end}
+.hero .hbody .ctas a{min-height:54px!important;padding:12px 12px!important;font-size:15px!important;border:0!important;box-shadow:none!important;display:flex!important;align-items:center}
+.hero .hbody .ctas .c-ph{background:var(--yellow)!important;color:#111!important}.hero .hbody .ctas .c-et{background:var(--blue)!important;color:#fff!important}
+.hero .hbody .goround{grid-area:go;margin:-70px 0 0 0!important;width:140px!important;height:140px!important}
+@media(min-width:700px){.hero .hbody .goround{width:200px!important;height:200px!important;margin-top:-100px!important}.hero .hbody{padding:0 16px 8px!important}}
+.hero .hbody .mapbox{grid-area:map;margin:8px 0 0!important;padding:0!important}
+.hero .hbody .views,.hero .hbody>.mono{display:none!important}
+/* legend + story boxes: breathing room, labels as strips instead of tilted stickers */
+.legend{font-size:14px!important;line-height:2.4!important;margin:8px 0 14px!important}
+.legend .tag{margin-right:6px}
+.narr,.hist-box,.info-box,.warn-box{padding:14px 16px 16px!important;margin:18px 0!important;font-size:15px!important;line-height:1.55!important;font-weight:400!important;overflow:hidden}
+.narr::before,.hist-box::before,.info-box::before,.warn-box::before{position:static!important;display:inline-block!important;transform:none!important;margin:0 0 10px!important;font-size:12px!important;letter-spacing:.04em;padding:6px 10px!important}
+.narr{background:var(--soft)!important}.hist-box{background:#eaf7ee!important}
 </style>
 </head>
 <body>

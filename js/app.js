@@ -619,7 +619,7 @@ function renderHome(){
   h+='<div class="mono" style="font-weight:700;font-size:12px;margin:6px 0 4px">18 SEP – 5 OCT • LONDON → OSAKA (KIX) ⇢ TOKYO (HND) → LONDON</div>';
   h+='<div class="mapbox" id="homemap">'+renderJourneyMap(window.MAPMODE||'simple')+'</div>';
   h+='<div class="views">OR SEE THE WHOLE TRIP AS A <a href="#map">🗺️ MAP</a><a href="#planner">☰ LIST</a></div>';
-  h+='<div class="ctas"><a class="c-ph" href="#phrases">Handy Japanese phrases!</a><a class="c-et" href="#etiquette">Learn the etiquette</a></div>';
+  h+='<div class="ctas"><a class="c-ph" href="#phrases">🗣️ Handy phrases</a><a class="c-et" href="#etiquette">🙇 Etiquette 101</a></div>';
   h+='</div></div>';
   h+='<div class="sec"><h3>The tour at a glance</h3><div class="sub">16 nights · 6 bases · every flight, stay, train and transfer — tap a row for the day</div></div>';
   h+='<div id="glance">'+renderGlance()+'</div>';
