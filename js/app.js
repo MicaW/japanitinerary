@@ -79,8 +79,13 @@ window.imgFail=function(el){
   if(el.classList.contains('th')){ const d=document.createElement('div'); d.className='th thc'; d.style.background=phColor(name,0); d.textContent=(name[0]||'*').toUpperCase(); el.parentNode.replaceChild(d,el); return; }
   const d=document.createElement('div'); d.className='ph'; d.style.background=phColor(name,0); d.textContent=name; el.parentNode.replaceChild(d,el);
 };
+/* ---- Google Places photos (12 Sep): live when online, Commons/none as fallback ---- */
+window.GKEY='AIzaSyAClHP_O_NyrjkZ5OYRkQct-8EFOKo3Owc';
+function gpic(c){ const g=(window.GPHOTOS||{})[c.name]; if(!g||!navigator.onLine) return null; return {u:'https://places.googleapis.com/v1/'+g.ph+'/media?maxWidthPx=900&maxHeightPx=900&key='+window.GKEY, c:'Photo: '+(g.a||'Google Maps contributor')+' via Google Maps'}; }
+function picOf(c){ const g=gpic(c); if(g) return {u:g.u,c:g.c,fb:c.img||''}; if(c.img) return {u:c.img,c:c.imgCredit||'',fb:''}; return null; }
+window.picFail=function(el){ const fb=el.getAttribute('data-fb'); if(fb){ el.removeAttribute('data-fb'); el.src=fb; return; } if(el.classList.contains('th')) imgFail(el); else { el.parentNode.classList.add('noimg'); el.remove(); } };
 function thumb(c,i){
-  if(c.img) return '<img class="th" loading="lazy" src="'+c.img+'" alt="'+esc(c.name)+'" onerror="imgFail(this)" onclick="event.preventDefault();event.stopPropagation();openLB(\''+lbPack([{u:c.img,t:c.name,c:c.imgCredit||''}])+'\',0)">';
+  const P=picOf(c); if(P) return '<img class="th" loading="lazy" src="'+P.u+'"'+(P.fb?' data-fb="'+P.fb+'"':'')+' alt="'+esc(c.name)+'" onerror="picFail(this)" onclick="event.preventDefault();event.stopPropagation();openLB(\''+lbPack([{u:this&&this.src||P.u,t:c.name,c:P.c}])+'\',0)">';
   return '<div class="th thc" style="background:'+phColor(c.name,i)+'">'+esc((c.name[0]||'*').toUpperCase())+'</div>';
 }
 function tagRow(labels,limit){ if(!labels||!labels.length) return '';
@@ -149,7 +154,7 @@ function recCard(c,i){
   if(c.nearby) inner+='<p style="font-size:11.5px;margin:8px 0 0;font-family:JetBrains Mono,monospace;color:#6b7280">NEARBY: '+esc(c.nearby)+'</p>';
   inner+='<div class="btnrow">'+placeBtns(c)+
     (c.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+c.url+'">↗ OFFICIAL</a>':'')+
-    (!c.img?'<a class="btn mini" target="_blank" rel="noopener" href="'+photosUrl(c.name+' '+(c.photoQ||'Japan'))+'">📷 PHOTOS</a>':'')+'</div>';
+    (!picOf(c)?'<a class="btn mini" target="_blank" rel="noopener" href="'+photosUrl(c.name+' '+(c.photoQ||'Japan'))+'">📷 PHOTOS</a>':'')+'</div>';
   /* 'Last checked' audit lines hidden (12 Sep) */
   return '<details class="xr fade"><summary>'+thumb(c,i)+
     '<div style="flex:1;min-width:0"><div class="nm">'+esc(c.name)+(c.jp?' <span class="jpn">'+esc(c.jp)+'</span>':'')+'</div>'+
@@ -251,10 +256,10 @@ function carousel(title,color,arr,kind,cid){
   var h='<div class="crow"><div class="crh" style="border-color:'+color+'">'+title+' <span class="crn">'+arr.length+'</span></div><div class="cscroll">';
   arr.forEach(function(c,i){
     var id=cid+'-'+kind+'-'+i; window.__CARDS[id]={c:c,kind:kind};
-    var img=c.img?'<img loading="lazy" src="'+c.img+'" alt="'+esc(c.name)+'" onerror="this.parentNode.classList.add(\'noimg\');this.remove()">':'';
+    var P=picOf(c); var img=P?'<img loading="lazy" src="'+P.u+'"'+(P.fb?' data-fb="'+P.fb+'"':'')+' alt="'+esc(c.name)+'" onerror="picFail(this)">':'';
     var lbl=(c.labels||[]).filter(function(l){return l!=='CORE PLAN';})[0]||'';
     var band=kind==='food'?mealType(c):(c.type||'');
-    h+='<div class="ccard'+(c.img?'':' noimg')+'" style="--ph:'+phColor(c.name,i)+'" onclick="openCard(\''+id+'\')">'+img+
+    h+='<div class="ccard'+(P?'':' noimg')+'" style="--ph:'+phColor(c.name,i)+'" onclick="openCard(\''+id+'\')">'+img+
        '<div class="cb"><div class="cnm">'+esc(c.name)+'</div><div class="cmeta">'+esc(band)+(lbl?' · '+esc(lbl):'')+'</div>'+
        (c.hours?'<div class="chrs">🕐 '+esc(String(c.hours).split('.')[0].slice(0,38))+'</div>':'')+'</div></div>';
   });
