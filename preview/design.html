@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DESIGN VARIATIONS — Lampteys on Tour</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;900&family=Fraunces:opsz,wght@9..144,400;9..144,900&family=Inter:wght@400;600;800&family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&family=Bangers&family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&family=Work+Sans:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Outfit:wght@400;600;800&family=Archivo:wght@400;600;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,800&family=Lilita+One&family=Chivo:wght@400;700;900&family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Sora:wght@400;600;800&family=Karla:wght@400;600;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;900&family=Lexend:wght@400;600;800&family=Manrope:wght@400;600;800&family=Inter:wght@400;600;800&family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&family=Bangers&family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&family=Work+Sans:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Outfit:wght@400;600;800&family=Archivo:wght@400;600;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,800&family=Lilita+One&family=Chivo:wght@400;700;900&family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Sora:wght@400;600;800&family=Karla:wght@400;600;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--disp:'Rubik';--body:'Rubik';--mono:'DM Mono';--bg:#f6f4ee;--ink:#111;--red:#ff2a2a;--yellow:#ffcc00;--blue:#0044ff;--green:#15803d;--orange:#f97316;--pink:#FF5FA2;--card:#fff;--bw:3px;--radius:0;--shadow:6px 6px 0 #000;--tilt:-1.5deg;--dispweight:900;--dispcase:uppercase;--disptrack:-.01em;--muted:#4b5563}
+:root{--disp:'Rubik';--body:'Rubik';--mono:'DM Mono';--bg:#f6f4ee;--ink:#111;--red:#ff2a2a;--yellow:#ffcc00;--blue:#0044ff;--green:#15803d;--orange:#f97316;--pink:#FF5FA2;--card:#fff;--bw:3px;--radius:0;--shadow:6px 6px 0 #000;--tilt:-1.5deg;--dispweight:900;--dispcase:uppercase;--disptrack:-.01em;--muted:#333}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body),system-ui,sans-serif;font-size:15px;line-height:1.5}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body),system-ui,sans-serif;font-size:17px;line-height:1.55}
 body.pat-dots{background-image:radial-gradient(rgba(0,0,0,.10) 1px,transparent 1.2px);background-size:14px 14px}
 body.pat-noise{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
 body.pat-blobs{background-image:radial-gradient(circle at 12% 18%,rgba(255,204,0,.28),transparent 32%),radial-gradient(circle at 88% 8%,rgba(255,95,162,.22),transparent 30%),radial-gradient(circle at 70% 90%,rgba(0,68,255,.14),transparent 34%);background-attachment:fixed}
@@ -27,32 +27,32 @@ h1,h2,h3,.disp{font-family:var(--disp),var(--body),sans-serif;font-weight:var(--
 .himg .grad{position:absolute;inset:0;background:linear-gradient(to top,#000 2%,rgba(0,0,0,.5) 26%,transparent 56%)}
 .himg .ht{position:absolute;left:16px;bottom:110px;right:16px}.himg h1{font-size:clamp(40px,10vw,74px);color:#fff}.himg h1 .y{color:var(--yellow)}
 .sticker{position:absolute;right:14px;top:14px;background:var(--yellow);border:3px solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);padding:8px 12px;transform:rotate(calc(var(--tilt) * -3));text-align:center}
-.sticker .n{font-family:var(--disp);font-weight:var(--dispweight);font-size:40px;line-height:.95}.sticker .t{font-family:var(--mono);font-size:9px;font-weight:700;margin-top:3px;letter-spacing:.05em}
+.sticker .n{font-family:var(--disp);font-weight:var(--dispweight);font-size:40px;line-height:.95}.sticker .t{font-family:var(--mono);font-size:11px;font-weight:700;margin-top:3px;letter-spacing:.05em}
 .hbody{padding:16px}
 .goround{width:170px;height:170px;border-radius:50%;background:var(--red);color:#fff;border:4px solid var(--ink);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin:-95px auto 6px;position:relative;z-index:3;font-family:var(--disp);font-weight:var(--dispweight);text-transform:var(--dispcase)}
 .goround .k{font-size:12px;letter-spacing:.06em}.goround .d{font-size:30px;line-height:1}.goround .ar{font-size:24px}
-.gosub{text-align:center;font-family:var(--mono);font-size:11px;font-weight:700;margin:4px 0 12px}
+.gosub{text-align:center;font-family:var(--mono);font-size:13px;font-weight:700;margin:4px 0 12px}
 .datebar{display:inline-block;background:var(--yellow);border:2.5px solid var(--ink);box-shadow:var(--shadow);padding:5px 10px;font-family:var(--mono);font-size:11px;font-weight:700;transform:rotate(var(--tilt));border-radius:var(--radius)}
 .ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
 .ctas a{border:var(--bw) solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 12px;text-decoration:none;color:var(--ink);font-family:var(--disp);font-weight:var(--dispweight);text-transform:var(--dispcase);font-size:15px;line-height:1.1;display:block}
-.ctas a small{display:block;font-family:var(--mono);font-size:9.5px;font-weight:700;margin-top:6px;text-transform:none}
+.ctas a small{display:block;font-family:var(--mono);font-size:11.5px;font-weight:700;margin-top:6px;text-transform:none}
 .c-ph{background:var(--yellow)}.c-et{background:var(--pink)}
 /* section header */
 .sec{border-left:8px solid var(--ink);background:var(--card);padding:10px 14px;margin:22px 0 12px;border-radius:var(--radius)}
-.sec h3{font-size:19px}.sec .sub{font-family:var(--mono);font-size:11px;margin-top:3px;color:var(--muted)}
+.sec h3{font-size:19px}.sec .sub{font-family:var(--mono);font-size:13px;margin-top:3px;color:var(--muted)}
 .sec.blue{border-left-color:var(--blue)}.sec.orange{border-left-color:var(--orange)}
 /* place card */
 .card{background:var(--card);border:var(--bw) solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin:12px 0}
 .card img{width:100%;height:170px;object-fit:cover;display:block}
 .cb{padding:12px 14px}.cb h4{font-family:var(--disp);font-weight:var(--dispweight);text-transform:var(--dispcase);font-size:18px;margin:0 0 4px;line-height:1.05}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.tag{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:calc(var(--radius) + 2px);background:#eee}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.tag{font-family:var(--mono);font-size:11px;font-weight:700;padding:3px 7px;border-radius:calc(var(--radius) + 2px);background:#eee}
 .tag.core{background:var(--red);color:#fff}.tag.hist{background:#fde68a}.tag.ok{background:var(--green);color:#fff}
 .btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.btn{font-family:var(--mono);font-size:10px;font-weight:700;border:2px solid var(--ink);background:var(--card);padding:7px 9px;border-radius:var(--radius);box-shadow:var(--shadow);text-transform:uppercase;flex:1;text-align:center;text-decoration:none;color:var(--ink)}
+.btn{font-family:var(--mono);font-size:12px;font-weight:700;border:2px solid var(--ink);background:var(--card);padding:7px 9px;border-radius:var(--radius);box-shadow:var(--shadow);text-transform:uppercase;flex:1;text-align:center;text-decoration:none;color:var(--ink)}
 .btn.y{background:var(--yellow)}
-.info{background:var(--card);border:2.5px solid var(--ink);border-radius:var(--radius);padding:12px 14px;margin:12px 0;font-size:13.5px;position:relative;box-shadow:var(--shadow)}
-.info::before{content:attr(data-label);position:absolute;top:-11px;left:12px;background:var(--blue);color:#fff;font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 8px;border:2px solid var(--ink);border-radius:var(--radius)}
-.hu{list-style:none;padding:0;margin:8px 0}.hu li{padding:8px 0 8px 12px;border-left:5px solid var(--red);margin-bottom:8px;font-size:13.5px}.hu li.a{border-color:var(--orange)}.hu li.n{border-color:var(--green)}.hu .huk{display:block;font-family:var(--mono);font-size:9.5px;font-weight:800;letter-spacing:.08em;margin-bottom:2px;color:var(--muted)}
+.info{background:var(--card);border:2.5px solid var(--ink);border-radius:var(--radius);padding:14px 14px;margin:14px 0;font-size:16px;position:relative;box-shadow:var(--shadow)}
+.info::before{content:attr(data-label);position:absolute;top:-12px;left:12px;background:var(--blue);color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 8px;border:2px solid var(--ink);border-radius:var(--radius)}
+.hu{list-style:none;padding:0;margin:8px 0}.hu li{padding:8px 0 8px 12px;border-left:5px solid var(--red);margin-bottom:8px;font-size:16px}.hu li.a{border-color:var(--orange)}.hu li.n{border-color:var(--green)}.hu .huk{display:block;font-family:var(--mono);font-size:11px;font-weight:800;letter-spacing:.08em;margin-bottom:2px;color:var(--muted)}
 /* ---- open / tile modes ---- */
 body.open .card,body.open .info,body.open .hero{border-width:0;box-shadow:0 1px 0 rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.08)}
 body.open .sec{background:transparent;border-left:0;padding-left:0;border-bottom:var(--bw) solid var(--ink);border-radius:0}
@@ -66,7 +66,7 @@ body.tiles .info::before{border:0}body.tiles .goround{border-width:0}body.tiles 
 body.tiles .hdr{border-bottom:0}
 </style></head><body>
 <div class="pvbar" id="bar">VARIATION:</div>
-<p class="pvnote" id="note"></p>
+<p class="pvnote" id="note"></p><p class="pvnote" style="margin-top:4px;color:#555">All fourteen: sans-serif only, headings in capitals, body text at 17px with dark grey rather than pale grey, and no straight-line grid anywhere — dots, paper noise, soft colour or nothing.</p>
 <div class="hdr"><div class="logo"><div class="dot"><img src="../images/hero.jpg" alt=""></div><h1>Lampteys <span>on tour</span></h1></div><button class="menubtn">☰ MENU</button></div>
 <div class="wrap">
  <div class="hero"><div class="himg"><img src="../images/hero.jpg" alt=""><div class="grad"></div><div class="sticker"><div class="n">6</div><div class="t">DAYS UNTIL JAPAN</div></div><div class="ht"><h1>Lampteys<br><span class="y">on tour</span></h1></div></div>
@@ -86,7 +86,7 @@ body.tiles .hdr{border-bottom:0}
 <script>
 const V=[
  {n:'1 · Soft pop',d:'Rubik at 900 is chunky without being stretched; plain warm paper, no grid; keeps the black boxes but rounds nothing.',disp:'Rubik',body:'Rubik',mono:'DM Mono',bg:'#f6f4ee',pat:'',mode:'',radius:'0',bw:'3px',shadow:'6px 6px 0 #000',tilt:'-1.5deg',w:900},
- {n:'2 · Editorial pop',d:'Fraunces (a soft serif) for headings, Inter for reading. Boxes become underlines and soft shadows — the "fewer bordered boxes" version.',disp:'Fraunces',body:'Inter',mono:'DM Mono',bg:'#fbf7ef',pat:'',mode:'open',radius:'6px',bw:'3px',shadow:'none',tilt:'-1deg',w:900,track:'-.02em'},
+ {n:'2 · Lexend (readability)',d:'Lexend was designed to be easier to read; here at 800 for headings with Inter for body. Boxes become underlines and soft shadows — the "fewer bordered boxes" version.',disp:'Lexend',body:'Inter',mono:'DM Mono',bg:'#fbf7ef',pat:'',mode:'open',radius:'6px',bw:'3px',shadow:'none',tilt:'-1deg',w:800,track:'-.01em'},
  {n:'3 · Rounded sticker',d:'Fredoka + Nunito, rounded corners, thick borders only where you tap. Faint paper noise instead of a grid.',disp:'Fredoka',body:'Nunito',mono:'DM Mono',bg:'#fff8ec',pat:'pat-noise',mode:'',radius:'14px',bw:'3px',shadow:'5px 5px 0 #000',tilt:'-2deg',w:700},
  {n:'4 · Manga zine',d:'Bangers for the shout, Noto Sans JP for everything else — the closest to the printed lists. Light dot screen, not lines.',disp:'Bangers',body:'Noto Sans JP',mono:'DM Mono',bg:'#ffffff',pat:'pat-dots',mode:'',radius:'0',bw:'3px',shadow:'6px 6px 0 #000',tilt:'-2deg',w:400,track:'.02em'},
  {n:'5 · Travel poster',d:'Bebas Neue (tall, not stretched) with Work Sans. Solid colour tiles, no borders at all.',disp:'Bebas Neue',body:'Work Sans',mono:'DM Mono',bg:'#f2efe6',pat:'',mode:'tiles',radius:'0',bw:'0',shadow:'none',tilt:'0deg',w:400,track:'.03em'},
@@ -97,8 +97,8 @@ const V=[
  {n:'10 · Sticker book',d:'Lilita One for headings (round, cheerful) with Nunito; only the stickers and chips get the hard shadow.',disp:'Lilita One',body:'Nunito',mono:'DM Mono',bg:'#fff',pat:'pat-noise',mode:'open',radius:'10px',bw:'3px',shadow:'none',tilt:'-2.5deg',w:400},
  {n:'11 · Paper cut',d:'Chivo 900 with tilted colour blocks and no black borders — the zine feel done with colour instead of ink.',disp:'Chivo',body:'Chivo',mono:'DM Mono',bg:'#f9f5ef',pat:'',mode:'tiles',radius:'2px',bw:'0',shadow:'none',tilt:'-2deg',w:900,track:'-.02em'},
  {n:'12 · Big shoulders',d:'Big Shoulders Display (tall, American-signage) with IBM Plex Sans. Boxes kept, grid gone, shadows softened to one colour.',disp:'Big Shoulders Display',body:'IBM Plex Sans',mono:'DM Mono',bg:'#f5f3ee',pat:'',mode:'',radius:'0',bw:'3px',shadow:'5px 5px 0 #ffcc00',tilt:'-1.5deg',w:900,track:'.01em'},
- {n:'13 · Space',d:'Space Grotesk — techy but round-cornered; Sora body. Open cards, sentence case headings.',disp:'Space Grotesk',body:'Sora',mono:'DM Mono',bg:'#f6f7f9',pat:'',mode:'open',radius:'10px',bw:'0',shadow:'none',tilt:'0deg',w:700,case:'none',track:'-.02em'},
- {n:'14 · Karla + Fraunces',d:'A quieter pairing: Fraunces italic-ish warmth for headings, Karla for body, blob background, boxes only on the hero.',disp:'Fraunces',body:'Karla',mono:'DM Mono',bg:'#fbf8f3',pat:'pat-blobs',mode:'open',radius:'8px',bw:'0',shadow:'none',tilt:'-1deg',w:900,case:'none',track:'-.02em'}
+ {n:'13 · Space',d:'Space Grotesk — techy but round-cornered; Sora body. Open cards, sentence case headings.',disp:'Space Grotesk',body:'Sora',mono:'DM Mono',bg:'#f6f7f9',pat:'',mode:'open',radius:'10px',bw:'0',shadow:'none',tilt:'0deg',w:700,track:'-.02em'},
+ {n:'14 · Manrope',d:'Manrope 800 for headings with Karla body — the quietest of the set. Blob background, boxes only on the hero.',disp:'Manrope',body:'Karla',mono:'DM Mono',bg:'#fbf8f3',pat:'pat-blobs',mode:'open',radius:'8px',bw:'0',shadow:'none',tilt:'-1deg',w:800,track:'-.01em'}
 ];
 const bar=document.getElementById('bar'), note=document.getElementById('note'); let cur=0;
 function apply(i){ cur=i; const v=V[i]; const r=document.documentElement.style;
