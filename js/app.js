@@ -339,13 +339,13 @@ function renderDay(idx){
   }
   h+='<div class="wsline">🛏 WAKE: '+esc(d.wake)+'  →  SLEEP: '+esc(d.sleep)+'</div>';
   h+='</div></div>';
-  if(d.alert) h+='<div class="warn-box" data-label="Heads up">'+d.alert+'</div>';
+
   h+='<details class="aboutx"><summary><span class="axl">'+(d.aboutLabel||'About this place')+'</span><span class="axm">TAP TO READ</span><span class="exp">▾</span></summary>'+
      '<div class="axbody">'+d.about+
      (d.deeper?'<div class="axmore">'+d.deeper+'</div>':'')+
      (d.holiday?'<div style="margin-top:10px;border-top:2px dashed #15803d;padding-top:8px"><b>'+esc(d.holidayName||'Holiday lens')+':</b> '+d.holiday+'</div>':'')+
      '</div></details>';
-  if(d.notice&&d.notice.length) h+='<div class="info-box" data-label="💡 Tips of the day"><ul style="margin:0;padding-left:18px">'+d.notice.map(n=>'<li style="margin:4px 0">'+n+'</li>').join('')+'</ul></div>';
+
   if(d.travel&&d.travel.length){
     let tinner='';
     d.travel.forEach(t=>{
@@ -393,12 +393,18 @@ function renderDay(idx){
   let prevSpot=(H&&(H.mapsQ||H.name))||d.wake||'';
   h+='<div class="sec"><h3>Areas today</h3><div class="sub">Each one is a walkable patch. Open it for the map, the walking order and what is there — see, do, eat, learn. Pick on the day.</div></div>';
   clusters.forEach((cl,ci)=>{ h+=areaCard(d,cl,ci,prevSpot); });
-  { const hu=((window.HEADSUP||{})[d.id]||[]).slice(); const K={closed:['⛔','CLOSED / TIMING'],avoid:['🚫','AVOID'],look:['👀','LOOK OUT FOR'],nook:['🔎','NOOKS & CRANNIES'],shop:['🛍','BRING HOME'],ground:['👣','ON THE GROUND']};
-    const ground=[]; clusters.forEach(function(cl){ if(/^(OPTIONAL|ALTERNATIVE|BONUS|Plan B|Rain switch|Evening option)/i.test(cl.name||'')) return; ['explore','activities','shopping','food'].forEach(function(k){ (cl[k]||[]).forEach(function(e){ if(e.tips) ground.push('<b>'+esc(e.name)+'</b> — '+e.tips); }); }); });
-    if(hu.length||ground.length){
-    h+='<div class="sec orange" style="margin-top:26px"><h3>Heads up</h3><div class="sub">Closed today, worth avoiding, worth knowing, worth finding, worth bringing home — and the on-the-ground notes for each place</div></div><ul class="hu">'+
-      hu.map(function(x){ return '<li class="hu-'+x.k+'"><span class="huk">'+K[x.k][0]+' '+K[x.k][1]+'</span>'+x.t+'</li>'; }).join('')+
-      (ground.length?'<li class="hu-ground"><span class="huk">👣 ON THE GROUND</span><ul class="hug">'+ground.map(function(g){return '<li>'+g+'</li>';}).join('')+'</ul></li>':'')+'</ul>'; } }
+  { const hu=((window.HEADSUP||{})[d.id]||[]).slice(); const K={closed:['⛔','CLOSED / TIMING'],avoid:['🚫','AVOID'],look:['👀','LOOK OUT FOR'],nook:['🔎','NOOKS & CRANNIES'],shop:['🛍','BRING HOME'],ground:['👣','ON THE GROUND'],tip:['💡','TIP OF THE DAY']};
+    const items=[];
+    if(d.alert) items.push({k:'avoid',t:d.alert});
+    hu.filter(function(x){return x.k==='closed';}).forEach(function(x){items.push(x);});
+    hu.filter(function(x){return x.k==='avoid';}).forEach(function(x){items.push(x);});
+    (d.notice||[]).forEach(function(n){ items.push({k:'tip',t:n}); });
+    hu.filter(function(x){return x.k==='look';}).forEach(function(x){items.push(x);});
+    clusters.forEach(function(cl){ if(/^(OPTIONAL|ALTERNATIVE|BONUS|Plan B|Rain switch|Evening option)/i.test(cl.name||'')) return; ['explore','activities','shopping','food'].forEach(function(k){ (cl[k]||[]).forEach(function(e){ if(e.tips) items.push({k:'ground',t:e.tips,who:e.name}); }); }); });
+    hu.filter(function(x){return x.k==='nook'||x.k==='shop';}).forEach(function(x){items.push(x);});
+    if(items.length){
+    h+='<div class="sec orange" style="margin-top:26px"><h3>Heads up</h3><div class="sub">Closed today, worth avoiding, tips, on-the-ground notes for each place, worth finding, worth bringing home</div></div><ul class="hu">'+
+      items.map(function(x){ return '<li class="hu-'+x.k+'"><span class="huk">'+K[x.k][0]+' '+K[x.k][1]+(x.who?' · '+esc(x.who):'')+'</span>'+x.t+'</li>'; }).join('')+'</ul>'; } }
   h+='<div class="btnrow" style="margin-top:26px">'+
      (idx>0?'<a class="btn" style="flex:1" href="#day/'+DAYS[idx-1].id+'">← '+esc(DAYS[idx-1].date)+'</a>':'')+
      (idx<DAYS.length-1?'<a class="btn red" style="flex:1" href="#day/'+DAYS[idx+1].id+'">'+esc(DAYS[idx+1].date)+' →</a>':'')+'</div>';
