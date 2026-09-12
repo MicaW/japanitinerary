@@ -8,7 +8,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="LAMPTEYS">
 <title>PREVIEW · DIRECTION 2 — Lampteys on Tour</title>
-<base href="../../"><link rel="manifest" href="manifest.webmanifest">
+<base href="../../">
+<script>/* preview: <base> would send every "#…" link to the live site — keep them on this page */
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href^=\"#\"]");if(a){e.preventDefault();location.hash=a.getAttribute("href").slice(1);}},true);</script><link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="images/icon-192.png">
 <link rel="icon" href="images/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -536,7 +538,7 @@ table.simple th.gl-grp{background:#000;color:#fff;padding:6px 8px;font-family:'A
 .pcount{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;margin:-8px 0 12px;color:#374151}
 .hu{list-style:none;padding:0;margin:10px 0 0}.hu>li{padding:10px 0 10px 14px;border-left:5px solid #000;margin:0 0 10px;font-size:13.5px;line-height:1.5}.hu li.hu-closed{border-color:var(--red)}.hu li.hu-avoid{border-color:var(--orange)}.hu li.hu-look{border-color:var(--blue)}.hu li.hu-nook{border-color:var(--green)}.hu li.hu-shop{border-color:var(--purple)}.hu li.hu-ground{border-color:#000}.hu li.hu-tip{border-color:var(--yellow)}.hug{list-style:none;padding:0;margin:4px 0 0}.hug li{padding:6px 0;border:0;border-top:1.5px solid #e5e7eb;font-size:13px;margin:0}.hug li:first-child{border-top:0}.hu .huk{display:block;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:800;letter-spacing:.08em;margin-bottom:3px;color:#374151}
 </style>
-<link rel="stylesheet" href="preview/site2/theme2.css">
+<link rel="stylesheet" href="preview/site2/theme2.css?v=2">
 </head>
 <body>
 <div id="offline-pill">■ OFFLINE — SAVED GUIDE MODE. LIVE MAPS &amp; LINKS NEED SIGNAL ■</div>
