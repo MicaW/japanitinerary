@@ -312,8 +312,10 @@ function areaCard(d,cl,ci,prevSpot){
 }
 
 /* ---------- day page ---------- */
+function viewsBar(active){ const di=window.LASTDAY>=0?window.LASTDAY:Math.max(0,currentDayIndex()); const d=DAYS[di];
+  return '<div class="dayviews"><a class="'+(active==='day'?'on':'')+'" href="#day/'+d.id+'">📅 DAY VIEW</a><a class="'+(active==='map'?'on':'')+'" href="#map">🗺️ MAP</a><a class="'+(active==='list'?'on':'')+'" href="#planner">☰ LIST</a></div>'; }
 function renderDay(idx){
-  const d=DAYS[idx]; let h='<div class="dayviews"><a class="on" href="#day/'+d.id+'">📅 DAY VIEW</a><a href="#map">🗺️ MAP</a><a href="#planner">☰ LIST</a></div>';
+  const d=DAYS[idx]; window.LASTDAY=idx; let h=viewsBar('day');
   var gal=[]; if(d.img) gal.push({u:d.img,t:d.title||d.base,c:d.imgCredit||''});
   (d.clusters||[]).forEach(function(cl){ ['explore','activities','shopping','food'].forEach(function(k){
     (cl[k]||[]).forEach(function(e){ if(e.img) gal.push({u:e.img,t:e.name,c:e.imgCredit||''}); }); }); });
@@ -322,7 +324,7 @@ function renderDay(idx){
     (d.img?'<div class="zoomhint">⤢ TAP TO EXPAND'+(gal.length>1?' · '+gal.length+' PHOTOS':'')+'</div>':'')+
     (d.imgCredit?'<div class="credit">'+esc(d.imgCredit)+'</div>':'')+'</div><div class="dh-body">';
   { const ch=chapterOf(idx), sub=subOf(idx);
-    h+='<div class="chline"><span class="cp '+ch.k+'">'+ch.n+(ch.k==='f'?'':' CHAPTER')+'</span>'+(sub?'<span class="cp away '+sub.cls+'">'+sub.t+'</span>':'')+'<span>DAY '+(idx+1)+' OF 18 · '+esc(d.dow.slice(0,3).toUpperCase())+' '+esc(d.date)+'</span></div>';
+    h+='<div class="chline"><span>DAY '+(idx+1)+' OF 18 · '+esc(d.dow.slice(0,3).toUpperCase())+' '+esc(d.date)+'</span></div>';
     if(idx>=5&&idx<=8) h+='<div class="awaysticker">🎒 Small bag only<small>Big cases stay at Henn na Kyoto until Sunday · 4 nights away</small></div>'; }
   h+='<h2>'+esc(d.title)+'</h2>';
   h+='<div class="mono" style="font-size:12px;font-weight:700;color:#374151">'+esc(d.strapline||'')+'</div>';
@@ -333,7 +335,7 @@ function renderDay(idx){
     (d.travelDay?'<span class="tag book">TRAVEL DAY</span>':'')+'</div>';
   h+='<p style="font-size:14.5px;font-weight:600;margin:12px 0 0;line-height:1.5">'+d.summary+'</p>';
   if(d.shape){ const st=t=>String(t||'').split(/\s*→\s*/).filter(Boolean);
-    h+='<ol class="short">'+[['MORNING',d.shape.m],['AFTERNOON',d.shape.a],['EVENING',d.shape.e]].map((x,i)=>'<li><span class="sn">'+(i+1)+'</span><div class="sb"><b class="sl">'+x[0]+'</b>'+st(x[1]).map(y=>'<div class="step">'+y+'</div>').join('')+'</div></li>').join('')+'</ol>';
+    h+='<div class="tl">'+[['MORNING',d.shape.m],['AFTERNOON',d.shape.a],['EVENING',d.shape.e]].map((x,i)=>'<div class="tln"><span class="plabel">'+x[0]+'</span>'+st(x[1]).map(y=>'<div class="step">'+y+'</div>').join('')+'</div>').join('')+'</div>';
     if(d.shape.flex) h+='<p class="swap">↔ <b>If the day overflows:</b> '+d.shape.flex+'</p>';
   } else if(d.short&&d.short.length){ h+='<ol class="short">'+d.short.map((x,i)=>'<li><span class="sn">'+(i+1)+'</span><div class="sb">'+esc(x)+'</div></li>').join('')+'</ol>'; }
   if(d.swap) h+='<p class="swap"><b>If you\'d rather:</b> '+esc(d.swap)+'</p>';
@@ -544,7 +546,7 @@ window.planFilter=function(k){ planClear(); if(k!=='all'){ const b=document.quer
 
 /* ---- v58: chapters ---- */
 function chapterOf(i){ if(i===0) return {k:'f',n:'FLY OUT'}; if(i===17) return {k:'f',n:'FLY HOME'}; if(i<=9) return {k:'k',n:'KYOTO'}; if(i<=13) return {k:'m',n:'MOUNTAINS'}; return {k:'t',n:'TOKYO'}; }
-function subOf(i){ if(i===4) return {t:'DAY TRIP · OSAKA',cls:'trip'}; if(i===5||i===6) return {t:'THE RETREAT · NIGHT '+(i-4)+' OF 2',cls:'retreat'}; if(i===7||i===8) return {t:'THE SEASIDE · NIGHT '+(i-6)+' OF 2',cls:'seaside'}; if(i===9) return {t:'HOME TONIGHT · VIA NARA',cls:'away'}; return null; }
+function subOf(i){ if(i===4) return {t:'DAY TRIP · OSAKA',cls:'trip'}; if(i===5||i===6) return {t:'THE RETREAT · NIGHT '+(i-4)+' OF 2',cls:'retreat'}; if(i===7||i===8) return {t:'THE SEASIDE · NIGHT '+(i-6)+' OF 2',cls:'seaside'}; if(i===9) return {t:'HOME TONIGHT · VIA NARA',cls:'away'}; if(i>=10&&i<=13) return {t:'THE MOUNTAINS',cls:'mountains'}; return null; }
 window.chapterOf=chapterOf;
 /* ---------- home (v53, design B) ---------- */
 const BASES=[['KYOTO','2026-09-19','2026-09-21'],['OSAKA','2026-09-22','2026-09-22'],['ARASHIYAMA','2026-09-23','2026-09-24'],['INE','2026-09-25','2026-09-26'],['KISO','2026-09-28','2026-09-30'],['TOKYO','2026-10-01','2026-10-05']];
@@ -629,7 +631,7 @@ function renderDaynav(activeIdx){
   daynav.style.display='flex';
   daynav.innerHTML='<div class="band"><div class="tabs">'+DAYS.map((d,i)=>{ const sub=subOf(i);
     return '<div class="dtab'+(i===activeIdx?' active':'')+(sub?' '+sub.cls:'')+'" data-i="'+i+'" onclick="location.hash=\'day/'+d.id+'\'">'+
-      (i===5?'<span class="tag2">RETREAT</span>':'')+(i===7?'<span class="tag2">SEASIDE</span>':'')+(i===4?'<span class="tag2">DAY TRIP</span>':'')+
+      (i===5?'<span class="tag2">RETREAT</span>':'')+(i===7?'<span class="tag2">SEASIDE</span>':'')+(i===10?'<span class="tag2">MOUNTAINS</span>':'')+(i===4?'<span class="tag2">DAY TRIP</span>':'')+
       '<div>'+d.date+'</div><div class="c">'+(i===9?'KYO':d.chip)+'</div></div>'; }).join('')+'</div></div>';
   const el=daynav.querySelector('.dtab[data-i="'+activeIdx+'"]'); if(el) el.scrollIntoView({inline:'center',block:'nearest'});
 }
@@ -641,12 +643,12 @@ function route(){
     const id=hash.slice(5); let idx=DAYS.findIndex(d=>d.id===id); if(idx<0) idx=0;
     renderSubnav('#guide'); renderDaynav(idx); renderDay(idx);
   } else if(hash==='#guide'){ const ci=currentDayIndex(); location.hash='day/'+DAYS[ci>=0?ci:0].id; return; }
-  else if(hash==='#planner'){ renderSubnav(hash); app.innerHTML=renderPlanner(); }
+  else if(hash==='#planner'){ renderSubnav(hash); renderDaynav(window.LASTDAY>=0?window.LASTDAY:-1); app.innerHTML=viewsBar('list')+renderPlanner(); }
   else if(/^#(lists|mica|mark|todo|bookings|packing)$/.test(hash)){ renderSubnav('#packing'); app.innerHTML=P.renderLists(); }
   else if(hash==='#budget'){ renderSubnav(hash); app.innerHTML=P.renderBudget(); }
   else if(hash==='#etiquette'){ renderSubnav(hash); app.innerHTML=P.renderEtiquette(); }
   else if(hash==='#phrases'){ renderSubnav(hash); app.innerHTML=P.renderPhrases(); }
-  else if(hash==='#map'){ renderSubnav(hash); app.innerHTML=P.renderMap(DAYS); }
+  else if(hash==='#map'){ renderSubnav(hash); renderDaynav(window.LASTDAY>=0?window.LASTDAY:-1); app.innerHTML=viewsBar('map')+P.renderMap(DAYS); }
   else { renderSubnav('#home'); renderHome(); }
 }
 window.addEventListener('hashchange',function(){ var bp=document.getElementById('bigphrase'); if(bp) bp.style.display='none'; route(); });
