@@ -270,6 +270,7 @@ window.openCard=function(id){
   var html=(o.kind==='food'?foodCard(o.c,0):recCard(o.c,0)).replace('<details class="xr fade">','<details class="xr fade sheetcard" open>');
   var sh=document.getElementById('sheet'); sh.querySelector('.sheetbody').innerHTML=html; sh.classList.add('on'); document.body.style.overflow='hidden';
 };
+window.openHtmlSheet=function(k){ var html=(window.__SHEETS||{})[k]; if(!html) return; var sh=document.getElementById('sheet'); sh.querySelector('.sheetbody').innerHTML='<div class="sheetplain">'+html+'</div>'; sh.classList.add('on'); document.body.style.overflow='hidden'; };
 window.closeSheet=function(){ var sh=document.getElementById('sheet'); sh.classList.remove('on'); document.body.style.overflow=''; };
 function learnCards(d,cl){
   var out=[];
@@ -321,7 +322,7 @@ function renderDay(idx){
     (d.img?'<div class="zoomhint">⤢ TAP TO EXPAND'+(gal.length>1?' · '+gal.length+' PHOTOS':'')+'</div>':'')+
     (d.imgCredit?'<div class="credit">'+esc(d.imgCredit)+'</div>':'')+'</div><div class="dh-body">';
   { const ch=chapterOf(idx), sub=subOf(idx);
-    h+='<div class="chline"><span class="cp '+ch.k+'">'+ch.n+(ch.k==='f'?'':' CHAPTER')+'</span>'+(sub?'<span class="cp away">'+sub.t+'</span>':'')+'<span>DAY '+(idx+1)+' OF 18 · '+esc(d.dow.slice(0,3).toUpperCase())+' '+esc(d.date)+'</span></div>';
+    h+='<div class="chline"><span class="cp '+ch.k+'">'+ch.n+(ch.k==='f'?'':' CHAPTER')+'</span>'+(sub?'<span class="cp away '+sub.cls+'">'+sub.t+'</span>':'')+'<span>DAY '+(idx+1)+' OF 18 · '+esc(d.dow.slice(0,3).toUpperCase())+' '+esc(d.date)+'</span></div>';
     if(idx>=5&&idx<=8) h+='<div class="awaysticker">🎒 Small bag only<small>Big cases stay at Henn na Kyoto until Sunday · 4 nights away</small></div>'; }
   h+='<h2>'+esc(d.title)+'</h2>';
   h+='<div class="mono" style="font-size:12px;font-weight:700;color:#374151">'+esc(d.strapline||'')+'</div>';
@@ -331,25 +332,26 @@ function renderDay(idx){
     (walkTag?'<span class="tag rain">WALKING: '+esc(walkTag.toUpperCase())+'</span>':'')+
     (d.travelDay?'<span class="tag book">TRAVEL DAY</span>':'')+'</div>';
   h+='<p style="font-size:14.5px;font-weight:600;margin:12px 0 0;line-height:1.5">'+d.summary+'</p>';
-  if(d.short&&d.short.length){ h+='<div class="shortbox"><div class="shl">TODAY IN SHORT</div><ol>'+d.short.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ol>'+(d.swap?'<div class="shs"><b>If you\'d rather:</b> '+esc(d.swap)+'</div>':'')+'</div>'; }
+  if(d.short&&d.short.length){ h+='<ol class="short">'+d.short.map((x,i)=>'<li><span class="sn">'+(i+1)+'</span><span>'+esc(x)+'</span></li>').join('')+'</ol>'+(d.swap?'<p class="swap"><b>If you\'d rather:</b> '+esc(d.swap)+'</p>':''); }
   if(d.anchor&&!/^none/i.test(d.anchor)) h+='<div class="anchorline">📌 TIMED TODAY: '+esc(d.anchor)+'</div>';
+  const S2=!!window.SITE2; const SH={};
   if(d.shape){
     const steps=t=>String(t||'').split(/\s*→\s*/).map(x=>'<div class="step">'+x+'</div>').join('');
-    h+='<details class="shapex"><summary>🧭 A suggested order of play <span class="exp">▾</span></summary><div class="tl">'+
+    let sh='<div class="tl">'+
       '<div class="tln"><span class="plabel">MORNING</span>'+steps(d.shape.m)+'</div>'+
       '<div class="tln"><span class="plabel">AFTERNOON</span>'+steps(d.shape.a)+'</div>'+
       '<div class="tln" style="padding-bottom:2px"><span class="plabel">EVENING</span>'+steps(d.shape.e)+'</div></div>';
-    if(d.shape.flex) h+='<div class="flexline">↔ <b>If the day overflows:</b> '+d.shape.flex+'</div>';
-    h+='</details>';
+    if(d.shape.flex) sh+='<div class="flexline">↔ <b>If the day overflows:</b> '+d.shape.flex+'</div>';
+    if(S2) SH.order='<h3 class="sht">🧭 Order of play</h3>'+sh; else h+='<details class="shapex"><summary>🧭 A suggested order of play <span class="exp">▾</span></summary>'+sh+'</details>';
   }
   h+='<div class="wsline">🛏 WAKE: '+esc(d.wake)+'  →  SLEEP: '+esc(d.sleep)+'</div>';
   h+='</div></div>';
 
-  h+='<details class="aboutx"><summary><span class="axl">'+(d.aboutLabel||'About this place')+'</span><span class="axm">TAP TO READ</span><span class="exp">▾</span></summary>'+
-     '<div class="axbody">'+d.about+
+  { const ab='<div class="axbody">'+d.about+
      (d.deeper?'<div class="axmore">'+d.deeper+'</div>':'')+
      (d.holiday?'<div style="margin-top:10px;border-top:2px dashed #15803d;padding-top:8px"><b>'+esc(d.holidayName||'Holiday lens')+':</b> '+d.holiday+'</div>':'')+
-     '</div></details>';
+     '</div>';
+    if(S2) SH.about='<h3 class="sht">'+esc(d.aboutLabel||'About this place')+'</h3>'+ab; else h+='<details class="aboutx"><summary><span class="axl">'+(d.aboutLabel||'About this place')+'</span><span class="axm">TAP TO READ</span><span class="exp">▾</span></summary>'+ab+'</details>'; }
 
   if(d.travel&&d.travel.length){
     let tinner='';
@@ -368,7 +370,9 @@ function renderDay(idx){
         (t.live&&/jorudan/.test(t.live)?'<p style="font-size:11px;color:#6b7280;margin:6px 0 0;font-family:JetBrains Mono,monospace">LIVE TIMES opens Jorudan (Japanese, but the times and platform numbers read the same) pre-filled with this exact day and leg. For disruptions: <a href="https://trafficinfo.westjr.co.jp/en/" target="_blank" rel="noopener">JR West status</a> · <a href="https://traininfo.jr-central.co.jp/shinkansen/sp/en/ti08.html" target="_blank" rel="noopener">JR Central status</a></p>':'')+'</div>';
     });
     const t0=d.travel[0];
-    h+='<details class="secx blue"><summary><h3>🚄 Today\'s Travel</h3><div class="sub">'+esc(d.travelSub||t0.route)+(d.travel.length>1?' • '+d.travel.length+' legs':'')+' — tap to open</div><span class="exp">▾</span></summary><div class="secbody">'+tinner+'</div></details>';
+    const tsub=esc(d.travelSub||t0.route)+(d.travel.length>1?' • '+d.travel.length+' legs':'');
+    if(S2) SH.travel={sub:tsub, html:'<h3 class="sht">🚄 Today\'s travel</h3><div class="sub" style="margin-bottom:12px">'+tsub+'</div>'+tinner};
+    else h+='<details class="secx blue"><summary><h3>🚄 Today\'s Travel</h3><div class="sub">'+tsub+' — tap to open</div><span class="exp">▾</span></summary><div class="secbody">'+tinner+'</div></details>';
   }
   const H=d.hotel;
   if(H){
@@ -383,10 +387,23 @@ function renderDay(idx){
     if(H.note) inner+='<div class="info-box" data-label="Stay notes">'+H.note+'</div>';
     inner+='<div class="btnrow"><button class="btn mini" onclick="showMap(\''+encodeURIComponent(H.mapsQ||H.name)+'\')">🗺️ VIEW ON MAP</button>'+
       (H.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+H.url+'">↗ OFFICIAL SITE</a>':'')+'</div>';
-    h+='<details class="secx blue"><summary><h3>🏨 Tonight\'s Base</h3><div class="sub">'+esc(H.name)+' — tap for address, check-in and stay notes</div><span class="exp">▾</span></summary><div class="secbody">'+
-      '<div class="hrow"><div class="th thc" style="background:#000">🏨</div>'+
+    const hbody='<div class="secbody">'+
+      '<div class="hrow">'+thumb(H,idx)+
       '<div style="flex:1;min-width:0"><div class="nm">'+esc(H.name)+'</div><div class="ol">'+esc(H.checkin?('Check-in '+H.checkin):'')+'</div>'+
-      '<div style="margin-top:3px"><span class="tag '+(String(H.status).indexOf('BOOKED')>=0?'ok':'warn')+'">'+esc(H.status)+'</span></div></div></div>'+inner+'</div></details>';
+      '<div style="margin-top:3px"><span class="tag '+(String(H.status).indexOf('BOOKED')>=0?'ok':'warn')+'">'+esc(H.status)+'</span></div></div></div>'+inner+'</div>';
+    if(S2){ const P=picOf(H); SH.base={name:H.name, pic:P, html:'<h3 class="sht">🏨 Tonight\'s base</h3>'+hbody}; }
+    else h+='<details class="secx blue"><summary><h3>🏨 Tonight\'s Base</h3><div class="sub">'+esc(H.name)+' — tap for address, check-in and stay notes</div><span class="exp">▾</span></summary>'+hbody+'</details>';
+  }
+  if(S2){
+    window.__SHEETS={travel:SH.travel&&SH.travel.html, base:SH.base&&SH.base.html, order:SH.order, about:SH.about};
+    let tiles='';
+    if(SH.travel) tiles+='<button class="tile t-travel" onclick="openHtmlSheet(\'travel\')"><span class="tk">🚄 TRAVEL</span><span class="tv">'+SH.travel.sub+'</span><span class="ta">OPEN →</span></button>';
+    if(SH.base) tiles+='<button class="tile t-base'+(SH.base.pic?' haspic':'')+'" onclick="openHtmlSheet(\'base\')"'+(SH.base.pic?' style="background-image:url(\''+SH.base.pic.u+'\')"':'')+'><span class="tk">🏨 TONIGHT\'S BASE</span><span class="tv">'+esc(SH.base.name)+'</span><span class="ta">OPEN →</span></button>';
+    if(tiles) h+='<div class="tiles">'+tiles+'</div>';
+    let small='';
+    if(SH.order) small+='<button class="btn mini" onclick="openHtmlSheet(\'order\')">🧭 ORDER OF PLAY</button>';
+    if(SH.about) small+='<button class="btn mini" onclick="openHtmlSheet(\'about\')">'+esc((d.aboutLabel||'About this place').toUpperCase())+'</button>';
+    if(small) h+='<div class="btnrow tiles2">'+small+'</div>';
   }
   const clusters=(d.clusters||[]).map(c=>Object.assign({},c));
   if(d.cake){
@@ -398,18 +415,20 @@ function renderDay(idx){
   let prevSpot=(H&&(H.mapsQ||H.name))||d.wake||'';
   h+='<div class="sec"><h3>Areas today</h3><div class="sub">Each one is a walkable patch. Open it for the map, the walking order and what is there — see, do, eat, learn. Pick on the day.</div></div>';
   clusters.forEach((cl,ci)=>{ h+=areaCard(d,cl,ci,prevSpot); });
-  { const hu=((window.HEADSUP||{})[d.id]||[]).slice(); const K={closed:['⛔','CLOSED / TIMING'],avoid:['🚫','AVOID'],look:['👀','LOOK OUT FOR'],nook:['🔎','NOOKS & CRANNIES'],shop:['🛍','BRING HOME'],ground:['👣','ON THE GROUND'],tip:['💡','TIP OF THE DAY']};
-    const items=[];
-    if(d.alert) items.push({k:'avoid',t:d.alert});
-    hu.filter(function(x){return x.k==='closed';}).forEach(function(x){items.push(x);});
-    hu.filter(function(x){return x.k==='avoid';}).forEach(function(x){items.push(x);});
-    (d.notice||[]).forEach(function(n){ items.push({k:'tip',t:n}); });
-    hu.filter(function(x){return x.k==='look';}).forEach(function(x){items.push(x);});
-    clusters.forEach(function(cl){ if(/^(OPTIONAL|ALTERNATIVE|BONUS|Plan B|Rain switch|Evening option)/i.test(cl.name||'')) return; ['explore','activities','shopping','food'].forEach(function(k){ (cl[k]||[]).forEach(function(e){ if(e.tips) items.push({k:'ground',t:e.tips,who:e.name}); }); }); });
-    hu.filter(function(x){return x.k==='nook'||x.k==='shop';}).forEach(function(x){items.push(x);});
-    if(items.length){
-    h+='<div class="sec orange" style="margin-top:26px"><h3>Heads up</h3><div class="sub">Closed today, worth avoiding, tips, on-the-ground notes for each place, worth finding, worth bringing home</div></div><ul class="hu">'+
-      items.map(function(x){ return '<li class="hu-'+x.k+'"><span class="huk">'+K[x.k][0]+' '+K[x.k][1]+(x.who?' · '+esc(x.who):'')+'</span>'+x.t+'</li>'; }).join('')+'</ul>'; } }
+  { const hu=((window.HEADSUP||{})[d.id]||[]).slice();
+    const avoid=[], tips=[], look=[];
+    if(d.alert) avoid.push(d.alert);
+    hu.filter(x=>x.k==='closed').forEach(x=>avoid.push('<b>Closed today:</b> '+x.t));
+    hu.filter(x=>x.k==='avoid').forEach(x=>avoid.push(x.t));
+    (d.notice||[]).forEach(n=>tips.push(n));
+    hu.filter(x=>x.k==='tip').forEach(x=>tips.push(x.t));
+    clusters.forEach(function(cl){ if(/^(OPTIONAL|ALTERNATIVE|BONUS|Plan B|Rain switch|Evening option)/i.test(cl.name||'')) return; ['explore','activities','shopping','food'].forEach(function(k){ (cl[k]||[]).forEach(function(e){ if(e.tips) tips.push('<b>'+esc(e.name)+':</b> '+e.tips); }); }); });
+    hu.filter(x=>x.k==='look').forEach(x=>look.push(x.t));
+    hu.filter(x=>x.k==='nook').forEach(x=>look.push('<b>Worth finding:</b> '+x.t));
+    hu.filter(x=>x.k==='shop').forEach(x=>look.push('<b>Bring home:</b> '+x.t));
+    const grp=(cls,title,arr)=>arr.length?'<div class="hug '+cls+'"><h4>'+title+'</h4><ul>'+arr.map(t=>'<li>'+t+'</li>').join('')+'</ul></div>':'';
+    if(avoid.length||tips.length||look.length){
+      h+='<div class="sec orange" style="margin-top:26px"><h3>Heads up</h3></div>'+grp('avoid','🚫 Avoid',avoid)+grp('tips','💡 Tips',tips)+grp('look','👀 Look out for',look); } }
   h+='<div class="btnrow" style="margin-top:26px">'+
      (idx>0?'<a class="btn" style="flex:1" href="#day/'+DAYS[idx-1].id+'">← '+esc(DAYS[idx-1].date)+'</a>':'')+
      (idx<DAYS.length-1?'<a class="btn red" style="flex:1" href="#day/'+DAYS[idx+1].id+'">'+esc(DAYS[idx+1].date)+' →</a>':'')+'</div>';
@@ -532,7 +551,7 @@ window.planFilter=function(k){ planClear(); if(k!=='all'){ const b=document.quer
 
 /* ---- v58: chapters ---- */
 function chapterOf(i){ if(i===0) return {k:'f',n:'FLY OUT'}; if(i===17) return {k:'f',n:'FLY HOME'}; if(i<=9) return {k:'k',n:'KYOTO'}; if(i<=13) return {k:'m',n:'MOUNTAINS'}; return {k:'t',n:'TOKYO'}; }
-function subOf(i){ if(i===4) return {t:'DAY TRIP · OSAKA',cls:'trip'}; if(i===5||i===6) return {t:'THE RETREAT · NIGHT '+(i-4)+' OF 2',cls:'away'}; if(i===7||i===8) return {t:'THE SEASIDE · NIGHT '+(i-6)+' OF 2',cls:'away'}; if(i===9) return {t:'HOME TONIGHT · VIA NARA',cls:'away'}; return null; }
+function subOf(i){ if(i===4) return {t:'DAY TRIP · OSAKA',cls:'trip'}; if(i===5||i===6) return {t:'THE RETREAT · NIGHT '+(i-4)+' OF 2',cls:'retreat'}; if(i===7||i===8) return {t:'THE SEASIDE · NIGHT '+(i-6)+' OF 2',cls:'seaside'}; if(i===9) return {t:'HOME TONIGHT · VIA NARA',cls:'away'}; return null; }
 window.chapterOf=chapterOf;
 /* ---------- home (v53, design B) ---------- */
 const BASES=[['KYOTO','2026-09-19','2026-09-21'],['OSAKA','2026-09-22','2026-09-22'],['ARASHIYAMA','2026-09-23','2026-09-24'],['INE','2026-09-25','2026-09-26'],['KISO','2026-09-28','2026-09-30'],['TOKYO','2026-10-01','2026-10-05']];
@@ -557,7 +576,7 @@ window.GLANCE_FILTER='all';
 window.renderGlance=function(){ const F=window.GLANCE_FILTER; const rows=glanceRows().filter(function(r){return F==='all'||r.k===F;});
   return '<div class="gf">'+['all','flight','hotel','train','transfer'].map(function(k){return '<button class="'+(F===k?'on':'')+'" onclick="GLANCE_FILTER=\''+k+'\';document.getElementById(\'glance\').innerHTML=renderGlance()">'+(k==='all'?'ALL':k+'s')+'</button>';}).join('')+'</div>'+
   '<div style="overflow-x:auto"><table class="simple mini gl"><tr><th>DATE</th><th>WHAT</th><th>DETAIL</th><th></th></tr>'+
-  (function(){ let last=''; return rows.map(function(r){ const ch=chapterOf(r.day-1); const sub=subOf(r.day-1); const grp=ch.k==='k'&&sub&&sub.cls==='away'?'KYOTO · THE RETREAT + THE SEASIDE':(ch.k==='f'?'✈ '+ch.n:ch.n); const head=grp!==last?'<tr><th colspan="4" class="gl-grp">'+grp+'</th></tr>':''; last=grp; return head+'<tr onclick="location.hash=\'day/'+r.id+'\'" style="cursor:pointer"><td style="white-space:nowrap"><span class="k '+r.k+'"></span>'+esc(r.d)+'</td><td><b>'+esc(r.what)+'</b></td><td>'+esc(r.route)+'</td><td>'+r.tag+'</td></tr>';}).join(''); })()+'</table></div>'+
+  (function(){ let last=''; return rows.map(function(r){ const ch=chapterOf(r.day-1); const sub=subOf(r.day-1); const grp=ch.k==='k'&&sub&&(sub.cls==='retreat'||sub.cls==='seaside'||sub.cls==='away')?'KYOTO · THE RETREAT + THE SEASIDE':(ch.k==='f'?'✈ '+ch.n:ch.n); const head=grp!==last?'<tr><th colspan="4" class="gl-grp">'+grp+'</th></tr>':''; last=grp; return head+'<tr onclick="location.hash=\'day/'+r.id+'\'" style="cursor:pointer"><td style="white-space:nowrap"><span class="k '+r.k+'"></span>'+esc(r.d)+'</td><td><b>'+esc(r.what)+'</b></td><td>'+esc(r.route)+'</td><td>'+r.tag+'</td></tr>';}).join(''); })()+'</table></div>'+
   '<div class="legend">'+flexTag('must')+' only train that works, or your seat is on it &nbsp; '+flexTag('res')+' booked seat, swappable &nbsp; '+flexTag('fixed')+' no booking, but gaps — aim for the one named &nbsp; '+flexTag('go')+' take the next one &nbsp; '+flexTag('arr')+' sorted with a person, not a timetable</div>'; };
 
 /* ---- v58: the journey map (simplified / to scale) ---- */
@@ -615,11 +634,10 @@ window.toggleMenu=function(){ document.getElementById('menu').classList.toggle('
 function renderSubnav(){ const g=goInfo(); const el=document.getElementById('m-guide-s'); if(el) el.textContent=g.day; document.getElementById('menu').classList.remove('open'); }
 function renderDaynav(activeIdx){
   daynav.style.display='flex';
-  const bands=[{k:'f',h:'✈',d:[0]},{k:'k',h:'KYOTO',d:[1,2,3,4,5,6,7,8,9]},{k:'m',h:'MOUNTAINS',d:[10,11,12,13]},{k:'t',h:'TOKYO',d:[14,15,16,17]}];
-  daynav.innerHTML=bands.map(b=>'<div class="band '+b.k+'"><div class="bh">'+b.h+'</div><div class="tabs">'+b.d.map(i=>{ const d=DAYS[i]; const sub=subOf(i);
+  daynav.innerHTML='<div class="band"><div class="tabs">'+DAYS.map((d,i)=>{ const sub=subOf(i);
     return '<div class="dtab'+(i===activeIdx?' active':'')+(sub?' '+sub.cls:'')+'" data-i="'+i+'" onclick="location.hash=\'day/'+d.id+'\'">'+
-      (i===5?'<span class="tag2">AWAY →</span>':'')+(i===9?'<span class="tag2">← HOME</span>':'')+(i===4?'<span class="tag2">DAY TRIP</span>':'')+
-      '<div>'+d.date+'</div><div class="c">'+(i===9?'KYO':d.chip)+'</div></div>'; }).join('')+'</div></div>').join('');
+      (i===5?'<span class="tag2">RETREAT</span>':'')+(i===7?'<span class="tag2">SEASIDE</span>':'')+(i===9?'<span class="tag2">← HOME</span>':'')+(i===4?'<span class="tag2">DAY TRIP</span>':'')+
+      '<div>'+d.date+'</div><div class="c">'+(i===9?'KYO':d.chip)+'</div></div>'; }).join('')+'</div></div>';
   const el=daynav.querySelector('.dtab[data-i="'+activeIdx+'"]'); if(el) el.scrollIntoView({inline:'center',block:'nearest'});
 }
 function route(){

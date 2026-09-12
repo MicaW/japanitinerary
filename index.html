@@ -517,7 +517,7 @@ header .menubtn:active{transform:translate(2px,2px);box-shadow:none}
 #daynav .bh{font-family:'Archivo Black',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;background:#000;color:#fff;margin-bottom:6px;white-space:nowrap}
 #daynav .band.k .bh{background:#e11d48}#daynav .band.m .bh{background:#15803d}#daynav .band.t .bh{background:#2563eb}#daynav .band.f .bh{background:#6b7280}
 #daynav .tabs{display:flex;gap:6px}
-#daynav .dtab.away{border-color:var(--yellow);background:#fffbe6}#daynav .dtab.trip{border-style:dashed;border-color:#9ca3af}
+#daynav .dtab.away,.dtab.retreat,.dtab.seaside{border-color:var(--yellow);background:#fffbe6}#daynav .dtab.trip{border-style:dashed;border-color:#9ca3af}
 #daynav .dtab.active{background:var(--yellow);border-color:#000;border-style:solid}
 #daynav .dtab .tag2{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:7.5px;background:var(--yellow);border:1.5px solid #000;padding:1px 4px;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-weight:800}
 .chline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;margin-bottom:6px}
@@ -535,6 +535,17 @@ table.simple th.gl-grp{background:#000;color:#fff;padding:6px 8px;font-family:'A
 .pfilters .pfl{font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:.08em;align-self:center;margin-right:2px}
 .pcount{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;margin:-8px 0 12px;color:#374151}
 .hu{list-style:none;padding:0;margin:10px 0 0}.hu>li{padding:10px 0 10px 14px;border-left:5px solid #000;margin:0 0 10px;font-size:13.5px;line-height:1.5}.hu li.hu-closed{border-color:var(--red)}.hu li.hu-avoid{border-color:var(--orange)}.hu li.hu-look{border-color:var(--blue)}.hu li.hu-nook{border-color:var(--green)}.hu li.hu-shop{border-color:var(--purple)}.hu li.hu-ground{border-color:#000}.hu li.hu-tip{border-color:var(--yellow)}.hug{list-style:none;padding:0;margin:4px 0 0}.hug li{padding:6px 0;border:0;border-top:1.5px solid #e5e7eb;font-size:13px;margin:0}.hug li:first-child{border-top:0}.hu .huk{display:block;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:800;letter-spacing:.08em;margin-bottom:3px;color:#374151}
+
+/* today in short (plain list) + heads up groups */
+.short{list-style:none;margin:12px 0 0;padding:0}
+.short li{display:flex;gap:10px;align-items:flex-start;font-weight:700;font-size:15px;line-height:1.4;margin:0 0 8px}
+.short .sn{flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:#2563eb;color:#fff;font-family:'Archivo Black',sans-serif;font-size:14px;display:inline-flex;align-items:center;justify-content:center}
+.swap{font-size:13px;margin:4px 0 0;color:#374151}
+.hug{margin:14px 0 0}
+.hug h4{margin:0 0 6px;font-family:'Archivo Black',sans-serif;font-size:14px;text-transform:uppercase;letter-spacing:.04em}
+.hug ul{margin:0;padding-left:20px}
+.hug li{margin:0 0 8px;font-size:14px;line-height:1.5}
+.hug.avoid h4{color:#e11d48}.hug.tips h4{color:#b45309}.hug.look h4{color:#2563eb}
 </style>
 </head>
 <body>
