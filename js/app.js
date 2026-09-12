@@ -417,7 +417,6 @@ function renderDay(idx){
     hu.filter(x=>x.k==='avoid').forEach(x=>avoid.push(x.t));
     (d.notice||[]).forEach(n=>tips.push(n));
     hu.filter(x=>x.k==='tip').forEach(x=>tips.push(x.t));
-    clusters.forEach(function(cl){ if(/^(OPTIONAL|ALTERNATIVE|BONUS|Plan B|Rain switch|Evening option)/i.test(cl.name||'')) return; ['explore','activities','shopping','food'].forEach(function(k){ (cl[k]||[]).forEach(function(e){ if(e.tips) tips.push('<b>'+esc(e.name)+':</b> '+e.tips); }); }); });
     hu.filter(x=>x.k==='look').forEach(x=>look.push(x.t));
     hu.filter(x=>x.k==='nook').forEach(x=>look.push('<b>Worth finding:</b> '+x.t));
     hu.filter(x=>x.k==='shop').forEach(x=>look.push('<b>Bring home:</b> '+x.t));
@@ -631,7 +630,7 @@ function renderDaynav(activeIdx){
   daynav.style.display='flex';
   daynav.innerHTML='<div class="band"><div class="tabs">'+DAYS.map((d,i)=>{ const sub=subOf(i);
     return '<div class="dtab'+(i===activeIdx?' active':'')+(sub?' '+sub.cls:'')+'" data-i="'+i+'" onclick="location.hash=\'day/'+d.id+'\'">'+
-      (i===5?'<span class="tag2">RETREAT</span>':'')+(i===7?'<span class="tag2">SEASIDE</span>':'')+(i===9?'<span class="tag2">← HOME</span>':'')+(i===4?'<span class="tag2">DAY TRIP</span>':'')+
+      (i===5?'<span class="tag2">RETREAT</span>':'')+(i===7?'<span class="tag2">SEASIDE</span>':'')+(i===4?'<span class="tag2">DAY TRIP</span>':'')+
       '<div>'+d.date+'</div><div class="c">'+(i===9?'KYO':d.chip)+'</div></div>'; }).join('')+'</div></div>';
   const el=daynav.querySelector('.dtab[data-i="'+activeIdx+'"]'); if(el) el.scrollIntoView({inline:'center',block:'nearest'});
 }
