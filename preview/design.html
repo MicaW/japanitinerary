@@ -1,142 +1,120 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DESIGN VARIATIONS — Lampteys on Tour</title>
+<title>DESIGN DIRECTIONS — Lampteys on Tour</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;900&family=Lexend:wght@400;600;800&family=Manrope:wght@400;600;800&family=Inter:wght@400;600;800&family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&family=Bangers&family=Noto+Sans+JP:wght@400;700;900&family=Bebas+Neue&family=Work+Sans:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Outfit:wght@400;600;800&family=Archivo:wght@400;600;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,800&family=Lilita+One&family=Chivo:wght@400;700;900&family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&family=Sora:wght@400;600;800&family=Karla:wght@400;600;800&family=DM+Mono:wght@400;500&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;900&family=Inter:wght@400;600;800;900&family=Lexend:wght@400;600;800&family=Noto+Sans+JP:wght@400;700;900&family=Atkinson+Hyperlegible:wght@400;700&family=Bebas+Neue&family=Work+Sans:wght@400;600;800&family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--disp:'Rubik';--body:'Rubik';--mono:'DM Mono';--bg:#f6f4ee;--ink:#111;--red:#ff2a2a;--yellow:#ffcc00;--blue:#0044ff;--green:#15803d;--orange:#f97316;--pink:#FF5FA2;--card:#fff;--bw:3px;--radius:0;--shadow:6px 6px 0 #000;--tilt:-1.5deg;--dispweight:900;--dispcase:uppercase;--disptrack:-.01em;--muted:#333}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body),'Helvetica Neue',Arial,system-ui,sans-serif;font-size:17px;line-height:1.55}
-body.pat-dots{background-image:radial-gradient(rgba(0,0,0,.10) 1px,transparent 1.2px);background-size:14px 14px}
-body.pat-noise{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
-body.pat-blobs{background-image:radial-gradient(circle at 12% 18%,rgba(255,204,0,.28),transparent 32%),radial-gradient(circle at 88% 8%,rgba(255,95,162,.22),transparent 30%),radial-gradient(circle at 70% 90%,rgba(0,68,255,.14),transparent 34%);background-attachment:fixed}
-.pvbar{position:sticky;top:0;z-index:60;background:#111;color:#fff;padding:10px 12px;font:600 12px/1.3 system-ui;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.pvbar button{font:700 11px system-ui;border:2px solid #fff;background:#111;color:#fff;padding:5px 9px;cursor:pointer;border-radius:999px}
+/* ===== BASELINE shared by every direction: sans, capitals, 18px, 52px targets, one accent, no tilt, no stickers, no grid ===== */
+:root{--disp:'Rubik';--body:'Rubik';--bg:#fff;--card:#fff;--ink:#111;--muted:#3a3a3a;--acc:#d81e1e;--accInk:#fff;--soft:#ffe3e3;--rule:#111;--bw:3px;--radius:0;--shadow:none;--hdr:#fff;--hdrInk:#111;--dw:900}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body),'Helvetica Neue',Arial,sans-serif;font-size:18px;line-height:1.6}
+h1,h2,h3,h4,.disp{font-family:var(--disp),var(--body),'Helvetica Neue',Arial,sans-serif;font-weight:var(--dw);text-transform:uppercase;line-height:1.05;margin:0;letter-spacing:.01em}
+.small{font-size:15px;color:var(--muted);font-weight:600}
+.pvbar{position:sticky;top:0;z-index:60;background:#111;color:#fff;padding:10px 12px;font:600 13px/1.3 system-ui;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pvbar button{font:700 13px system-ui;border:2px solid #fff;background:#111;color:#fff;padding:8px 12px;cursor:pointer;border-radius:999px;min-height:40px}
 .pvbar button.on{background:#ffcc00;color:#111;border-color:#ffcc00}
-.pvnote{max-width:900px;margin:14px auto 0;padding:0 16px;font:13px/1.5 system-ui;color:#333}
-.wrap{max-width:560px;margin:0 auto;padding:16px}
-h1,h2,h3,.disp{font-family:var(--disp),var(--body),'Helvetica Neue',Arial,system-ui,sans-serif;font-weight:var(--dispweight);text-transform:var(--dispcase);letter-spacing:var(--disptrack);line-height:1.02;margin:0}
-.mono{font-family:var(--mono),monospace}
+.pvnote{max-width:640px;margin:14px auto 0;padding:0 16px;font:15px/1.5 system-ui;color:#333}
+body.dark .pvnote{color:#ccc}
+.wrap{max-width:560px;margin:0 auto;padding:20px 16px 60px}
 /* header */
-.hdr{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:var(--card);border-bottom:var(--bw) solid var(--ink);position:sticky;top:44px;z-index:50}
-.hdr .logo{display:flex;align-items:center;gap:9px}.hdr .dot{width:32px;height:32px;border-radius:50%;background:#000;border:2.5px solid var(--ink);overflow:hidden}.hdr .dot img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-.hdr h1{font-size:17px}.hdr h1 span{color:var(--red)}
-.menubtn{font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;border:2.5px solid var(--ink);background:var(--card);padding:7px 11px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--hdr);color:var(--hdrInk);border-bottom:var(--bw) solid var(--rule);position:sticky;top:50px;z-index:50}
+.hdr .logo{display:flex;align-items:center;gap:10px}.hdr .dot{width:36px;height:36px;border-radius:50%;background:#000;overflow:hidden;border:2px solid var(--hdrInk)}.hdr .dot img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.hdr h1{font-size:19px;color:var(--hdrInk)}.hdr h1 span{color:var(--acc)}
+.menubtn{font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);font-size:15px;border:var(--bw) solid var(--hdrInk);background:transparent;color:var(--hdrInk);padding:12px 16px;min-height:48px;border-radius:var(--radius);text-transform:uppercase}
 /* hero */
-.hero{background:var(--card);border:var(--bw) solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin:18px 0}
-.himg{position:relative;height:340px;background:#000}.himg img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.himg .grad{position:absolute;inset:0;background:linear-gradient(to top,#000 2%,rgba(0,0,0,.5) 26%,transparent 56%)}
-.himg .ht{position:absolute;left:16px;bottom:110px;right:16px}.himg h1{font-size:clamp(40px,10vw,74px);color:#fff}.himg h1 .y{color:var(--yellow)}
-.sticker{position:absolute;right:14px;top:14px;background:var(--yellow);border:3px solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);padding:8px 12px;transform:rotate(calc(var(--tilt) * -3));text-align:center}
-.sticker .n{font-family:var(--disp),var(--body),'Helvetica Neue',Arial,sans-serif;font-weight:var(--dispweight);font-size:40px;line-height:.95}.sticker .t{font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;margin-top:3px;letter-spacing:.05em}
-.hbody{padding:16px}
-.goround{width:170px;height:170px;border-radius:50%;background:var(--red);color:#fff;border:4px solid var(--ink);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin:-95px auto 6px;position:relative;z-index:3;font-family:var(--disp),var(--body),'Helvetica Neue',Arial,sans-serif;font-weight:var(--dispweight);text-transform:var(--dispcase)}
-.goround .k{font-size:12px;letter-spacing:.06em}.goround .d{font-size:30px;line-height:1}.goround .ar{font-size:24px}
-.gosub{text-align:center;font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:13px;font-weight:700;margin:4px 0 12px}
-.datebar{display:inline-block;background:var(--yellow);border:2.5px solid var(--ink);box-shadow:var(--shadow);padding:5px 10px;font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;transform:rotate(var(--tilt));border-radius:var(--radius)}
-.ctas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.ctas a{border:var(--bw) solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 12px;text-decoration:none;color:var(--ink);font-family:var(--disp),var(--body),'Helvetica Neue',Arial,sans-serif;font-weight:var(--dispweight);text-transform:var(--dispcase);font-size:15px;line-height:1.1;display:block}
-.ctas a small{display:block;font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:11.5px;font-weight:700;margin-top:6px;text-transform:none}
-.c-ph{background:var(--yellow)}.c-et{background:var(--pink)}
-.mapbox{border:var(--bw) solid var(--ink);background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin:18px 0;padding:6px 6px 8px}.mapbox svg{width:100%;height:auto;display:block}.mapbox .jm-n{font-family:var(--disp),var(--body),Arial,sans-serif;font-weight:var(--dispweight);text-transform:uppercase}.mapbox .jm-s{font-family:var(--mono),Arial,sans-serif;font-weight:700;font-size:9.5px;fill:var(--muted)}.mapbox .jm-sea{font-family:var(--mono),Arial,sans-serif;font-weight:700;font-size:10px;fill:var(--muted)}.jm-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 6px 0;font-family:var(--mono),Arial,sans-serif;font-size:12px;font-weight:700}body.open .mapbox,body.tiles .mapbox{border-width:0;box-shadow:none}body.read .mapbox .jm-s{font-size:12px}body.read .mapbox .jm-n{font-size:15px}
-/* section header */
-.sec{border-left:8px solid var(--ink);background:var(--card);padding:10px 14px;margin:22px 0 12px;border-radius:var(--radius)}
-.sec h3{font-size:19px}.sec .sub{font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:13px;margin-top:3px;color:var(--muted)}
-.sec.blue{border-left-color:var(--blue)}.sec.orange{border-left-color:var(--orange)}
-/* place card */
-.card{background:var(--card);border:var(--bw) solid var(--ink);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin:12px 0}
-.card img{width:100%;height:170px;object-fit:cover;display:block}
-.cb{padding:12px 14px}.cb h4{font-family:var(--disp),var(--body),'Helvetica Neue',Arial,sans-serif;font-weight:var(--dispweight);text-transform:var(--dispcase);font-size:18px;margin:0 0 4px;line-height:1.05}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.tag{font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;padding:3px 7px;border-radius:calc(var(--radius) + 2px);background:#eee}
-.tag.core{background:var(--red);color:#fff}.tag.hist{background:#fde68a}.tag.ok{background:var(--green);color:#fff}
-.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.btn{font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:12px;font-weight:700;border:2px solid var(--ink);background:var(--card);padding:7px 9px;border-radius:var(--radius);box-shadow:var(--shadow);text-transform:uppercase;flex:1;text-align:center;text-decoration:none;color:var(--ink)}
-.btn.y{background:var(--yellow)}
-.info{background:var(--card);border:2.5px solid var(--ink);border-radius:var(--radius);padding:14px 14px;margin:14px 0;font-size:16px;position:relative;box-shadow:var(--shadow)}
-.info::before{content:attr(data-label);position:absolute;top:-12px;left:12px;background:var(--blue);color:#fff;font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:700;padding:2px 8px;border:2px solid var(--ink);border-radius:var(--radius)}
-.hu{list-style:none;padding:0;margin:8px 0}.hu li{padding:8px 0 8px 12px;border-left:5px solid var(--red);margin-bottom:8px;font-size:16px}.hu li.a{border-color:var(--orange)}.hu li.n{border-color:var(--green)}.hu .huk{display:block;font-family:var(--mono),'Helvetica Neue',Arial,sans-serif;font-size:11px;font-weight:800;letter-spacing:.08em;margin-bottom:2px;color:var(--muted)}
-/* ---- open / tile modes ---- */
-body.open .card,body.open .info,body.open .hero{border-width:0;box-shadow:0 1px 0 rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.08)}
-body.open .sec{background:transparent;border-left:0;padding-left:0;border-bottom:var(--bw) solid var(--ink);border-radius:0}
-body.open .sec.blue{border-color:var(--blue)}body.open .sec.orange{border-color:var(--orange)}
-body.open .btn{box-shadow:none}body.open .menubtn,body.open .datebar,body.open .ctas a{box-shadow:none}
-body.open .info::before{border:0}
-body.tiles .card,body.tiles .info,body.tiles .hero{border-width:0;box-shadow:none}
-body.tiles .sec{border:0;background:var(--ink);color:#fff;padding:10px 14px}body.tiles .sec .sub{color:#ddd}
-body.tiles .ctas a,body.tiles .btn,body.tiles .menubtn,body.tiles .datebar{border-width:0;box-shadow:none}
-body.tiles .info::before{border:0}body.tiles .goround{border-width:0}body.tiles .sticker{border-width:0;box-shadow:none}
-body.tiles .hdr{border-bottom:0}
-
-/* ---- readability-first mode (variations 15–20) ---- */
-body.read{font-size:18px;line-height:1.6}
-body.read .wrap{padding:20px 16px}
-body.read .hero,body.read .card,body.read .info,body.read .sec{margin-top:26px;margin-bottom:26px}
-body.read .sticker,body.read .datebar{display:none}
-body.read .cdband{display:flex;align-items:baseline;gap:12px;background:var(--ink);color:#fff;padding:14px 16px;font-family:var(--disp),var(--body),'Helvetica Neue',Arial,sans-serif;text-transform:uppercase}
-body.read .cdband .n{font-size:44px;line-height:1;color:var(--yellow)}body.read .cdband .t{font-size:16px;letter-spacing:.04em}
-.cdband{display:none}
-body.read .himg{height:300px}body.read .himg .ht{bottom:22px}body.read .himg h1{font-size:clamp(38px,9vw,64px)}
-body.read .goround{margin:22px auto 8px;width:200px;height:200px;box-shadow:none;border-width:0}
-body.read .goround .k{font-size:15px}body.read .goround .d{font-size:36px}
-body.read .gosub{font-size:15px;margin-bottom:6px}
-body.read .ctas{gap:16px}body.read .ctas a{padding:22px 16px;font-size:18px;min-height:64px;display:flex;align-items:center;box-shadow:none}
-body.read .btn{font-size:14px;padding:16px 12px;min-height:52px;display:flex;align-items:center;justify-content:center;box-shadow:none}
-body.read .menubtn{font-size:14px;padding:12px 16px;min-height:48px;box-shadow:none}
-body.read .tag{font-size:13px;padding:6px 10px}
-body.read .sec h3{font-size:24px}body.read .sec .sub{font-size:15px;color:var(--muted)}
-body.read .cb h4{font-size:24px}body.read .cb p{font-size:18px}
-body.read .info{font-size:18px;padding:18px 16px}body.read .info::before{font-size:12px;padding:4px 10px}
-body.read .hu>li{font-size:18px;padding:12px 0 12px 16px;margin-bottom:14px}body.read .hu .huk{font-size:13px}
-body.read .card img{height:220px}
-body.read .hdr h1{font-size:19px}
-body.read .mono{font-size:15px!important}
-</style></head><body>
-<div class="pvbar" id="bar">VARIATION:</div>
-<p class="pvnote" id="note"></p><p class="pvnote" style="margin-top:4px;color:#555">Variations 1–14: sans-serif only, headings in capitals, body text at 17px with dark grey rather than pale grey, and no straight-line grid anywhere — dots, paper noise, soft colour or nothing. Variations 15–20 start from readability: one accent colour, nothing tilted, no stickers, buttons at least 52px tall, 18px text, more space.</p>
-<div class="hdr"><div class="logo"><div class="dot"><img src="../images/hero.jpg" alt=""></div><h1>Lampteys <span>on tour</span></h1></div><button class="menubtn">☰ MENU</button></div>
+.hero{background:var(--card);border:var(--bw) solid var(--rule);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin:22px 0}
+.himg{position:relative;height:300px;background:#000}.himg img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.himg .grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 40%,transparent 65%)}
+.himg .ht{position:absolute;left:18px;bottom:18px;right:18px}.himg h1{font-size:clamp(38px,9vw,64px);color:#fff}.himg h1 .y{color:var(--acc)}
+.cdband{display:flex;align-items:center;gap:14px;background:var(--ink);color:#fff;padding:14px 18px;font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);text-transform:uppercase}
+.cdband .n{font-size:46px;line-height:1;color:var(--acc)}.cdband .t{font-size:16px;letter-spacing:.04em}
+.hbody{padding:18px}
+.goround{width:200px;height:200px;border-radius:50%;background:var(--acc);color:var(--accInk);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;text-decoration:none;margin:0 auto 18px;font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);text-transform:uppercase}
+.goround .k{font-size:15px;letter-spacing:.06em}.goround .d{font-size:38px;line-height:1;margin:4px 0}.goround .ar{font-size:26px}
+.ctas{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.ctas a{border:var(--bw) solid var(--rule);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 16px;min-height:72px;display:flex;align-items:center;text-decoration:none;color:var(--ink);font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);text-transform:uppercase;font-size:18px;line-height:1.1;background:var(--soft)}
+/* map */
+.mapbox{border:var(--bw) solid var(--rule);background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin:22px 0;padding:8px}
+.mapbox svg{width:100%;height:auto;display:block}
+.mapbox .jm-n{font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);text-transform:uppercase;fill:var(--ink)}.mapbox .jm-s{font-family:var(--body),Arial,sans-serif;font-weight:700;font-size:11px;fill:var(--muted)}.mapbox .jm-sea{font-family:var(--body),Arial,sans-serif;font-weight:700;font-size:11px;fill:var(--muted)}
+.jm-foot{display:flex;justify-content:flex-end;padding:8px 4px 0}
+/* section header + area + cards */
+.sec{margin:28px 0 14px}.sec h3{font-size:24px}.sec .sub{font-size:15px;color:var(--muted);margin-top:4px;font-weight:600}
+.area{border:var(--bw) solid var(--rule);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow);margin:18px 0;overflow:hidden}
+.area .ah{display:flex;align-items:center;gap:14px;padding:16px;background:var(--soft)}
+.area .ai{flex:none;width:44px;height:44px;border-radius:50%;background:var(--acc);color:var(--accInk);display:flex;align-items:center;justify-content:center;font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);font-size:20px}
+.area .at{font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);text-transform:uppercase;font-size:20px;line-height:1.1}.area .as{font-size:15px;color:var(--muted);font-weight:600;margin-top:3px}
+.area .open{margin-left:auto;font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);font-size:14px;border:var(--bw) solid var(--rule);padding:12px 14px;min-height:48px;border-radius:var(--radius);white-space:nowrap;background:var(--card);text-transform:uppercase}
+.card{background:var(--card);border:var(--bw) solid var(--rule);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin:16px 0}
+.card img{width:100%;height:220px;object-fit:cover;display:block}
+.cb{padding:16px}.cb h4{font-size:24px;margin:0 0 4px}.cb .meta{font-size:15px;color:var(--muted);font-weight:600}.cb p{margin:10px 0 0}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}.tag{font-size:13px;font-weight:800;padding:7px 11px;border-radius:calc(var(--radius) + 4px);background:var(--soft);color:var(--ink);text-transform:uppercase}
+.tag.acc{background:var(--acc);color:var(--accInk)}
+.btnrow{display:flex;gap:10px;margin-top:14px}
+.btn{flex:1;font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);font-size:14px;border:var(--bw) solid var(--rule);background:var(--card);color:var(--ink);padding:14px 10px;min-height:54px;display:flex;align-items:center;justify-content:center;text-decoration:none;border-radius:var(--radius);text-transform:uppercase}
+.btn.acc{background:var(--acc);color:var(--accInk);border-color:var(--acc)}
+.info{background:var(--soft);border-left:8px solid var(--acc);padding:16px;margin:16px 0;border-radius:var(--radius)}
+.info b{display:block;font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);text-transform:uppercase;font-size:14px;letter-spacing:.06em;margin-bottom:4px;color:var(--acc)}
+.hu{list-style:none;padding:0;margin:0}.hu li{padding:14px 0 14px 18px;border-left:6px solid var(--acc);margin-bottom:16px;background:var(--card)}.hu .huk{display:block;font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);font-size:14px;letter-spacing:.06em;margin-bottom:4px;color:var(--acc)}
+/* ===== DIRECTIONS ===== */
+/* 1 CLEAN POP: borders + hard shadow kept, but straight and one colour */
+body[data-v="1"]{--disp:'Rubik';--body:'Rubik';--bg:#f6f4ee;--acc:#d81e1e;--soft:#ffe3e3;--shadow:6px 6px 0 #111}
+/* 2 SIGNAGE: black header, yellow accent, flat tiles, no borders */
+body[data-v="2"]{--disp:'Inter';--body:'Inter';--bg:#fff;--acc:#ffcc00;--accInk:#111;--soft:#fff4c2;--bw:0;--hdr:#111;--hdrInk:#fff;--radius:0;--card:#f3f3f3}
+body[data-v="2"] .hero,body[data-v="2"] .card,body[data-v="2"] .area,body[data-v="2"] .mapbox{background:#f3f3f3}
+body[data-v="2"] .cdband{background:#111}body[data-v="2"] .sec h3{background:#111;color:#fff;display:inline-block;padding:8px 14px}
+/* 3 KIOSK: Lexend, cream, no borders, whitespace + hairlines, blue */
+body[data-v="3"]{--disp:'Lexend';--body:'Lexend';--dw:800;--bg:#fbf8f2;--card:#fff;--acc:#1d4ed8;--soft:#e4ebff;--bw:0;--radius:14px;--shadow:0 2px 0 rgba(0,0,0,.05),0 12px 30px rgba(0,0,0,.08)}
+body[data-v="3"] .hdr{border-bottom:1px solid #e5e2da}
+/* 4 GUIDEBOOK: Noto Sans JP, thin 2px borders only, green, rule headers */
+body[data-v="4"]{--disp:'Noto Sans JP';--body:'Noto Sans JP';--bg:#fff;--acc:#15803d;--soft:#e6f4ea;--bw:2px;--radius:4px;--rule:#111}
+body[data-v="4"] .sec{border-bottom:3px solid var(--acc);padding-bottom:8px}
+/* 5 NIGHT: dark ground, white text, yellow accent (high contrast) */
+body[data-v="5"]{--disp:'Atkinson Hyperlegible';--body:'Atkinson Hyperlegible';--dw:700;--bg:#15161a;--card:#23252b;--ink:#fff;--muted:#d0d0d0;--acc:#ffd23f;--accInk:#111;--soft:#2e3038;--rule:#fff;--bw:0;--radius:10px;--hdr:#15161a;--hdrInk:#fff}
+body[data-v="5"] .cdband{background:#000}body[data-v="5"] .hu li{background:var(--card)}
+/* 6 BOLD BLOCKS: Bebas + Work Sans, red blocks, grey cards, zero borders */
+body[data-v="6"]{--disp:'Bebas Neue';--body:'Work Sans';--dw:400;--bg:#f2f2f2;--card:#fff;--acc:#c8102e;--soft:#fbe4e8;--bw:0;--radius:0;--hdr:#c8102e;--hdrInk:#fff}
+body[data-v="6"] .hdr h1 span{color:#fff;opacity:.8}body[data-v="6"] .sec h3{background:var(--acc);color:#fff;display:inline-block;padding:6px 14px;font-size:30px}body[data-v="6"] .cdband{background:var(--acc)}body[data-v="6"] .cdband .n{color:#fff}body[data-v="6"] .himg h1{font-size:clamp(50px,12vw,84px)}
+/* 7 SOFT ROUNDED: Fredoka + Nunito, peach, pink, big rounded cards */
+body[data-v="7"]{--disp:'Fredoka';--body:'Nunito';--dw:700;--bg:#fff3ea;--card:#fff;--acc:#e0338a;--accInk:#fff;--soft:#ffe1ef;--bw:0;--radius:22px;--shadow:0 10px 24px rgba(224,51,138,.12)}
+body[data-v="7"] .hdr{border-bottom:0}body[data-v="7"] .cdband{background:var(--acc)}body[data-v="7"] .cdband .n{color:#fff}
+/* 8 MONO EDITORIAL: Manrope, black + one orange, hairlines, big type */
+body[data-v="8"]{--disp:'Manrope';--body:'Manrope';--dw:800;--bg:#fff;--card:#fff;--acc:#ea580c;--soft:#fff0e6;--bw:1px;--rule:#111;--radius:0}
+body[data-v="8"] .hero,body[data-v="8"] .card,body[data-v="8"] .area,body[data-v="8"] .mapbox{border-width:0;border-bottom:1px solid #111;border-radius:0}
+body[data-v="8"] .sec h3{font-size:30px}body[data-v="8"] .hdr{border-bottom:1px solid #111}body[data-v="8"] .btn{border-width:2px}
+</style></head><body data-v="1">
+<div class="pvbar" id="bar">DIRECTION:</div>
+<p class="pvnote" id="note"></p>
+<div class="hdr"><div class="logo"><div class="dot"><img src="../images/hero.jpg" alt=""></div><h1>Lampteys <span>on tour</span></h1></div><button class="menubtn">☰ Menu</button></div>
 <div class="wrap">
- <div class="hero"><div class="himg"><img src="../images/hero.jpg" alt=""><div class="grad"></div><div class="sticker"><div class="n">6</div><div class="t">DAYS UNTIL JAPAN</div></div><div class="ht"><h1>Lampteys<br><span class="y">on tour</span></h1></div></div>
-  <div class="cdband"><span class="n">6</span><span class="t">days until Japan</span></div><div class="hbody"><a class="goround" href="#"><div class="k">Go to</div><div class="d">Day 1</div><div class="ar">→</div></a><div class="gosub">FRI 18 SEP · London → Japan</div>
-   <div class="datebar">JAPAN 2026 • MICA &amp; DAD</div>
-   <div class="mapbox" id="jm"><svg viewBox="0 0 840 420" role="img" aria-label="The journey"><rect width="840" height="420" fill="#fff"/><text x="20" y="26" class="jm-sea">SEA OF JAPAN ↑</text><text x="820" y="406" class="jm-sea" text-anchor="end">↓ PACIFIC</text><text x="20" y="406" class="jm-sea">✈ in Sat 19 Sep · ✈ home Mon 5 Oct</text><line x1="300" y1="230" x2="180" y2="180" stroke="var(--yellow)" stroke-width="9" stroke-linecap="round"/><line x1="180" y1="180" x2="245" y2="62" stroke="var(--yellow)" stroke-width="9" stroke-linecap="round"/><line x1="245" y1="62" x2="300" y2="230" stroke="var(--yellow)" stroke-width="9" stroke-linecap="round"/><line x1="300" y1="230" x2="380" y2="335" stroke="var(--yellow)" stroke-width="9" stroke-linecap="round" stroke-dasharray="3 13"/><line x1="300" y1="230" x2="185" y2="335" stroke="var(--red)" stroke-width="9" stroke-linecap="round" stroke-dasharray="3 13"/><line x1="300" y1="230" x2="540" y2="150" stroke="var(--green)" stroke-width="9" stroke-linecap="round"/><line x1="540" y1="150" x2="760" y2="200" stroke="var(--blue)" stroke-width="9" stroke-linecap="round"/><circle cx="300" cy="230" r="17" fill="#fff" stroke="#000" stroke-width="4"/><text class="jm-n" x="326" y="236" text-anchor="start" font-size="16">KYOTO</text><text class="jm-s" x="326" y="249" text-anchor="start">19–23 · home</text><circle cx="185" cy="335" r="17" fill="#fff" stroke="#000" stroke-width="4"/><text class="jm-n" x="185" y="381" text-anchor="middle" font-size="16">OSAKA</text><text class="jm-s" x="185" y="394" text-anchor="middle">day trip · Tue 22</text><circle cx="180" cy="180" r="11" fill="#fff" stroke="#000" stroke-width="4"/><text class="jm-n" x="160" y="186" text-anchor="end" font-size="12.5">ARASHIYAMA</text><text class="jm-s" x="160" y="199" text-anchor="end">the retreat · 23–25</text><circle cx="245" cy="62" r="11" fill="#fff" stroke="#000" stroke-width="4"/><text class="jm-n" x="245" y="27" text-anchor="middle" font-size="12.5">INE</text><text class="jm-s" x="245" y="40" text-anchor="middle">the seaside · 25–27</text><circle cx="380" cy="335" r="11" fill="#fff" stroke="#000" stroke-width="4"/><text class="jm-n" x="380" y="381" text-anchor="middle" font-size="12.5">NARA</text><text class="jm-s" x="380" y="394" text-anchor="middle">Sun 27 · on the way home</text><circle cx="540" cy="150" r="11" fill="#fff" stroke="#000" stroke-width="4"/><text class="jm-n" x="540" y="115" text-anchor="middle" font-size="12.5">KISO VALLEY</text><text class="jm-s" x="540" y="128" text-anchor="middle">28 Sep – 1 Oct</text><circle cx="760" cy="200" r="17" fill="#fff" stroke="#000" stroke-width="4"/><text class="jm-n" x="760" y="157" text-anchor="middle" font-size="16">TOKYO</text><text class="jm-s" x="760" y="170" text-anchor="middle">1–5 Oct</text></svg><div class="jm-foot"><span>THE SHAPE OF THE TRIP</span><a class="btn" style="flex:0 0 auto" href="#">📐 TO SCALE</a></div></div>
-   <div class="ctas"><a class="c-ph" href="#">Handy Japanese phrases!<small>Tap a phrase to show it big</small></a><a class="c-et" href="#">Learn the etiquette<small>Ten things before you land</small></a></div>
+ <div class="hero"><div class="himg"><img src="../images/hero.jpg" alt=""><div class="grad"></div><div class="ht"><h1>Lampteys<br><span class="y">on tour</span></h1></div></div>
+  <div class="cdband"><span class="n">6</span><span class="t">days until Japan</span></div>
+  <div class="hbody"><a class="goround" href="#"><span class="k">Go to</span><span class="d">Day 1</span><span class="ar">→</span></a>
+   <div class="ctas"><a href="#">Handy Japanese phrases</a><a href="#">Learn the etiquette</a></div>
   </div></div>
- <div class="sec blue"><h3>Cluster A — Kiyomizu &amp; the preserved slopes</h3><div class="sub">08:00 start · 3–4 hours · downhill all the way</div></div>
- <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/960px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg" alt=""><div class="cb"><h4>Kiyomizu-dera</h4><div class="mono" style="font-size:11px;color:var(--muted)">清水寺 · 06:00–18:00 · ¥500</div>
-  <p style="margin:8px 0">The wooden stage hangs over the hillside on 139 pillars and not a single nail. Be here at opening: by 09:30 it is a queue, by 11:00 it is a theme park.</p>
-  <div class="tags"><span class="tag core">CORE</span><span class="tag hist">HISTORY</span><span class="tag ok">OPEN TODAY</span></div>
-  <div class="btnrow"><a class="btn" href="#">🗺️ Map</a><a class="btn" href="#">📍 From here</a><a class="btn y" href="#">🈁 Show name</a></div></div></div>
- <div class="info" data-label="ON THE GROUND">Buy tickets at the machines, not the manned window. The classic pagoda photo is looking down Yasaka-dori from partway up Sannenzaka.</div>
- <div class="sec orange"><h3>Heads up</h3><div class="sub">Closed today, worth avoiding, worth finding</div></div>
- <ul class="hu"><li><span class="huk">⛔ CLOSED / TIMING</span>Nothing on the plan is closed today.</li><li class="a"><span class="huk">🚫 AVOID</span>Gion’s private alleys off Hanamikoji are closed to visitors, with fines. Hanamikoji itself is a public road.</li><li class="n"><span class="huk">🔎 NOOKS &amp; CRANNIES</span>Ishibe-koji, the stone-walled lane below Kodai-ji, is the quietest thirty metres in Higashiyama.</li></ul>
+ <div class="mapbox"><svg viewBox="0 0 840 420" role="img" aria-label="The journey"><rect width="840" height="420" fill="var(--card)"/><text x="20" y="26" class="jm-sea">SEA OF JAPAN ↑</text><text x="820" y="406" class="jm-sea" text-anchor="end">↓ PACIFIC</text><text x="20" y="406" class="jm-sea">✈ in Sat 19 Sep · ✈ home Mon 5 Oct</text><line x1="300" y1="230" x2="180" y2="180" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><line x1="180" y1="180" x2="245" y2="62" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><line x1="245" y1="62" x2="300" y2="230" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><line x1="300" y1="230" x2="380" y2="335" stroke="var(--acc)" stroke-width="9" stroke-linecap="round" stroke-dasharray="3 13"/><line x1="300" y1="230" x2="185" y2="335" stroke="var(--acc)" stroke-width="9" stroke-linecap="round" stroke-dasharray="3 13"/><line x1="300" y1="230" x2="540" y2="150" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><line x1="540" y1="150" x2="760" y2="200" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><circle cx="300" cy="230" r="17" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="326" y="236" text-anchor="start" font-size="16">KYOTO</text><text class="jm-s" x="326" y="249" text-anchor="start">19–23 · home</text><circle cx="185" cy="335" r="17" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="185" y="381" text-anchor="middle" font-size="16">OSAKA</text><text class="jm-s" x="185" y="394" text-anchor="middle">day trip · Tue 22</text><circle cx="180" cy="180" r="11" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="160" y="186" text-anchor="end" font-size="12.5">ARASHIYAMA</text><text class="jm-s" x="160" y="199" text-anchor="end">the retreat · 23–25</text><circle cx="245" cy="62" r="11" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="245" y="27" text-anchor="middle" font-size="12.5">INE</text><text class="jm-s" x="245" y="40" text-anchor="middle">the seaside · 25–27</text><circle cx="380" cy="335" r="11" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="380" y="381" text-anchor="middle" font-size="12.5">NARA</text><text class="jm-s" x="380" y="394" text-anchor="middle">Sun 27 · on the way home</text><circle cx="540" cy="150" r="11" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="540" y="115" text-anchor="middle" font-size="12.5">KISO VALLEY</text><text class="jm-s" x="540" y="128" text-anchor="middle">28 Sep – 1 Oct</text><circle cx="760" cy="200" r="17" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="760" y="157" text-anchor="middle" font-size="16">TOKYO</text><text class="jm-s" x="760" y="170" text-anchor="middle">1–5 Oct</text></svg><div class="jm-foot"><a class="btn acc" style="flex:0 0 auto" href="#">📐 To scale</a></div></div>
+ <div class="sec"><h3>Areas today</h3><div class="sub">Each one is a walkable patch. Open it for the map and what is there.</div></div>
+ <div class="area"><div class="ah"><div class="ai">1</div><div><div class="at">Kiyomizu &amp; the preserved slopes</div><div class="as">3–4 hours · 8 places · downhill all the way</div></div><a class="open" href="#">Open ▾</a></div></div>
+ <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/960px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg" alt=""><div class="cb"><h4>Kiyomizu-dera</h4><div class="meta">清水寺 · 06:00–18:00 · ¥500</div>
+  <p>The wooden stage hangs over the hillside on 139 pillars and not a single nail. Be here at opening: by 09:30 it is a queue, by 11:00 it is a theme park.</p>
+  <div class="tags"><span class="tag acc">Core</span><span class="tag">History</span><span class="tag">Open today</span></div>
+  <div class="btnrow"><a class="btn" href="#">🗺️ Map</a><a class="btn" href="#">📍 From here</a><a class="btn acc" href="#">🈁 Name</a></div></div></div>
+ <div class="info"><b>On the ground</b>Buy tickets at the machines, not the manned window. The classic pagoda photo is looking down Yasaka-dori from partway up Sannenzaka.</div>
+ <div class="sec"><h3>Heads up</h3><div class="sub">Closed today, worth avoiding, worth finding</div></div>
+ <ul class="hu"><li><span class="huk">⛔ Closed / timing</span>Nothing on the plan is closed today.</li><li><span class="huk">🚫 Avoid</span>Gion’s private alleys off Hanamikoji are closed to visitors, with fines. Hanamikoji itself is a public road.</li><li><span class="huk">🔎 Nooks &amp; crannies</span>Ishibe-koji, the stone-walled lane below Kodai-ji, is the quietest thirty metres in Higashiyama.</li></ul>
 </div>
 <script>
 const V=[
- {n:'1 · Soft pop',d:'Rubik at 900 is chunky without being stretched; plain warm paper, no grid; keeps the black boxes but rounds nothing.',disp:'Rubik',body:'Rubik',mono:'DM Mono',bg:'#f6f4ee',pat:'',mode:'',radius:'0',bw:'3px',shadow:'6px 6px 0 #000',tilt:'-1.5deg',w:900},
- {n:'2 · Lexend (readability)',d:'Lexend was designed to be easier to read; here at 800 for headings with Inter for body. Boxes become underlines and soft shadows — the "fewer bordered boxes" version.',disp:'Lexend',body:'Inter',mono:'DM Mono',bg:'#fbf7ef',pat:'',mode:'open',radius:'6px',bw:'3px',shadow:'none',tilt:'-1deg',w:800,track:'-.01em'},
- {n:'3 · Rounded sticker',d:'Fredoka + Nunito, rounded corners, thick borders only where you tap. Faint paper noise instead of a grid.',disp:'Fredoka',body:'Nunito',mono:'DM Mono',bg:'#fff8ec',pat:'pat-noise',mode:'',radius:'14px',bw:'3px',shadow:'5px 5px 0 #000',tilt:'-2deg',w:700},
- {n:'4 · Manga zine',d:'Bangers for the shout, Noto Sans JP for everything else — the closest to the printed lists. Light dot screen, not lines.',disp:'Bangers',body:'Noto Sans JP',mono:'DM Mono',bg:'#ffffff',pat:'pat-dots',mode:'',radius:'0',bw:'3px',shadow:'6px 6px 0 #000',tilt:'-2deg',w:400,track:'.02em'},
- {n:'5 · Travel poster',d:'Bebas Neue (tall, not stretched) with Work Sans. Solid colour tiles, no borders at all.',disp:'Bebas Neue',body:'Work Sans',mono:'DM Mono',bg:'#f2efe6',pat:'',mode:'tiles',radius:'0',bw:'0',shadow:'none',tilt:'0deg',w:400,track:'.03em'},
- {n:'6 · Tokyo signage',d:'Zen Kaku Gothic New at 900 — a Japanese gothic that suits the kanji too. Flat tiles, yellow and black.',disp:'Zen Kaku Gothic New',body:'Zen Kaku Gothic New',mono:'DM Mono',bg:'#fffbe6',pat:'',mode:'tiles',radius:'4px',bw:'0',shadow:'none',tilt:'0deg',w:900},
- {n:'7 · Warm kiosk',d:'Outfit throughout, peach ground, cards float on soft shadows instead of borders.',disp:'Outfit',body:'Outfit',mono:'DM Mono',bg:'#fdf1e7',pat:'',mode:'open',radius:'12px',bw:'0',shadow:'none',tilt:'-1deg',w:800},
- {n:'8 · Same family, un-stretched',d:'Archivo at 900 normal width instead of Archivo Black — the current look with the severity turned down and the grid removed.',disp:'Archivo',body:'Archivo',mono:'DM Mono',bg:'#f4f4f4',pat:'',mode:'',radius:'0',bw:'3px',shadow:'6px 6px 0 #000',tilt:'-1.5deg',w:900},
- {n:'9 · Bricolage',d:'Bricolage Grotesque, a friendlier grotesk with character; soft blobs of the trip colours behind everything.',disp:'Bricolage Grotesque',body:'Bricolage Grotesque',mono:'DM Mono',bg:'#f7f6f2',pat:'pat-blobs',mode:'open',radius:'8px',bw:'3px',shadow:'none',tilt:'-1deg',w:800,track:'-.02em'},
- {n:'10 · Sticker book',d:'Lilita One for headings (round, cheerful) with Nunito; only the stickers and chips get the hard shadow.',disp:'Lilita One',body:'Nunito',mono:'DM Mono',bg:'#fff',pat:'pat-noise',mode:'open',radius:'10px',bw:'3px',shadow:'none',tilt:'-2.5deg',w:400},
- {n:'11 · Paper cut',d:'Chivo 900 with tilted colour blocks and no black borders — the zine feel done with colour instead of ink.',disp:'Chivo',body:'Chivo',mono:'DM Mono',bg:'#f9f5ef',pat:'',mode:'tiles',radius:'2px',bw:'0',shadow:'none',tilt:'-2deg',w:900,track:'-.02em'},
- {n:'12 · Big shoulders',d:'Big Shoulders Display (tall, American-signage) with IBM Plex Sans. Boxes kept, grid gone, shadows softened to one colour.',disp:'Big Shoulders Display',body:'IBM Plex Sans',mono:'DM Mono',bg:'#f5f3ee',pat:'',mode:'',radius:'0',bw:'3px',shadow:'5px 5px 0 #ffcc00',tilt:'-1.5deg',w:900,track:'.01em'},
- {n:'13 · Space',d:'Space Grotesk — techy but round-cornered; Sora body. Open cards, sentence case headings.',disp:'Space Grotesk',body:'Sora',mono:'DM Mono',bg:'#f6f7f9',pat:'',mode:'open',radius:'10px',bw:'0',shadow:'none',tilt:'0deg',w:700,track:'-.02em'},
- {n:'14 · Manrope',d:'Manrope 800 for headings with Karla body — the quietest of the set. Blob background, boxes only on the hero.',disp:'Manrope',body:'Karla',mono:'DM Mono',bg:'#fbf8f3',pat:'pat-blobs',mode:'open',radius:'8px',bw:'0',shadow:'none',tilt:'-1deg',w:800,track:'-.01em'},
- {n:'15 · Read first · Lexend',d:'Readability-first. Lexend (built to be easy to read), one accent (red), no tilt, no stickers: the countdown is a plain black band. Buttons at least 52px tall, more air between cards.',disp:'Lexend',body:'Lexend',mono:'Lexend',bg:'#ffffff',pat:'',mode:'open read',radius:'10px',bw:'0',shadow:'none',tilt:'0deg',w:800,accent:'#d81e1e',soft:'#ffe3e3'},
- {n:'16 · Read first · Atkinson',d:'Atkinson Hyperlegible was designed for low vision — letters that cannot be confused (b/d, 1/l/I). Blue accent only, boxes kept but straight and calm.',disp:'Atkinson Hyperlegible',body:'Atkinson Hyperlegible',mono:'Atkinson Hyperlegible',bg:'#f7f8fb',pat:'',mode:'read',radius:'6px',bw:'3px',shadow:'none',tilt:'0deg',w:700,accent:'#1d4ed8',soft:'#dbe4ff'},
- {n:'17 · Read first · High contrast',d:'Inter on white with black tiles and a yellow accent — the highest-contrast pairing on the page. No borders, big flat blocks.',disp:'Inter',body:'Inter',mono:'Inter',bg:'#ffffff',pat:'',mode:'tiles read',radius:'0',bw:'0',shadow:'none',tilt:'0deg',w:800,accent:'#111111',soft:'#ffcc00'},
- {n:'18 · Read first · Noto',d:'Noto Sans JP for Latin and kanji alike, so Japanese names sit in the same weight. Green accent, open cards, lots of space.',disp:'Noto Sans JP',body:'Noto Sans JP',mono:'Noto Sans JP',bg:'#f6f8f4',pat:'',mode:'open read',radius:'8px',bw:'0',shadow:'none',tilt:'0deg',w:900,accent:'#15803d',soft:'#dcf2e3'},
- {n:'19 · Read first · Rubik',d:'Rubik 900 headings, orange accent, flat tiles. The warmest of the readable set.',disp:'Rubik',body:'Rubik',mono:'Rubik',bg:'#fff9f2',pat:'',mode:'tiles read',radius:'8px',bw:'0',shadow:'none',tilt:'0deg',w:900,accent:'#ea580c',soft:'#ffe4cc'},
- {n:'20 · Read first · Mono-accent',d:'Manrope, black and white, and the only colour on the screen is the red go-button and the tags. The quietest, clearest version.',disp:'Manrope',body:'Manrope',mono:'Manrope',bg:'#ffffff',pat:'',mode:'open read',radius:'8px',bw:'0',shadow:'none',tilt:'0deg',w:800,accent:'#111111',soft:'#eeeeee',go:'#d81e1e'}
+ ['1 · Clean pop','The current spirit tidied up: black borders and the hard shadow stay, but nothing tilts, one red accent, warm paper, Rubik.'],
+ ['2 · Signage','Black header and countdown, yellow accent, flat grey tiles with no borders at all. Inter, heavy.'],
+ ['3 · Kiosk','Lexend (drawn for readability), cream ground, cards float on soft shadows with rounded corners, blue accent.'],
+ ['4 · Guidebook','Noto Sans JP so kanji and Latin match. Thin 2px borders only, green accent, section headings underlined in green.'],
+ ['5 · Night','Dark charcoal with white text and a yellow accent — the highest contrast option, and easier for some eyes than white pages. Atkinson Hyperlegible.'],
+ ['6 · Bold blocks','Bebas Neue tall capitals with Work Sans. Red header and countdown, grey ground, white cards with zero borders.'],
+ ['7 · Soft rounded','Fredoka + Nunito, peach ground, big rounded cards, pink accent. Friendly rather than loud.'],
+ ['8 · Editorial','Manrope, black and white, hairline rules instead of boxes, one orange accent. The calmest.']
 ];
-const bar=document.getElementById('bar'), note=document.getElementById('note'); let cur=0;
-function apply(i){ cur=i; const v=V[i]; const r=document.documentElement.style;
- r.setProperty('--disp',"'"+v.disp+"'"); r.setProperty('--body',"'"+v.body+"'"); r.setProperty('--mono',"'"+v.mono+"'"); r.setProperty('--bg',v.bg); r.setProperty('--radius',v.radius); r.setProperty('--bw',v.bw); r.setProperty('--shadow',v.shadow); r.setProperty('--tilt',v.tilt); r.setProperty('--dispweight',v.w); r.setProperty('--dispcase',v.case||'uppercase'); r.setProperty('--disptrack',v.track||'-.01em');
- const acc=v.accent||''; ['--red','--blue','--orange','--green','--pink'].forEach(k=>r.setProperty(k, acc||({'--red':'#ff2a2a','--blue':'#0044ff','--orange':'#f97316','--green':'#15803d','--pink':'#FF5FA2'})[k])); r.setProperty('--yellow', v.soft||'#ffcc00'); if(v.go) document.querySelector('.goround').style.background=v.go; else document.querySelector('.goround').style.background='';
- document.body.className=(v.pat||'')+' '+(v.mode||''); note.textContent=v.n+' — '+v.d; [...bar.querySelectorAll('button')].forEach((b,j)=>b.classList.toggle('on',j===i)); try{localStorage.setItem('lv',i)}catch(e){} }
-V.forEach((v,i)=>{ const b=document.createElement('button'); b.textContent=v.n.split(' · ')[0]; b.title=v.n; b.onclick=()=>apply(i); bar.appendChild(b); });
-let s=0; try{ s=parseInt(localStorage.getItem('lv')||'0')||0 }catch(e){} apply(s);
+const bar=document.getElementById('bar'),note=document.getElementById('note');
+function apply(i){ document.body.setAttribute('data-v',String(i+1)); document.body.classList.toggle('dark',i===4); note.textContent=V[i][0]+' — '+V[i][1]; [...bar.querySelectorAll('button')].forEach((b,j)=>b.classList.toggle('on',j===i)); try{localStorage.setItem('ld',i)}catch(e){} }
+V.forEach((v,i)=>{const b=document.createElement('button');b.textContent=v[0].split(' · ')[0];b.title=v[0];b.onclick=()=>apply(i);bar.appendChild(b);});
+let s=0;try{s=parseInt(localStorage.getItem('ld')||'0')||0}catch(e){} apply(s);
 </script></body></html>
