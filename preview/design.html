@@ -47,7 +47,7 @@ body.dark .pvnote{color:#ccc}
 .card{background:var(--card);border:var(--bw) solid var(--rule);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin:16px 0}
 .card img{width:100%;height:220px;object-fit:cover;display:block}
 .cb{padding:16px}.cb h4{font-size:24px;margin:0 0 4px}.cb .meta{font-size:15px;color:var(--muted);font-weight:600}.cb p{margin:10px 0 0}
-.tags{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}.tag{font-size:13px;font-weight:800;padding:7px 11px;border-radius:calc(var(--radius) + 4px);background:var(--soft);color:var(--ink);text-transform:uppercase}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}.tag{font-size:13px;font-weight:800;padding:7px 11px;border-radius:0;background:var(--soft);color:var(--ink);text-transform:uppercase}
 .tag.acc{background:var(--acc);color:var(--accInk)}
 .btnrow{display:flex;gap:10px;margin-top:14px}
 .btn{flex:1;font-family:var(--disp),Arial,sans-serif;font-weight:var(--dw);font-size:14px;border:var(--bw) solid var(--rule);background:var(--card);color:var(--ink);padding:14px 10px;min-height:54px;display:flex;align-items:center;justify-content:center;text-decoration:none;border-radius:var(--radius);text-transform:uppercase}
@@ -63,19 +63,19 @@ body[data-v="2"]{--disp:'Inter';--body:'Inter';--bg:#fff;--acc:#ffcc00;--accInk:
 body[data-v="2"] .hero,body[data-v="2"] .card,body[data-v="2"] .area,body[data-v="2"] .mapbox{background:#f3f3f3}
 body[data-v="2"] .cdband{background:#111}body[data-v="2"] .sec h3{background:#111;color:#fff;display:inline-block;padding:8px 14px}
 /* 3 KIOSK: Lexend, cream, no borders, whitespace + hairlines, blue */
-body[data-v="3"]{--disp:'Lexend';--body:'Lexend';--dw:800;--bg:#fbf8f2;--card:#fff;--acc:#1d4ed8;--soft:#e4ebff;--bw:0;--radius:14px;--shadow:0 2px 0 rgba(0,0,0,.05),0 12px 30px rgba(0,0,0,.08)}
+body[data-v="3"]{--disp:'Lexend';--body:'Lexend';--dw:800;--bg:#fbf8f2;--card:#fff;--acc:#1d4ed8;--soft:#e4ebff;--bw:0;--radius:0;--shadow:0 2px 0 rgba(0,0,0,.05),0 12px 30px rgba(0,0,0,.08)}
 body[data-v="3"] .hdr{border-bottom:1px solid #e5e2da}
 /* 4 GUIDEBOOK: Noto Sans JP, thin 2px borders only, green, rule headers */
-body[data-v="4"]{--disp:'Noto Sans JP';--body:'Noto Sans JP';--bg:#fff;--acc:#15803d;--soft:#e6f4ea;--bw:2px;--radius:4px;--rule:#111}
+body[data-v="4"]{--disp:'Noto Sans JP';--body:'Noto Sans JP';--bg:#fff;--acc:#15803d;--soft:#e6f4ea;--bw:2px;--radius:0;--rule:#111}
 body[data-v="4"] .sec{border-bottom:3px solid var(--acc);padding-bottom:8px}
 /* 5 NIGHT: dark ground, white text, yellow accent (high contrast) */
-body[data-v="5"]{--disp:'Atkinson Hyperlegible';--body:'Atkinson Hyperlegible';--dw:700;--bg:#15161a;--card:#23252b;--ink:#fff;--muted:#d0d0d0;--acc:#ffd23f;--accInk:#111;--soft:#2e3038;--rule:#fff;--bw:0;--radius:10px;--hdr:#15161a;--hdrInk:#fff}
+body[data-v="5"]{--disp:'Atkinson Hyperlegible';--body:'Atkinson Hyperlegible';--dw:700;--bg:#15161a;--card:#23252b;--ink:#fff;--muted:#d0d0d0;--acc:#ffd23f;--accInk:#111;--soft:#2e3038;--rule:#fff;--bw:0;--radius:0;--hdr:#15161a;--hdrInk:#fff}
 body[data-v="5"] .cdband{background:#000}body[data-v="5"] .hu li{background:var(--card)}
 /* 6 BOLD BLOCKS: Bebas + Work Sans, red blocks, grey cards, zero borders */
 body[data-v="6"]{--disp:'Bebas Neue';--body:'Work Sans';--dw:400;--bg:#f2f2f2;--card:#fff;--acc:#c8102e;--soft:#fbe4e8;--bw:0;--radius:0;--hdr:#c8102e;--hdrInk:#fff}
 body[data-v="6"] .hdr h1 span{color:#fff;opacity:.8}body[data-v="6"] .sec h3{background:var(--acc);color:#fff;display:inline-block;padding:6px 14px;font-size:30px}body[data-v="6"] .cdband{background:var(--acc)}body[data-v="6"] .cdband .n{color:#fff}body[data-v="6"] .himg h1{font-size:clamp(50px,12vw,84px)}
 /* 7 SOFT ROUNDED: Fredoka + Nunito, peach, pink, big rounded cards */
-body[data-v="7"]{--disp:'Fredoka';--body:'Nunito';--dw:700;--bg:#fff3ea;--card:#fff;--acc:#e0338a;--accInk:#fff;--soft:#ffe1ef;--bw:0;--radius:22px;--shadow:0 10px 24px rgba(224,51,138,.12)}
+body[data-v="7"]{--disp:'Fredoka';--body:'Nunito';--dw:700;--bg:#fff3ea;--card:#fff;--acc:#e0338a;--accInk:#fff;--soft:#ffe1ef;--bw:0;--radius:0;--shadow:0 10px 24px rgba(224,51,138,.12)}
 body[data-v="7"] .hdr{border-bottom:0}body[data-v="7"] .cdband{background:var(--acc)}body[data-v="7"] .cdband .n{color:#fff}
 /* 8 MONO EDITORIAL: Manrope, black + one orange, hairlines, big type */
 body[data-v="8"]{--disp:'Manrope';--body:'Manrope';--dw:800;--bg:#fff;--card:#fff;--acc:#ea580c;--soft:#fff0e6;--bw:1px;--rule:#111;--radius:0}
@@ -101,9 +101,19 @@ body[data-v="5"]{--see:#ffd23f;--do:#ff5c7a;--shop:#5b9cff;--eat:#ff9f43;--learn
 body[data-v="6"]{--see:#ffcc00;--do:#c8102e;--shop:#0033a0;--eat:#ff6a00;--learn:#5e2ca5;--k:#c8102e;--m:#007a3d;--t:#0033a0}
 body[data-v="7"]{--see:#ffd166;--do:#e0338a;--shop:#4c6fff;--eat:#ff8c42;--learn:#9d4edd;--k:#e0338a;--m:#2ec4b6;--t:#4c6fff}
 body[data-v="8"]{--see:#e6b800;--do:#ea580c;--shop:#2563eb;--eat:#b45309;--learn:#6d28d9;--k:#ea580c;--m:#15803d;--t:#2563eb}
+
+/* ===== hierarchy: L1 day · L2 area (collapsible container) · L3 category row · L4 card · end: heads up ===== */
+.area{border-left:12px solid var(--acc)}
+.area .ah{background:var(--acc);color:var(--accInk)}.area .ah .at,.area .ah .as{color:var(--accInk)}.area .ai{background:var(--card);color:var(--acc)}
+.area .open{border-color:var(--accInk);color:var(--accInk);background:transparent}
+.area .abody{padding:14px 14px 4px;background:var(--soft)}
+.area .abody .sec{margin:10px 0 8px}.area .abody .sec h3{font-size:18px;display:inline-block;padding-bottom:4px}
+.area .abody .card{margin:10px 0 18px}
+.lvl{display:inline-block;font:700 11px/1 system-ui;background:#111;color:#fff;padding:4px 6px;margin-bottom:6px;letter-spacing:.08em}
+body.dark .lvl{background:#fff;color:#111}
 </style></head><body data-v="1">
 <div class="pvbar" id="bar">DIRECTION:</div>
-<p class="pvnote" id="note"></p>
+<p class="pvnote" id="note"></p><p class="pvnote" style="color:#555">How the eye is guided in all eight: four levels, each with its own size and treatment — the day (hero + chapter tag), the area (a coloured collapsible container that holds everything below it), the category row inside an area (See / Do / Shop / Eat / Learn, each its own colour), and the place card. Space between groups is always bigger than space within them. Heads up closes the day, its rows coloured by type. The little black labels are only on this sample to show the levels.</p>
 <div class="hdr"><div class="logo"><div class="dot"><img src="../images/hero.jpg" alt=""></div><h1>Lampteys <span>on tour</span></h1></div><button class="menubtn">☰ Menu</button></div>
 <div class="wrap">
  <div class="hero"><div class="himg"><img src="../images/hero.jpg" alt=""><div class="grad"></div><div class="ht"><h1>Lampteys<br><span class="y">on tour</span></h1></div></div>
@@ -113,14 +123,24 @@ body[data-v="8"]{--see:#e6b800;--do:#ea580c;--shop:#2563eb;--eat:#b45309;--learn
   </div></div>
  <div class="mapbox"><svg viewBox="0 0 840 420" role="img" aria-label="The journey"><rect width="840" height="420" fill="var(--card)"/><text x="20" y="26" class="jm-sea">SEA OF JAPAN ↑</text><text x="820" y="406" class="jm-sea" text-anchor="end">↓ PACIFIC</text><text x="20" y="406" class="jm-sea">✈ in Sat 19 Sep · ✈ home Mon 5 Oct</text><line x1="300" y1="230" x2="180" y2="180" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><line x1="180" y1="180" x2="245" y2="62" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><line x1="245" y1="62" x2="300" y2="230" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><line x1="300" y1="230" x2="380" y2="335" stroke="var(--acc)" stroke-width="9" stroke-linecap="round" stroke-dasharray="3 13"/><line x1="300" y1="230" x2="185" y2="335" stroke="var(--acc)" stroke-width="9" stroke-linecap="round" stroke-dasharray="3 13"/><line x1="300" y1="230" x2="540" y2="150" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><line x1="540" y1="150" x2="760" y2="200" stroke="var(--acc)" stroke-width="9" stroke-linecap="round"/><circle cx="300" cy="230" r="17" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="326" y="236" text-anchor="start" font-size="16">KYOTO</text><text class="jm-s" x="326" y="249" text-anchor="start">19–23 · home</text><circle cx="185" cy="335" r="17" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="185" y="381" text-anchor="middle" font-size="16">OSAKA</text><text class="jm-s" x="185" y="394" text-anchor="middle">day trip · Tue 22</text><circle cx="180" cy="180" r="11" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="160" y="186" text-anchor="end" font-size="12.5">ARASHIYAMA</text><text class="jm-s" x="160" y="199" text-anchor="end">the retreat · 23–25</text><circle cx="245" cy="62" r="11" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="245" y="27" text-anchor="middle" font-size="12.5">INE</text><text class="jm-s" x="245" y="40" text-anchor="middle">the seaside · 25–27</text><circle cx="380" cy="335" r="11" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="380" y="381" text-anchor="middle" font-size="12.5">NARA</text><text class="jm-s" x="380" y="394" text-anchor="middle">Sun 27 · on the way home</text><circle cx="540" cy="150" r="11" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="540" y="115" text-anchor="middle" font-size="12.5">KISO VALLEY</text><text class="jm-s" x="540" y="128" text-anchor="middle">28 Sep – 1 Oct</text><circle cx="760" cy="200" r="17" fill="var(--card)" stroke="var(--ink)" stroke-width="4"/><text class="jm-n" x="760" y="157" text-anchor="middle" font-size="16">TOKYO</text><text class="jm-s" x="760" y="170" text-anchor="middle">1–5 Oct</text></svg><div class="jm-foot"><a class="btn acc" style="flex:0 0 auto" href="#">📐 To scale</a></div></div>
  <div class="roles"><div class="see">See</div><div class="do">Do</div><div class="shop">Shop</div><div class="eat">Eat</div><div class="learn">Learn</div></div><div class="dayrow"><span class="k">Kyoto</span><span class="m">Mountains</span><span class="t">Tokyo</span></div><div class="sec"><h3>Areas today</h3><div class="sub">Each one is a walkable patch. Open it for the map and what is there.</div></div>
- <div class="chapter">Kyoto chapter · Day 3 of 18</div><div class="area"><div class="ah"><div class="ai k">1</div><div><div class="at">Kiyomizu &amp; the preserved slopes</div><div class="as">3–4 hours · 8 places · downhill all the way</div></div><a class="open" href="#">Open ▾</a></div></div>
- <div class="sec see"><h3>See</h3></div><div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/960px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg" alt=""><div class="cb"><h4>Kiyomizu-dera</h4><div class="meta">清水寺 · 06:00–18:00 · ¥500</div>
-  <p>The wooden stage hangs over the hillside on 139 pillars and not a single nail. Be here at opening: by 09:30 it is a queue, by 11:00 it is a theme park.</p>
-  <div class="tags"><span class="tag see">See</span><span class="tag learn">History</span><span class="tag do">Core plan</span></div>
-  <div class="btnrow"><a class="btn" href="#">🗺️ Map</a><a class="btn" href="#">📍 From here</a><a class="btn acc" href="#">🈁 Name</a></div></div></div>
- <div class="sec eat"><h3>Eat &amp; drink</h3></div><div class="card eat"><div class="cb"><h4>Okutan Kiyomizu</h4><div class="meta">奥丹清水 · lunch · ~11:00–16:30</div><p>Yudofu — simmered tofu — in a garden house that has done one dish since 1635. The set is the order; there is nothing else to decide.</p><div class="tags"><span class="tag eat">Eat</span><span class="tag see">Garden</span></div><div class="btnrow"><a class="btn" href="#">🗺️ Map</a><a class="btn" href="#">📍 From here</a><a class="btn acc" href="#">🈁 Name</a></div></div></div><div class="info ground"><b>On the ground</b>Buy tickets at the machines, not the manned window. The classic pagoda photo is looking down Yasaka-dori from partway up Sannenzaka.</div>
+ <div class="lvl">LEVEL 1 · THE DAY</div><div class="chapter">Kyoto chapter · Day 3 of 18</div>
+ <div class="lvl">LEVEL 2 · AN AREA — the big collapsible container</div>
+ <div class="area"><div class="ah"><div class="ai">1</div><div><div class="at">Kiyomizu &amp; the preserved slopes</div><div class="as">3–4 hours · 8 places · downhill all the way</div></div><a class="open" href="#">Close ▴</a></div>
+  <div class="abody">
+   <div class="lvl">LEVEL 3 · CATEGORY ROW, colour by kind</div>
+   <div class="sec see"><h3>See</h3></div>
+   <div class="lvl">LEVEL 4 · PLACE CARD</div>
+   <div class="card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg/960px-Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg" alt=""><div class="cb"><h4>Kiyomizu-dera</h4><div class="meta">清水寺 · 06:00–18:00 · ¥500</div>
+    <p>The wooden stage hangs over the hillside on 139 pillars and not a single nail. Be here at opening: by 09:30 it is a queue, by 11:00 it is a theme park.</p>
+    <div class="tags"><span class="tag see">See</span><span class="tag learn">History</span><span class="tag do">Core plan</span></div>
+    <div class="btnrow"><a class="btn" href="#">🗺️ Map</a><a class="btn" href="#">📍 From here</a><a class="btn acc" href="#">🈁 Name</a></div></div></div>
+   <div class="sec eat"><h3>Eat &amp; drink</h3></div>
+   <div class="card eat"><div class="cb"><h4>Okutan Kiyomizu</h4><div class="meta">奥丹清水 · lunch · ~11:00–16:30</div><p>Yudofu — simmered tofu — in a garden house that has done one dish since 1635. The set is the order; there is nothing else to decide.</p><div class="tags"><span class="tag eat">Eat</span><span class="tag see">Garden</span></div><div class="btnrow"><a class="btn" href="#">🗺️ Map</a><a class="btn" href="#">📍 From here</a><a class="btn acc" href="#">🈁 Name</a></div></div></div>
+  </div></div>
+ <div class="area"><div class="ah"><div class="ai">2</div><div><div class="at">Gion at dusk</div><div class="as">1–2 hours · 2 places · flat</div></div><a class="open" href="#">Open ▾</a></div></div>
+ <div class="lvl">END OF DAY · HEADS UP, colour by type</div>
  <div class="sec"><h3>Heads up</h3><div class="sub">Closed today, worth avoiding, worth finding</div></div>
- <ul class="hu"><li class="closed"><span class="huk">⛔ Closed / timing</span>Nothing on the plan is closed today.</li><li class="avoid"><span class="huk">🚫 Avoid</span>Gion’s private alleys off Hanamikoji are closed to visitors, with fines. Hanamikoji itself is a public road.</li><li class="nook"><span class="huk">🔎 Nooks &amp; crannies</span>Ishibe-koji, the stone-walled lane below Kodai-ji, is the quietest thirty metres in Higashiyama.</li></ul>
+ <ul class="hu"><li class="closed"><span class="huk">⛔ Closed / timing</span>Nothing on the plan is closed today.</li><li class="avoid"><span class="huk">🚫 Avoid</span>Gion’s private alleys off Hanamikoji are closed to visitors, with fines. Hanamikoji itself is a public road.</li><li class="ground"><span class="huk">👣 On the ground · Kiyomizu-dera</span>Buy tickets at the machines, not the manned window. The classic pagoda photo is looking down Yasaka-dori from partway up Sannenzaka.</li><li class="nook"><span class="huk">🔎 Nooks &amp; crannies</span>Ishibe-koji, the stone-walled lane below Kodai-ji, is the quietest thirty metres in Higashiyama.</li></ul>
 </div>
 <script>
 const V=[
