@@ -332,19 +332,14 @@ function renderDay(idx){
     (walkTag?'<span class="tag rain">WALKING: '+esc(walkTag.toUpperCase())+'</span>':'')+
     (d.travelDay?'<span class="tag book">TRAVEL DAY</span>':'')+'</div>';
   h+='<p style="font-size:14.5px;font-weight:600;margin:12px 0 0;line-height:1.5">'+d.summary+'</p>';
-  if(d.short&&d.short.length){ h+='<ol class="short">'+d.short.map((x,i)=>'<li><span class="sn">'+(i+1)+'</span><span>'+esc(x)+'</span></li>').join('')+'</ol>'+(d.swap?'<p class="swap"><b>If you\'d rather:</b> '+esc(d.swap)+'</p>':''); }
+  if(d.shape){ const st=t=>String(t||'').split(/\s*→\s*/).filter(Boolean);
+    h+='<ol class="short">'+[['MORNING',d.shape.m],['AFTERNOON',d.shape.a],['EVENING',d.shape.e]].map((x,i)=>'<li><span class="sn">'+(i+1)+'</span><div class="sb"><b class="sl">'+x[0]+'</b>'+st(x[1]).map(y=>'<div class="step">'+y+'</div>').join('')+'</div></li>').join('')+'</ol>';
+    if(d.shape.flex) h+='<p class="swap">↔ <b>If the day overflows:</b> '+d.shape.flex+'</p>';
+  } else if(d.short&&d.short.length){ h+='<ol class="short">'+d.short.map((x,i)=>'<li><span class="sn">'+(i+1)+'</span><div class="sb">'+esc(x)+'</div></li>').join('')+'</ol>'; }
+  if(d.swap) h+='<p class="swap"><b>If you\'d rather:</b> '+esc(d.swap)+'</p>';
   h+='__TILES__';
   if(d.anchor&&!/^none/i.test(d.anchor)) h+='<div class="anchorline">📌 TIMED TODAY: '+esc(d.anchor)+'</div>';
   const S2=!!window.SITE2; const SH={};
-  if(d.shape){
-    const steps=t=>String(t||'').split(/\s*→\s*/).map(x=>'<div class="step">'+x+'</div>').join('');
-    let sh='<div class="tl">'+
-      '<div class="tln"><span class="plabel">MORNING</span>'+steps(d.shape.m)+'</div>'+
-      '<div class="tln"><span class="plabel">AFTERNOON</span>'+steps(d.shape.a)+'</div>'+
-      '<div class="tln" style="padding-bottom:2px"><span class="plabel">EVENING</span>'+steps(d.shape.e)+'</div></div>';
-    if(d.shape.flex) sh+='<div class="flexline">↔ <b>If the day overflows:</b> '+d.shape.flex+'</div>';
-    if(S2) SH.order='<h3 class="sht">🧭 Order of play</h3>'+sh; else h+='<details class="shapex"><summary>🧭 A suggested order of play <span class="exp">▾</span></summary>'+sh+'</details>';
-  }
   h+='<div class="wsline">🛏 WAKE: '+esc(d.wake)+'  →  SLEEP: '+esc(d.sleep)+'</div>';
   h+='</div></div>';
 
@@ -396,13 +391,12 @@ function renderDay(idx){
     else h+='<details class="secx blue"><summary><h3>🏨 Tonight\'s Base</h3><div class="sub">'+esc(H.name)+' — tap for address, check-in and stay notes</div><span class="exp">▾</span></summary>'+hbody+'</details>';
   }
   if(S2){
-    window.__SHEETS={travel:SH.travel&&SH.travel.html, base:SH.base&&SH.base.html, order:SH.order, about:SH.about};
+    window.__SHEETS={travel:SH.travel&&SH.travel.html, base:SH.base&&SH.base.html, about:SH.about};
     let tiles='';
     if(SH.travel) tiles+='<button class="tile t-travel" onclick="openHtmlSheet(\'travel\')"><span class="tk">🚄 TRAVEL</span><span class="tv">'+SH.travel.sub+'</span><span class="ta">OPEN →</span></button>';
-    if(SH.base) tiles+='<button class="tile t-base'+(SH.base.pic?' haspic':'')+'" onclick="openHtmlSheet(\'base\')"'+(SH.base.pic?' style="background-image:url(\''+SH.base.pic.u+'\')"':'')+'><span class="tk">🏨 BASE</span><span class="tv">'+esc(SH.base.name)+'</span><span class="ta">OPEN →</span></button>';
+    if(SH.base) tiles+='<button class="tile t-base" onclick="openHtmlSheet(\'base\')"><span class="tk">🏨 BASE</span>'+(SH.base.pic?'<span class="tp" style="background-image:url(\''+SH.base.pic.u+'\')"></span>':'')+'<span class="tv">'+esc(SH.base.name)+'</span><span class="ta">OPEN →</span></button>';
     if(SH.about) tiles+='<button class="tile t-about" onclick="openHtmlSheet(\'about\')"><span class="tk">📖 HISTORY</span><span class="tv">'+esc(d.aboutLabel||'About this place')+'</span><span class="ta">OPEN →</span></button>';
     let block=tiles?'<div class="tiles n'+(tiles.split('<button').length-1)+'">'+tiles+'</div>':'';
-    if(SH.order) block+='<div class="btnrow tiles2"><button class="btn mini" onclick="openHtmlSheet(\'order\')">🧭 ORDER OF PLAY — MORNING · AFTERNOON · EVENING</button></div>';
     h=h.replace('__TILES__',block);
   }
   h=h.replace('__TILES__','');

@@ -108,25 +108,25 @@ header{min-height:72px}
 /* ===== day page hierarchy (12 Sep, Mica's feedback) ===== */
 .dayhero .dh-body{padding:16px!important}
 .dayhero .dh-body>p{font-size:17px!important;font-weight:400!important;line-height:1.55!important;margin:14px 0 0!important}
-.short{margin:14px 0 0!important}.short li{font-size:17px!important;font-weight:600!important;line-height:1.4!important;margin:0 0 10px!important;gap:12px!important}
+.short{margin:14px 0 0!important}.short li{font-size:17px!important;font-weight:600!important;line-height:1.4!important;margin:0 0 6px!important;gap:12px!important;align-items:flex-start!important}
 .short .sn{flex:0 0 44px!important;width:44px!important;height:44px!important;background:var(--blue)!important;color:#fff!important;font-family:'Inter',Arial,sans-serif!important;font-weight:900;font-size:20px!important}
 .swap{font-size:15px!important;color:#333!important;margin:4px 0 0!important}
 .anchorline{background:var(--yellow)!important;padding:12px 14px!important;font-size:15px!important;font-weight:800!important;margin:16px 0 0!important}
 .wsline{font-size:13px!important;color:#333!important;margin:14px 0 0!important}
 .chline{font-size:12px!important}.chline .cp{padding:6px 10px!important;font-weight:900}.chline .cp.away{background:var(--yellow)!important;color:#111!important}
 .awaysticker{background:var(--soft)!important;padding:10px 12px!important;margin:8px 0 10px!important}
-/* travel / base / history tiles — same three, same place, every day */
+/* travel / base / history tiles — one structure, three colours, same place every day */
 .tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0 0}
-.tile{position:relative;overflow:hidden;min-height:124px;padding:12px 10px 10px;display:flex;flex-direction:column;justify-content:flex-end;gap:3px;text-align:left;font-family:'Inter',Arial,sans-serif;cursor:pointer;border:0;color:#fff}
-.tile>span{position:relative;z-index:1;display:block}
-.tile .tk{font-size:12px;font-weight:900;letter-spacing:.04em;align-self:flex-start;padding:4px 7px;background:#111;color:#fff;margin-bottom:auto}
-.tile .tv{font-size:13px;font-weight:700;line-height:1.25;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.tile .ta{font-size:11px;font-weight:900;color:var(--yellow);margin-top:2px}
-.tile.t-travel{background:var(--blue)}
-.tile.t-base{background:#111;background-size:cover;background-position:center}
-.tile.t-base.haspic::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.15) 20%,rgba(0,0,0,.82))}
-.tile.t-about{background:var(--yellow);color:#111}.tile.t-about .ta{color:#111}
-.tiles2{display:flex!important;margin:10px 0 0}.tiles2 .btn{flex:1;background:#e2e2df!important;color:#111!important;font-size:12px!important}
+.tile{position:relative;overflow:hidden;min-height:140px;padding:0 0 10px;display:flex;flex-direction:column;gap:0;text-align:left;font-family:'Inter',Arial,sans-serif;cursor:pointer;border:0;background:#fff;color:#111;outline:2px solid #e2e2df;outline-offset:-2px}
+.tile>span{display:block}
+.tile .tk{font-size:12px;font-weight:900;letter-spacing:.04em;padding:9px 10px;color:#fff;background:#111}
+.tile.t-travel .tk{background:var(--blue)}.tile.t-base .tk{background:#111}.tile.t-about .tk{background:var(--yellow);color:#111}
+.tile .tp{height:64px;background-size:cover;background-position:center;background-color:#e2e2df}
+.tile .tv{font-size:13px;font-weight:700;line-height:1.25;padding:10px 10px 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.tile .ta{font-size:11px;font-weight:900;padding:6px 10px 0;color:var(--blue)}
+.tile.t-travel{background:#eef3ff}.tile.t-about{background:#fffbe6}
+.short .sl{font-family:'Inter',Arial,sans-serif!important;font-size:12px!important;color:#333!important;margin:10px 0 2px!important}
+.short .step{font-size:16px!important;font-weight:400!important;line-height:1.45!important}
 .wsline{font-family:'Inter',Arial,sans-serif!important}
 /* sheet content */
 #sheet .sheetin{max-height:88vh!important;max-width:640px}
