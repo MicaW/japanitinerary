@@ -393,11 +393,14 @@ function renderDay(idx){
   }
   if(S2){
     window.__SHEETS={travel:SH.travel&&SH.travel.html, base:SH.base&&SH.base.html, about:SH.about};
-    let tiles='';
-    if(SH.travel) tiles+='<button class="tile t-travel" onclick="openHtmlSheet(\'travel\')"><span class="tk">🚄 TRAVEL</span><span class="tv">'+SH.travel.sub+'</span><span class="ta">OPEN →</span></button>';
-    if(SH.base) tiles+='<button class="tile t-base" onclick="openHtmlSheet(\'base\')"><span class="tk">🏨 BASE</span>'+(SH.base.pic?'<span class="tp" style="background-image:url(\''+SH.base.pic.u+'\')"></span>':'')+'<span class="tv">'+esc(SH.base.name)+'</span><span class="ta">OPEN →</span></button>';
-    if(SH.about) tiles+='<button class="tile t-about" onclick="openHtmlSheet(\'about\')"><span class="tk">📖 HISTORY</span>'+(d.img?'<span class="tp" style="background-image:url(\''+d.img+'\')"></span>':'')+'<span class="tv">'+esc(d.aboutLabel||'About this place')+'</span><span class="ta">OPEN →</span></button>';
-    let block=tiles?'<div class="tiles n'+(tiles.split('<button').length-1)+'">'+tiles+'</div>':'';
+    const short=x=>String(x||'').split(' (')[0].split(' — ')[0];
+    let rows='';
+    if(SH.travel){ const t0=d.travel[0]; const sum=short(t0.service)+' · '+String(t0.leave||'').split(' from')[0]+(t0.duration?' · '+t0.duration:'')+(d.travel.length>1?' · '+d.travel.length+' legs':'');
+      SH.travelRow='<button class="lr t" onclick="openHtmlSheet(\'travel\')"><span class="ic">🚄</span><span class="tx"><b>Transport</b><span>'+esc(t0.route)+' · '+esc(sum)+'</span></span><span class="go">→</span></button>'; }
+    if(SH.base){ const H=d.hotel; SH.baseRow='<button class="lr b" onclick="openHtmlSheet(\'base\')"><span class="ic'+(SH.base.pic?' ph" style="background-image:url(\''+SH.base.pic.u+'\')"':'"')+'>'+(SH.base.pic?'':'🏨')+'</span><span class="tx"><b>Where we\'re sleeping</b><span>'+esc(H.name)+(H.checkin?' · check-in '+esc(String(H.checkin).split(' (')[0].replace(/^From /,'from ')):'')+'</span></span><span class="go">→</span></button>'; }
+    if(SH.about){ const ab=String(d.about||'').replace(/<[^>]+>/g,'').slice(0,80); SH.aboutRow='<button class="lr h" onclick="openHtmlSheet(\'about\')"><span class="ic">📖</span><span class="tx"><b>About this place</b><span>'+esc(ab)+'…</span></span><span class="go">→</span></button>'; }
+    rows=(SH.aboutRow||'')+(SH.baseRow||'')+(SH.travelRow||'');
+    let block=rows?'<div class="lpanel"><div class="lph">TODAY\'S LOGISTICS</div>'+rows+'</div>':'';
     h=h.replace('__TILES__',block);
   }
   h=h.replace('__TILES__','');

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Etiquette 101 — design options</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e11d1d;--yellow:#ffcc00;--blue:#2b6cff;--green:#12a15a;--ink:#111;--ground:#f4f4f2;--soft:#fff4c2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);font-family:'Inter','Helvetica Neue',Arial,sans-serif;color:var(--ink);font-size:17px;line-height:1.45}
+.wrap{max-width:640px;margin:0 auto;padding:0 14px 60px}
+header{background:#111;color:#fff;padding:14px 16px;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:16px;font-weight:900;text-transform:uppercase}header h1 span{color:var(--yellow)}
+header p{margin:4px 0 0;font-size:13px;color:#bbb}
+.pick{display:flex;gap:6px;margin:14px 0 6px;flex-wrap:wrap}
+.pick button{border:0;background:#e2e2df;font:900 13px Inter,Arial,sans-serif;padding:12px 14px;min-height:46px;cursor:pointer}
+.pick button.on{background:#111;color:var(--yellow)}
+.v{display:none}.v.on{display:block}
+.vh{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:#555;margin:18px 0 8px}.vh b{color:#111;font-size:15px;display:block}
+h2.pt{font-size:30px;font-weight:900;text-transform:uppercase;margin:14px 0 4px;line-height:1}
+.one{background:#111;color:#fff;padding:14px 16px;font-size:16px;font-weight:700;margin:12px 0 0}.one span{color:var(--yellow)}
+.note{background:var(--soft);padding:12px 14px;font-size:14px;margin:12px 0 0}
+ul{margin:0;padding:0;list-style:none}
+li{position:relative;padding:0 0 0 22px;margin:0 0 9px;font-size:16px;line-height:1.45}
+li b{font-weight:900}
+li::before{content:"";position:absolute;left:0;top:9px;width:10px;height:10px;border-radius:50%;background:#111}
+li.do::before{background:var(--green)}li.dont::before{background:var(--red)}
+/* A — rule cards, everything visible */
+.A .card{background:#fff;margin:12px 0 0}
+.A .bar{background:#111;color:#fff;padding:10px 14px;font-weight:900;font-size:15px;letter-spacing:.03em;display:flex;justify-content:space-between}
+.A .bar small{color:var(--yellow);font-weight:700;font-size:12px}
+.A .sub{padding:10px 14px 0;font-size:12px;font-weight:900;letter-spacing:.06em;color:#555}
+.A ul{padding:8px 14px 6px}
+/* B — accordion groups (yellow summary bands like the areas) */
+.B details{background:var(--soft);margin:12px 0 0}
+.B summary{list-style:none;background:var(--yellow);padding:14px 16px;font-weight:900;font-size:18px;text-transform:uppercase;cursor:pointer;display:flex;justify-content:space-between;align-items:center;min-height:56px}
+.B summary::-webkit-details-marker{display:none}
+.B summary .pill{background:#111;color:var(--yellow);font-size:12px;padding:8px 10px;font-weight:900;white-space:nowrap}
+.B details[open] summary .pill::after{content:" ▴"}.B details:not([open]) summary .pill::after{content:" ▾"}
+.B .sub{padding:12px 16px 0;font-size:12px;font-weight:900;letter-spacing:.06em;color:#553}
+.B ul{padding:6px 16px 8px}
+.B summary .n{font-size:12px;font-weight:700;color:#553;display:block;text-transform:none}
+/* C — do / don't */
+.C .grp{background:#fff;margin:12px 0 0;padding:0 0 6px}
+.C .bar{padding:12px 14px 6px;font-weight:900;font-size:18px;text-transform:uppercase;border-bottom:4px solid #111;margin:0 14px}
+.C .cols{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;padding:10px 14px 0}
+@media(max-width:480px){.C .cols{grid-template-columns:1fr}}
+.C .col h4{margin:4px 0 8px;font-size:13px;font-weight:900;letter-spacing:.06em;padding:6px 10px;display:inline-block}
+.C .col.do h4{background:#dff5e7;color:#0b6b3a}.C .col.dont h4{background:#fde2e2;color:#a01212}
+.C li::before{content:"";width:12px;height:12px;top:8px}
+.C li.note::before{background:#111}
+</style></head><body>
+<header><h1>Lampteys <span>on tour</span> · Etiquette 101 options</h1><p>Same content in three layouts. 19 sections became 5 groups; every paragraph is now bullets with the key point in bold. Practical tips are shown as a separate page (not here).</p></header>
+<div class="wrap">
+<div class="pick"><button class="on" onclick="pick(1)">A RULE CARDS</button><button onclick="pick(2)">B GROUPS THAT OPEN</button><button onclick="pick(3)">C DO / DON'T</button></div>
+<h2 class="pt">🙇 Etiquette 101</h2>
+<div class="one">Watch what others do, follow the signs, don't get in anyone's way, and ask politely when unsure. <span>That is 95% of it.</span></div>
+<div id="v1" class="v A on"><div class="vh"><b>A · Rule cards</b>everything visible, black heading bar per group, one scroll</div><div id="cA"></div></div>
+<div id="v2" class="v B"><div class="vh"><b>B · Groups that open</b>five yellow bands like the areas; first one open</div><div id="cB"></div></div>
+<div id="v3" class="v C"><div class="vh"><b>C · Do / Don't</b>each group split into DO and DON'T columns</div><div id="cC"></div></div>
+<div class="note"><b>When you get it wrong</b> (and you will): a small bow, a smile, "sumimasen", move on. Nobody expects perfection from visitors — they notice effort.</div>
+</div>
+<script>
+// k: do / dont / note.  b: bold lead.  t: rest.
+const G=[
+ {n:"Getting around",sub:"queues · trains · buses · luggage",items:[
+  {k:"do",b:"Stand on the platform marks",t:"— queues are sacred and self-organising; the marks show where doors open."},
+  {k:"do",b:"Escalators: stand LEFT in Tokyo, RIGHT in Osaka",t:"— follow the locals."},
+  {k:"do",b:"Phones on silent, talk quietly",t:"— calls are never taken aboard."},
+  {k:"dont",b:"No eating on local trains",t:"— on Shinkansen and limited expresses with tray tables it's fine; the ekiben is a tradition."},
+  {k:"do",b:"Bags on laps or racks, priority seats to whoever needs them",t:""},
+  {k:"dont",b:"Don't blow your nose loudly in public",t:"— sniffing is the lesser sin; step aside if you must."},
+  {k:"note",b:"Big cases are the enemy of narrow trains and rural buses",t:"— that's why the plan forwards or stores them. Takkyubin (luggage delivery) is normal: hotels arrange it at the desk."}]},
+ {n:"Indoors & baths",sub:"shoes · ryokan · farmhouse · onsen · Ine's homes",items:[
+  {k:"do",b:"Shoes off at the genkan",t:"— whenever there's a step up, a shoe rack or slippers waiting. Slippers off on tatami (socks only)."},
+  {k:"dont",b:"Don't wear the toilet slippers back out",t:"— the classic visitor error; recovery is a laugh and a swap."},
+  {k:"do",b:"Yukata: LEFT side over right",t:"— right-over-left dresses the dead."},
+  {k:"note",b:"Staff may come in to lay futons",t:"— that's the service, not an intrusion. Dinner times are fixed and early; being late strands the kitchen."},
+  {k:"do",b:"Library volume after 21:00",t:"— sound carries in old timber houses."},
+  {k:"do",b:"Onsen: everything off, wash and rinse thoroughly at the stool first",t:"— small towel stays out of the water (on your head is traditional), hair up, no splashing. Hydrate after."},
+  {k:"note",b:"Tattoos: small ones increasingly fine",t:"— private baths like Miyabi's skip the question anyway."},
+  {k:"dont",b:"Ine's boathouses are homes",t:"— photograph from the road and the water, never through doorways; keep voices down on the lanes."}]},
+ {n:"Temples, shrines & sessions",sub:"halls · torii · tea · zen · calligraphy",items:[
+  {k:"do",b:"Hats off in halls, shoes off where indicated",t:"— photography rules are posted at each hall; no-photo means it."},
+  {k:"do",b:"Speak softly",t:"— worshippers outrank sightseers everywhere."},
+  {k:"do",b:"Shrine: small bow at the torii, then purify",t:"— right hand washes left, left washes right, pour into a cupped hand to rinse your mouth. Never drink from the ladle."},
+  {k:"do",b:"Prayer: coin in, two bows, two claps, wish, one bow",t:""},
+  {k:"dont",b:"Don't walk the centre line of the path",t:"— it belongs to the deity; keep to the edges."},
+  {k:"do",b:"Sessions: arrive 10 minutes early, phones off entirely",t:"— handle bowls and brushes as shown, both hands. Questions after the quiet parts, not during."},
+  {k:"note",b:"It's fine to be a beginner",t:"— that's the entire premise. Nobody is grading you."}]},
+ {n:"Eating, drinking & paying",sub:"restaurants · chopsticks · bars · shops",items:[
+  {k:"do",b:"Say \"sumimasen\" to summon staff",t:"— expected, not rude."},
+  {k:"do",b:"Slurp your noodles",t:"— it's correct, and improves them."},
+  {k:"do",b:"Pour each other's drinks, not your own",t:"— when sharing a bottle."},
+  {k:"dont",b:"No tipping",t:"— it will be politely chased down the street."},
+  {k:"note",b:"Oshibori (hot towel) is for hands, not face",t:"— Dad: faces happen, nobody dies."},
+  {k:"dont",b:"Never stand chopsticks upright in rice, never pass food chopstick-to-chopstick",t:"— both are funeral rites. Rest them on the holder or across the bowl."},
+  {k:"note",b:"Ask for a fork without shame",t:"— spearing food is forgiven for visitors; at okonomiyaki the spatula is the real tool anyway."},
+  {k:"do",b:"Small bars: greet on entry, accept the cover charge as rent for the seat, talk to the master",t:"— that's what the room is for. Karaoke rooms are private; enthusiasm outranks talent by law."},
+  {k:"do",b:"Money goes in the little tray by the till",t:"— change comes back the same way. Receiving your wrapped item nicely is part of the exchange."},
+  {k:"dont",b:"Don't eat while walking",t:"— stand and finish by the stall (Yanaka and festival streets relax this)."}]},
+ {n:"Out and about",sub:"photos · old streets · rubbish · smoking",items:[
+  {k:"do",b:"People need permission for photos",t:"— especially anyone working, anyone in Gion, and absolutely anyone mourning (23 Sep). Places freely, people politely, rituals rarely."},
+  {k:"dont",b:"Private lanes in Gion carry fines",t:"— no-photo signs mean it."},
+  {k:"do",b:"Magome, Tsumago, Narai are lived-in, not sets",t:"— keep to the edges when residents pass, don't block shopfronts for photos."},
+  {k:"do",b:"Ring the bear bells on the trail, greet fellow walkers",t:"— \"konnichiwa\" on a mountain path is near-mandatory and delightful."},
+  {k:"note",b:"There are no public bins",t:"— carry a bag (it's on the packing list) and empty it at konbini bins or home base. At the apartment, rinse and separate per the host's chart."},
+  {k:"dont",b:"No smoking on the street",t:"— illegal outside the marked corners; fine in designated rooms."},
+  {k:"do",b:"Buy something local in small villages",t:"— that's what keeps them consenting to visitors."}]}
+];
+const li=it=>'<li class="'+it.k+'"><b>'+it.b+'</b> '+it.t+'</li>';
+const A=G.map(g=>'<div class="card"><div class="bar"><span>'+g.n.toUpperCase()+'</span><small>'+g.items.length+' rules</small></div><div class="sub">'+g.sub.toUpperCase()+'</div><ul>'+g.items.map(li).join('')+'</ul></div>').join('');
+const B=G.map((g,i)=>'<details'+(i===0?' open':'')+'><summary><span>'+g.n+'<span class="n">'+g.sub+'</span></span><span class="pill">TAP TO OPEN</span></summary><ul>'+g.items.map(li).join('')+'</ul></details>').join('');
+const C=G.map(g=>{const dos=g.items.filter(i=>i.k!=='dont'), donts=g.items.filter(i=>i.k==='dont'); return '<div class="grp"><div class="bar">'+g.n+'</div><div class="cols"><div class="col do"><h4>✅ DO</h4><ul>'+dos.map(li).join('')+'</ul></div><div class="col dont"><h4>⛔ DON\'T</h4><ul>'+donts.map(li).join('')+'</ul></div></div></div>';}).join('');
+document.getElementById('cA').innerHTML=A; document.getElementById('cB').innerHTML=B; document.getElementById('cC').innerHTML=C;
+function pick(n){ document.querySelectorAll('.pick button').forEach((b,i)=>b.classList.toggle('on',i===n-1)); document.querySelectorAll('.v').forEach((v,i)=>v.classList.toggle('on',i===n-1)); window.scrollTo(0,0); }
+</script>
+</body></html>
