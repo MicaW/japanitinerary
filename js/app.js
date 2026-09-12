@@ -35,8 +35,8 @@ window.showPlace=function(enc){ const o=JSON.parse(decodeURIComponent(enc)); con
   $('#bp-jp').textContent=jp; $('#bp-en').textContent=lines.join('\n'); $('#bigphrase').style.display='flex'; };
 function placeBtns(e,fallbackArea){ const q=e.mapsQ||(e.name+' '+(e.addr||fallbackArea||'Japan'));
   return '<button class="btn mini" onclick="showMap(\''+encodeURIComponent(q)+'\')">🗺️ MAP</button>'+
-    '<a class="btn mini" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'&travelmode=walking">📍 FROM HERE</a>'+
-    '<button class="btn mini yellow" onclick="showPlace(\''+encodeURIComponent(JSON.stringify({jp:e.jp||'',en:e.name,addr:e.addr||''}))+'\')">🈁 SHOW NAME</button>'; }
+    '<a class="btn mini" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'&travelmode=walking">📍 DIRECTIONS</a>'+
+    '<button class="btn mini yellow" onclick="showPlace(\''+encodeURIComponent(JSON.stringify({jp:e.jp||'',en:e.name,addr:e.addr||''}))+'\')">🈁 NAME CARD</button>'; }
 window.showMap=function(qe){ const q=decodeURIComponent(qe); const m=$('#mapmodal'), f=$('#mm-frame'), off=$('#mm-off');
   $('#mm-open').href=mapsUrl(q);
   if(navigator.onLine){ f.style.display='block'; off.style.display='none'; f.src='https://maps.google.com/maps?q='+encodeURIComponent(q)+'&z=16&output=embed'; }
@@ -153,7 +153,7 @@ function recCard(c,i){
   if(c.tips) inner+='<div class="info-box" data-label="On the ground" style="margin:12px 0 4px">'+c.tips+'</div>';
   if(c.nearby) inner+='<p style="font-size:11.5px;margin:8px 0 0;font-family:JetBrains Mono,monospace;color:#6b7280">NEARBY: '+esc(c.nearby)+'</p>';
   inner+='<div class="btnrow">'+placeBtns(c)+
-    (c.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+c.url+'">↗ OFFICIAL</a>':'')+
+    (c.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+c.url+'">↗ WEBSITE</a>':'')+
     (!picOf(c)?'<a class="btn mini" target="_blank" rel="noopener" href="'+photosUrl(c.name+' '+(c.photoQ||'Japan'))+'">📷 PHOTOS</a>':'')+'</div>';
   /* 'Last checked' audit lines hidden (12 Sep) */
   return '<details class="xr fade"><summary>'+thumb(c,i)+
@@ -383,7 +383,7 @@ function renderDay(idx){
       ['NEARBY',H.nearby&&esc(H.nearby)],['GETTING BACK',H.back&&esc(H.back)],['LATE ARRIVAL',H.late&&esc(H.late)]]);
     if(H.note) inner+='<div class="info-box" data-label="Stay notes">'+H.note+'</div>';
     inner+='<div class="btnrow"><button class="btn mini" onclick="showMap(\''+encodeURIComponent(H.mapsQ||H.name)+'\')">🗺️ VIEW ON MAP</button>'+
-      (H.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+H.url+'">↗ OFFICIAL SITE</a>':'')+'</div>';
+      (H.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+H.url+'">↗ WEBSITE</a>':'')+'</div>';
     const hbody='<div class="secbody">'+
       '<div class="hrow">'+thumb(H,idx)+
       '<div style="flex:1;min-width:0"><div class="nm">'+esc(H.name)+'</div><div class="ol">'+esc(H.checkin?('Check-in '+H.checkin):'')+'</div>'+

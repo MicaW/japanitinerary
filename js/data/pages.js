@@ -462,7 +462,7 @@ P.renderMap=function(DAYS){
  h+='<div class="info-box" data-label="Before you fly — make it work offline">'+
    '<b>1. Download the areas in the Google Maps app.</b> Profile picture → <b>Offline maps</b> → <b>Select your own map</b>, then save one each for Kyoto &amp; Osaka, Amanohashidate &amp; Ine, the Kiso Valley, and Tokyo. Your blue dot, the pins you have saved and driving directions all work with no signal.<br><br>'+
    '<b>2. Put every place on your own Google map.</b> Download the file below, then on a computer open <a target="_blank" rel="noopener" href="https://www.google.com/maps/d/">Google My Maps</a> → Create a new map → Import → choose the file. Every place lands as a named pin, in a layer per area. Share the map with Dad and it appears in both your Google Maps apps under Saved → Maps (needs signal).<br><br>'+
-   '<b>3. In the trip guide</b>, every place has <b>MAP</b>, <b>FROM HERE</b> (directions from where you are standing) and <b>SHOW NAME</b> (the Japanese name, big, for a taxi driver or a passer-by).</div>';
+   '<b>3. In the trip guide</b>, every place has <b>MAP</b>, <b>DIRECTIONS</b> (from where you are standing) and <b>NAME CARD</b> (the Japanese name, big, for a taxi driver or a passer-by).</div>';
  h+='<div class="btnrow" style="margin:0 0 18px"><a class="btn mini" href="downloads/lampteys-japan-places.kml" download>⬇ PLACES FILE FOR GOOGLE MY MAPS (KML)</a></div>';
 
  /* ---- every place, by area ---- */
@@ -476,8 +476,8 @@ P.renderMap=function(DAYS){
         const enc=encodeURIComponent(JSON.stringify({jp:p.jp,en:p.n,addr:''}));
         return '<li>'+ICON[p.kind]+' <b>'+esc(p.n)+'</b>'+(p.jp?' <span class="mono" style="font-size:11px">'+esc(p.jp)+'</span>':'')+' <a class="pl-d" href="#day/'+p.day+'">'+esc(p.date)+'</a><br>'+
         '<button class="copybtn" onclick="showMap(\''+encodeURIComponent(p.q)+'\')">MAP</button> '+
-        '<a class="copybtn" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(p.q)+'&travelmode=walking">FROM HERE</a> '+
-        '<button class="copybtn" onclick="showPlace(\''+enc+'\')">SHOW NAME</button></li>';}).join('')+'</ol>'+
+        '<a class="copybtn" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(p.q)+'&travelmode=walking">DIRECTIONS</a> '+
+        '<button class="copybtn" onclick="showPlace(\''+enc+'\')">NAME CARD</button></li>';}).join('')+'</ol>'+
       '</div></details>';
  });
  return h;
