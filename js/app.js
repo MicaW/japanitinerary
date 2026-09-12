@@ -145,7 +145,7 @@ function recCard(c,i){
   if(facts.length) inner+=kv(facts);
   if(c.directions&&c.directions.length) inner+='<details class="more"><summary>📍 Step-by-step: finding it</summary><div class="inner"><ol class="steps">'+c.directions.map(s=>'<li>'+s+'</li>').join('')+'</ol></div></details>';
   if(c.guide) inner+='<div class="guide-box" data-label="🎧 Worth a guide">'+c.guide+'</div>';
-  /* 'On the ground' tips now live in the day's Heads up list (12 Sep) */
+  if(c.tips) inner+='<div class="info-box" data-label="On the ground" style="margin:12px 0 4px">'+c.tips+'</div>';
   if(c.nearby) inner+='<p style="font-size:11.5px;margin:8px 0 0;font-family:JetBrains Mono,monospace;color:#6b7280">NEARBY: '+esc(c.nearby)+'</p>';
   inner+='<div class="btnrow">'+placeBtns(c)+
     (c.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+c.url+'">↗ OFFICIAL</a>':'')+
@@ -594,7 +594,7 @@ function renderHome(){
   h+='<div class="mono" style="font-weight:700;font-size:12px;margin:6px 0 4px">18 SEP – 5 OCT • LONDON → OSAKA (KIX) ⇢ TOKYO (HND) → LONDON</div>';
   h+='<div class="mapbox" id="homemap">'+renderJourneyMap(window.MAPMODE||'simple')+'</div>';
   h+='<div class="views">OR SEE THE WHOLE TRIP AS A <a href="#map">🗺️ MAP</a><a href="#planner">☰ LIST</a></div>';
-  h+='<div class="ctas"><a class="c-ph" href="#phrases">Handy Japanese phrases!<small>Tap a phrase to show it big</small></a><a class="c-et" href="#etiquette">Learn the etiquette<small>Ten things before you land</small></a></div>';
+  h+='<div class="ctas"><a class="c-ph" href="#phrases">Handy Japanese phrases!</a><a class="c-et" href="#etiquette">Learn the etiquette</a></div>';
   h+='</div></div>';
   h+='<div class="sec"><h3>The tour at a glance</h3><div class="sub">16 nights · 6 bases · every flight, stay, train and transfer — tap a row for the day</div></div>';
   h+='<div id="glance">'+renderGlance()+'</div>';
