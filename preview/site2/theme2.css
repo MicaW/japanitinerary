@@ -155,3 +155,4 @@ header{min-height:72px}
 #daynav .dtab.away,#daynav .dtab.retreat,#daynav .dtab.seaside{background:#fff4c2!important}
 .sheetplain .copybtn{min-height:34px!important;padding:6px 10px!important;font-size:11px!important;margin-left:6px;vertical-align:middle}
 .sheetplain .kv{grid-template-columns:90px 1fr!important}
+.swap{font-size:14px!important;font-style:italic;color:#444!important;margin:6px 0 0!important;line-height:1.45}

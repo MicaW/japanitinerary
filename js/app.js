@@ -394,7 +394,7 @@ function renderDay(idx){
     let tiles='';
     if(SH.travel) tiles+='<button class="tile t-travel" onclick="openHtmlSheet(\'travel\')"><span class="tk">🚄 TRAVEL</span><span class="tv">'+SH.travel.sub+'</span><span class="ta">OPEN →</span></button>';
     if(SH.base) tiles+='<button class="tile t-base" onclick="openHtmlSheet(\'base\')"><span class="tk">🏨 BASE</span>'+(SH.base.pic?'<span class="tp" style="background-image:url(\''+SH.base.pic.u+'\')"></span>':'')+'<span class="tv">'+esc(SH.base.name)+'</span><span class="ta">OPEN →</span></button>';
-    if(SH.about) tiles+='<button class="tile t-about" onclick="openHtmlSheet(\'about\')"><span class="tk">📖 HISTORY</span><span class="tv">'+esc(d.aboutLabel||'About this place')+'</span><span class="ta">OPEN →</span></button>';
+    if(SH.about) tiles+='<button class="tile t-about" onclick="openHtmlSheet(\'about\')"><span class="tk">📖 HISTORY</span>'+(d.img?'<span class="tp" style="background-image:url(\''+d.img+'\')"></span>':'')+'<span class="tv">'+esc(d.aboutLabel||'About this place')+'</span><span class="ta">OPEN →</span></button>';
     let block=tiles?'<div class="tiles n'+(tiles.split('<button').length-1)+'">'+tiles+'</div>':'';
     h=h.replace('__TILES__',block);
   }
