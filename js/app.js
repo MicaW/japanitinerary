@@ -340,7 +340,6 @@ function renderDay(idx){
   h+='__TILES__';
   if(d.anchor&&!/^none/i.test(d.anchor)) h+='<div class="anchorline">📌 TIMED TODAY: '+esc(d.anchor)+'</div>';
   const S2=!!window.SITE2; const SH={};
-  h+='<div class="wsline">🛏 WAKE: '+esc(d.wake)+'  →  SLEEP: '+esc(d.sleep)+'</div>';
   h+='</div></div>';
 
   { const ab='<div class="axbody">'+d.about+
