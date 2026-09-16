@@ -1,16 +1,16 @@
 /* DAYS 13–18 : 30 Sept – 5 Oct. */
 (function(){
 const W=window.WIMG;
-const UPLACE={ name:"U Place Shimokitazawa by Tranova", img:"images/uplace-room.jpg", imgCredit:"U Place / booking listing", gallery:[{u:"images/uplace-living.jpg",t:"U Place — living room and kitchen"},{u:"images/uplace-outside.jpg",t:"U Place — the building"}], lat:35.662922, lng:139.665922, geo:"medium", status:"BOOKED ✓ — DETAILS TO CONFIRM", statusColor:"#15803d",
+const UPLACE={ name:"U Place Shimokitazawa by Tranova", img:"images/uplace-room.jpg", imgCredit:"U Place / booking listing", gallery:[{u:"images/uplace-living.jpg",t:"U Place — living room and kitchen"},{u:"images/uplace-outside.jpg",t:"U Place — the building"}], lat:35.662922, lng:139.665922, geo:"medium", status:"BOOKED ✓ — ID/CHECK-IN FORM SUBMITTED (16 Sep)", statusColor:"#15803d",
   desc:"A whole apartment in Shimokitazawa — Tokyo's vintage-shopping, live-music, small-café neighbourhood (the closest thing the city has to Hackney). Two bedrooms, kitchen, washing machine, and streets outside that reward aimless walking. Living IN a neighbourhood, rather than above a lobby, is the point of the last four nights.",
-  addr:"Shimokitazawa, Setagaya-ku, Tokyo 155-0031 — exact street address arrives with the Booking.com check-in details", jpAddr:"東京都世田谷区北沢（詳細は予約確認メール）",
-  phone:"Host via booking platform", url:"https://www.booking.com/hotel/jp/u-place-shimokitazawa.html", mapsQ:"U Place Shimokitazawa by Tranova",
-  checkin:"~15:00–16:00, smart-lock self check-in expected — confirm the exact procedure and door code delivery", checkout:"5 Oct morning",
-  rooms:"Two real bedrooms (confirmed requirement — verify the second isn't a sofa bed on arrival day)", meals:"Self-catering — the neighbourhood is the restaurant",
+  addr:"2-27-9 Kitazawa, Setagaya-ku, Tokyo 155-0031", jpAddr:"東京都世田谷区北沢2-27-9",
+  phone:"+81 80-8500-9217", url:"https://www.booking.com/hotel/jp/u-place-shimokitazawa.html", mapsQ:"U Place Shimokitazawa by Tranova",
+  checkin:"From 15:00, self check-in", checkout:"5 Oct morning",
+  rooms:"1-bed apartment (1 bed + 1 futon)", meals:"Self-catering — the neighbourhood is the restaurant",
   nearby:"Shimokitazawa station 3 min (Odakyu + Keio Inokashira), supermarkets (Ozeki/Peacock area), bakeries, a hundred vintage shops",
   back:"From anywhere: Odakyu line to Shimokitazawa (from Shinjuku, 8 min) or Inokashira line (from Shibuya, 4 min)",
-  late:"Smart-lock — no curfew, but keep voices down in residential lanes",
-  note:"<b>To confirm with host:</b> exact address, check-in code procedure, luggage-delivery acceptance (for cases forwarded from Kyoto/Kiso), washing machine, and the best Haneda route from the door. This unlocks the final bookings: airport taxi + luggage forwarding." };
+  late:"Self check-in — no curfew, but keep voices down in residential lanes",
+  note:"<b>ID/check-in form submitted 16 Sep</b> (ws.formzu.net, scheduled check-in 1 Oct 15:00) — they then email the door-entry PDF, watch for it. <b>Parcels/lockers:</b> the host said mailboxes/parcel lockers are generally off-limits — any delivery (including a forwarded suitcase) needs a time booked when someone is in the room to receive it in person, so a Yamato/Kyoto→Tokyo luggage send needs agreeing a slot with them first, not just dropping it off." };
 
 window.DAYS3=[
 /* ---------------- DAY 13 : 30 SEP ---------------- */
@@ -36,9 +36,10 @@ window.DAYS3=[
     desc:"Final mountain night at the station-side house. Tonight also stages tomorrow: bags set for the Tokyo transfer (any forwarding to the apartment sent per the luggage plan), and the fridge emptied with honour — the self-catered kitchen dinner is tonight\'s plan unless the hosts suggested better.",
     addr:"3465-1 Yomikaki, Nagiso-machi, Kiso-gun, Nagano 399-5301", jpAddr:"〒399-5301 長野県木曽郡南木曽町読書3465-1", phone:"+81 264-40-1001",
     url:"https://folk-lore.com/", mapsQ:"MOUNTAinn Nagiso", checkin:"—", checkout:"Tomorrow 07:00–10:00",
-    rooms:"Two-bedroom unit — a room each", meals:"Self-catering — tonight\'s dinner comes from the supermarket and the house kitchen",
+    rooms:"One-bedroom house, whole house (per the Booking.com confirmation) — 2 adults", meals:"Self-catering — tonight\'s dinner comes from the supermarket and the house kitchen",
     nearby:"Nagiso station on the doorstep", back:"Steps from the platform", img:null,
-    note:"Being AT Nagiso station settles tomorrow\'s route: Shinano from Nagiso → Nagoya → Nozomi (E-seat Fuji side) — book ~1 Sep." },
+    note:"Being AT Nagiso station settles tomorrow\'s route: Shinano from Nagiso → Nagoya → Nozomi (E-seat Fuji side) — book ~1 Sep.",
+    checkinUrl:"https://drive.google.com/file/d/1awvRjuXcazDZfPRPdfyoQjDR0ndp-HaU/view?usp=drive_link" },
   shape:{ m:"Breakfast at the inn → Ride the local train up the valley → Walk Narai-juku's kilometre-long preserved street — the richest of the old post towns — while it's still quiet.", a:"Soba lunch in an Edo-period room in Narai → Train back to Kiso-Fukushima → Tour the reconstructed checkpoint that once policed this highway, then its old quarter → (If trains align: hop off at Agematsu for the Nezame gorge terrace view.)", e:"Home to the base → onsen or bath → final mountain dinner → pack for the metropolis.",
     fixed:"Only the train times you pick — screenshot them.", flex:"Nezame is first overboard; Narai + the checkpoint are the day. If the hosts offer a cheap lift, Atera Valley rejoins the menu." },
   clusters:[

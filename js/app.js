@@ -384,7 +384,9 @@ function renderDay(idx){
       ['NEARBY',H.nearby&&esc(H.nearby)],['GETTING BACK',H.back&&esc(H.back)],['LATE ARRIVAL',H.late&&esc(H.late)]]);
     if(H.note) inner+='<div class="info-box" data-label="Stay notes">'+H.note+'</div>';
     inner+='<div class="btnrow"><button class="btn mini" onclick="showMap(\''+encodeURIComponent(H.mapsQ||H.name)+'\')">🗺️ VIEW ON MAP</button>'+
-      (H.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+H.url+'">↗ WEBSITE</a>':'')+'</div>';
+      (H.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+H.url+'">↗ WEBSITE</a>':'')+
+      (H.confirmUrl?'<a class="btn mini yellow" target="_blank" rel="noopener" href="'+H.confirmUrl+'">📄 BOOKING CONFIRMATION</a>':'')+
+      (H.checkinUrl?'<a class="btn mini yellow" target="_blank" rel="noopener" href="'+H.checkinUrl+'">🔑 SELF CHECK-IN INFO</a>':'')+'</div>';
     const hbody='<div class="secbody">'+
       '<div class="hrow">'+thumb(H,idx)+
       '<div style="flex:1;min-width:0"><div class="nm">'+esc(H.name)+'</div><div class="ol">'+esc(H.checkin?('Check-in '+H.checkin):'')+'</div>'+
