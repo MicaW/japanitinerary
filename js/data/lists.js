@@ -20,14 +20,14 @@ P.renderLists=function(){
  h+='<div class="sec pink"><h3>Mica\'s lists</h3><div class="sub">This week · next week · in Japan · packing · mini-trip packing</div></div>';
  h+='<div class="btnrow" style="margin-bottom:22px"><a class="btn red big" style="flex:1" href="downloads/mica-departure-lists.pdf" download>⬇ PDF (PRINT)</a></div>';
 
- h+='<div class="sec" style="margin-top:22px"><h3>The eight trains — quick reference</h3><div class="sub">Times and booking links for every reserved seat</div></div>';
- h+='<div style="overflow-x:auto"><table class="simple mini"><tr><th>DATE</th><th>TRAIN</th><th>ROUTE</th><th>BOOK</th></tr>'+
-   TRAINS.map(x=>'<tr><td style="white-space:nowrap">'+x.d.split(' ·')[0]+'</td><td><b>'+x.n+'</b></td><td>'+x.r+'</td><td><a class="btn mini yellow" target="_blank" rel="noopener" href="'+x.u+'">↗ BOOK</a></td></tr>').join('')+'</table></div>';
+ h+='<div class="sec" style="margin-top:22px"><h3>The eight trains — all booked</h3><div class="sub">Reservation numbers and seats. The four e5489 paper tickets are collected at Kyoto Station on 19 Sep; the HARUKA at the airport; the rest are digital</div></div>';
+ h+='<div style="overflow-x:auto"><table class="simple mini"><tr><th>DATE</th><th>TRAIN</th><th>ROUTE</th><th>REF · SEATS</th></tr>'+
+   TRAINS.map(x=>'<tr><td style="white-space:nowrap">'+x.d.split(' ·')[0]+'</td><td><b>'+x.n+'</b></td><td>'+x.r+'</td><td><b>'+x.ref+'</b><br>'+x.seat+'</td></tr>').join('')+'</table></div>';
  /* ticket-office sheet — referenced from Mica's printed list */
- h+='<div class="sec orange" style="margin-top:22px"><h3>Ticket-office sheet</h3><div class="sub">If a train website says no, show this at any JR ticket office (みどりの窓口 Midori no Madoguchi). Kyoto Station: by the central gates, 05:30–23:00</div></div>';
- h+='<div class="jpsheet"><div class="jph">乗車券・特急券をお願いします（大人2名）</div>';
+ h+='<div class="sec orange" style="margin-top:22px"><h3>Ticket-office sheet</h3><div class="sub">If the machine will not release a booking, show this at the JR ticket office (みどりの窓口 Midori no Madoguchi). Kyoto Station: by the central gates, outside the ticket barriers, 05:30–23:00</div></div>';
+ h+='<div class="jpsheet"><div class="jph">e5489で予約したきっぷを受け取りたいです（大人2名・決済したクレジットカードと予約番号、電話番号下4桁 1104）</div>';
  TRAINS.filter(x=>!/HARUKA|NOZOMI|AONIYOSHI/.test(x.n)).forEach(x=>{ h+='<div class="jpl">'+x.jp+'</div>'; });
- h+='<div class="jpf">クレジットカードで支払います。ありがとうございます。</div></div>';
+ h+='<div class="jpf">支払い済みです。ありがとうございます。</div></div>';
  h+='<div class="btnrow"><button class="btn mini" onclick="window.print()">🖨 PRINT THIS SHEET</button></div>';
 
  return h;
