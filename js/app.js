@@ -328,8 +328,10 @@ function areaCard(d,cl,ci,prevSpot){
 }
 
 /* ---------- day page ---------- */
-function viewsBar(active){ const di=window.LASTDAY>=0?window.LASTDAY:Math.max(0,currentDayIndex()); const d=DAYS[di];
-  return '<div class="dayviews"><a class="'+(active==='day'?'on':'')+'" href="#day/'+d.id+'">📅 DAY VIEW</a><a class="'+(active==='map'?'on':'')+'" href="#map">🗺️ MAP</a><a class="'+(active==='list'?'on':'')+'" href="#planner">☰ LIST</a></div>'; }
+function viewsBar(active,dayOnly){ const di=window.LASTDAY>=0?window.LASTDAY:Math.max(0,currentDayIndex()); const d=DAYS[di];
+  /* from a day, MAP shows that day; from the trip views it shows the whole trip */
+  const mapHref = dayOnly===false ? '#map' : '#map/'+d.id;
+  return '<div class="dayviews"><a class="'+(active==='day'?'on':'')+'" href="#day/'+d.id+'">📅 DAY VIEW</a><a class="'+(active==='map'?'on':'')+'" href="'+mapHref+'">🗺️ MAP</a><a class="'+(active==='list'?'on':'')+'" href="#planner">☰ LIST</a></div>'; }
 function renderDay(idx){
   const d=DAYS[idx]; window.LASTDAY=idx; let h=viewsBar('day');
   var gal=[]; if(d.img) gal.push({u:d.img,t:d.title||d.base,c:d.imgCredit||''});
@@ -670,14 +672,23 @@ function route(){
     const id=hash.slice(5); let idx=DAYS.findIndex(d=>d.id===id); if(idx<0) idx=0;
     renderSubnav('#guide'); renderDaynav(idx); renderDay(idx);
   } else if(hash==='#guide'){ const ci=currentDayIndex(); location.hash='day/'+DAYS[ci>=0?ci:0].id; return; }
-  else if(hash==='#planner'){ renderSubnav(hash); renderDaynav(window.LASTDAY>=0?window.LASTDAY:-1); app.innerHTML=viewsBar('list')+renderPlanner(); }
+  else if(hash==='#planner'){ renderSubnav(hash); renderDaynav(window.LASTDAY>=0?window.LASTDAY:-1); app.innerHTML=viewsBar('list',false)+renderPlanner(); }
   else if(/^#(lists|mica|mark|todo|bookings|packing)$/.test(hash)){ renderSubnav('#packing'); app.innerHTML=P.renderLists(); }
   else if(hash==='#getting'){ renderSubnav(hash); app.innerHTML=P.renderGetting(); }
   else if(hash==='#budget'){ renderSubnav(hash); app.innerHTML=P.renderBudget(); }
   else if(hash==='#etiquette'){ renderSubnav(hash); app.innerHTML=P.renderEtiquette(); }
   else if(hash==='#tips'){ renderSubnav(hash); app.innerHTML=P.renderTips(); }
   else if(hash==='#phrases'){ renderSubnav(hash); app.innerHTML=P.renderPhrases(); }
-  else if(hash==='#map'){ renderSubnav(hash); renderDaynav(window.LASTDAY>=0?window.LASTDAY:-1); app.innerHTML=viewsBar('map')+P.renderMap(DAYS); }
+  else if(/^#map\/.+/.test(hash)){ const id=hash.slice(5); const i=DAYS.findIndex(x=>x.id===id);
+    if(i<0){ location.hash='map'; return; }
+    window.LASTDAY=i; renderSubnav('#map'); renderDaynav(i);
+    app.innerHTML=viewsBar('map')+
+      '<div class="sec"><h3>Map — '+esc(DAYS[i].dow)+' '+esc(DAYS[i].date)+'</h3><div class="sub">Just today\'s places. <a href="#map">Show the whole trip instead →</a></div></div>'+
+      P.renderMap([DAYS[i]]); }
+  else if(hash==='#map'){ renderSubnav(hash); renderDaynav(window.LASTDAY>=0?window.LASTDAY:-1);
+    app.innerHTML=viewsBar('map',false)+
+      '<div class="sec"><h3>Map — the whole trip</h3><div class="sub">All 18 days. <a href="#map/'+DAYS[window.LASTDAY>=0?window.LASTDAY:Math.max(0,currentDayIndex())].id+'">Show just one day instead →</a></div></div>'+
+      P.renderMap(DAYS); }
   else { renderSubnav('#home'); renderHome(); }
 }
 window.addEventListener('hashchange',function(){ var bp=document.getElementById('bigphrase'); if(bp) bp.style.display='none'; route(); });
