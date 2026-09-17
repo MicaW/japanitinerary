@@ -30,7 +30,7 @@ const HU={
   {k:'shop',t:'Ippodo tea on Teramachi (since 1717) and Kaikado’s hand-made tea caddies by Kawaramachi-Shichijo are the two Kyoto objects people regret not buying. Aritsugu at Nishiki will engrave a knife while you wait. Toji market today: old kimono and obi from ¥1,000, tea bowls, tools.'}
  ],
  "22-sep":[
-  {k:'closed',t:'THE SUMO HALL HIRAKUZA is closed on Tuesdays, holiday or not, so it has been taken off today. Your sumo is the Asakusa show on Sat 3 Oct. Several Orange Street shops also close Wednesdays and Tuesdays — expect a few shutters.'},
+  {k:'closed',t:'THE SUMO HALL HIRAKUZA is closed on Tuesdays, holiday or not, so it has been taken off today. <b>Sumo is still undecided:</b> either Sumo An in Kyoto on the evening of the 21st, or the Asakusa show on Sat 3 Oct — and the Asakusa one only works if you take the Asakusa track that day instead of Ueno. Pick one; the planning page has both. Several Orange Street shops also close Wednesdays and Tuesdays — expect a few shutters.'},
   {k:'avoid',t:'Dotonbori touts: any bar whose staff invite you in from the street will have a cover charge that is not on the board. No street tout, no problem. Keep bags cross-body on Ebisu-bashi and do not hand your phone to anyone who asks you to hold it.'},
   {k:'avoid',t:'Kuromon Market prices have climbed with the crowds; graze one or two things, do not make it lunch. The restaurants directly beside Osaka Castle are the dearest in the city — walk five minutes.'},
   {k:'avoid',t:'Counterfeit "designer" goods in the small Shinsaibashi arcades: if the price is impossible, it is.'},

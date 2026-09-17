@@ -220,7 +220,7 @@ window.DAYS2=[
     bookUrl:"https://www.westjr.co.jp/global/en/ticket/overview/", live:"https://www.jorudan.co.jp/norikae/cgi/nori.cgi?eki1=%E4%BA%80%E5%B2%A1&eki2=%E5%A4%A9%E6%A9%8B%E7%AB%8B&Dym=202609&Ddd=25&Dhh=10&Dmn1=3&Dmn2=0&Cway=0&S=%E6%A4%9C%E7%B4%A2&Csg=1", mapFrom:"Kameoka Station", mapTo:"Amanohashidate Station" },
   { route:"Amanohashidate → Ine (Hide stop)", service:"Tankai route bus (rural local)", badge:"THE HARD WALL — 13:57 BUS",
     what:"A normal community bus, not a tourist coach — the working transport of the bay villages, and the reason for the luggage rule. Coastal glimpses strengthen as Ine approaches. ",
-    leave:"13:57 → arrives Ine 14:56 (the plan). Backups: 14:37 → 15:34, 15:11 → 16:08, 16:18 → 17:15 (last useful one). Earlier if lunch was quick: 13:03 → 14:00", duration:"~59 min", changes:"0",
+    leave:"13:57 → arrives Ine 14:56 (the plan). Backups: 14:37 → 15:34, 15:11 → 16:08, 16:18 → 17:15. <b>Do not take that one.</b> Miyabi release the room if they have not heard from you by 17:00 on arrival day, so a 17:15 arrival is past the deadline — message them from Amanohashidate before you board whichever bus you take. Earlier if lunch was quick: 13:03 → 14:00", duration:"~59 min", changes:"0",
     freq:"14 buses a day but with gaps — treat the 13:57 as the appointment", price:"¥400 pp, <b>CASH ONLY</b> — Tankai take no IC cards, no bank cards, no QR. Have coins or ¥1,000 notes; the machine by the driver gives change",
     status:"No reservation possible", seats:"Front half for the easy exit; left side (seaward) going north for the glimpses",
     luggage:"STRICT: one item each, within 1m total dimensions, ~10kg — a medium suitcase can be refused. This is why the big cases stayed in Kyoto",

@@ -216,7 +216,11 @@ function foodCard(f,i){
 
 /* ---------- v27: area cards — map with pins, walk strip, carousels, detail sheet ---------- */
 function kmBetween(a,b){ var R=6371,dl=(b.lat-a.lat)*Math.PI/180,dn=(b.lng-a.lng)*Math.PI/180,q=Math.sin(dl/2)*Math.sin(dl/2)+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dn/2)*Math.sin(dn/2); return 2*R*Math.asin(Math.sqrt(q)); }
-function walkMins(a,b){ return Math.max(1,Math.round(kmBetween(a,b)*1000/80*1.3)); }
+/* Straight-line distance is what coordinates give you. Real streets are longer, so both the
+   metres and the minutes carry the same 1.3x detour factor and are shown as estimates. */
+var DETOUR=1.3;
+function walkM(a,b){ return Math.round(kmBetween(a,b)*1000*DETOUR); }
+function walkMins(a,b){ return Math.max(1,Math.round(walkM(a,b)/80)); }
 function clusterStops(cl){
   var stops=[]; ['activities','explore','shopping','food'].forEach(function(k){ (cl[k]||[]).forEach(function(e){ if(e.lat&&e.lng) stops.push({name:e.name,lat:e.lat,lng:e.lng,kind:k,q:e.mapsQ||e.name}); }); });
   if(stops.length<2) return stops;
@@ -254,10 +258,12 @@ function walkStrip(stops){
   var h='<div class="wstrip">';
   pts.forEach(function(p,i){
     h+='<div class="wstop"><span class="wn '+(p.kind==='food'?'f':'')+'">'+String.fromCharCode(65+i)+'</span><span class="wnm">'+esc(p.name)+'</span></div>';
-    if(i<pts.length-1){ var m=walkMins(p,pts[i+1]); h+='<div class="wgap"><i></i><b>'+m+' min</b> '+Math.round(kmBetween(p,pts[i+1])*1000)+' m on foot</div>'; }
+    if(i<pts.length-1){ var mm=walkM(p,pts[i+1]);
+      h+='<div class="wgap"><i></i>'+(mm<60?'<b>same spot</b>':'<b>'+walkMins(p,pts[i+1])+' min</b> ~'+(mm<950?mm+' m':(mm/1000).toFixed(1)+' km'))+'</div>'; }
   });
   var far=stops.filter(function(s){return s.far;});
-  if(far.length){ h+='<div class="wfar">Off this map: '+far.map(function(f){return esc(f.name)+' ('+kmBetween(f,pts[0]).toFixed(1)+' km away)';}).join(' · ')+'</div>'; }
+  if(far.length){ h+='<div class="wfar">Off this map: '+far.map(function(f){return esc(f.name)+' ('+kmBetween(f,pts[0]).toFixed(1)+' km as the crow flies)';}).join(' · ')+'</div>'; }
+  h+='<div class="wfar">Times and distances here are estimates from the map pins, not a routed walk. Tap OPEN IN GOOGLE MAPS for the real thing.</div>';
   return h+'</div>';
 }
 window.__CARDS={};
