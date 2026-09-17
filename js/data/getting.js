@@ -171,8 +171,24 @@ P.renderGetting=function(){
     h+='<div class="sec '+g.c+'"><h3>'+g.k+'</h3><div class="sub">'+g.sub+'</div></div>';
     h+=g.items.map(itemRow).join('');
   });
+  h+='<div class="sec red"><h3>Save this site to your phone — 2 minutes, do it on wifi</h3><div class="sub">It then opens like an app, with no signal, anywhere on the trip</div></div>';
+  h+='<div class="info-box" style="margin-bottom:22px"><b>iPhone, in Safari (it must be Safari — Chrome on iOS cannot do this):</b><br>'+
+    '1. Open this site on <b>wifi</b> and let it finish loading.<br>'+
+    '2. Tap through a few day pages, the map view and the planning page. Every page you open gets stored; the whole site is only a few megabytes.<br>'+
+    '3. Tap the <b>Share</b> button (the square with the arrow) → scroll down → <b>Add to Home Screen</b> → Add.<br>'+
+    '4. A LAMPTEYS icon appears on your home screen. Open it once more while still on wifi.<br>'+
+    '5. Test it properly: turn on Aeroplane Mode and open the icon. Everything should still be there. If it is, you are done.<br><br>'+
+    '<b>Do this on both phones</b>, tonight, before you pack. Doing it at Kansai on airport wifi is possible but miserable.<br><br>'+
+    '<b>Updating it:</b> the site refreshes itself whenever it is opened with signal. If something looks out of date, pull down to refresh on the home page.</div>';
   h+='<div class="sec"><h3>What works with no signal</h3><div class="sub">Worth knowing before you are standing somewhere with one bar</div></div>';
   h+='<div class="info-box" style="margin-bottom:26px"><b>Works offline:</b> this whole website once you have opened it on wifi, the Google Maps areas you downloaded, every screenshot, the ICOCA card in your Wallet, and the SmartEX QR codes if you screenshot them.<br><br><b>Needs signal:</b> live train times, the 📄 booking confirmation links (they are Google Docs — open each one once on wifi and star it for offline in the Google Docs app if you want them without signal), the GO taxi app, and any map you did not download.<br><br><b>Where signal is genuinely poor:</b> Ine and the Kyōtango coast, and parts of the Kiso valley between Magome and Tsumago. Both are places where the printed timetable at the stop beats anything on a phone — photograph it when you arrive.</div>';
+  h+='<div class="sec orange"><h3>Changing this site while you are away</h3><div class="sub">The honest version, including what will not work</div></div>';
+  h+='<div class="info-box" style="margin-bottom:22px">'+
+    '<b>How the site actually updates.</b> It is a set of files in a GitHub repository. Anything committed to the <b>main</b> branch appears on the live site about a minute later. That is the whole mechanism — there is no server, no login, no admin panel.<br><br>'+
+    '<b>The route that always works, from any phone:</b> open <b>github.com/MicaW/japanitinerary</b> in a browser, sign in, tap into the file, tap the pencil, edit the text, and commit to main. Fiddly on a phone but completely reliable, and it needs nothing installed. If you change anything, also bump the version string at the top of <b>sw.js</b> (<span class="mono">lampteys-vNN</span> → the next number), or phones that already have the site saved will keep showing the old one.<br><br>'+
+    '<b>Asking Claude from your phone:</b> Claude can write the change for you anywhere, any time. Whether it can <i>publish</i> it depends on one setting. Right now, the only reason this site can be updated is that the changes are routed through the laptop — a Claude session on its own is blocked from pushing to this repository. <b>Before you fly, connect the repository as a source in the Claude project and push one trivial change to test it.</b> If that works, phone updates work with the laptop shut. If you do not test it, assume they do not.<br><br>'+
+    '<b>The fallback that never fails:</b> ask Claude for the exact replacement text, then paste it into github.com yourself using the pencil. Two minutes, no dependencies.<br><br>'+
+    '<b>What you will not be able to do from a phone:</b> anything that needs the booking confirmation PDFs rebuilt, or the whole-site PDF set regenerated. Those are built on a computer. The PDFs in your Drive folder are the snapshot you carry instead.</div>';
   h+='<div class="btnrow" style="margin-bottom:26px"><button class="btn mini" onclick="window.print()">🖨 PRINT THIS PAGE</button></div>';
   return h;
 };
