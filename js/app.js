@@ -345,6 +345,9 @@ function renderDay(idx){
     (walkTag?'<span class="tag rain">WALKING: '+esc(walkTag.toUpperCase())+'</span>':'')+
     (d.travelDay?'<span class="tag book">TRAVEL DAY</span>':'')+'</div>';
   h+='<p style="font-size:14.5px;font-weight:600;margin:12px 0 0;line-height:1.5">'+d.summary+'</p>';
+  /* todo: the one thing that must happen today, at the top where it is findable */
+  if(d.todo) h+='<div class="sec red" style="margin-top:20px"><h3>'+d.todo.h+'</h3><div class="sub">'+d.todo.s+'</div></div>'+
+    '<div class="info-box" style="margin-bottom:4px">'+d.todo.b+'</div>';
   if(d.shape){ const st=t=>String(t||'').split(/\s*→\s*/).filter(Boolean);
     h+='<div class="tl">'+[['MORNING',d.shape.m],['AFTERNOON',d.shape.a],['EVENING',d.shape.e]].map((x,i)=>'<div class="tln"><span class="plabel">'+x[0]+'</span>'+st(x[1]).map(y=>'<div class="step">'+y+'</div>').join('')+'</div>').join('')+'</div>';
     if(d.shape.flex) h+='<p class="swap">↔ <b>If the day overflows:</b> '+d.shape.flex+'</p>';
