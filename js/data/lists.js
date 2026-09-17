@@ -20,9 +20,12 @@ P.renderLists=function(){
  h+='<div class="sec pink"><h3>Mica\'s lists</h3><div class="sub">This week · next week · in Japan · packing · mini-trip packing</div></div>';
  h+='<div class="btnrow" style="margin-bottom:22px"><a class="btn red big" style="flex:1" href="downloads/mica-departure-lists.pdf" download>⬇ PDF (PRINT)</a></div>';
 
- h+='<div class="sec" style="margin-top:22px"><h3>The eight trains — all booked</h3><div class="sub">Reservation numbers and seats. The four e5489 paper tickets are collected at Kyoto Station on 19 Sep; the HARUKA at the airport; the rest are digital</div></div>';
- h+='<div style="overflow-x:auto"><table class="simple mini"><tr><th>DATE</th><th>TRAIN</th><th>ROUTE</th><th>REF · SEATS</th></tr>'+
-   TRAINS.map(x=>'<tr><td style="white-space:nowrap">'+x.d.split(' ·')[0]+'</td><td><b>'+x.n+'</b></td><td>'+x.r+'</td><td><b>'+x.ref+'</b><br>'+x.seat+'</td></tr>').join('')+'</table></div>';
+ h+='<div class="sec" style="margin-top:22px"><h3>The eight trains — all booked</h3><div class="sub">Reservation numbers and seats; 📄 opens each booking confirmation. The four e5489 paper tickets are collected at Kyoto Station on 19 Sep; the HARUKA at the airport; the rest are digital</div></div>';
+ h+='<div style="overflow-x:auto"><table class="simple mini"><tr><th>DATE</th><th>TRAIN</th><th>ROUTE</th><th>REF · SEATS</th><th>DOC</th></tr>'+
+   TRAINS.map(x=>{ const K={'HARUKA':'haruka','HASHIDATE 5':'hashidate5','HASHIDATE 2':'hashidate2','AONIYOSHI':'aoniyoshi','NOZOMI 22':'nozomi22','SHINANO 17':'shinano17','SHINANO 2':'shinano2','NOZOMI 122':'nozomi122'};
+     const key=Object.keys(K).find(k=>x.n.split(' (')[0]===k||(k==='HARUKA'&&/HARUKA/.test(x.n)));
+     const u=key&&window.confFor?confFor('key',K[key]):'';
+     return '<tr><td style="white-space:nowrap">'+x.d.split(' ·')[0]+'</td><td><b>'+x.n+'</b></td><td>'+x.r+'</td><td><b>'+x.ref+'</b><br>'+x.seat+'</td><td style="text-align:center">'+(u?'<a target="_blank" rel="noopener" href="'+u+'" style="text-decoration:none;font-size:16px">📄</a>':'')+'</td></tr>'; }).join('')+'</table></div>';
  /* ticket-office sheet — referenced from Mica's printed list */
  h+='<div class="sec orange" style="margin-top:22px"><h3>Ticket-office sheet</h3><div class="sub">If the machine will not release a booking, show this at the JR ticket office (みどりの窓口 Midori no Madoguchi). Kyoto Station: by the central gates, outside the ticket barriers, 05:30–23:00</div></div>';
  h+='<div class="jpsheet"><div class="jph">e5489で予約したきっぷを受け取りたいです（大人2名・決済したクレジットカードと予約番号、電話番号下4桁 1104）</div>';

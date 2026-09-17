@@ -363,7 +363,7 @@ function renderDay(idx){
       if(t.alt) tinner+='<p style="font-size:12.5px;margin:9px 0 0"><b>Plan B:</b> '+t.alt+'</p>';
       if(t.missed) tinner+='<p style="font-size:12.5px;margin:6px 0 0"><b>If it goes wrong:</b> '+t.missed+'</p>';
       tinner+='<div class="btnrow">'+(t.live?'<a class="btn mini red" target="_blank" rel="noopener" href="'+t.live+'">🕐 LIVE TIMES</a>':'')+
-        (t.bookUrl?'<a class="btn mini yellow" target="_blank" rel="noopener" href="'+t.bookUrl+'">🎫 BOOK / CHECK</a>':'')+
+        (t.bookUrl?'<a class="btn mini yellow" target="_blank" rel="noopener" href="'+t.bookUrl+'">🎫 BOOK / CHECK</a>':'')+(window.confFor?confLink(confFor('travel',d.id,(t.service||'')+' '+(t.route||'')),true):'')+
         (t.mapFrom&&t.mapTo?'<a class="btn mini" target="_blank" rel="noopener" href="'+dirUrl(t.mapFrom,t.mapTo)+'">🗺️ ROUTE</a>':'')+'</div>'+
         (t.live&&/jorudan/.test(t.live)?'<p style="font-size:11px;color:#6b7280;margin:6px 0 0;font-family:JetBrains Mono,monospace">LIVE TIMES opens Jorudan (Japanese, but the times and platform numbers read the same) pre-filled with this exact day and leg. For disruptions: <a href="https://trafficinfo.westjr.co.jp/en/" target="_blank" rel="noopener">JR West status</a> · <a href="https://traininfo.jr-central.co.jp/shinkansen/sp/en/ti08.html" target="_blank" rel="noopener">JR Central status</a></p>':'')+'</div>';
     });
@@ -385,7 +385,7 @@ function renderDay(idx){
     if(H.note) inner+='<div class="info-box" data-label="Stay notes">'+H.note+'</div>';
     inner+='<div class="btnrow"><button class="btn mini" onclick="showMap(\''+encodeURIComponent(H.mapsQ||H.name)+'\')">🗺️ VIEW ON MAP</button>'+
       (H.url?'<a class="btn mini" target="_blank" rel="noopener" href="'+H.url+'">↗ WEBSITE</a>':'')+
-      (H.confirmUrl?'<a class="btn mini yellow" target="_blank" rel="noopener" href="'+H.confirmUrl+'">📄 BOOKING CONFIRMATION</a>':'')+
+      (H.confirmUrl?'<a class="btn mini yellow" target="_blank" rel="noopener" href="'+H.confirmUrl+'">📄 BOOKING CONFIRMATION</a>':(window.confFor?confLink(confFor('hotel',d.id),true):''))+
       (H.checkinUrl?'<a class="btn mini yellow" target="_blank" rel="noopener" href="'+H.checkinUrl+'">🔑 SELF CHECK-IN INFO</a>':'')+'</div>';
     const hbody='<div class="secbody">'+
       '<div class="hrow">'+thumb(H,idx)+
@@ -569,16 +569,18 @@ function glanceKind(t){ const s=((t.service||'')+' '+(t.route||'')).toLowerCase(
   return 'transfer'; }
 function glanceRows(){ const rows=[]; let lastHotel=null;
   DAYS.forEach(function(d,i){ (d.travel||[]).forEach(function(t){ const k=glanceKind(t); const fx=legFlex(d,t);
-      rows.push({k:k,d:d.date,day:i+1,id:d.id,what:(t.service||'').split(' — ')[0].split(' (')[0],route:t.route,tag:(k==='flight'?'<span class="tag ok">BOOKED</span>':flexTag(fx))}); });
+      rows.push({k:k,d:d.date,day:i+1,id:d.id,what:(t.service||'').split(' — ')[0].split(' (')[0],route:t.route,tag:(k==='flight'?'<span class="tag ok">BOOKED</span>':flexTag(fx)),doc:(window.confFor?confFor('travel',d.id,(t.service||'')+' '+(t.route||'')):'')}); });
+    (window.BOOKED_FUN||[]).filter(function(x){return x.id===d.id;}).forEach(function(x){
+      rows.push({k:x.kind||'fun',d:d.date,day:i+1,id:d.id,what:x.what,route:x.detail,tag:'<span class="tag ok">BOOKED</span>',doc:confFor('key',x.key)}); });
     if(d.hotel&&d.hotel.name!==lastHotel){ lastHotel=d.hotel.name; let j=i; while(j+1<DAYS.length&&DAYS[j+1].hotel&&DAYS[j+1].hotel.name===lastHotel) j++;
-      rows.push({k:'hotel',d:d.date+(j>i?' – '+DAYS[j].date:''),day:i+1,id:d.id,what:d.hotel.name,route:(j-i+1)+' night'+(j>i?'s':''),tag:'<span class="tag ok">BOOKED</span>'}); }
+      rows.push({k:'hotel',d:d.date+(j>i?' – '+DAYS[j].date:''),day:i+1,id:d.id,what:d.hotel.name,route:(j-i+1)+' night'+(j>i?'s':''),tag:'<span class="tag ok">BOOKED</span>',doc:(window.confFor?confFor('hotel',d.id):'')}); }
   }); return rows; }
 window.GLANCE_FILTER='all';
 window.renderGlance=function(){ const F=window.GLANCE_FILTER; const rows=glanceRows().filter(function(r){return F==='all'||r.k===F;});
-  return '<div class="gf">'+['all','flight','hotel','train','transfer'].map(function(k){return '<button class="'+(F===k?'on':'')+'" onclick="GLANCE_FILTER=\''+k+'\';document.getElementById(\'glance\').innerHTML=renderGlance()">'+(k==='all'?'ALL':k+'s')+'</button>';}).join('')+'</div>'+
+  return '<div class="gf">'+['all','flight','hotel','train','transfer','fun'].map(function(k){return '<button class="'+(F===k?'on':'')+'" onclick="GLANCE_FILTER=\''+k+'\';document.getElementById(\'glance\').innerHTML=renderGlance()">'+(k==='all'?'ALL':k==='fun'?'EXPERIENCES':k+'s')+'</button>';}).join('')+'</div>'+
   '<div style="overflow-x:auto"><table class="simple mini gl"><tr><th>DATE</th><th>WHAT</th><th>DETAIL</th><th></th></tr>'+
-  (function(){ let last=''; return rows.map(function(r){ const ch=chapterOf(r.day-1); const sub=subOf(r.day-1); const grp=ch.k==='k'&&sub&&(sub.cls==='retreat'||sub.cls==='seaside'||sub.cls==='away')?'KYOTO · THE RETREAT + THE SEASIDE':(ch.k==='f'?'✈ '+ch.n:ch.n); const head=grp!==last?'<tr><th colspan="4" class="gl-grp">'+grp+'</th></tr>':''; last=grp; return head+'<tr onclick="location.hash=\'day/'+r.id+'\'" style="cursor:pointer"><td style="white-space:nowrap"><span class="k '+r.k+'"></span>'+esc(r.d)+'</td><td><b>'+esc(r.what)+'</b></td><td>'+esc(r.route)+'</td><td>'+r.tag+'</td></tr>';}).join(''); })()+'</table></div>'+
-  '<div class="legend">'+flexTag('must')+' only train that works, or your seat is on it &nbsp; '+flexTag('res')+' booked seat, swappable &nbsp; '+flexTag('fixed')+' no booking, but gaps — aim for the one named &nbsp; '+flexTag('go')+' take the next one &nbsp; '+flexTag('arr')+' sorted with a person, not a timetable</div>'; };
+  (function(){ let last=''; return rows.map(function(r){ const ch=chapterOf(r.day-1); const sub=subOf(r.day-1); const grp=ch.k==='k'&&sub&&(sub.cls==='retreat'||sub.cls==='seaside'||sub.cls==='away')?'KYOTO · THE RETREAT + THE SEASIDE':(ch.k==='f'?'✈ '+ch.n:ch.n); const head=grp!==last?'<tr><th colspan="4" class="gl-grp">'+grp+'</th></tr>':''; last=grp; return head+'<tr onclick="location.hash=\'day/'+r.id+'\'" style="cursor:pointer"><td style="white-space:nowrap"><span class="k '+r.k+'"></span>'+esc(r.d)+'</td><td><b>'+esc(r.what)+'</b>'+(r.doc&&window.confLink?' '+confLink(r.doc):'')+'</td><td>'+esc(r.route)+'</td><td>'+r.tag+'</td></tr>';}).join(''); })()+'</table></div>'+
+  '<div class="legend">📄 opens the booking confirmation (Google Doc — sign in as Mica to view) &nbsp; — booked, confirmation not found yet<br>'+flexTag('must')+' only train that works, or your seat is on it &nbsp; '+flexTag('res')+' booked seat, swappable &nbsp; '+flexTag('fixed')+' no booking, but gaps — aim for the one named &nbsp; '+flexTag('go')+' take the next one &nbsp; '+flexTag('arr')+' sorted with a person, not a timetable</div>'; };
 
 /* ---- v58: the journey map (simplified / to scale) ---- */
 const JSTOPS=[
@@ -623,7 +625,7 @@ function renderHome(){
   h+='<div class="views">OR SEE THE WHOLE TRIP AS A <a href="#map">🗺️ MAP</a><a href="#planner">☰ LIST</a></div>';
   h+='<div class="ctas"><a class="c-ph" href="#phrases">🗣️ Handy phrases</a><a class="c-et" href="#etiquette">🙇 Etiquette 101</a></div>';
   h+='</div></div>';
-  h+='<div class="sec"><h3>The tour at a glance</h3><div class="sub">16 nights · 6 bases · every flight, stay, train and transfer — tap a row for the day</div></div>';
+  h+='<div class="sec"><h3>The tour at a glance</h3><div class="sub">16 nights · 6 bases · every flight, stay, train, transfer and booked experience — tap a row for the day, 📄 for its booking confirmation</div></div>';
   h+='<div id="glance">'+renderGlance()+'</div>';
   h+='<div class="hist-box" data-label="Silver Week — why our first five days are special">'+P.silverWeek+'</div>';
   h+='<div class="narr" data-label="How we eat" style="box-shadow:6px 6px 0 var(--orange)">'+P.howWeEat+'</div>';
