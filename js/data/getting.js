@@ -9,7 +9,7 @@ const P=window.PAGES;
 const GROUPS=[
 
  {k:'BEFORE YOU FLY', c:'red',
-  sub:'Five minutes each, on wifi, tonight. Nothing here works well for the first time on airport wifi with a suitcase between your feet.',
+  sub:'Five minutes each, on wifi, tonight. All of them are slower and less reliable on airport wifi.',
   items:[
   {s:'core',t:'Google Maps — download Kyoto, Osaka and Tokyo offline',meta:'DO IT TONIGHT · 10 min',
    d:'Google Maps is the one that works everywhere in Japan, including buses, and it is the only planner both of you already know how to drive. Search a city → tap its name at the bottom → <b>Download offline map</b> → drag the box over the whole urban area. Offline maps give you the map, walking directions and every saved pin <b>without signal</b>. They do not give you live train times, which is what the operator links below are for.',
@@ -18,7 +18,7 @@ const GROUPS=[
    d:'Wallet → + → Transit Card → Japan → ICOCA or Suica → top up with the card on file. It taps you through almost every gate, bus and konbini for the whole trip, and it means neither of you is ever stuck at a ticket machine working out a fare. <b>Two separate cards — one per phone.</b> Top up ¥3,000 each to start; you can add more from the phone at any time.',
    u:'https://support.apple.com/en-gb/HT207154',ub:'HOW TO ADD IT'},
   {s:'core',t:'eSIM — install it here, on wifi, not at Kansai',meta:'DO IT TONIGHT · 10 min each phone',
-   d:'An eSIM profile will not install without a connection, so the one place you must not do it is the arrivals hall. Install both tonight and leave them switched off if your plan counts days from activation. On landing: Japan eSIM on for data, UK line on for calls and texts with <b>data roaming off</b>. If a profile refuses to install, that is a tonight problem, not a Saturday-lunchtime-in-Osaka problem.'},
+   d:'An eSIM profile will not install without a connection, so the one place you must not do it is the arrivals hall. Install both tonight and leave them switched off if your plan counts days from activation. On landing: Japan eSIM on for data, UK line on for calls and texts with <b>data roaming off</b>. If a profile refuses to install, you want to know tonight rather than on Saturday lunchtime in Osaka.'},
   {s:'core',t:'Visit Japan Web — register both of you and screenshot the QR codes',meta:'DO IT TONIGHT · 15 min',
    d:'Immigration and customs become a scan instead of a form. One account holds both travellers; you need both passports, the Air China arrival into KIX on the 19th, and the Henn na address. <b>Screenshot every QR code it gives you, onto both phones.</b>',
    u:'https://services.digital.go.jp/en/visit-japan-web/',ub:'VISIT JAPAN WEB'},
@@ -116,7 +116,7 @@ const GROUPS=[
   sub:'Both bullet-train legs are already booked and digital. One app, two journeys.',
   items:[
   {s:'core',t:'SmartEX — the two Nozomi',meta:'INSTALL BEFORE YOU FLY',
-   d:'Both Nozomi are SmartEX bookings. Install the app and sign in <b>before you leave</b>, then either show the QR code from the confirmation email or link your ICOCA in the app and tap straight through the gate. Doing this at Kyoto Station on the 28th with a train to catch is the wrong time to discover a password reset.',
+   d:'Both Nozomi are SmartEX bookings. Install the app and sign in <b>before you leave</b>, then either show the QR code from the confirmation email or link your ICOCA in the app and tap straight through the gate. A forgotten password is much easier to sort out now than at Kyoto Station on the 28th with a train to catch.',
    u:'https://smart-ex.jp/en/index.php',ub:'SMARTEX'},
   ]},
 
@@ -130,7 +130,7 @@ const GROUPS=[
    d:'Nine of the lines. Their English site has a route search and a live service status page that is worth checking before a long hop across the city.',
    u:'https://www.tokyometro.jp/en/',ub:'TOKYO METRO'},
   {s:'use',t:'Toei Subway — the other four lines',meta:'1–5 OCT',
-   d:'Ōedo, Asakusa, Mita and Shinjuku are run by the city, not by Tokyo Metro. Same IC card, same gates, different company — which only matters if you are buying a paper ticket, and you will not be.',
+   d:'Ōedo, Asakusa, Mita and Shinjuku are run by the city, not by Tokyo Metro. Same IC card, same gates, different company. It only matters if you buy a paper ticket.',
    u:'https://www.kotsu.metro.tokyo.jp/eng/',ub:'TOEI SUBWAY'},
   {s:'use',t:'GO — taxis, in English',meta:'5 OCT AND ANY LATE NIGHT',
    d:'Japan&rsquo;s taxi app. Card saved in advance, pin dropped precisely, English interface. This is what books the airport taxi on the 5th, and what rescues a night that runs past the last train.',
@@ -181,7 +181,7 @@ P.renderGetting=function(){
     '<b>Do this on both phones</b>, tonight, before you pack. Doing it at Kansai on airport wifi is possible but miserable.<br><br>'+
     '<b>Updating it:</b> the site refreshes itself whenever it is opened with signal. If something looks out of date, pull down to refresh on the home page.</div>';
   h+='<div class="sec"><h3>What works with no signal</h3><div class="sub">Worth knowing before you are standing somewhere with one bar</div></div>';
-  h+='<div class="info-box" style="margin-bottom:26px"><b>Works offline:</b> this whole website once you have opened it on wifi, the Google Maps areas you downloaded, every screenshot, the ICOCA card in your Wallet, and the SmartEX QR codes if you screenshot them.<br><br><b>Needs signal:</b> live train times, the 📄 booking confirmation links (they are Google Docs — open each one once on wifi and star it for offline in the Google Docs app if you want them without signal), the GO taxi app, and any map you did not download.<br><br><b>Where signal is genuinely poor:</b> Ine and the Kyōtango coast, and parts of the Kiso valley between Magome and Tsumago. Both are places where the printed timetable at the stop beats anything on a phone — photograph it when you arrive.</div>';
+  h+='<div class="info-box" style="margin-bottom:26px"><b>Works offline:</b> this whole website once you have opened it on wifi, the Google Maps areas you downloaded, every screenshot, the ICOCA card in your Wallet, and the SmartEX QR codes if you screenshot them.<br><br><b>Needs signal:</b> live train times, the 📄 booking confirmation links (they are Google Docs — open each one once on wifi and star it for offline in the Google Docs app if you want them without signal), the GO taxi app, and any map you did not download.<br><br><b>Where signal is poor:</b> Ine and the Kyōtango coast, and parts of the Kiso valley between Magome and Tsumago. Both are places where the printed timetable at the stop beats anything on a phone — photograph it when you arrive.</div>';
   h+='<div class="sec orange"><h3>Changing this site while you are away</h3><div class="sub">The honest version, including what will not work</div></div>';
   h+='<div class="info-box" style="margin-bottom:22px">'+
     '<b>How the site actually updates.</b> It is a set of files in a GitHub repository. Anything committed to the <b>main</b> branch appears on the live site about a minute later. That is the whole mechanism — there is no server, no login, no admin panel.<br><br>'+
