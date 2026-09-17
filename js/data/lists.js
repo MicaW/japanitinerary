@@ -7,11 +7,13 @@ const TRAINS=P.TRAINS;
 const DEPART=new Date('2026-09-18T12:35:00+01:00');
 
 P.renderLists=function(){
- const days=Math.max(0,Math.ceil((DEPART-new Date())/86400000));
+ const ms=DEPART-new Date();
+ const days=Math.max(0,Math.ceil(ms/86400000));
+ const countdown = ms<=0 ? 'YOU ARE ON YOUR WAY' : (days===1?'TOMORROW':'<b>'+days+' DAY'+(days===1?'':'S')+'</b> UNTIL')+' THE 12:35 FROM GATWICK • FRI 18 SEP';
  let h='<div class="hero" style="box-shadow:8px 8px 0 #000;margin:20px 0"><div class="hbody" style="padding:18px 16px">'+
    '<div class="datebar">PACKING</div>'+
    '<h2 style="font-size:30px;margin:6px 0 4px">🎒 Packing &amp; prep lists</h2>'+
-   '<p class="mono" style="font-size:11.5px;margin:6px 0 0"><b>'+days+' DAYS</b> UNTIL THE 12:35 FROM GATWICK • FRI 18 SEP</p>'+
+   '<p class="mono" style="font-size:11.5px;margin:6px 0 0">'+countdown+'</p>'+
    '</div></div>';
 
  if(P.renderFinal) h+=P.renderFinal();

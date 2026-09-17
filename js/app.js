@@ -46,7 +46,7 @@ window.showPlace=function(enc){ const o=JSON.parse(decodeURIComponent(enc)); con
 function placeBtns(e,fallbackArea){ const q=e.mapsQ||(e.name+' '+(e.addr||fallbackArea||'Japan'));
   return '<button class="btn mini" onclick="showMap(\''+encodeURIComponent(q)+'\')">🗺️ MAP</button>'+
     '<a class="btn mini" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'&travelmode=walking">📍 DIRECTIONS</a>'+
-    '<button class="btn mini yellow" onclick="showPlace(\''+encodeURIComponent(JSON.stringify({jp:e.jp||'',en:e.name,addr:e.addr||''}))+'\')">🈁 NAME CARD</button>'; }
+    '<button class="btn mini yellow" onclick="showPlace(\''+lbPack({jp:e.jp||'',en:e.name,addr:e.addr||''})+'\')">🈁 NAME CARD</button>'; }
 window.showMap=function(qe){ const q=decodeURIComponent(qe); const m=$('#mapmodal'), f=$('#mm-frame'), off=$('#mm-off');
   $('#mm-open').href=mapsUrl(q);
   if(navigator.onLine){ f.style.display='block'; off.style.display='none'; f.src='https://maps.google.com/maps?q='+encodeURIComponent(q)+'&z=16&output=embed'; }
@@ -137,7 +137,7 @@ document.addEventListener('keydown',function(e){
   if(e.key==='ArrowLeft') stepLB(-1);
   if(e.key==='ArrowRight') stepLB(1);
 });
-window.lbPack=function(arr){ return encodeURIComponent(JSON.stringify(arr)); }
+window.lbPack=function(v){ return encodeURIComponent(JSON.stringify(v)).replace(/'/g,'%27'); }
 
 /* ---------- recommendation card: compact row, expands ---------- */
 function recCard(c,i){

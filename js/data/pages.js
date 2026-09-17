@@ -110,7 +110,7 @@ P.renderBudget=function(){
  /* ---------- SPENDING MONEY ---------- */
  h+='<div class="sec"><h3>Spending money — £1,038 each</h3><div class="sub">Everything you pay for once you are there. Nothing here needs booking</div></div>';
  h+='<div style="overflow-x:auto"><table class="simple"><tr><th>CATEGORY</th><th>FOR TWO</th><th>EACH</th><th>WHAT IT COVERS</th></tr>'+
-  '<tr><td>Transport paid on the day</td><td>~£274</td><td>~£137</td><td>HARUKA from the airport, all local trains and metro, taxis, the Ine buses, the Kiso rail day, the airport run home</td></tr>'+
+  '<tr><td>Transport paid on the day</td><td>~£274</td><td>~£137</td><td>All local trains and metro, taxis, the Ine buses, the Kiso rail day, the airport run home (the HARUKA itself is already paid, above)</td></tr>'+
   '<tr><td>Activities — core plan</td><td>~£475</td><td>~£238</td><td>Sumo show, cooking class, zazen, Golden Gai night</td></tr>'+
   '<tr><td>Activities — optional</td><td>~£318</td><td>~£159</td><td>Bikes, Kagaya, gigs and the other optional extras</td></tr>'+
   '<tr><td>Food &amp; drink</td><td>~£1,010</td><td>~£505</td><td>Deliberately generous. Konbini lunches pull this down hard</td></tr>'+
@@ -478,7 +478,7 @@ P.renderMap=function(DAYS){
       '<div class="tdt"><div class="tdh">'+c.n+'</div><div class="tds">'+ps.length+' places</div></div>'+
       '<span class="exp">▾</span></summary><div class="tdbody">'+
       '<ol class="pinlist">'+ps.map(function(p){
-        const enc=encodeURIComponent(JSON.stringify({jp:p.jp,en:p.n,addr:''}));
+        const enc=window.lbPack?lbPack({jp:p.jp,en:p.n,addr:''}):encodeURIComponent(JSON.stringify({jp:p.jp,en:p.n,addr:''})).replace(/'/g,'%27');
         return '<li>'+ICON[p.kind]+' <b>'+esc(p.n)+'</b>'+(p.jp?' <span class="mono" style="font-size:11px">'+esc(p.jp)+'</span>':'')+' <a class="pl-d" href="#day/'+p.day+'">'+esc(p.date)+'</a><br>'+
         '<button class="copybtn" onclick="showMap(\''+encodeURIComponent(p.q)+'\')">MAP</button> '+
         '<a class="copybtn" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(p.q)+'&travelmode=walking">DIRECTIONS</a> '+

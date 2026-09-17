@@ -41,7 +41,7 @@ const HU={
  "23-sep":[
   {k:'closed',t:'Autumnal Equinox Day — a national holiday. Higashi Hongan-ji is open (it is a working temple). Some Kyoto Station shops run holiday hours.'},
   {k:'avoid',t:'Do not take the big cases to Arashiyama. The retreat is reached by boat; the cases stay at Henn na until Sunday.'},
-  {k:'tip',t:'Afternoon tea at the HOSHINOYA lounge is online-only and must be booked in advance; the lounge itself is walk-in. Your 14:30 boat slot is the fixed point of the day.'},
+  {k:'tip',t:'Afternoon tea at the HOSHINOYA lounge is online-only and must be booked in advance; the lounge itself is walk-in. Your 14:50 boat is the fixed point of the day — be at the Togetsukyo lounge by 14:20.'},
   {k:'nook',t:'Shosei-en, the walled garden five minutes from Higashi Hongan-ji, is the quietest place in central Kyoto on a holiday morning.'}
  ],
  "24-sep":[
@@ -103,7 +103,7 @@ const HU={
  ],
  "2-oct":[
   {k:'closed',t:'Japan Folk Crafts Museum (Mingeikan) closes Mondays — it is open today. Manga School Nakano runs weekdays only, so if you want it, today is the only day.'},
-  {k:'avoid',t:'Shibuya Sky sunset slots sell out days ahead; if you have not got the ~16:45 ticket by now, go for a daytime slot instead of queueing for same-day returns. Takeshita-dori on a Friday afternoon is a crush; Cat Street is the same shops without the crush.'},
+  {k:'avoid',t:'Shibuya Sky sunset slots sell out days ahead; if you have not got the 16:40–17:00 ticket by now, go for a daytime slot instead of queueing for same-day returns. Takeshita-dori on a Friday afternoon is a crush; Cat Street is the same shops without the crush.'},
   {k:'look',t:'Sunny Hills on Minami-Aoyama gives a free pineapple cake and tea to anyone who walks in — they are selling, gently.'},
   {k:'nook',t:'The Prada building and the flagship crawl are free architecture. Nonbei Yokocho, the two lanes of 38 tiny bars behind Shibuya station, is the drink at the end.'},
   {k:'shop',t:'Tenugui cloths from Kamawanu (Daikanyama) or the stalls on Cat Street; stationery at Itoya in Ginza if the route bends that way. The Shibuya PARCO 6F is the place for the Nintendo and Pokémon things that only exist in Japan.'}
@@ -119,7 +119,7 @@ const HU={
  "4-oct":[
   {k:'closed',t:'Tofu Cuisine Sorano: the Ebisu branch closes Sundays, so it has to be the Shibuya branch today. Ebisu Dagashi Bar and Muscle Girls Bar are open Sundays. Gotokuji cat corner ~08:00–16:30.'},
   {k:'avoid',t:'teamLab Borderless has no re-entry and no bags bigger than a daypack; lockers are before the entrance. Wear trousers and flat shoes — mirrored floors.'},
-  {k:'tip',t:'DAWN café diner seating is for two or more and booked; be five minutes early, they release tables.'},
+  {k:'tip',t:'DAWN café diner seating is for two or more and must be booked ahead — they take no same-day bookings; be five minutes early, they release tables.'},
   {k:'nook',t:'Todoroki Valley, reopened in March 2026 after a long closure, is a shaded ravine walk twenty minutes from Gotokuji and feels like leaving the city. Kagaya (Hatanodai) is reservation only, 14 seats.'},
   {k:'shop',t:'Edo kiriko cut glass — the Tokyo craft — from the small showrooms in Nihonbashi. Last records and vintage in Shimokitazawa, where the shops open at noon and the good stuff is on the second floors.'}
  ],
