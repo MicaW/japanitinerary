@@ -15,6 +15,7 @@ function mapsUrl(q){ return 'https://www.google.com/maps/search/?api=1&query='+e
 /* ---- v53: plain-English transport labels ---- */
 const FLEX={must:['fx-must','MUST NOT MISS'],res:['fx-res','RESERVED SEAT'],fixed:['fx-fixed','FIXED TIME'],go:['fx-go','TURN UP & GO'],arr:['fx-arr','ARRANGE']};
 function legFlex(d,t){
+  if(t.flex) return t.flex;                                          /* explicit wins over the guesswork below */
   const s=((t.service||'')+' | '+(t.status||'')).toLowerCase();
   if(/air china|british airways|ba6/.test(s)) return 'res';
   if(/hashidate|shinano/.test(s)) return 'must';
@@ -26,6 +27,15 @@ function legFlex(d,t){
   return 'go';
 }
 function flexTag(k){ return '<span class="tag '+FLEX[k][0]+'">'+FLEX[k][1]+'</span>'; }
+/* ---- booking state: a separate axis from flexibility. 'Can I take a later one?' vs 'is it paid for?' ---- */
+const BOOKTAG={paid:['ok','BOOKED · PAID'],paythere:['ok','BOOKED · PAY THERE'],agreed:['warn','AGREED, NOT BOOKED'],tobook:['book','TO BOOK'],ask:['book','ASK THEM'],opt:['opt','OPTIONAL']};
+function legBook(d,t){
+  if(t.book) return t.book;
+  if(window.confFor){ const u=confFor('travel',d.id,(t.service||'')+' '+(t.route||'')); if(u&&u!=='MISSING') return 'paid'; }
+  return '';
+}
+function bookTag(k){ return BOOKTAG[k]?'<span class="tag '+BOOKTAG[k][0]+'">'+BOOKTAG[k][1]+'</span>':''; }
+window.legBook=legBook; window.bookTag=bookTag; window.BOOKTAG=BOOKTAG;
 window.legFlex=legFlex; window.FLEX=FLEX;
 function dirUrl(f,t){ return 'https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(f)+'&destination='+encodeURIComponent(t)+'&travelmode=transit'; }
 function photosUrl(q){ return 'https://www.google.com/search?tbm=isch&q='+encodeURIComponent(q); }
@@ -354,7 +364,7 @@ function renderDay(idx){
   if(d.travel&&d.travel.length){
     let tinner='';
     d.travel.forEach(t=>{
-      tinner+='<div class="legblk"><div class="lt">'+esc(t.route)+' '+flexTag(legFlex(d,t))+'</div>';
+      tinner+='<div class="legblk"><div class="lt">'+esc(t.route)+' '+bookTag(legBook(d,t))+' '+flexTag(legFlex(d,t))+'</div>';
       if(t.what) tinner+='<p style="margin:6px 0 8px;font-size:13px"><b>'+esc(t.service)+'</b> — '+t.what+'</p>';
       tinner+=kv([['LEAVE',t.leave&&esc(t.leave)],['DURATION',t.duration&&esc(t.duration)],['CHANGES',t.changes!=null?esc(t.changes):null],
         ['FREQUENCY',t.freq&&esc(t.freq)],['PRICE',t.price&&esc(t.price)],['STATUS',t.status&&esc(t.status)],
@@ -569,7 +579,7 @@ function glanceKind(t){ const s=((t.service||'')+' '+(t.route||'')).toLowerCase(
   return 'transfer'; }
 function glanceRows(){ const rows=[]; let lastHotel=null;
   DAYS.forEach(function(d,i){ (d.travel||[]).forEach(function(t){ const k=glanceKind(t); const fx=legFlex(d,t);
-      rows.push({k:k,d:d.date,day:i+1,id:d.id,what:(t.service||'').split(' — ')[0].split(' (')[0],route:t.route,tag:(k==='flight'?'<span class="tag ok">BOOKED</span>':flexTag(fx)),doc:(window.confFor?confFor('travel',d.id,(t.service||'')+' '+(t.route||'')):'')}); });
+      rows.push({k:k,d:d.date,day:i+1,id:d.id,what:(t.service||'').split(' — ')[0].split(' (')[0],route:t.route,tag:bookTag(legBook(d,t))+' '+flexTag(fx),doc:(window.confFor?confFor('travel',d.id,(t.service||'')+' '+(t.route||'')):'')}); });
     (window.BOOKED_FUN||[]).filter(function(x){return x.id===d.id;}).forEach(function(x){
       rows.push({k:x.kind||'fun',d:d.date,day:i+1,id:d.id,what:x.what,route:x.detail,tag:'<span class="tag ok">BOOKED</span>',doc:confFor('key',x.key)}); });
     if(d.hotel&&d.hotel.name!==lastHotel){ lastHotel=d.hotel.name; let j=i; while(j+1<DAYS.length&&DAYS[j+1].hotel&&DAYS[j+1].hotel.name===lastHotel) j++;

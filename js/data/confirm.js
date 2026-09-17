@@ -23,13 +23,17 @@ const D={
  "uplace": "1dABA2d96G3KsHPPV1sO-K_xeqGQ8ejXIVSdQSuLDW9U",
  "shinano2": "1FaE64ch8bWOHK4bwMgV0IoMyJirIJl7GuBPBhFPmZKE",
  "nozomi122": "1D0iECABxjmFUBaU00CBf6iPeAYoPkZuBMlHRMN3lvNg",
- "teamlab": "1GvKpJiVT6gah-VhT0NGTem9mOkErKuhaiitPTMG9ueI"
+ "teamlab": "1GvKpJiVT6gah-VhT0NGTem9mOkErKuhaiitPTMG9ueI",
+ "ba6": "1vqHL16KsBj4J3VfroVW539CKtEaS1Ot4rGf6cPdAccY",
+ "togatwick": "1I4a3dx4TRaZscbMnk8X-an-ljoXVyXBfb5y0D3gO7b8"
 };
 const C={};
 Object.keys(D).forEach(function(k){ C[k]='https://docs.google.com/document/d/'+D[k]+'/edit'; });
 window.CONF=C;
 /* travel legs: [day id, regex on service+route, key] */
 const LEGS=[
+ ['18-sep',/taxi|norwich/i,'togatwick'],
+ ['18-sep',/greater anglia|thameslink|gatwick express|05:33|train/i,'togatwick'],
  ['18-sep',/air china/i,'flight_out'],
  ['19-sep',/haruka/i,'haruka'],
  ['23-sep',/hoshinoya/i,'boat'],
@@ -40,7 +44,7 @@ const LEGS=[
  ['28-sep',/shinano 17/i,'shinano17'],
  ['1-oct',/shinano 2\b/i,'shinano2'],
  ['1-oct',/nozomi/i,'nozomi122'],
- ['5-oct',/ba6|british airways/i,'MISSING']
+ ['5-oct',/ba6|ba0006|british airways/i,'ba6']
 ];
 const HOTELS={'19-sep':'henn1','20-sep':'henn1','21-sep':'henn1','22-sep':'henn1','23-sep':'hoshinoya','24-sep':'hoshinoya','25-sep':'miyabi','26-sep':'miyabi','27-sep':'henn2','28-sep':'yuian','29-sep':'mountainn','30-sep':'mountainn','1-oct':'uplace','2-oct':'uplace','3-oct':'uplace','4-oct':'uplace'};
 /* booked experiences, shown in the tour-at-a-glance table and on their day */
