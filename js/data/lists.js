@@ -14,6 +14,8 @@ P.renderLists=function(){
    '<p class="mono" style="font-size:11.5px;margin:6px 0 0"><b>'+days+' DAYS</b> UNTIL THE 12:35 FROM GATWICK • FRI 18 SEP</p>'+
    '</div></div>';
 
+ if(P.renderFinal) h+=P.renderFinal();
+
  h+='<div class="sec blue"><h3>Dad\'s lists</h3><div class="sub">Packing and pre-departure, two pages</div></div>';
  h+='<div class="btnrow" style="margin-bottom:22px"><a class="btn yellow big" style="flex:1" href="downloads/dad-departure-list.pdf" download>⬇ PDF (PRINT)</a><a class="btn mini" href="downloads/dad-departure-list.docx" download>⬇ WORD</a></div>';
 
