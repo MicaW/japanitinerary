@@ -504,7 +504,7 @@ window.DAYS2=[
         dishes:"Kyoto ekiben from the Hachijo-side shops; onigiri and tea from the konbini", price:"¥800–1,500", mica:"Vegetable or fish ekiben — the labels are pictured", dad:"Cooked meat/fish ekiben — avoid anything with sashimi pictured",
         area:"Kyoto Station, Hachijo side", mapsQ:"Kyoto Station Hachijo Exit", checked:"2 Sep 2026" }] },
   { name:"Cluster B — Fushimi Inari at dusk, on the way home from Nara", station:"JR Inari station — the Nara-line rapid from Nara stops here on Sundays; from Kyoto it is 2 stops (5 min)", time:"1.5–2 hours", walk:"As far up as you choose — turn back anywhere",
-    why:"Ten thousand vermilion gates climbing a mountain, free, open all night — and at dusk the crowds drain away just as the lanterns and the foxes take over. Free, the best thing in Kyoto after dark, on the train line home from Nara and 5 minutes from the hotel.",
+    why:"Ten thousand vermilion gates climbing a mountain, free, open all night — and at dusk the crowds drain away just as the lanterns and the foxes take over. The best thing in Kyoto after dark, on the train line home from Nara and 5 minutes from the hotel. <b>It is also offered on Monday the 21st — do it once, on whichever evening has more left in the legs.</b> Tonight follows a 05:30 start in Ine, so there is no shame in choosing the other one.",
     labels:["CORE PLAN","SCENIC","FREE","CULTURE"],
     best:"17:30–19:00", rain:"Skip — wet stone steps in fading light help nobody", lower:"Walk only to the first double-row of gates (Senbon Torii) and back — 40 minutes, mostly gentle",
     skip:"The summit. Everyone skips the summit. The magic is in the first third.",
