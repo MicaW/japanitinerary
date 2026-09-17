@@ -1,6 +1,6 @@
 /* BOOKING CONFIRMATIONS — 17 Sep 2026.
-   Each link is a Google Doc in Mica's Drive folder "Japan Bookings" (PDF copies in Documents/Claude/Projects/Japan/Bookings).
-   The docs are private to micawhitby@gmail.com: the links are public here, but they only open when signed in to that Google account.
+   Each link is a Google Doc in the trip's private Drive folder (PDF copies live on the laptop).
+   The docs are private: the links are public here, but they only open when signed in to the owning Google account.
    To give Dad access, share the docs (or the folder) with his Google account — do not switch them to "anyone with the link". */
 (function(){
 const D={
