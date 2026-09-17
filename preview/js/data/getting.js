@@ -30,7 +30,7 @@ const GROUPS=[
   ]},
 
  {k:'THE UK LEGS — 18 SEP AND 5 OCT', c:'blue',
-  sub:'Two mornings, both of them early, both of them at a station or an airport where the board is the source of truth.',
+  sub:'Two mornings, both of them early, both of them at a station or an airport where the board is the listing of truth.',
   items:[
   {s:'use',t:'National Rail — live departures from Norwich',meta:'18 SEP, 05:00',
    d:'The 05:33 is the first one that works. If it is cancelled or delayed, this page tells you before the platform does, and the staff at the gateline can move you onto the next service on the same ticket. Bookmark the Norwich departures page, not the homepage.',
