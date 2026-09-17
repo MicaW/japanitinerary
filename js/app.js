@@ -6,7 +6,7 @@ const DAYS=window.DAYS1.concat(window.DAYS2, window.DAYS3);
 const P=window.PAGES;
 
 /* ---------- helpers ---------- */
-const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
 function jstNow(){ return new Date(Date.now() + (9*60 + new Date().getTimezoneOffset())*60000); }
 function jstDateStr(){ const d=jstNow(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function currentDayIndex(){ const t=jstDateStr(); return DAYS.findIndex(d=>d.iso===t); }
@@ -26,7 +26,7 @@ function legFlex(d,t){
   if(/taxi/.test(s)&&/book|arrange|ask/.test(s)) return 'arr';
   return 'go';
 }
-function flexTag(k){ return '<span class="tag '+FLEX[k][0]+'">'+FLEX[k][1]+'</span>'; }
+function flexTag(k){ const f=FLEX[k]; return f?'<span class="tag '+f[0]+'">'+f[1]+'</span>':''; }
 /* ---- booking state: a separate axis from flexibility. 'Can I take a later one?' vs 'is it paid for?' ---- */
 const BOOKTAG={paid:['ok','BOOKED · PAID'],paythere:['ok','BOOKED · PAY THERE'],agreed:['warn','AGREED, NOT BOOKED'],tobook:['book','TO BOOK'],ask:['book','ASK THEM'],opt:['opt','OPTIONAL']};
 function legBook(d,t){
@@ -95,7 +95,7 @@ function gpic(c){ const g=(window.GPHOTOS||{})[c.name]; if(!g||!navigator.onLine
 function picOf(c){ const g=gpic(c); if(g) return {u:g.u,c:g.c,fb:c.img||''}; if(c.img) return {u:c.img,c:c.imgCredit||'',fb:''}; return null; }
 window.picFail=function(el){ const fb=el.getAttribute('data-fb'); if(fb){ el.removeAttribute('data-fb'); el.src=fb; return; } if(el.classList.contains('th')) imgFail(el); else { el.parentNode.classList.add('noimg'); el.remove(); } };
 function thumb(c,i){
-  const P=picOf(c); if(P) return '<img class="th" loading="lazy" src="'+P.u+'"'+(P.fb?' data-fb="'+P.fb+'"':'')+' alt="'+esc(c.name)+'" onerror="picFail(this)" onclick="event.preventDefault();event.stopPropagation();openLB(\''+lbPack([{u:this&&this.src||P.u,t:c.name,c:P.c}])+'\',0)">';
+  const P=picOf(c); if(P) return '<img class="th" loading="lazy" src="'+P.u+'"'+(P.fb?' data-fb="'+P.fb+'"':'')+' alt="'+esc(c.name)+'" onerror="picFail(this)" onclick="event.preventDefault();event.stopPropagation();openLB(\''+lbPack([{u:P.u,t:c.name,c:P.c}])+'\',0)">';
   return '<div class="th thc" style="background:'+phColor(c.name,i)+'">'+esc((c.name[0]||'*').toUpperCase())+'</div>';
 }
 function tagRow(labels,limit){ if(!labels||!labels.length) return '';
@@ -355,10 +355,10 @@ function renderDay(idx){
     (paceTag?'<span class="tag low">PACE: '+esc(paceTag.toUpperCase())+'</span>':'')+
     (walkTag?'<span class="tag rain">WALKING: '+esc(walkTag.toUpperCase())+'</span>':'')+
     (d.travelDay?'<span class="tag book">TRAVEL DAY</span>':'')+'</div>';
-  h+='<p style="font-size:14.5px;font-weight:600;margin:12px 0 0;line-height:1.5">'+d.summary+'</p>';
+  h+='<p style="font-size:14.5px;font-weight:600;margin:12px 0 0;line-height:1.5">'+(d.summary||'')+'</p>';
   /* todo: the one thing that must happen today, at the top where it is findable */
-  if(d.todo) h+='<div class="sec red" style="margin-top:20px"><h3>'+d.todo.h+'</h3><div class="sub">'+d.todo.s+'</div></div>'+
-    '<div class="info-box" style="margin-bottom:4px">'+d.todo.b+'</div>';
+  if(d.todo) h+='<div class="sec red" style="margin-top:20px"><h3>'+d.todo.h+'</h3><div class="sub">'+(d.todo.s||'')+'</div></div>'+
+    '<div class="info-box" style="margin-bottom:4px">'+(d.todo.b||'')+'</div>';
   if(d.shape){ const st=t=>String(t||'').split(/\s*→\s*/).filter(Boolean);
     h+='<div class="tl">'+[['MORNING',d.shape.m],['AFTERNOON',d.shape.a],['EVENING',d.shape.e]].map((x,i)=>'<div class="tln"><span class="plabel">'+x[0]+'</span>'+st(x[1]).map(y=>'<div class="step">'+y+'</div>').join('')+'</div>').join('')+'</div>';
     if(d.shape.flex) h+='<p class="swap">↔ <b>If the day overflows:</b> '+d.shape.flex+'</p>';
@@ -369,7 +369,7 @@ function renderDay(idx){
   const S2=!!window.SITE2; const SH={};
   h+='</div></div>';
 
-  { const ab='<div class="axbody">'+d.about+
+  { const ab='<div class="axbody">'+(d.about||'')+
      (d.deeper?'<div class="axmore">'+d.deeper+'</div>':'')+
      (d.holiday?'<div style="margin-top:10px;border-top:2px dashed #15803d;padding-top:8px"><b>'+esc(d.holidayName||'Holiday lens')+':</b> '+d.holiday+'</div>':'')+
      '</div>';
@@ -584,7 +584,7 @@ function goInfo(){ const st=tripState(); const ci=currentDayIndex(); const i=st=
   return {i:i, label:(st==='after'?'BACK TO':'GO TO'), day:'DAY '+(i+1), sub:d.dow.slice(0,3)+' '+d.date+' · '+d.base, href:'#day/'+d.id}; }
 function countdown(){ const st=tripState(); const t=jstDateStr();
   const between=(a,b)=>Math.round((new Date(b+'T00:00:00Z')-new Date(a+'T00:00:00Z'))/86400000);
-  if(st==='before') return {n:between(t,DAYS[0].iso), t:'DAYS UNTIL JAPAN'};
+  if(st==='before'){ const n=between(t,DAYS[0].iso); return {n:n<=0?'\u2708':n, t:n===1?'DAY UNTIL JAPAN':(n<=0?'TODAY':'DAYS UNTIL JAPAN')}; }
   if(st==='during'){ const i=currentDayIndex(); const left=DAYS.length-1-i; return {n:i+1, t:'OF 18 · '+(left===0?'LAST DAY':left+' DAYS LEFT')}; }
   return {n:'✓', t:'TOUR COMPLETE · おかえりなさい'}; }
 function glanceKind(t){ const s=((t.service||'')+' '+(t.route||'')).toLowerCase();
@@ -595,7 +595,7 @@ function glanceRows(){ const rows=[]; let lastHotel=null;
   DAYS.forEach(function(d,i){ (d.travel||[]).forEach(function(t){ const k=glanceKind(t); const fx=legFlex(d,t);
       rows.push({k:k,d:d.date,day:i+1,id:d.id,what:(t.service||'').split(' — ')[0].split(' (')[0],route:t.route,tag:bookTag(legBook(d,t))+' '+flexTag(fx),doc:(window.confFor?confFor('travel',d.id,(t.service||'')+' '+(t.route||'')):'')}); });
     (window.BOOKED_FUN||[]).filter(function(x){return x.id===d.id;}).forEach(function(x){
-      rows.push({k:x.kind||'fun',d:d.date,day:i+1,id:d.id,what:x.what,route:x.detail,tag:'<span class="tag ok">BOOKED</span>',doc:confFor('key',x.key)}); });
+      rows.push({k:x.kind||'fun',d:d.date,day:i+1,id:d.id,what:x.what,route:x.detail,tag:'<span class="tag ok">BOOKED</span>',doc:(window.confFor?confFor('key',x.key):'')}); });
     if(d.hotel&&d.hotel.name!==lastHotel){ lastHotel=d.hotel.name; let j=i; while(j+1<DAYS.length&&DAYS[j+1].hotel&&DAYS[j+1].hotel.name===lastHotel) j++;
       rows.push({k:'hotel',d:d.date+(j>i?' – '+DAYS[j].date:''),day:i+1,id:d.id,what:d.hotel.name,route:(j-i+1)+' night'+(j>i?'s':''),tag:'<span class="tag ok">BOOKED</span>',doc:(window.confFor?confFor('hotel',d.id):'')}); }
   }); return rows; }

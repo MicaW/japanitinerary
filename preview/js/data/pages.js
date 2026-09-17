@@ -14,20 +14,20 @@ P.glance=[
  ["29 SEP–1 OCT","Kiso — MOUNTAinn Nagiso","<span class='tag ok'>BOOKED</span>","Magome→Tsumago walk + Narai rail day; same family as Yui-an"],
  ["1–5 OCT","Tokyo — Shimokitazawa apartment","<span class='tag ok'>BOOKED</span>","Design, vintage, museums, teamLab, the surreal finale"],
  ["5 OCT","Flight HND→LHR","<span class='tag ok'>BOOKED</span>","BA6 nonstop, 13:05 → 19:50 London"]];
-P.howWeEat="<b>Cheap breakfasts:</b> konbini egg sandos, bakery runs (SIZUYA's ¥300 Carnet roll in Kyoto Station, Shimokita's bakeries in Tokyo). <b>Big lunches:</b> teishoku set-lunches and market grazes — the same kitchens charge half their dinner prices at noon (Nishiki, Kuromon, Ameyoko, Narai soba, Funaya Shokudo). <b>Local dinners:</b> holes-in-the-wall and yokocho lanes — station izakaya, Nonbei Yokocho's 38 tiny bars, Omoide Yokocho's smoke and skewers, plus the inn dinners already included in the mountains. Eat like this and the generous ¥12,000/day food budget becomes ~¥10,000 without ever feeling cheap.";
-P.silverWeek="Our first five days sit inside a rare five-day national break — <b>Silver Week</b> (weekend + Respect for the Aged Day 21st + Citizens' Holiday 22nd + Autumnal Equinox 23rd). It means bigger crowds at famous places, full trains and busy restaurants — it also means seeing Japan on holiday, which is worth seeing. The plan already works around it (dawn starts, taxis over buses, one reserved meal a day maximum), and each day page carries the holiday's meaning, not just its queues. One transport rule: all Nozomi Shinkansen seats are reserved-only 18–23 Sep — no winging it on bullet trains that week.";
+P.howWeEat="<b>Cheap breakfasts:</b> konbini egg sandos, bakery runs (SIZUYA's ¥300 Carnet roll in Kyoto Station, Shimokita's bakeries in Tokyo). <b>Big lunches:</b> teishoku set-lunches and market grazes — the same kitchens charge half their dinner prices at noon (Nishiki, Kuromon, Ameyoko, Narai soba, Funaya Shokudo). <b>Local dinners:</b> holes-in-the-wall and yokocho lanes — station izakaya, Nonbei Yokocho's 38 tiny bars, Omoide Yokocho's smoke and skewers, plus the inn dinners already included in the mountains. Eat like this and the ¥10,500-a-day food budget is comfortable rather than tight.";
+P.silverWeek="Our first five days sit inside a rare five-day national break — <b>Silver Week</b> (weekend + Respect for the Aged Day 21st + Citizens' Holiday 22nd + Autumnal Equinox 23rd). It means bigger crowds and full trains. It also means the country is on holiday, which is its own thing to watch. The plan already works around it (dawn starts, taxis over buses, one reserved meal a day maximum), and each day page carries the holiday's meaning, not just its queues. One transport rule: all Nozomi Shinkansen seats are reserved-only 18–23 Sep — no winging it on bullet trains that week.";
 
 
 /* ---------- THE EIGHT TRAINS — ALL BOOKED (14–15 Sep 2026) ---------- */
 const TRAINS=[
- {d:"19 SEP · SAT",n:"HARUKA 30",r:"Kansai Airport 14:14 → Kyoto 15:34",t:"14:14 booked — any later HARUKA's non-reserved cars if immigration is slow, or the 13:44 if it is quick",p:"¥2,200 each — ¥4,400 PAID (Amex)",ref:"in the 📄",seat:"Car 2, seats 9A · 9B",w:"COLLECT at the JR ticket machine in the KIX station after customs: the Amex, the reservation number and 4-digit ID from the 📄, passports (visitor-only ticket).",u:"https://www.westjr.co.jp/global/en/ticket/haruka-oneway/",jp:"はるか30号　関西空港 14:14発 → 京都　大人2名",note:"Booked with seats; the ticket is valid all day on any HARUKA, so nothing is lost if the flight is late."},
+ {d:"19 SEP · SAT",n:"HARUKA 30",r:"Kansai Airport 14:14 → Kyoto 15:34",t:"14:14 booked — any later HARUKA's non-reserved cars if immigration is slow, or the 13:44 if it is quick",p:"¥2,200 each — ¥4,400 PAID (Amex)",ref:"in the 📄",seat:"Car 2, seats 9A · 9B",w:"COLLECT at the JR ticket machine in the KIX station after customs: the Amex, the reservation number and 4-digit ID from the 📄, passports (visitor-only ticket).",u:"https://www.westjr.co.jp/global/en/ticket/haruka-oneway/",jp:"はるか30号　関西空港 14:14発 → 京都　大人2名",note:"If the flight lands late the ticket still gets you on a later HARUKA the same day — but in the NON-RESERVED cars, standing if it is busy, and a Silver Week Saturday will be busy. The seats are only yours on the 14:14."},
  {d:"25 SEP · FRI",n:"HASHIDATE 5 (はしだて5号)",r:"Kameoka 10:43 → Amanohashidate 12:36",t:"10:43 from Kameoka (local from Saga-Arashiyama 10:14, same platform)",p:"¥4,650 each — ¥9,300 PAID (Amex), fare included",ref:"in the 📄",seat:"Car 1, seats 8C · 8D",w:"Paper tickets — COLLECT AT KYOTO STATION ON 19 SEP: JR West machine or the ticket office by the central gates, OUTSIDE the gates. Amex, plus the reference and phone digits in the confirmation 📄. Not collectable at Amanohashidate.",u:"https://e5489.jr-odekake.net/e5489/cspc/CBTopMenuPC",jp:"9月25日（金）　特急はしだて5号　亀岡 10:43発 → 天橋立 12:36着　指定席　大人2名",note:"Two trains in one — sit in the printed seats (car 1) and you are in the right half."},
  {d:"27 SEP · SUN",n:"HASHIDATE 2 (はしだて2号)",r:"Amanohashidate 09:50 → Kyoto 12:07 (platform 31)",t:"09:50",p:"¥5,000 each — ¥10,000 PAID (Amex), fare included",ref:"in the 📄",seat:"Car 1, seats 8C · 8D",w:"Paper tickets — collected at Kyoto on 19 Sep with the others (Amex, plus the reference and phone digits from the confirmation 📄). Amanohashidate station cannot issue them.",u:"https://e5489.jr-odekake.net/e5489/cspc/CBTopMenuPC",jp:"9月27日（日）　特急はしだて2号　天橋立 9:50発 → 京都 12:07着　指定席　大人2名",note:"The 08:11 bus from Ine is the only one that makes it."},
  {d:"27 SEP · SUN",n:"AONIYOSHI (あをによし)",r:"Kyoto 12:55 → Kintetsu-Nara 13:28",t:"12:55",p:"¥730 each express charge — ¥1,460 PAID (Kintetsu). The ¥760 fare is tapped with ICOCA at the gate",ref:"Kintetsu — in the 📄",seat:"Twin seats (a pair)",w:"Ticketless — the express ticket is in the Kintetsu email. Tap ICOCA for the basic fare.",u:"https://www.ticket.kintetsu.co.jp/vs/en/e-ticket/",jp:"9月27日（日）　観光特急あをによし　京都 12:55発 → 近鉄奈良 13:28着　ツインシート　大人2名（予約済み）",note:"Runs every day except Thursday."},
- {d:"28 SEP · MON",n:"NOZOMI 22",r:"Kyoto 13:21 → Nagoya 13:55",t:"13:21 — 65 minutes' slack for the 15:00 Shinano",p:"¥5,510 each — ¥11,020 PAID (SmartEX, Mastercard), fare included",ref:"SmartEX — in the 📄",seat:"Car 4, seats 4D · 4E",w:"Digital — QR code in the SmartEX email, or link your ICOCA in the SmartEX app and tap through.",u:"https://smart-ex.jp/en/index.php",jp:"9月28日（月）　のぞみ22号　京都 13:21発 → 名古屋 13:55着　指定席　大人2名　※スマートEX予約済み 2001",note:"Nozomi runs every 10–15 min; this one is not precious."},
+ {d:"28 SEP · MON",n:"NOZOMI 22",r:"Kyoto 13:21 → Nagoya 13:55",t:"13:21 — 65 minutes' slack for the 15:00 Shinano",p:"¥5,510 each — ¥11,020 PAID (SmartEX, Mastercard), fare included",ref:"SmartEX — in the 📄",seat:"Car 4, seats 4D · 4E",w:"Digital — register an IC card in the SmartEX app BEFORE you fly and tap that same card at the gate. The QR in the email is for the ticket machine, not the barrier; if the IC link fails, use it at a Shinkansen ticket machine to print paper tickets and allow ten minutes.",u:"https://smart-ex.jp/en/index.php",jp:"9月28日（月）　のぞみ22号　京都 13:21発 → 名古屋 13:55着　指定席　大人2名　※スマートEX予約済み",note:"Nozomi runs every 10–15 min; this one is not precious."},
  {d:"28 SEP · MON",n:"SHINANO 17 (しなの17号)",r:"Nagoya 15:00 → Nagiso 16:00",t:"15:00 — platform 10 at Nagoya",p:"¥3,220 each — ¥6,440 PAID (Amex), fare included",ref:"in the 📄",seat:"Car 2, seats 9A · 9B",w:"Paper tickets — collected at Kyoto on 19 Sep (Amex, plus the reference and phone digits from the confirmation 📄). No IC cards at Nagiso, so the paper matters.",u:"https://e5489.jr-odekake.net/e5489/cspc/CBTopMenuPC",jp:"9月28日（月）　特急しなの17号　名古屋 15:00発 → 南木曽 16:00着　指定席　大人2名",note:"The ONLY afternoon Shinano that stops at Nagiso."},
  {d:"1 OCT · THU",n:"SHINANO 2 (しなの2号)",r:"Nagiso 08:09 → Nagoya 09:18",t:"08:09",p:"¥3,220 each — ¥6,440 PAID (Amex), fare included",ref:"in the 📄",seat:"Car 3, seats 8C · 8D",w:"Paper tickets — collected at Kyoto on 19 Sep (Amex, plus the reference and phone digits from the confirmation 📄). Nagiso cannot issue them.",u:"https://e5489.jr-odekake.net/e5489/cspc/CBTopMenuPC",jp:"10月1日（木）　特急しなの2号　南木曽 8:09発 → 名古屋 9:18着　指定席　大人2名",note:"The only morning Shinano that stops at Nagiso southbound. Next is 15:55."},
- {d:"1 OCT · THU",n:"NOZOMI 122",r:"Nagoya 11:29 → Shinagawa 12:58",t:"11:29",p:"¥10,900 each — ¥21,800 PAID (SmartEX, Mastercard), fare included",ref:"SmartEX — in the 📄",seat:"Car 4, seats 10D · 10E — E is the Fuji window (Dad's)",w:"Digital — QR in the SmartEX email or ICOCA linked in the app.",u:"https://smart-ex.jp/en/index.php",jp:"10月1日（木）　のぞみ122号　名古屋 11:29発 → 品川 12:58着　指定席　大人2名　E席（富士山側）　※スマートEX予約済み 2002",note:"Flat check-in is 15:00 — no need for an earlier one."}
+ {d:"1 OCT · THU",n:"NOZOMI 122",r:"Nagoya 11:29 → Shinagawa 12:58",t:"11:29",p:"¥10,900 each — ¥21,800 PAID (SmartEX, Mastercard), fare included",ref:"SmartEX — in the 📄",seat:"Car 4, seats 10D · 10E — E is the Fuji window (Dad's)",w:"Digital — tap the IC card registered in the SmartEX app. The QR is for the ticket machine, not the gate.",u:"https://smart-ex.jp/en/index.php",jp:"10月1日（木）　のぞみ122号　名古屋 11:29発 → 品川 12:58着　指定席　大人2名　E席（富士山側）　※スマートEX予約済み",note:"Flat check-in is 15:00 — no need for an earlier one."}
 ];
 P.TRAINS=TRAINS;
 
@@ -67,9 +67,9 @@ P.renderBudget=function(){
  const paidList=BOOKINGS.filter(isPaid), leftList=BOOKINGS.filter(b=>!isPaid(b));
  const paidTot=sum(paidList), leftTot=sum(leftList), bookTot=paidTot+leftTot;
  const tripTot=bookTot+SPEND_TWO, share=tripTot/2, dadOwes=bookTot/2, dadTopUp=dadOwes-SPEND_EACH;
- const next=leftList.slice().sort((a,b)=>a.date<b.date?-1:1)[0];
+ const next=leftList.filter(b=>b.date&&b.date>=today).sort((a,b)=>a.date<b.date?-1:1)[0];
 
- let h='<div class="sec blue"><h3>💰 Budget</h3><div class="sub">Shared costs, split down the middle · ¥190/£ · paid/unpaid as of today, '+now.getDate()+' '+MON[now.getMonth()]+'</div></div>';
+ let h='<div class="sec blue"><h3>💰 Budget</h3><div class="sub">Shared costs, split down the middle · bookings converted at the ¥181/£ actually charged · paid/unpaid as of today, '+now.getDate()+' '+MON[now.getMonth()]+'</div></div>';
 
  /* ---------- HEADLINE ---------- */
  h+='<div class="bigfig">'+
@@ -84,7 +84,7 @@ P.renderBudget=function(){
      paidList.map(b=>'<tr><td>'+b.n+'</td><td>'+(b.date?dshort(b.date):'—')+'</td><td>'+money(b.amt)+(b.est?' <span style="opacity:.6">est.</span>':'')+'</td></tr>').join('')+
      '<tr class="tr-tot"><td>TOTAL</td><td></td><td>'+money(paidTot)+'</td></tr></table>'+
      (paidList.some(b=>b.est)?'<p class="bfnote">est. = fare still to be confirmed against the receipt.</p>':'')+
-     '<p class="bfnote">HOSHINOYA Kyoto (23–25 Sep) has nothing outstanding to pay, so it is not in this list.</p>'+
+     '<p class="bfnote">HOSHINOYA Kyoto (23–25 Sep) is paid for and is not in this list. The meals there are not: allow ¥4,000–7,000 a head for each à la carte dinner and about ¥4,600 each for the one in-room breakfast. That sits in spending money below, not here.</p>'+
      '</div></details>'+
 
    '<details class="bf exp"><summary><div class="bfk">BOOKINGS LEFT TO PAY</div><div class="bfv">'+money(leftTot)+'</div>'+
@@ -111,11 +111,11 @@ P.renderBudget=function(){
  h+='<div class="sec"><h3>Spending money — £1,038 each</h3><div class="sub">Everything you pay for once you are there. Nothing here needs booking</div></div>';
  h+='<div style="overflow-x:auto"><table class="simple"><tr><th>CATEGORY</th><th>FOR TWO</th><th>EACH</th><th>WHAT IT COVERS</th></tr>'+
   '<tr><td>Transport paid on the day</td><td>~£274</td><td>~£137</td><td>All local trains and metro, taxis, the Ine buses, the Kiso rail day, the airport run home (the HARUKA itself is already paid, above)</td></tr>'+
-  '<tr><td>Activities — core plan</td><td>~£475</td><td>~£238</td><td>Sumo show, cooking class, zazen, Golden Gai night</td></tr>'+
+  '<tr><td>Activities — core plan</td><td>~£475</td><td>~£238</td><td>Sumo show, cooking class, zazen, teamLab, Shibuya Sky, DAWN, Golden Gai night</td></tr>'+
   '<tr><td>Activities — optional</td><td>~£318</td><td>~£159</td><td>Bikes, Kagaya, gigs and the other optional extras</td></tr>'+
   '<tr><td>Food &amp; drink</td><td>~£1,010</td><td>~£505</td><td>Deliberately generous. Konbini lunches pull this down hard</td></tr>'+
   '<tr class="tr-tot"><td>TOTAL</td><td>~£2,077</td><td>~£1,038</td><td></td></tr></table></div>';
- h+='<div class="info-box" data-label="In yen">£1,038 each is roughly <b>¥197,000</b> at ¥190/£ — call it ¥200,000 a head for the fortnight, or about ¥11,000 a day. Draw cash on 18 Sep before the banks shut for Silver Week.</div>';
+ h+='<div class="info-box" data-label="In yen">£1,038 each is roughly <b>¥188,000</b> at ¥181/£ — call it ¥190,000 a head for the fortnight, or about ¥11,000 a day. Draw yen at Kansai on arrival. The 7-Eleven and Japan Post ATMs there take UK cards, run 24 hours and keep working right through Silver Week — bank counters do not, and are shut all weekend regardless. Take ¥40,000–50,000 each out on landing; the cash-only stretches are Ine and the Kiso valley.</div>';
 
  /* ---------- TRANSPORT SPLIT ---------- */
  h+='<div class="sec"><h3>Transport — the reserved legs, all booked</h3><div class="sub">Eight legs booked 14–15 Sep. Everything else you simply turn up for</div></div>';
@@ -143,11 +143,11 @@ P.renderBudget=function(){
 
 /* ---------- ETIQUETTE ---------- */
 const TIPS=[
- ["Check the LAST ORDER, not the closing time","The most repeated warning in everything we read. A restaurant closing at 22:00 often stops taking orders at 21:00, and a temple closing at 16:30 often stops admitting at 16:00. Assume the useful deadline is 30–60 minutes before the published one."],
+ ["Check the LAST ORDER, not the closing time","The most common way to lose an evening. A restaurant closing at 22:00 often stops taking orders at 21:00, and a temple closing at 16:30 often stops admitting at 16:00. Assume the useful deadline is 30–60 minutes before the published one."],
  ["Read the price tag properly","The BIG number on a Japanese shelf tag is usually 税抜 — the price EXCLUDING tax. The smaller number beside it, marked 税込, is what you actually pay. A tag reading ¥1,450 / ¥1,595 means you are paying ¥1,595."],
  ["Ticket machines come before seats","In most ramen shops, food halls and cheap eateries you buy a ticket from a machine at the door and hand it over. Many now have photos and English. Red or unlit buttons mean sold out — check before pressing."],
  ["Konbini lunch, proper dinner","The habit that stretches the food budget furthest: eat the hotel breakfast, buy lunch at a convenience store for a few hundred yen, then spend properly in the evening. Konbini food in Japan is good, not a compromise."],
- ["Bring cash, and get it before the 19th","Plenty of small places are cash-only or cash-and-QR-only — Uoshin in Sangenjaya, most market stalls, the Ine buses, rural Kiso. Bank counters shut 19–23 Sep for Silver Week; 7-Eleven ATMs keep working and take UK cards."],
+ ["Bring cash — from the ATMs, not the banks","Plenty of small places are cash-only or cash-and-QR-only: Uoshin in Sangenjaya, most market stalls, the Ine buses, rural Kiso. Japanese bank counters are shut from Sat 19 to Wed 23 Sep for Silver Week, and shut on Saturdays anyway. 7-Eleven ATMs run 24 hours all week and take UK cards — that is the plan, and it needs no timing."],
  ["Where your IC card stops working","Suica/ICOCA on the phone covers Kyoto, Osaka, Nara, Tokyo and every big-city train and bus. It does NOT work on: the Tankai bus to Ine (cash only), the Tango Railway section beyond Fukuchiyama (your paper reserved tickets cover it), any JR station between Nakatsugawa and Shiojiri — so Nagiso, Narai, Kiso-Fukushima and Agematsu are paper tickets from the machine — and the Nagiso town buses (cash to the driver). Rule of thumb: mountains and fishing villages = cash and paper."],
  ["Find bus stops with Google Maps","Search the place name plus the words 'bus stop' rather than just the place — it returns the actual boarding point instead of the destination. Especially useful in Nara, Ine and the Kiso valley where the stop can be a long way from the sight."],
  ["Look up — restaurants are stacked","Japanese cities put restaurants on the 5th, 8th, 9th floor of ordinary buildings. Namba Ramen Ichiza is a whole ramen street on the 9th floor above an electronics shop. If a street looks like it has nothing, read the vertical signs."],
@@ -167,7 +167,7 @@ const ET=[
   {k:"dont",b:"No eating on local trains",t:"— on Shinkansen and limited expresses with tray tables it's fine; the ekiben is a tradition."},
   {k:"do",b:"Bags on laps or racks, priority seats to whoever needs them",t:""},
   {k:"dont",b:"Don't blow your nose loudly in public",t:"— sniffing is the lesser sin; step aside if you must."},
-  {k:"note",b:"Big cases are the enemy of narrow trains and rural buses",t:"— that's why the plan forwards or stores them. Takkyubin (luggage delivery) is normal: hotels arrange it at the desk. On the Shinkansen, oversized cases (over 160cm total) need the reserved baggage seats we book."}]},
+  {k:"note",b:"Big cases are the enemy of narrow trains and rural buses",t:"— that's why the plan forwards or stores them. Takkyubin (luggage delivery) is normal: hotels arrange it at the desk. On the Shinkansen, a case over 160cm (height + width + depth) needs a reserved oversized-baggage seat booked in advance. None are booked, so the big cases must stay under 160cm. Under 160cm goes on the overhead rack with no booking at all."}]},
  {n:"Indoors & baths",sub:"shoes · ryokan · farmhouse · onsen · Ine's homes",items:[
   {k:"do",b:"Shoes off at the genkan",t:"— whenever there's a step up, a shoe rack or slippers waiting. Slippers off on tatami (socks only)."},
   {k:"dont",b:"Don't wear the toilet slippers back out",t:"— the classic visitor error; recovery is a laugh and a swap."},
@@ -184,16 +184,16 @@ const ET=[
   {k:"do",b:"Prayer: coin in, two bows, two claps, wish, one bow",t:""},
   {k:"dont",b:"Don't walk the centre line of the path",t:"— it belongs to the deity; keep to the edges."},
   {k:"do",b:"Sessions: arrive 10 minutes early, phones off entirely",t:"— handle bowls and brushes as shown, both hands. Questions after the quiet parts, not during."},
-  {k:"note",b:"It's fine to be a beginner",t:"— that's the entire premise. Nobody is grading you."}]},
+  {k:"note",b:"Sessions are run for beginners",t:"— the instructions come as you go."}]},
  {n:"Eating, drinking & paying",sub:"restaurants · chopsticks · bars · shops",items:[
   {k:"do",b:"Say \"sumimasen\" to summon staff",t:"— expected, not rude."},
   {k:"do",b:"Slurp your noodles",t:"— it's correct, and improves them."},
   {k:"do",b:"Pour each other's drinks, not your own",t:"— when sharing a bottle."},
   {k:"dont",b:"No tipping",t:"— it will be politely chased down the street."},
-  {k:"note",b:"Oshibori (hot towel) is for hands, not face",t:"— Dad: faces happen, nobody dies."},
+  {k:"note",b:"Oshibori (hot towel) is for hands, not face",t:"— though plenty of people use it on their face and nobody minds."},
   {k:"dont",b:"Never stand chopsticks upright in rice, never pass food chopstick-to-chopstick",t:"— both are funeral rites. Rest them on the holder or across the bowl."},
   {k:"note",b:"Ask for a fork without shame",t:"— spearing food is forgiven for visitors; at okonomiyaki the spatula is the real tool anyway."},
-  {k:"do",b:"Small bars (Golden Gai, Shimokita counters) seat 5–8: greet on entry, accept the cover charge as rent for the seat, talk to the master and neighbours",t:"— that's what the room is for. Karaoke rooms are private; enthusiasm outranks talent by law."},
+  {k:"do",b:"Small bars (Golden Gai, Shimokita counters) seat 5–8: greet on entry, accept the cover charge as rent for the seat, talk to the master and neighbours",t:"— that's what the room is for. Karaoke rooms are private."},
   {k:"do",b:"Money goes in the little tray by the till",t:"— change comes back the same way. Receiving your wrapped item nicely is part of the exchange."},
   {k:"dont",b:"Don't eat while walking",t:"— stand and finish by the stall (Yanaka and festival streets relax this)."}]},
  {n:"Out and about",sub:"photos · old streets · rubbish · smoking",items:[
@@ -239,7 +239,7 @@ const PH=[
   ["Cheers!","乾杯","Kanpai","kahm-pie","Glasses up"],
   ["Goodbye (casual)","じゃあまた","Jā mata","jah mah-tah","See you"]]},
  {c:"Asking for help",items:[
-  ["Do you speak English?","英語を話せますか？","Eigo o hanasemasu ka?","ay-go oh ha-nah-seh-mass-ka","Opens most doors"],
+  ["Do you speak English?","英語は話せますか？","Eigo wa hanasemasu ka?","ay-go wah ha-nah-seh-mass-ka","Opens most doors"],
   ["I don't understand","わかりません","Wakarimasen","wah-kah-ree-mah-sen","Honest and useful"],
   ["Please write it down","書いてください","Kaite kudasai","kai-teh koo-dah-sai","Numbers, names, times"],
   ["Where is …?","…はどこですか？","… wa doko desu ka?","wah doh-koh dess-ka","Point at the written place name"],
@@ -247,7 +247,7 @@ const PH=[
   ["Is this OK?","これで大丈夫ですか？","Kore de daijōbu desu ka?","koh-reh deh dai-joh-boo dess-ka","Universal checker"]]},
  {c:"Transport & stations",items:[
   ["Which platform for …?","…は何番線ですか？","… wa nanbansen desu ka?","nan-ban-sen dess-ka","Show the destination in writing"],
-  ["Does this train stop at …?","この電車は…に止まりますか？","Kono densha wa … ni tomarimasu ka?","toh-mah-ree-mass-ka","Vital for the Shinano (not all stop at Nagiso!)"],
+  ["Does this train stop at …?","この電車は…に止まりますか？","Kono densha wa … ni tomarimasu ka?","toh-mah-ree-mass-ka","Vital for the Shinano — not all of them stop at Nagiso"],
   ["Where is this bus stop?","このバス停はどこですか？","Kono basutei wa doko desu ka?","bass-tay wah doh-koh","Show the stop name"],
   ["I want to get off at …","…で降りたいです","… de oritai desu","deh oh-ree-tie dess","Rural buses appreciate warning"],
   ["Reserved seats","指定席","shiteiseki","shtay-seh-kee","vs 自由席 jiyūseki (unreserved)"],
@@ -308,9 +308,10 @@ const PH=[
  {c:"Trip place names (show these)",items:[
   ["Kyoto Station","京都駅","Kyōto-eki","kyoh-toh eh-kee",""],
   ["Kiyomizu-dera","清水寺","Kiyomizu-dera","","Taxi destination day 3"],
-  ["Daitoku-ji / Daiji-in","大徳寺 / 大慈院","Daitokuji / Daijiin","","Taxi destination day 4 — show BOTH"],
+  ["Daitoku-ji / Daisen-in","大徳寺 / 大仙院","Daitokuji / Daisenin","","Taxi destination Sun 20 Sep — show BOTH. The zazen is at 大仙院"],
+  ["Izusen at Daiji-in","泉仙 大慈院店","Izusen Daijiin","","Only if you go north for lunch on Mon 21 — a different sub-temple in the same walls"],
   ["HOSHINOYA boat lounge","星のや京都 舟待合","Hoshinoya Kyōto funa-machiai","","Near Togetsukyo bridge, south side"],
-  ["Amanohashidate","天橋立","Amanohashidate","ah-mah-noh-hash-dah-teh",""],
+  ["Amanohashidate","天橋立","Amanohashidate","ah-mah-noh-hah-shee-dah-teh",""],
   ["Ine","伊根","Ine","ee-neh","The bus front sign"],
   ["Nagiso Station","南木曽駅","Nagiso-eki","nah-ghee-soh",""],
   ["Magome / Tsumago","馬籠 / 妻籠","Magome / Tsumago","mah-goh-meh / tsoo-mah-goh",""],
@@ -350,7 +351,8 @@ const AREAS=[
   ["Gion / Shirakawa","Gion, Higashiyama-ku","Gion Shirakawa Kyoto"],
   ["Kagizen Yoshifusa (wagashi)","264 Gionmachi Kitagawa, Shijo-dori","Kagizen Yoshifusa"],
   ["Sanjusangen-do","657 Sanjusangendo-mawari","Sanjusangendo"],
-  ["Daitoku-ji / Daiji-in","53 Murasakino Daitokuji-cho, Kita-ku","Daijiin Daitokuji Kyoto"],
+  ["Daitoku-ji / Daisen-in (zazen)","54-1 Murasakino Daitokuji-cho, Kita-ku","Daisen-in Daitokuji Kyoto"],
+  ["Daitoku-ji / Daiji-in (Izusen)","53 Murasakino Daitokuji-cho, Kita-ku","Izusen Daijiin Kyoto"],
   ["Ippodo Tea","Teramachi-dori Nijo-agaru","Ippodo Tea Kyoto"],
   ["SOU・SOU shops","Nakano-cho alley, Nakagyo-ku","SOU SOU tabi Kyoto"],
   ["RAU / GOOD NATURE STATION","318-6 Inari-cho, Shimogyo-ku","GOOD NATURE STATION Kyoto"],
@@ -453,7 +455,7 @@ P.renderMap=function(DAYS){
  h+='<div class="routestrip">'+
    [['1','KYOTO','19–23 SEP','#e11d48'],['2','OSAKA','22 SEP day trip','#7c3aed'],
     ['3','ARASHIYAMA','23–25 SEP','#f97316'],['4','INE','25–27 SEP','#0891b2'],
-    ['5','KISO VALLEY','28 SEP–1 OCT','#15803d'],['6','TOKYO','1–5 OCT','#2563eb']]
+    ['5','KYOTO + NARA','27–28 SEP','#e11d48'],['6','KISO VALLEY','28 SEP–1 OCT','#15803d'],['7','TOKYO','1–5 OCT','#2563eb']]
    .map(function(x){return '<div class="rs"><div class="rsn" style="background:'+x[3]+'">'+x[0]+'</div>'+
      '<div><div class="rst">'+x[1]+'</div><div class="rsd">'+x[2]+'</div></div></div>';}).join('<div class="rsar">→</div>')+
    '</div>';

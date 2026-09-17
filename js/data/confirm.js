@@ -1,7 +1,7 @@
 /* BOOKING CONFIRMATIONS — 17 Sep 2026.
    Each link is a Google Doc in the trip's private Drive folder (PDF copies live on the laptop).
-   The docs are private: the links are public here, but they only open when signed in to the owning Google account.
-   To give Dad access, share the docs (or the folder) with his Google account — do not switch them to "anyone with the link". */
+   These document IDs are public in this file. That is only safe while every document behind them stays RESTRICTED in Drive.
+   To give Dad access, share each doc (or the folder) with his Google account — never switch them to "anyone with the link". */
 (function(){
 const D={
  "flight_out": "1Vz_SFrrz_awhdzpve3kzpO7O8v-fItvLvwy7ZIaZH6M",

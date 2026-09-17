@@ -7,8 +7,8 @@ const HU={
   {k:'avoid',t:'Do not fill in Visit Japan Web at the airport on airport wifi. Have both QR codes screenshotted before you leave the house.'}
  ],
  "19-sep":[
-  {k:'closed',t:'Silver Week starts tomorrow: Sat 19 is the last normal banking day. Draw cash today if you did not on the 18th — ATMs in 7-Eleven work 24 hours, bank counters will not.'},
-  {k:'avoid',t:'The HARUKA discounted ticket is not sold in Japan. Collect it at the KIX machine with the reservation number, the card you paid with and passports — do not join the airport ticket-office queue.'},
+  {k:'closed',t:'You land inside Silver Week: bank counters are shut from today through the 23rd, and shut on Saturdays anyway. The 7-Eleven ATMs run 24 hours and take UK cards — draw what you need at Kansai before the HARUKA rather than hunting for one in Kyoto — ATMs in 7-Eleven work 24 hours, bank counters will not.'},
+  {k:'avoid',t:'The HARUKA discounted ticket is not sold in Japan. Collect it at the KIX machine with the reservation number, the card you paid with and passports — do not join the airport ticket-office queue by default, the machine is faster. The staffed JR office beside it is the fallback if the machine refuses — this is a visitor-only fare and it may want passports.'},
   {k:'tip',t:'Kyoto Station is busy all evening this week. Eat on the 10F ramen street or in Porta underground rather than the 11F restaurants, which take a queue ticket.'},
   {k:'nook',t:'The station Skyway (10F, free) is a glass corridor across the roof — go up after dark for the city and the tower. Nobody is there.'}
  ],
@@ -56,7 +56,7 @@ const HU={
   {k:'closed',t:'Mukai Shuzo closes Thursdays — today is Friday. Funaya Shokudo closes Thursdays too; INE CAFE closes Tuesdays.'},
   {k:'avoid',t:'The Tankai bus is cash only (¥400, coins or ¥1,000 notes) and strict on luggage: one bag each, small. Do not arrive with a suitcase.'},
   {k:'avoid',t:'In Ine, stay on the road. The boathouses are homes: no stepping onto ramps, no photos through windows, no drones (it is a no-fly zone). Sound carries on the water, so keep it down after dark.'},
-  {k:'tip',t:'The 13:57 bus is the one to make — backups 14:37, 15:11 and 16:18, and the last useful one is 16:18. Buy provisions at Amanohashidate; the village has almost no shops.'},
+  {k:'tip',t:'The 13:57 bus is the one to make — backups 14:37 and 15:11. The 16:18 arrives at 17:15, past Miyabi&rsquo;s 17:00 contact deadline, so message them from Amanohashidate before boarding anything later than the 15:11. Buy provisions at Amanohashidate; the village has almost no shops.'},
   {k:'nook',t:'Ineura Park is the small waterfront park that gets you closest to the boathouses without trespassing. The Amanohashidate sandbar is walkable end to end in 45 minutes if the timing falls right.'},
   {k:'shop',t:'Mukai Shuzo’s Ine Mankai — the rosé-pink red-rice sake — is made in this one brewery and is the bottle to carry home. The Tango peninsula is also where chirimen silk crepe is woven; small scarves and pouches turn up in the Amanohashidate station shops.'}
  ],
@@ -75,7 +75,7 @@ const HU={
   {k:'shop',t:'Nara-zarashi linen (Nakagawa Masashichi, Naramachi, since 1716) and hand-made ink sticks and brushes from Kobaien (since 1577) — both are Nara-only crafts and both shops are ten minutes from the park. Fushimi: the mini torii with your name, and a sake from one of the Fushimi breweries.'}
  ],
  "28-sep":[
-  {k:'closed',t:'Coin lockers and the luggage counter at Kyoto Station are open from 07:00; takkyubin at the hotel desk closes for the day around 15:00, so send the big case before you leave, not on the way out.'},
+  {k:'closed',t:'Coin lockers and the luggage counter at Kyoto Station are open from 07:00; do not send the big cases to Tokyo — the flat will not take a parcel with nobody in, and you are not there until 15:00 on the 1st. The cases travel with you on the Shinano.'},
   {k:'avoid',t:'SHINANO 17 at 15:00 is the only afternoon train that stops at Nagiso. There is no plan B on the same day.'},
   {k:'tip',t:'Nozomi trains are reserved-seat only until 23 Sep; from today unreserved cars are back, but your seats are booked anyway. Nagiso has no IC-card gates — paper tickets in hand.'},
   {k:'nook',t:'At Nagoya, platform 10 for the Shinano. There is a Kishimen (flat noodle) stand on the platform — the right lunch if you have missed one.'}
@@ -83,9 +83,9 @@ const HU={
  "29-sep":[
   {k:'closed',t:'Nothing closes on a Tuesday here, but everything closes early: Magome and Tsumago shops shut around 17:00 and the trail tea house is staffed only to about 16:00.'},
   {k:'avoid',t:'Between Magome and Tsumago there is almost no food. Eat in Magome before you set off or carry it. Everything in both towns is cash only.'},
-  {k:'avoid',t:'The last buses from Tsumago to Nagiso are 15:30 and 16:30. Your pickup is arranged, but if it falls through those are the numbers.'},
+  {k:'avoid',t:'The last buses from Tsumago to Nagiso are 15:30 and 16:30. There is no afternoon pickup — the Tsumago→Nagiso buses do that job (13:00, 13:50, 15:40, 16:10 on the April 2026 timetable). Photograph the printed timetable at the Tsumago stop and trust that one.'},
   {k:'look',t:'Bear warning signs are posted on the trail; encounters on this stretch are extremely rare, and the bells hung along the path are there to be rung. Ring them.'},
-  {k:'tip',t:'Luggage shuttle Magome→Tsumago: ¥500 a bag, drop 08:30–11:30 at the Magome information centre, collect after 13:00 at Tsumago. Useful if the small bags feel heavy.'},
+  {k:'tip',t:'A luggage shuttle Magome→Tsumago exists (drop 08:30–11:30 at the Magome information centre, collect after 13:00) but you should not need it — Yui-an move your bags to MOUNTAinn. Useful if the small bags feel heavy.'},
   {k:'nook',t:'The Ichikokutochi tea house at the pass is free, the tea is hot, and the man who runs it has been there for decades. In Tsumago, the Waki-honjin (the inn for retainers) is the one interior worth paying for.'}
  ],
  "30-sep":[
@@ -112,7 +112,7 @@ const HU={
   {k:'closed',t:'Honjo Life Safety Learning Center closes Wednesdays and the third Thursday; Monster Party and Champion run Saturdays. Everything on the plan is open.'},
   {k:'avoid',t:'Golden Gai: no photographs of the alleys, bar fronts or people without asking; bars marked "members only" or "regulars only" mean it; parties of more than three are turned away. Most bars are cash only — carry ¥10,000 each. Cover charges are ¥500–1,500 and should be posted at the door; if not, ask before sitting.'},
   {k:'avoid',t:'The Samurai Ninja Museum opened a second, larger site in Shinjuku in 2025. Check which one your ticket is for before you set off, and book a slot — the late afternoon ones sell out on Saturdays.'},
-  {k:'tip',t:'Tokyo National Museum: the 70+ free entry needs ID. Hantei takes lunch from 12:30 and is a set course; say the no-meat request when you book, not on arrival.'},
+  {k:'tip',t:'Tokyo National Museum: the 70+ free entry needs ID. Hantei serves lunch 11:30–15:00, last orders 14:00, and it is a set course — book about 12:30 and say the no-meat request when you book, not on arrival; say the no-meat request when you book, not on arrival.'},
   {k:'nook',t:'Albatross (no cover) has a rooftop; Bar Araku and Ace’s are the other two that welcome first-timers. The Yanaka sunset stairs (Yuyake Dandan) at about 17:15 tonight.'},
   {k:'shop',t:'Kappabashi, the kitchen-tool street, is fifteen minutes from the sumo show: Kama-Asa and Tsubaya for knives (engraved on the spot), plus the plastic food models. Yanaka Ginza: cat-shaped everything, and Kanekichien for tea and tea tins.'}
  ],

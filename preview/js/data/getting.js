@@ -15,7 +15,7 @@ const GROUPS=[
    d:'Google Maps is the one that works everywhere in Japan, including buses, and it is the only planner both of you already know how to drive. Search a city → tap its name at the bottom → <b>Download offline map</b> → drag the box over the whole urban area. Offline maps give you the map, walking directions and every saved pin <b>without signal</b>. They do not give you live train times, which is what the operator links below are for.',
    u:'https://www.google.com/maps',ub:'GOOGLE MAPS'},
   {s:'core',t:'Put ICOCA (or Suica) in Apple Wallet — both phones',meta:'DO IT TONIGHT · 5 min each',
-   d:'Wallet → + → Transit Card → Japan → ICOCA or Suica → top up with the card on file. It taps you through almost every gate, bus and konbini for the whole trip, and it means neither of you is ever stuck at a ticket machine working out a fare. <b>Two separate cards — one per phone.</b> Top up ¥3,000 each to start; you can add more from the phone at any time.',
+   d:'Wallet → + → Transit Card → Japan → ICOCA or Suica → top up with the card on file. <b>Do this tonight, not on arrival</b> — a foreign card is sometimes refused for Japanese transit top-up (Amex and Mastercard are the better bets; Visa is the one that fails). If it will not take a top-up, the fallback is a plastic ICOCA bought with cash from any JR West machine at Kansai, which works identically at every gate. Inconvenient, never fatal. It taps you through almost every gate, bus and konbini for the whole trip, and it means neither of you is ever stuck at a ticket machine working out a fare. <b>Two separate cards — one per phone.</b> Top up ¥3,000 each to start; you can add more from the phone at any time.',
    u:'https://support.apple.com/en-gb/HT207154',ub:'HOW TO ADD IT'},
   {s:'core',t:'eSIM — install it here, on wifi, not at Kansai',meta:'DO IT TONIGHT · 10 min each phone',
    d:'An eSIM profile will not install without a connection, so the one place you must not do it is the arrivals hall. Install both tonight and leave them switched off if your plan counts days from activation. On landing: Japan eSIM on for data, UK line on for calls and texts with <b>data roaming off</b>. If a profile refuses to install, you want to know tonight rather than on Saturday lunchtime in Osaka.'},
@@ -61,7 +61,7 @@ const GROUPS=[
    d:'The city&rsquo;s own map of every bus route and both subway lines. Save the image to your phone — Kyoto bus stops have a map on the pole, but it is in Japanese and it is dark by the time you need it.',
    u:'https://www2.city.kyoto.lg.jp/kotsu/webguide/en/comm/routemap.html',ub:'KYOTO ROUTE MAP'},
   {s:'use',t:'Kyoto City Bus &amp; Subway — fares, passes and the rules',meta:'REFERENCE',
-   d:'Board at the back, pay at the front, flat fare in the central zone, IC card taps both ends. This is the official page that explains it, if either of you wants to read it once rather than guess at the door.',
+   d:'Board at the back, pay at the front as you get off. Inside the central flat-fare zone it is ONE tap, on the way out. On the routes that run outside it you tap on as you board and again as you leave. If in doubt, watch the person in front. This is the official page that explains it, if either of you wants to read it once rather than guess at the door.',
    u:'https://www2.city.kyoto.lg.jp/kotsu/webguide/en/',ub:'KYOTO TRANSPORT GUIDE'},
   ]},
 
@@ -116,12 +116,12 @@ const GROUPS=[
   sub:'Both bullet-train legs are already booked and digital. One app, two journeys.',
   items:[
   {s:'core',t:'SmartEX — the two Nozomi',meta:'INSTALL BEFORE YOU FLY',
-   d:'Both Nozomi are SmartEX bookings. Install the app and sign in <b>before you leave</b>, then either show the QR code from the confirmation email or link your ICOCA in the app and tap straight through the gate. A forgotten password is much easier to sort out now than at Kyoto Station on the 28th with a train to catch.',
+   d:'Both Nozomi are SmartEX bookings. Install the app and sign in <b>before you leave</b>, then link an IC card in the app and tap that card at the gate. The QR code in the confirmation email is for the ticket machine, not the barrier. A forgotten password is much easier to sort out now than at Kyoto Station on the 28th with a train to catch.',
    u:'https://smart-ex.jp/en/index.php',ub:'SMARTEX'},
   ]},
 
  {k:'TOKYO — 1–5 OCT', c:'purple',
-  sub:'Three separate operators share the same city. You will not notice, because the IC card does not care — but the map you want covers all of them.',
+  sub:'Two subway companies plus JR East share the same city. The IC card works on all of them; the fares do not merge. The map you want covers all three.',
   items:[
   {s:'map',t:'Tokyo subway map — Metro and Toei together',meta:'SCREENSHOT THIS',
    d:'The most useful offline image of the trip. It covers both subway operators on one sheet. Save it to your photos tonight; you will look at it underground, where nothing loads.',
@@ -130,10 +130,10 @@ const GROUPS=[
    d:'Nine of the lines. Their English site has a route search and a live service status page that is worth checking before a long hop across the city.',
    u:'https://www.tokyometro.jp/en/',ub:'TOKYO METRO'},
   {s:'use',t:'Toei Subway — the other four lines',meta:'1–5 OCT',
-   d:'Ōedo, Asakusa, Mita and Shinjuku are run by the city, not by Tokyo Metro. Same IC card, same gates, different company. It only matters if you buy a paper ticket.',
+   d:'Ōedo, Asakusa, Mita and Shinjuku are run by the city, not by Tokyo Metro. Same IC card, same gates — but two different fares. Change from a Metro line to a Toei line mid-journey and you pay both base fares; the IC card knocks about ¥70 off and that is all. If a day has three or more crossings, the visitor-only <b>Tokyo Subway Ticket</b> (24h ¥800, 48h ¥1,200, 72h ¥1,500) covers both operators and is sold at Haneda and the big stations. No Tokyo Metro day pass is valid on Toei.',
    u:'https://www.kotsu.metro.tokyo.jp/eng/',ub:'TOEI SUBWAY'},
-  {s:'use',t:'GO — taxis, in English',meta:'5 OCT AND ANY LATE NIGHT',
-   d:'Japan&rsquo;s taxi app. Card saved in advance, pin dropped precisely, English interface. This is what books the airport taxi on the 5th, and what rescues a night that runs past the last train.',
+  {s:'use',t:'Taxis: when the app works, and when to ask the desk',meta:'READ ONCE, APPLIES ALL TRIP',
+   d:'<b>Use the GO app</b> when you want a taxi now, in Kyoto, Osaka or Tokyo. Card saved, English, drop the pin precisely, and it is usually a few minutes. That covers most of the trip.<br><br><b>Ask the hotel or the restaurant instead</b> in three situations. <b>1 · A pickup at a set time in advance</b> — the 06:30 to Kiyomizu, the 08:45 to Shinagawa on the last morning. Reception books a car that turns up; the app finds whatever is free at the moment you press it, which at dawn may be nothing. <b>2 · Anywhere rural.</b> GO has no meaningful coverage in Ine, the Kyotango coast or the Kiso valley — there, a taxi means the host or the inn phoning a local firm, and it can take half an hour to arrive. <b>3 · When the address is hard.</b> A Japanese address read out by a person beats a pin dropped on a lane.<br><br>Either way, say the destination in Japanese if you can — the day pages give it where it matters.',
    u:'https://go.goinc.jp/en/',ub:'GO APP'},
   {s:'use',t:'GO TOKYO — how the subway actually works',meta:'READ ONCE',
    d:'The city&rsquo;s official explainer: transferring between operators, what the numbered station codes mean (G-09, and so on), and why following the letter-and-number is easier than reading the name.',
@@ -143,7 +143,7 @@ const GROUPS=[
  {k:'HANEDA → LONDON — 5 OCT', c:'blue',
   sub:'One flight, one terminal, nothing to change.',
   items:[
-  {s:'use',t:'British Airways — Manage My Booking',meta:'CHECK IN 4 OCT, 13:05 JAPAN TIME',
+  {s:'use',t:'British Airways — Manage My Booking',meta:'CHECK IN SUN 4 OCT FROM 13:05 JAPAN TIME',
    d:'Online check-in opens 24 hours before, which is Sunday lunchtime in Tokyo. Haneda Terminal 3 is the international terminal, so there is no terminal hop at this end.',
    u:'https://www.britishairways.com/travel/managebooking/public/en_gb',ub:'BA MANAGE BOOKING'},
   ]},
@@ -186,9 +186,8 @@ P.renderGetting=function(){
   h+='<div class="info-box" style="margin-bottom:22px">'+
     '<b>How the site actually updates.</b> It is a set of files in a GitHub repository. Anything committed to the <b>main</b> branch appears on the live site about a minute later. That is the whole mechanism — there is no server, no login, no admin panel.<br><br>'+
     '<b>The route that always works, from any phone:</b> open <b>github.com/MicaW/japanitinerary</b> in a browser, sign in, tap into the file, tap the pencil, edit the text, and commit to main. Fiddly on a phone but completely reliable, and it needs nothing installed. If you change anything, also bump the version string at the top of <b>sw.js</b> (<span class="mono">lampteys-vNN</span> → the next number), or phones that already have the site saved will keep showing the old one.<br><br>'+
-    '<b>Asking Claude from your phone:</b> Claude can write the change for you anywhere, any time. Whether it can <i>publish</i> it depends on one setting. Right now, the only reason this site can be updated is that the changes are routed through the laptop — a Claude session on its own is blocked from pushing to this repository. <b>Before you fly, connect the repository as a source in the Claude project and push one trivial change to test it.</b> If that works, phone updates work with the laptop shut. If you do not test it, assume they do not.<br><br>'+
-    '<b>The fallback that never fails:</b> ask Claude for the exact replacement text, then paste it into github.com yourself using the pencil. Two minutes, no dependencies.<br><br>'+
-    '<b>What you will not be able to do from a phone:</b> anything that needs the booking confirmation PDFs rebuilt, or the whole-site PDF set regenerated. Those are built on a computer. The PDFs in your Drive folder are the snapshot you carry instead.</div>';
+    '<b>Asking Claude from your phone:</b> ask for the exact replacement text, then paste it into github.com yourself with the pencil. Two minutes, and it needs nothing set up. Claude can only publish directly if the change is routed through the laptop, so assume the paste-it-yourself route is the one you have.<br><br>'+
+    '<b>What a phone cannot do:</b> rebuild the booking confirmation PDFs or the whole-site PDF set. Those need a computer. The PDFs in your Drive folder are the snapshot you carry instead.</div>';
   h+='<div class="btnrow" style="margin-bottom:26px"><button class="btn mini" onclick="window.print()">🖨 PRINT THIS PAGE</button></div>';
   return h;
 };
