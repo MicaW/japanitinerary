@@ -124,7 +124,7 @@ const GROUPS=[
   sub:'Three separate operators share the same city. You will not notice, because the IC card does not care — but the map you want covers all of them.',
   items:[
   {s:'map',t:'Tokyo subway map — Metro and Toei together',meta:'SCREENSHOT THIS',
-   d:'The single most useful offline image of the trip. It covers both subway operators on one sheet. Save it to your photos tonight; you will look at it underground, where nothing loads.',
+   d:'The most useful offline image of the trip. It covers both subway operators on one sheet. Save it to your photos tonight; you will look at it underground, where nothing loads.',
    u:'https://www.tokyometro.jp/tst/assets/pdf/train-route--en.pdf',ub:'TOKYO SUBWAY MAP (PDF)'},
   {s:'use',t:'Tokyo Metro — route search and live status',meta:'1–5 OCT',
    d:'Nine of the lines. Their English site has a route search and a live service status page that is worth checking before a long hop across the city.',

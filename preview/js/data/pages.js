@@ -59,7 +59,7 @@ P.renderBudget=function(){
  /* ---------- WORK IT OUT FROM TODAY ---------- */
  const now=new Date();
  const today=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
- const isPaid=b=>b.paid||(b.date&&b.date<=today);
+ const isPaid=b=>!!b.paid;   /* only an actual paid flag counts — a charge date passing is not proof of payment */
  const money=(v,approx)=>(approx?'~':'')+'£'+v.toLocaleString('en-GB',{minimumFractionDigits:approx?0:2,maximumFractionDigits:approx?0:2});
  const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
  const dshort=iso=>{const p=iso.split('-');return parseInt(p[2],10)+' '+MON[parseInt(p[1],10)-1];};
@@ -143,7 +143,7 @@ P.renderBudget=function(){
 
 /* ---------- ETIQUETTE ---------- */
 const TIPS=[
- ["Check the LAST ORDER, not the closing time","The single most repeated warning in everything we read. A restaurant closing at 22:00 often stops taking orders at 21:00, and a temple closing at 16:30 often stops admitting at 16:00. Assume the useful deadline is 30–60 minutes before the published one."],
+ ["Check the LAST ORDER, not the closing time","The most repeated warning in everything we read. A restaurant closing at 22:00 often stops taking orders at 21:00, and a temple closing at 16:30 often stops admitting at 16:00. Assume the useful deadline is 30–60 minutes before the published one."],
  ["Read the price tag properly","The BIG number on a Japanese shelf tag is usually 税抜 — the price EXCLUDING tax. The smaller number beside it, marked 税込, is what you actually pay. A tag reading ¥1,450 / ¥1,595 means you are paying ¥1,595."],
  ["Ticket machines come before seats","In most ramen shops, food halls and cheap eateries you buy a ticket from a machine at the door and hand it over. Many now have photos and English. Red or unlit buttons mean sold out — check before pressing."],
  ["Konbini lunch, proper dinner","The habit that stretches the food budget furthest: eat the hotel breakfast, buy lunch at a convenience store for a few hundred yen, then spend properly in the evening. Konbini food in Japan is good, not a compromise."],
@@ -234,7 +234,8 @@ const PH=[
   ["Thank you very much","ありがとうございます","Arigatō gozaimasu","ah-ree-gah-toh go-zai-mass","The workhorse — use constantly"],
   ["Excuse me / sorry","すみません","Sumimasen","soo-mee-mah-sen","Summons staff, apologises, thanks — the magic word"],
   ["Please (requesting)","お願いします","Onegai shimasu","oh-neh-guy shee-mass","Attach to any request"],
-  ["It was delicious","ごちそうさまでした","Gochisōsama deshita","go-chee-soh-sah-mah desh-ta","Said leaving any meal — melts hearts"],
+  ["It was delicious","おいしかったです","Oishikatta desu","oy-shee-kah-tah dess","Said at the table, or to the chef as you pass"],
+  ["Thank you for the meal (on the way out)","ごちそうさまでした","Gochisōsama deshita","go-chee-soh-sah-mah desh-ta","Not 'delicious' — it thanks them for feeding you. Said leaving any meal"],
   ["Cheers!","乾杯","Kanpai","kahm-pie","Glasses up"],
   ["Goodbye (casual)","じゃあまた","Jā mata","jah mah-tah","See you"]]},
  {c:"Asking for help",items:[
@@ -294,7 +295,7 @@ const PH=[
  {c:"Directions & signs to recognise",items:[
   ["Left / right / straight","左 / 右 / まっすぐ","hidari / migi / massugu","hee-dah-ree / mee-ghee / mahs-soo-goo","The pointing trio"],
   ["Entrance / exit","入口 / 出口","iriguchi / deguchi","","Learn the kanji: 入口 in, 出口 out"],
-  ["Open / closed","営業中 / 準備中","eigyōchū / junbichū","","On every shop door curtain"],
+  ["Open / between services","営業中 / 準備中","eigyōchū / junbichū","","On every shop door curtain. 準備中 means preparing, not closed for the day — often back open at dinner"],
   ["Toilet","お手洗い / トイレ","otearai / toire","oh-teh-ah-rai","Universally understood"],
   ["Push / pull","押 / 引","osu / hiku","","On doors — 押 push, 引 pull"],
   ["Free (no charge)","無料","muryō","moo-ryoh","vs 有料 yūryō = paid"]]},

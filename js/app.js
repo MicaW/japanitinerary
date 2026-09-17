@@ -258,12 +258,15 @@ function walkStrip(stops){
   var h='<div class="wstrip">';
   pts.forEach(function(p,i){
     h+='<div class="wstop"><span class="wn '+(p.kind==='food'?'f':'')+'">'+String.fromCharCode(65+i)+'</span><span class="wnm">'+esc(p.name)+'</span></div>';
-    if(i<pts.length-1){ var mm=walkM(p,pts[i+1]);
-      h+='<div class="wgap"><i></i>'+(mm<60?'<b>same spot</b>':'<b>'+walkMins(p,pts[i+1])+' min</b> ~'+(mm<950?mm+' m':(mm/1000).toFixed(1)+' km'))+'</div>'; }
+    if(i<pts.length-1){ var mm=walkM(p,pts[i+1]), nx=pts[i+1];
+      /* No invented distances. Roughly how far, then a link that gives the real routed walk. */
+      var band = mm<60 ? 'same spot' : mm<400 ? 'a few minutes' : mm<900 ? 'about 10 minutes' : mm<1800 ? 'about 20 minutes' : 'a longer walk — check it';
+      h+='<div class="wgap"><i></i><b>'+band+'</b> '+
+         '<a class="wdir" target="_blank" rel="noopener" href="'+dirUrl(p.q,nx.q)+'">walking directions ↗</a></div>'; }
   });
   var far=stops.filter(function(s){return s.far;});
-  if(far.length){ h+='<div class="wfar">Off this map: '+far.map(function(f){return esc(f.name)+' ('+kmBetween(f,pts[0]).toFixed(1)+' km as the crow flies)';}).join(' · ')+'</div>'; }
-  h+='<div class="wfar">Times and distances here are estimates from the map pins, not a routed walk. Tap OPEN IN GOOGLE MAPS for the real thing.</div>';
+  if(far.length){ h+='<div class="wfar">Further out, not part of this walk: '+far.map(function(f){return '<a target="_blank" rel="noopener" href="'+dirUrl(pts[0].q,f.q)+'">'+esc(f.name)+' ↗</a>';}).join(' · ')+'</div>'; }
+  h+='<div class="wfar">The times above are a rough sense of the gap. Tap any of them for the real walking route and duration from Google Maps.</div>';
   return h+'</div>';
 }
 window.__CARDS={};
