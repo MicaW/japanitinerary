@@ -68,6 +68,12 @@ const DECIDE=[
 ];
 
 const ASK=[
+ {s:'ask',t:'The HARUKA 4-digit ID — find it TONIGHT',meta:'NEEDED AT KIX, 19 SEP · 2 min',
+  d:'The JR West machine at Kansai Airport will not release the HARUKA tickets without a 4-digit ID number you set when you booked. It is <b>not</b> written down anywhere in the confirmations — the booking email only says "your 4-digit ID". Find it in the e5489/JR West account or the original email, write it into the HARUKA confirmation doc, and screenshot it. This is the first thing you do after a nineteen-hour flight; do not leave it to then.',
+  day:'19-sep',doc:'haruka'},
+ {s:'ask',t:'Two door codes arrive while you are away',meta:'~26 SEP AND EARLY OCT',
+  d:'Yui-an emails its registration form and security code about three days before arrival, around 26 Sep — you will be in Ine with patchy signal. U Place emails a door-entry PDF after the check-in form. <b>Neither goes on this website.</b> When they land, save them into the booking confirmation docs in Drive so they are with everything else and reachable offline.',
+  day:'28-sep',doc:'yuian'},
  {s:'ask',t:'HOSHINOYA',meta:'23–25 SEP',
   d:'Both dinners with the two diets accepted in writing, breakfast, and the departure transfer on the 25th. The arrival boat is booked for 14:50 — nothing to do there.',day:'23-sep',doc:'boat'},
  {s:'ask',t:'Miyabi, Ine',meta:'25–27 SEP',
@@ -85,18 +91,20 @@ const ASK=[
   u:'https://go.goinc.jp/en/',ub:'GO APP',day:'5-oct'}
 ];
 
-const TABS=[['book','BOOK OR ASK NOW',BOOK],['decide','DECIDE IN JAPAN',DECIDE],['ask','THE HOSTS',ASK]];
-window.FINAL_TAB='book';
+/* ONE list, in the order the deadlines actually bite — not split by where you will be standing. */
+const ALL=BOOK.concat(ASK).concat(DECIDE);
+const KIND={must:['!','BOOK OR DO NOW'],ask:['✉','MESSAGE THEM'],dec:['◇','DECIDE IN JAPAN'],opt:['?','OPTIONAL']};
 
 function rows(list){
   return list.map(function(x){
     const doc=(x.doc&&window.confFor)?confFor('key',x.doc):'';
+    const k=KIND[x.s]||KIND.opt;
     return '<div class="chk'+(x.s==='opt'?' secondary':'')+'">'+
-      '<div class="box">'+(x.s==='must'?'!':x.s==='opt'?'?':x.s==='dec'?'◇':'✉')+'</div>'+
+      '<div class="box">'+k[0]+'</div>'+
       '<div style="flex:1;min-width:0">'+
         '<div class="t">'+x.t+'</div>'+
         '<div class="d">'+x.d+'</div>'+
-        '<div class="meta">'+x.meta+'</div>'+
+        '<div class="meta">'+k[1]+' · '+x.meta+'</div>'+
         '<div class="btnrow" style="margin-top:8px">'+
           (x.u?'<a class="btn mini yellow" target="_blank" rel="noopener" href="'+x.u+'">'+(x.ub||'OPEN')+' ↗</a>':'')+
           (x.day?'<a class="btn mini" href="#day/'+x.day+'">📅 THAT DAY</a>':'')+
@@ -108,24 +116,11 @@ function rows(list){
 
 P.renderFinal=function(){
   let h='<div class="sec red"><h3>Final actions &amp; decisions</h3>'+
-    '<div class="sub">Everything still open on the night before departure: what to book now, what to choose once you are there, and what the hosts still have to confirm. Booking numbers stay in the private confirmation docs.</div></div>';
-  h+='<div class="gf" id="finaltabs">'+TABS.map(function(t){
-      return '<button class="'+(window.FINAL_TAB===t[0]?'on':'')+'" onclick="FINAL_TAB=\''+t[0]+'\';document.getElementById(\'finalbody\').innerHTML=PAGES.renderFinalBody();PAGES.syncFinalTabs()">'+t[1]+' ('+t[2].length+')</button>';
-    }).join('')+'</div>';
-  h+='<div id="finalbody">'+P.renderFinalBody()+'</div>';
-  h+='<div class="btnrow" style="margin:6px 0 26px"><button class="btn mini" onclick="window.print()">🖨 PRINT THIS PANEL</button></div>';
+    '<div class="sub">Everything still open, in one list, roughly in the order it bites. <b>!</b> book or do it now &nbsp; <b>✉</b> a message, not a booking &nbsp; <b>◇</b> a choice you make in Japan &nbsp; <b>?</b> optional. Booking numbers and codes stay in the private confirmation docs.</div></div>';
+  h+='<p style="font-size:13.5px;margin:2px 0 12px">'+ALL.length+' things. Only the first few have to happen before you board — everything below them can be done from Japan, except Shibuya Sky, which sells out.</p>';
+  h+=rows(ALL);
+  h+='<div class="btnrow" style="margin:6px 0 26px"><button class="btn mini" onclick="window.print()">🖨 PRINT THIS LIST</button></div>';
   return h;
 };
-P.renderFinalBody=function(){
-  const t=TABS.filter(function(x){return x[0]===window.FINAL_TAB;})[0]||TABS[0];
-  const intro={book:'Tonight and tomorrow morning. Anything not done by the time you board can still be done from Japan, except Shibuya Sky, which sells out.',
-    decide:'Nothing here needs deciding before you fly. Each row keeps every option on its day page; the deadline column is the only thing that bites.',
-    ask:'Messages, not bookings. Drafts for these are waiting in Gmail.'}[t[0]];
-  return '<p style="font-size:13.5px;margin:2px 0 12px">'+intro+'</p>'+rows(t[2]);
-};
-P.syncFinalTabs=function(){
-  const b=document.querySelectorAll('#finaltabs button');
-  for(let i=0;i<b.length;i++) b[i].className=(TABS[i][0]===window.FINAL_TAB?'on':'');
-};
-P.FINAL_COUNTS={book:BOOK.length,decide:DECIDE.length,ask:ASK.length};
+P.FINAL_COUNT=ALL.length;
 })();

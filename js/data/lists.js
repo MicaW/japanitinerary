@@ -30,7 +30,7 @@ P.renderLists=function(){
      return '<tr><td style="white-space:nowrap">'+x.d.split(' ·')[0]+'</td><td><b>'+x.n+'</b></td><td>'+x.r+'</td><td><b>'+x.ref+'</b><br>'+x.seat+'</td><td style="text-align:center">'+(u?'<a target="_blank" rel="noopener" href="'+u+'" style="text-decoration:none;font-size:16px">📄</a>':'')+'</td></tr>'; }).join('')+'</table></div>';
  /* ticket-office sheet — referenced from Mica's printed list */
  h+='<div class="sec orange" style="margin-top:22px"><h3>Ticket-office sheet</h3><div class="sub">If the machine will not release a booking, show this at the JR ticket office (みどりの窓口 Midori no Madoguchi). Kyoto Station: by the central gates, outside the ticket barriers, 05:30–23:00</div></div>';
- h+='<div class="jpsheet"><div class="jph">e5489で予約したきっぷを受け取りたいです（大人2名・決済したクレジットカードと予約番号、電話番号下4桁 1104）</div>';
+ h+='<div class="jpsheet"><div class="jph">e5489で予約したきっぷを受け取りたいです（大人2名・決済したクレジットカードと予約番号、電話番号下4桁）</div>';
  TRAINS.filter(x=>!/HARUKA|NOZOMI|AONIYOSHI/.test(x.n)).forEach(x=>{ h+='<div class="jpl">'+x.jp+'</div>'; });
  h+='<div class="jpf">支払い済みです。ありがとうございます。</div></div>';
  h+='<div class="btnrow"><button class="btn mini" onclick="window.print()">🖨 PRINT THIS SHEET</button></div>';

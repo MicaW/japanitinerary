@@ -663,6 +663,7 @@ function route(){
   } else if(hash==='#guide'){ const ci=currentDayIndex(); location.hash='day/'+DAYS[ci>=0?ci:0].id; return; }
   else if(hash==='#planner'){ renderSubnav(hash); renderDaynav(window.LASTDAY>=0?window.LASTDAY:-1); app.innerHTML=viewsBar('list')+renderPlanner(); }
   else if(/^#(lists|mica|mark|todo|bookings|packing)$/.test(hash)){ renderSubnav('#packing'); app.innerHTML=P.renderLists(); }
+  else if(hash==='#getting'){ renderSubnav(hash); app.innerHTML=P.renderGetting(); }
   else if(hash==='#budget'){ renderSubnav(hash); app.innerHTML=P.renderBudget(); }
   else if(hash==='#etiquette'){ renderSubnav(hash); app.innerHTML=P.renderEtiquette(); }
   else if(hash==='#tips'){ renderSubnav(hash); app.innerHTML=P.renderTips(); }
