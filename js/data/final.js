@@ -7,12 +7,15 @@ const P=window.PAGES;
 
 /* t=what · d=why/how · meta=timing · s=state · u=external link · day=day id · doc=confirmation key */
 const BOOK=[
- {s:'must',t:'Visit Japan Web — both of you, tonight',meta:'TONIGHT · 15 min for two · FREE',
+ {s:'must',p:1,t:'Visit Japan Web — both of you, tonight',meta:'TONIGHT · 15 min for two · FREE',
   d:'The government site that turns immigration and customs into a scan instead of a paper form. One account can hold both travellers. You need <b>both passports, the flight (Air China, arriving KIX 19 Sep) and the first night&rsquo;s address</b> — Henn na Hotel Premier Kyoto Station Hachijo Exit Front. It issues QR codes at the end: <b>screenshot every one of them onto both phones</b> and do not rely on being able to load the site at Kansai. Doing this on airport wifi, jet-lagged, in the immigration queue, is the classic way to lose forty minutes.',
   u:'https://services.digital.go.jp/en/visit-japan-web/',ub:'VISIT JAPAN WEB'},
- {s:'must',t:'Install and set up the eSIMs — do NOT wait until you land',meta:'TONIGHT · 10 min each phone',
+ {s:'must',p:1,t:'Install and set up the eSIMs — do NOT wait until you land',meta:'TONIGHT · 10 min each phone',
   d:'Install the eSIM profile while you are on wifi at home; it will not install without a connection, and Kansai&rsquo;s free wifi is exactly where you do not want to be doing it. Then leave it <b>installed but not started</b> if your plan counts days from activation. On landing: Settings → Mobile Data → turn the Japan eSIM on for data, leave the UK line on for calls and texts with <b>data roaming off</b>, so no accidental UK charges. Check both phones can actually see the profile before you pack — an eSIM that will not install is fixable tonight and not fixable at 12:40 on Saturday in Osaka.'},
- {s:'must',t:'Samurai sword session — Asakusa, Sat 3 Oct morning',meta:'BOOK TONIGHT OR TOMORROW · ~¥8,100 EACH',
+ {s:'must',p:1,t:'Download the apps onto both phones',meta:'TONIGHT ON WIFI · 10 min',
+  d:'Do these on the sofa, not at the airport. <b>Google Maps</b> with Kyoto, Osaka and Tokyo downloaded for offline use. <b>Wallet</b> — add an ICOCA card to each phone and put ¥3,000 on it. <b>SmartEX</b>, signed in, for the two bullet trains. <b>GO</b>, the taxi app, with a card saved. <b>Jorudan</b> as the backup train planner. Then screenshot the Tokyo subway map and the Kyoto bus map. All of them are on the Getting around page with links.',
+  u:'#getting',ub:'GETTING AROUND'},
+ {s:'must',p:3,t:'Samurai sword session — Asakusa, Sat 3 Oct morning',meta:'BOOK TONIGHT OR TOMORROW · ~¥8,100 EACH',
   d:'The Samurai Ninja Museum runs three branches and the <b>Asakusa flagship is a five-minute walk from Senso-ji</b> — which is already the shape of Saturday 3 Oct. Their <b>Samurai Sword experience</b> is about two hours: a katana lesson and actual tatami-mat cutting, rather than the one-hour armour-and-photos basic ticket (¥3,500). Book the <b>09:30 or 10:00 slot</b> and it lands you at Senso-ji and Kappabashi by lunchtime with the day intact. Slots go every 15 minutes and weekend ones sell out, so this is a tonight job.<br><br><b>If Saturday fills up:</b> the same company has a Kyoto branch near Nijo Castle — that would fit Tuesday 22 Sep, which is still an open day, or a Sunday-morning slot on the 20th before the 16:30 zazen. And their Shinjuku branch is two minutes from the station if you would rather pair it with a Shinjuku evening on the 3rd.',
   u:'https://samuraininjamuseum.com/',ub:'SAMURAI NINJA MUSEUM',day:'3-oct'},
  {s:'must',t:'Shibuya Sky — 2 Oct sunset',meta:'ON SALE NOW · 10 min',
@@ -30,13 +33,10 @@ const BOOK=[
  {s:'must',t:'Nagiso — dinner on both nights',meta:'TONIGHT · draft ready in Gmail',
   d:'Fukusuke, opposite the station, needs a dinner reservation for <b>29 Sep</b> and is normally closed on Wednesday <b>30 Sep</b> — so that night is a MOUNTAinn arrangement or food bought earlier. Same message confirms the Nagiso→Magome taxi on the 29th.',
   day:'29-sep'},
- {s:'must',t:'Mark’s meal on BA6',meta:'2 min',
-  d:'Mica has a special meal on the flight home; Mark doesn’t. If he wants one, add it in Manage My Booking — it has to be done well before the flight, not at the gate.',
-  u:'https://www.britishairways.com/travel/managebooking/public/en_gb',ub:'MANAGE BOOKING',day:'5-oct',doc:'ba6'},
- {s:'opt',t:'Kiso guided day — 30 Sep',meta:'HOLD TONIGHT · free until 23 Sep',
+ {s:'opt',p:3,t:'Kiso guided day — 30 Sep',meta:'HOLD TONIGHT · free until 23 Sep',
   d:'Really Rural Japan’s Kiso-Fukushima day: <b>¥45,000 for the two of you, including guide, transport, lunch, entry fees and a sake tasting</b>, about 8 km and flat. Free cancellation up to 7 days before, so holding it tonight costs nothing and keeps the decision open until the 23rd. Ask for the town-focused version.',
   u:'https://reallyruraljapan.com/kiso-fukushima-walking-tour',ub:'ENQUIRE',day:'30-sep'},
- {s:'opt',t:'Ine resident walk + Mukai sake',meta:'TONIGHT · needs 3 days’ notice',
+ {s:'opt',p:3,t:'Ine resident walk + Mukai sake',meta:'TONIGHT · needs 3 days’ notice',
   d:'Beyond the Postcard, 26 Sep, 90 minutes, ¥12,000 for two, cash, meeting at the tourist information centre. Say no to the fishing-trap activity. Ask in the same message whether Mukai can do a short tasting that day — the red-rice Ine Mankai is the one to ask about.',
   u:'https://www.ine-kankou.jp/e_active/beyond-the-postcard',ub:'ENQUIRE',day:'26-sep'},
  {s:'opt',t:'Shigetsu, Tenryu-ji — Wed 23 Sep lunch',meta:'ONLY IF YOU WANT THE BIGGER SETS · by 21 Sep',
@@ -51,7 +51,7 @@ const BOOK=[
  {s:'opt',t:'Unagiya Hirokawa — 24 Sep dinner',meta:'ONLY WITH THE TRANSFER AGREED',
   d:'Cooked eel over rice, the one village dinner that suits you both. Booking takes a ¥3,000 deposit that is not refunded, and it only works if HOSHINOYA agrees the return transfer first — so ask the hotel, then book.',
   u:'https://unagi-hirokawa.jp/orders/en',ub:'BOOK',day:'24-sep'},
- {s:'opt',t:'Golf at TGX Osaka — 22 Sep',meta:'TONIGHT OR DROP',
+ {s:'opt',p:3,t:'Golf at TGX Osaka — 22 Sep',meta:'TONIGHT OR DROP',
   d:'Booked through their LINE account or by phone only — there is no web slot, and they are cashless. ¥3,300 for the first person plus ¥2,200 for the second per 50 minutes, plus ¥550 each for clubs. Holiday hours 09:00–21:00. The Japanese message to paste is in the booking list.',
   u:'https://line.me/R/ti/p/@405bwtvw',ub:'OPEN LINE',day:'22-sep'}
 ];
@@ -76,9 +76,6 @@ const DECIDE=[
 ];
 
 const ASK=[
- {s:'ask',t:'The HARUKA 4-digit ID — find it TONIGHT',meta:'NEEDED AT KIX, 19 SEP · 2 min',
-  d:'The JR West machine at Kansai Airport will not release the HARUKA tickets without a 4-digit ID number you set when you booked. It is <b>not</b> written down anywhere in the confirmations — the booking email only says "your 4-digit ID". Find it in the e5489/JR West account or the original email, write it into the HARUKA confirmation doc, and screenshot it. This is the first thing you do after a nineteen-hour flight; do not leave it to then.',
-  day:'19-sep',doc:'haruka'},
  {s:'ask',t:'Two door codes arrive while you are away',meta:'~26 SEP AND EARLY OCT',
   d:'Yui-an emails its registration form and security code about three days before arrival, around 26 Sep — you will be in Ine with patchy signal. U Place emails a door-entry PDF after the check-in form. <b>Neither goes on this website.</b> When they land, save them into the booking confirmation docs in Drive so they are with everything else and reachable offline.',
   day:'28-sep',doc:'yuian'},
@@ -100,7 +97,11 @@ const ASK=[
 ];
 
 /* ONE list, in the order the deadlines actually bite — not split by where you will be standing. */
-const ALL=BOOK.concat(ASK).concat(DECIDE);
+const DEF={must:2,ask:4,dec:5,opt:6};
+const ALL=BOOK.concat(ASK).concat(DECIDE)
+  .map(function(x,i){ return [x.p||DEF[x.s]||6, i, x]; })
+  .sort(function(a,b){ return a[0]-b[0] || a[1]-b[1]; })
+  .map(function(t){ return t[2]; });
 const KIND={must:['!','BOOK OR DO NOW'],ask:['✉','MESSAGE THEM'],dec:['◇','DECIDE IN JAPAN'],opt:['?','OPTIONAL']};
 
 function rows(list){
@@ -123,9 +124,8 @@ function rows(list){
 }
 
 P.renderFinal=function(){
-  let h='<div class="sec red"><h3>Final actions &amp; decisions</h3>'+
-    '<div class="sub">Everything still open, in one list, roughly in the order it bites. <b>!</b> book or do it now &nbsp; <b>✉</b> a message, not a booking &nbsp; <b>◇</b> a choice you make in Japan &nbsp; <b>?</b> optional. Booking numbers and codes stay in the private confirmation docs.</div></div>';
-  h+='<p style="font-size:13.5px;margin:2px 0 12px">'+ALL.length+' things. Only the first few have to happen before you board — everything below them can be done from Japan, except Shibuya Sky, which sells out.</p>';
+  let h='<div class="sec red"><h3>Prioritised to-dos outstanding</h3>'+
+    '<div class="sub">'+ALL.length+' left, most urgent first</div></div>';
   h+=rows(ALL);
   h+='<div class="btnrow" style="margin:6px 0 26px"><button class="btn mini" onclick="window.print()">🖨 PRINT THIS LIST</button></div>';
   return h;
