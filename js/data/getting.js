@@ -116,7 +116,7 @@ const GROUPS=[
   sub:'Both bullet-train legs are already booked and digital. One app, two journeys.',
   items:[
   {s:'core',t:'SmartEX — the two Nozomi',meta:'INSTALL BEFORE YOU FLY',
-   d:'Both Nozomi are SmartEX bookings. Install the app and sign in <b>before you leave</b>, then link an IC card in the app and tap that card at the gate. The QR code in the confirmation email is for the ticket machine, not the barrier. A forgotten password is much easier to sort out now than at Kyoto Station on the 28th with a train to catch.',
+   d:'Both Nozomi are SmartEX bookings. Install the app and sign in <b>before you leave</b>, then link an IC card in the app and tap that card at the gate. Smart EX also issues a QR ticket that the barrier reads — Reservation Details, then Display QR-Ticket — so there are two ways through and neither needs a paper ticket. A forgotten password is much easier to sort out now than at Kyoto Station on the 28th with a train to catch.',
    u:'https://smart-ex.jp/en/index.php',ub:'SMARTEX'},
   ]},
 

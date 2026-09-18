@@ -8,7 +8,7 @@ const HU={
  ],
  "19-sep":[
   {k:'closed',t:'You land inside Silver Week: bank counters are shut from today through the 23rd, and shut on Saturdays anyway. The 7-Eleven ATMs run 24 hours and take UK cards — draw what you need at Kansai before the HARUKA rather than hunting for one in Kyoto.'},
-  {k:'avoid',t:'The HARUKA discounted ticket is not sold in Japan. Collect it at the KIX machine with the reservation number, the card you paid with and passports — do not join the airport ticket-office queue by default, the machine is faster. The staffed JR office beside it is the fallback if the machine refuses — this is a visitor-only fare and it may want passports.'},
+  {k:'avoid',t:'The HARUKA discounted ticket is not sold in Japan. Collect it at the KIX machine with reservation number 41082, the AMEX you paid with, the 4-digit number and both passports (the HARUKA fare is visitor-only, so they can ask to see them). Machines inside the ticket gates cannot issue it — use one outside, or the office — do not join the airport ticket-office queue by default, the machine is faster. The staffed JR office beside it is the fallback if the machine refuses — this is a visitor-only fare and it may want passports.'},
   {k:'tip',t:'Kyoto Station is busy all evening this week. Eat on the 10F ramen street or in Porta underground rather than the 11F restaurants, which take a queue ticket.'},
   {k:'nook',t:'The station Skyway (10F, free) is a glass corridor across the roof — go up after dark for the city and the tower. Nobody is there.'}
  ],
