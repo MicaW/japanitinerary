@@ -515,7 +515,29 @@ const PLAN_LOCS=[['kyoto','Kyoto'],['osaka','Osaka'],['arashiyama','Arashiyama']
 function planLoc(d,e,idx){
   const la=e.lat,ln=e.lng;
   if(la&&ln){ if(la>=34.98&&la<=35.05&&ln>=135.62&&ln<=135.71) return 'arashiyama'; if(la>=35.40&&la<=35.80&&ln>=134.80&&ln<=135.40) return 'ine'; if(la>=34.55&&la<=34.85&&ln>=135.35&&ln<=135.62) return 'osaka'; if(la>=34.60&&la<=34.72&&ln>=135.78&&ln<=135.90) return 'nara'; if(la>=35.35&&la<=36.10&&ln>=137.40&&ln<=137.95) return 'kiso'; if(la>=35.45&&la<=35.90&&ln>=139.40&&ln<=139.95) return 'tokyo'; if(la>=34.90&&la<=35.12&&ln>=135.60&&ln<=135.90) return 'kyoto'; }
-  if(idx===4) return 'osaka'; if(idx===5||idx===6) return 'arashiyama'; if(idx===7||idx===8) return 'ine'; if(idx>=10&&idx<=13) return 'kiso'; if(idx>=14) return 'tokyo'; return 'kyoto';
+  /* No coordinate: read the place's own words first, then fall back to the day's base.
+     The old fallback went by day number, which filed Nara restaurants under Kyoto
+     and the Shimokitazawa cards on 1 Oct under the Kiso valley. */
+  var t=[e.area,e.addr,e.mapsQ,e.station,e.floor,e.name].filter(Boolean).join(' ').toLowerCase();
+  var WORDS=[
+    ['tokyo',/shimokita|shibuya|shinjuku|ueno|asakusa|nakano broadway|nakano-ku|ginza|nihonbashi|ikebukuro|ebisu|harajuku|omotesando|aoyama|yanaka|nezu|kichijoji|koenji|akihabara|tsukiji|haneda|azabudai|setagaya|meguro|kanda|yotsuya|kagurazaka|sangenjaya|gotokuji|todoroki|toyosu|kamiyacho|roppongi|shinagawa|tokyo/],
+
+    ['osaka',/osaka|dotonbori|namba|umeda|shinsekai|tenma|amerikamura|hozenji|kuromon|expo park/],
+    ['ine',/\bine\b|funaya|hirata|hide|amanohashidate|mukai/],
+    ['kiso',/kiso|narai|tsumago|magome|nagiso|agematsu|yomikaki|mountainn|yui-an/],
+    ['nara',/\bnara\b|naramachi|todai-ji|todaiji|kofuku|nigatsu/],
+    ['arashiyama',/arashiyama|saga|togetsukyo|hoshinoya|tenryu|okochi|adashino|gio-ji|saiho/],
+    ['kyoto',/kyoto|gion|nishiki|pontocho|kiyomizu|fushimi|daitoku|kinkaku|ginkaku|nijo|kawaramachi|karasuma|sanjo|shijo|nishijin|higashiyama|granvia|porta/]
+  ];
+  for(var i=0;i<WORDS.length;i++){ if(WORDS[i][1].test(t)) return WORDS[i][0]; }
+  var b=String(d.base||'').toLowerCase();
+  if(/tokyo|shimokita|london/.test(b)) return 'tokyo';
+  if(/kiso|nagiso|magome|tsumago/.test(b)) return 'kiso';
+  if(/nara/.test(b)) return 'nara';
+  if(/ine/.test(b)) return 'ine';
+  if(/arashiyama/.test(b)) return 'arashiyama';
+  if(/osaka/.test(b)) return 'osaka';
+  return 'kyoto';
 }
 function renderPlanner(){
   const rows=[];
